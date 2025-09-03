@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bootstrap Responsive Header</title>
+  <title>Coffee by Monday Mornings</title>
   <!-- Local Bootstrap CSS -->
   <link rel="stylesheet" href="../public/assets/css/bootstrap.min.css">
   <!-- Local Bootstrap Icons -->
