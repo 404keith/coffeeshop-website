@@ -99,10 +99,20 @@
             transition: transform 0.3s ease-out;
             padding-top: 100px; 
             position: relative;
+            margin: 0 auto;
         }
-        .img1{
+        .item img {
+        position: absolute;
+            
+        object-fit: contain;
+        }
+        .img1 { width: 280px; top: -230px; }
+        .img2 { width: 270px; top: -100px; }
+        .img3 { width: 220px; top: -160px; }
+        .img4 { width: 300px; top: -250px;  left: -30px;}
+        /* .img1{
             width: 280px;
-            position: absolute;
+            position: absolute
             object-fit: cover;
             top: -220px; 
            
@@ -125,7 +135,7 @@
             object-fit: cover;
             top: -250px; 
             left: -30px;
-        }
+        } */
         .item span {
             background: #e68a00;
             padding: 12px 10px;
@@ -160,7 +170,7 @@
                 margin-top: 15vh;
             }
             .cont h2 {
-                font-size: 1.6rem; /* smaller on phones */
+                font-size: 1.6rem; 
             }
             .cont p {
                 font-size: 0.9rem;
@@ -170,6 +180,23 @@
                 padding: 8px 25px;
             }
         }
+
+        #menuCarousel .carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0;
+}
+
+#menuCarousel .item {
+  width: 220px; /* slightly smaller for mobile */
+  margin: auto;
+}
+
+#menuCarousel .item img {
+  max-width: 100%;
+}
+
   </style>
 </head>
 
@@ -186,30 +213,74 @@
     </div>
 
     <div class="conn2">
-  <h2>Menu</h2>
+<h2>Menu</h2>
 
-  <div class="menu">
-    <a href="drinks.html" class="item">
-      <img class="img1" src="../public/assets/images/drinkss.png" alt="Drinks">
-      <span>DRINKS</span>
-    </a>
+<!-- Desktop/Tablet Menu (Flex Layout) -->
+<div class="menu d-none d-md-flex">
+  <a href="drinks.html" class="item">
+    <img class="img1" src="../public/assets/images/drinkss.png" alt="Drinks">
+    <span>DRINKS</span>
+  </a>
 
-    <a href="waffles.html" class="item">
-      <img class="img2" src="../public/assets/images/waffless.png" alt="Waffles">
-      <span>WAFFLES</span>
-    </a>
+  <a href="waffles.html" class="item">
+    <img class="img2" src="../public/assets/images/waffless.png" alt="Waffles">
+    <span>WAFFLES</span>
+  </a>
 
-    <a href="pastries.html" class="item">
-      <img class="img3" src="../public/assets/images/pastriess.png" alt="Pastries">  
-      <span>PASTRIES</span>
-    </a>
+  <a href="pastries.html" class="item">
+    <img class="img3" src="../public/assets/images/pastriess.png" alt="Pastries">  
+    <span>PASTRIES</span>
+  </a>
 
-    <a href="merienda.html" class="item">
-      <img class="img4" src="../public/assets/images/meriendaa.png" alt="Merienda">
-      <span>MERIENDA</span>
-    </a>
-  </div>
+  <a href="merienda.html" class="item">
+    <img class="img4" src="../public/assets/images/meriendaa.png" alt="Merienda">
+    <span>MERIENDA</span>
+  </a>
 </div>
+
+<!-- Mobile Menu (Carousel) -->
+<div id="menuCarousel" class="carousel slide d-md-none" data-bs-ride="carousel">
+  <div class="carousel-inner text-center">
+
+    <div class="carousel-item active">
+      <a href="drinks.html" class="item mx-auto">
+        <img src="../public/assets/images/drinkss.png" class="d-block w-75 mx-auto" alt="Drinks">
+        <span>DRINKS</span>
+      </a>
+    </div>
+
+    <div class="carousel-item">
+      <a href="waffles.html" class="item mx-auto">
+        <img src="../public/assets/images/waffless.png" class="d-block w-75 mx-auto" alt="Waffles">
+        <span>WAFFLES</span>
+      </a>
+    </div>
+
+    <div class="carousel-item">
+      <a href="pastries.html" class="item mx-auto">
+        <img src="../public/assets/images/pastriess.png" class="d-block w-75 mx-auto" alt="Pastries">
+        <span>PASTRIES</span>
+      </a>
+    </div>
+
+    <div class="carousel-item">
+      <a href="merienda.html" class="item mx-auto">
+        <img src="../public/assets/images/meriendaa.png" class="d-block w-75 mx-auto" alt="Merienda">
+        <span>MERIENDA</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#menuCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#menuCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
 
   
    <script src="../public/assets/js/bootstrap.bundle.min.js"></script>
