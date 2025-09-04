@@ -24,8 +24,17 @@
 
     .text-color .nav-link{
       color:rgba(212,132,35,1);
-      font-size:13px;
+      margin-top:.5rem;
+      font-size:14px;
     }
+
+      .textLeft .nav-link{
+          margin-left:3rem;
+      }
+      .textRight .nav-link{
+              margin-right:3rem;
+      }
+
     .text-color .nav-link:hover{ color:rgba(123,61,0,1); }
 
     .logo{ max-width:125px; height:49px; }
@@ -94,7 +103,7 @@
 
     <!-- Left (desktop) -->
     <ul class="navbar-nav navbar-left d-none d-md-flex ms-5 text-color">
-      <li class="nav-item ms-5"><a class="nav-link" href="index.php">HOME</a></li>
+      <li class="nav-item ms-5 textLeft"><a class="nav-link" href="index.php">HOME</a></li>
       <li class="nav-item ms-5"><a class="nav-link" href="#">MENU</a></li>
       <li class="nav-item ms-5"><a class="nav-link" href="#">ABOUT US</a></li>
     </ul>
@@ -113,7 +122,7 @@
     <ul class="navbar-nav navbar-right d-none d-md-flex align-items-center me-5 text-color">
       <li class="nav-item me-5"><a class="nav-link" href="#">CONTACT US</a></li>
       <li class="nav-item me-5"><a class="nav-link" href="#">CART</a></li>
-      <li class="nav-item me-5"><a class="nav-link" href="#">ACCOUNT</a></li>
+      <li class="nav-item me-5 textRight"><a class="nav-link" href="#">ACCOUNT</a></li>
     </ul>
 
     <!-- Hamburger toggles OFFCANVAS on mobile -->
