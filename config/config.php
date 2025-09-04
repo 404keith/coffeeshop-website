@@ -1,15 +1,13 @@
 <?php
+// Database credentials
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'myfirstdatabase');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 
-$host = 'localhost';          // 
-$dbname = 'myfirstdatabase';  //
-$dbusername = 'root';
-$dbpassword = '';
 
-try {        //php data object
-  $pdo = new PDO("mysql:host=$host; dbname=$dbname", $dbusername, $dbpassword);
-  
-  $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+define('URL_ROOT', 'http://localhost/projects/coffeeshop-website');
+define('APP_ROOT', dirname(dirname(__FILE__)));
 
-} catch (PDOException $e) {
-  die('Connection Failed: '. $e->getMessage());
-}
+
+define('SITE_NAME', 'Coffee By Monday Mornings');

@@ -1,0 +1,69 @@
+<?php
+require_once '../../config/config.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+ $username = $_POST['username'];
+ $password = $_POST['password'];
+ $email = $_POST['email'];
+
+ try {
+            require APP_ROOT .'/config/dbhandler.php';
+			require APP_ROOT .'/models/signupModel.php';
+			require APP_ROOT .'/controllers/signupController.php';
+
+   //ERROR HANDLERS:
+	 // functions in controller file
+	     $errors = [];
+	   if (is_input_empty($username, $password, $email)){
+				$errors['empty_input'] = 'Fill in all fields!';
+	   }
+
+		 if ( is_email_invalid($email)) {
+			 $errors['invalid_email'] = 'Invalid Email adress!';
+		 }
+
+		 if (is_username_taken($pdo,$username)) {
+		  	 $errors['username_taken'] = 'Username already taken!';
+		 }
+		 if (is_email_registered($pdo, $email)) {
+		 	  $errors['email_used'] = 'Email already used!';
+		 }
+
+
+		    require_once '../../config/session.php'; 
+		  // todo!
+
+		 if ($errors) {
+			 $_SESSION['errors_signup'] = $errors;
+
+				$signupData = [  // save signup data even refreshed
+					'username' => $username,
+					'email' => $email,
+				];
+				$_SESSION['signup_data'] = $signupData;
+
+			 	header ('Location: '.URL_ROOT.'/views/auth/signup.php');
+
+				die(); //exit if there is error, to not continue the code below
+		 }
+
+		 create_user( $pdo,  $username,  $password,  $email);
+
+		 //done:
+		 
+			 	header ('Location: '.URL_ROOT.'/views/auth/signup.php?signup=success');	//in view, $_GET['signup']=success
+
+		 $pdo = null;
+		 $statement = null;
+		 die();
+
+ } catch (PDOException $e) {
+   die('Query Failed: '. $e->getMessage());
+ }
+
+
+} else {
+ 	header ('Location: '.APP_ROOT.'/public/index.php');
+
+ die();
+}
