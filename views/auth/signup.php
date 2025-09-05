@@ -162,29 +162,31 @@ include APP_ROOT . '/views/layouts/header.php';
     <!-- <div class="background-img"></div> -->
 
      <div class="container-fluid d-flex justify-content-center ">
-    <form class="p-5 form-width" action="<?php echo URL_ROOT; ?>/views/auth/signupView.php" method="post">
+        <form class="p-5 form-width" action="<?php echo URL_ROOT; ?>/views/auth/signupView.php" method="post">
+            
         <div class="form-padding">
-
             <div class="row  ">
                 <h1 class="welcome-text">Sign up</h1>
             </div>
                 <h1 class="login-text">Please enter the details below:</h1>
 
- <!--
-             <div class="row mb-4 ">
+ 
+                <?php signupInputs(); ?>
+
+             <!-- <div class="row mb-4 ">
                 <div class="col d-flex justify-content-center ">
-                nme 
+                 
                     <div data-mdb-input-init class="form-outline  ">
-                          <input type="text" name="firstname" class="form-control" />
-                          <label class="form-label" for="firstname">First name</label>
+                          <input type="text" name="first_name" class="form-control" />
+                          <label class="form-label" for="first_name">First name</label>
                     </div>
                 </div>
 
                 <div class="col d-flex justify-content-center">
-                 name 
+                 
                     <div data-mdb-input-init class="form-outline ">
-                          <input type="text" name="lastname" class="form-control" />
-                          <label class="form-label" for="lastname">Last name</label>
+                          <input type="text" name="last_name" class="form-control" />
+                          <label class="form-label" for="last_name">Last name</label>
                     </div>
                 </div>
 
@@ -193,22 +195,22 @@ include APP_ROOT . '/views/layouts/header.php';
             
                
                     <!-- email input -->
-          <div data-mdb-input-init class="form-outline mb-4 ">
+          <!-- <div data-mdb-input-init class="form-outline mb-4 ">
                 <input type="email" name="email" class="form-control" />
                 <label class="form-label" for="email">Email</label>
-            </div>
+            </div> -->
 
                     <!-- Username input -->
-          <div data-mdb-input-init class="form-outline mb-4 ">
+          <!-- <div data-mdb-input-init class="form-outline mb-4 ">
                 <input type="text" name="username" class="form-control" />
                 <label class="form-label" for="username">Username</label>
-            </div>
+            </div> -->
 
             <!-- Password input -->
-            <div data-mdb-input-init class="form-outline mb-4">
+            <!-- <div data-mdb-input-init class="form-outline mb-4">
                 <input type="password" name="password" class="form-control" />
                 <label class="form-label" for="password">Password</label>
-            </div>
+            </div> -->
 
           
 

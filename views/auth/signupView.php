@@ -5,6 +5,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
  $username = $_POST['username'];
  $password = $_POST['password'];
  $email = $_POST['email'];
+ $first_name = $_POST['first_name'];
+ $last_name = $_POST['last_name'];
 
  try {
             require APP_ROOT .'/config/dbhandler.php';
@@ -37,17 +39,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			 $_SESSION['errors_signup'] = $errors;
 
 				$signupData = [  // save signup data even refreshed
-					'username' => $username,
-					'email' => $email,
+					'username'   => $username !== '' ? trim($username) : null,
+					'email'      => $email !== '' ? trim($email) : null,
+					'first_name' => $first_name !== '' ? trim($first_name) : null,
+					'last_name'  => $last_name !== '' ? trim($last_name) : null,
 				];
-				$_SESSION['signup_data'] = $signupData;
+				 $_SESSION['signup_data'] = $signupData;
 
 			 	header ('Location: '.URL_ROOT.'/views/auth/signup.php');
 
 				die(); //exit if there is error, to not continue the code below
 		 }
 
-		 create_user( $pdo,  $username,  $password,  $email);
+		 create_user( $pdo,  $username,  $password,  $email, $first_name, $last_name );
 
 		 //done:
 		 

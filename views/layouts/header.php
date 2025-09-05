@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Coffee by Monday Mornings</title>
+  <title><?php echo SITE_NAME; ?></title>
 
  <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/assets/css/mdb.min.css" />  
   <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/assets/css/bootstrap.min.css">
@@ -26,12 +26,12 @@
     </ul>
 
     <!-- Logo desktop (center) -->
-    <a class="navbar-brand fw-bold text-primary d-none d-md-block" href="<?php echo URL_ROOT; ?>/public/index.php">
+    <a class="navbar-brand fw-bold text-primary d-none d-md-block" href="<?php echo URL_ROOT; ?>">
       <img src="<?php echo URL_ROOT; ?>/public/assets/images/logo.png" alt="logo" class="logo">
     </a>
 
     <!-- Logo mobile (right) -->
-    <a class="navbar-brand fw-bold text-primary d-md-none ms-5" href="<?php echo URL_ROOT; ?>/public/index.php">
+    <a class="navbar-brand fw-bold text-primary d-md-none ms-5" href="<?php echo URL_ROOT; ?>">
       <img src="<?php echo URL_ROOT; ?>/public/assets/images/logo.png" alt="logo" class="logo">
     </a>
 
@@ -64,7 +64,7 @@
   </div>
   <div class="offcanvas-body">
     <ul class="navbar-nav d-md-none ms-3 me-3">
-      <li class="nav-item "><a class="nav-link" href="<?php echo URL_ROOT; ?>/public/index.php">Home</a></li>
+      <li class="nav-item "><a class="nav-link" href="<?php echo URL_ROOT; ?>">Home</a></li>
       <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas">Menu</a></li>
       <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas">About Us</a></li>
       <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas">Contact Us</a></li>
