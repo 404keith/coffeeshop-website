@@ -10,91 +10,8 @@
   <!-- Local Bootstrap Icons -->
   <link rel="stylesheet" href="../public/assets/css/bootstrap-icons.css" />
 
-  <style>
-    @font-face{
-      font-family:'inter';
-      src:url('../public/assets/fonts/Inter_18pt-Regular.ttf') format('truetype');
-      font-weight:normal;
-      font-style:normal;
-    }
+  <link rel="stylesheet" href="../public/assets/css/header.css" />
 
-    * { font-family:'inter'; }
-
-    .navbar-color { background-color:#fff6eb; }
-
-    .text-color .nav-link{
-      color:rgba(212,132,35,1);
-      margin-top:.5rem;
-      font-size:14px;
-    }
-
-      .textLeft .nav-link{
-          margin-left:3rem;
-      }
-      .textRight .nav-link{
-              margin-right:3rem;
-      }
-
-    .text-color .nav-link:hover{ color:rgba(123,61,0,1); }
-
-    .logo{ max-width:125px; height:49px; }
-
-    @media (min-width:768px){
-      .navbar .container-fluid{
-        display:grid;
-        grid-template-columns:1fr auto 1fr;
-        align-items:center;
-    
-      }
-      .navbar-brand{ grid-column:2; margin: auto; }
-      .navbar-left{  justify-content:flex-start; }
-      .navbar-right{ justify-content:flex-end; }
-    }
-
-    .navbar-toggler{
-      border-color:rgba(212,132,35,1);
-      background-color:transparent;
-    }
-    .navbar-toggler-icon{
-      background-image:url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(212,132,35,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-    }
-    .navbar-toggler:focus,
-    .navbar-toggler:active,
-    .navbar-toggler-icon:focus{
-      outline:none; box-shadow:none;
-    }
-
-    /* Offcanvas (sidebar) look & feel */
-    .offcanvas-custom{
-     --bs-offcanvas-width: 13rem;            /* sidebar width */
-      background:#fff6eb;       /* match navbar */
-    }
-    .offcanvas-custom .nav-link{
-      color:rgba(212,132,35,1);
-      font-size:20px;
-      padding:.6rem 0;
-      margin-top:5px;
-    }
-    .offcanvas-custom .nav-link:hover{
-      color:rgba(123,61,0,1);
-     
-    }
-    .offcanvas-custom .offcanvas-header{
-      border-bottom:1px solid rgba(0,0,0,.06); 
-       padding-bottom: 1.8rem;
-       padding-top: 1.8rem;
-    }
-
-   .btn-close {
-    width: 2rem;
-    height: 2rem;
-    background-size: 2rem;
-    opacity:1;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23d48423'><path d='M2.146 2.854a.5.5 0 0 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z'/></svg>");
-  }
-
-
-  </style>
 </head>
 <body>
 
@@ -122,7 +39,7 @@
     <ul class="navbar-nav navbar-right d-none d-md-flex align-items-center me-5 text-color">
       <li class="nav-item me-5"><a class="nav-link" href="#">CONTACT US</a></li>
       <li class="nav-item me-5"><a class="nav-link" href="#">CART</a></li>
-      <li class="nav-item me-5 textRight"><a class="nav-link" href="#">ACCOUNT</a></li>
+      <li class="nav-item me-5 textRight"><a class="nav-link" href="../views/auth/login.php">ACCOUNT</a></li>
     </ul>
 
     <!-- Hamburger toggles OFFCANVAS on mobile -->
