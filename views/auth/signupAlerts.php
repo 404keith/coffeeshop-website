@@ -61,9 +61,7 @@ function check_signup_errors()
 function signupInputs(){
 //first name and last name
 	if (isset($_SESSION['signup_data']['first_name']) &&
-			 !isset($_SESSION['errors_signup']['username_taken']) ||
-			  isset($_SESSION['signup_data']['last_name']) &&
-			 isset($_SESSION['errors_signup'])) {
+			 !isset($_SESSION['errors_signup']['username_taken'])) {
 
 			echo '
 				<div class="row mb-4 ">
@@ -78,16 +76,7 @@ function signupInputs(){
 						</div>
 					</div>
 
-					<div class="col d-flex justify-content-center">
 					
-						<div data-mdb-input-init class="form-outline ">
-							<input type="text"
-								value="'.htmlspecialchars($_SESSION['signup_data']['last_name']).'" 
-							name="last_name" class="form-control" />
-							<label class="form-label" for="last_name">Last name</label>
-						</div>
-					</div>
-					</div>
 			';
 			
 		} else {
@@ -101,16 +90,34 @@ function signupInputs(){
 						</div>
 					</div>
 
-					<div class="col d-flex justify-content-center">
+					
+			';
+		}
+
+//last name
+		if (isset($_SESSION['signup_data']['last_name']) &&
+			 !isset($_SESSION['errors_signup']['username_taken'])) {
+ 
+				echo '<div class="col d-flex justify-content-center">
+					
+						<div data-mdb-input-init class="form-outline ">
+							<input type="text"
+								value="'.htmlspecialchars($_SESSION['signup_data']['last_name']).'" 
+							name="last_name" class="form-control" />
+							<label class="form-label" for="last_name">Last name</label>
+						</div>
+					</div>
+					</div>';
+			 } else {
+				echo '<div class="col d-flex justify-content-center">
 					
 						<div data-mdb-input-init class="form-outline ">
 							<input type="text" name="last_name" class="form-control" />
 							<label class="form-label" for="last_name">Last name</label>
 						</div>
 					</div>
-					</div>
-			';
-		}
+					</div>';
+			 }
 
 	//username:
 		if (isset($_SESSION['signup_data']['username']) &&
