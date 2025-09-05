@@ -170,8 +170,11 @@ include APP_ROOT . '/views/layouts/header.php';
             </div>
                 <h1 class="login-text">Please enter the details below:</h1>
 
- 
-                <?php signupInputs(); ?>
+
+                <!-- from signupAlerts -->
+                <?php signupInputs(); ?>  
+
+                
 
              <!-- <div class="row mb-4 ">
                 <div class="col d-flex justify-content-center ">
