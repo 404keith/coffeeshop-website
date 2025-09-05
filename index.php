@@ -1,8 +1,7 @@
 <?php
 require_once 'config/config.php';
 
-
-$uri = $_SERVER['REQUEST_URI'];
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 
 if ($uri == FILE_ROOT) {
