@@ -1,19 +1,8 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Coffee by Monday Mornings</title>
-
  <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/assets/css/mdb.min.css" />  
   <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/assets/css/bootstrap-icons.css">
   <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/assets/css/header.css">
-
-
-</head>
-<body>
 
 <nav class="navbar navbar-expand-md navbar-color py-3">
   <div class="container-fluid">
@@ -75,5 +64,4 @@
 </div>
 
 <script src="<?php echo URL_ROOT; ?>/public/assets/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+

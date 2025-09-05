@@ -1,40 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Footer</title>
-      <!-- Local Bootstrap CSS -->
-  <link rel="stylesheet" href="../public/assets/css/bootstrap.min.css">
-  <!-- Local Bootstrap Icons -->
-  <link rel="stylesheet" href="../public/assets/css/bootstrap-icons.css">
-  <style>
+<style>
 .footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  background-color: #3a2412; /* dark brown */
-  color: #e68a00; /* orange text */
-  padding: 30px 20px;
-  text-align: center;
+  position: absolute; 
+  left: 0; 
+  right: 0; 
+  background-color: #3a2412; 
+  color: #e68a00; 
+  padding: 30px 20px; 
+  text-align: center; 
+  width: 100%; 
+  top: 240vh; 
+  min-height: 120px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer .logo img {
+  height: 50px;
 }
 
 .footer .connect-text {
   font-size: 14px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-weight: 500;
   letter-spacing: 1px;
 }
 
 .footer .social-icons {
-  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
 }
 
 .footer .social-icons a {
   color: #e68a00;
   font-size: 24px;
-  margin: 0 15px;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -54,24 +60,59 @@
   font-size: 12px;
   margin: 0;
   color: #e68a00;
+  text-align: center;
+  width: 100%;
+  margin-top: 15px;
 }
 
 
-  </style>
-</head>
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer .logo {
+    margin-bottom: 15px;
+    text-align: center;   
+    width: 100%;         
+  }
+
+  .footer .logo img {
+    margin: 0 auto;      
+    display: block;      
+  }
+}
+</style>
 
 <footer class="footer">
   <div class="footer-content">
-    <p class="connect-text">CONNECT WITH US</p>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/search/top?q=coffee%20by%20monday%20mornings"><i class="facebook"></i></a>
-      <a href="#"><i class="instagram"></i></a>
-      <a href="#"><i class="tiktok"></i></a>
+
+    <div class="logo">
+      <img src="../public/assets/images/logo.png" alt="Coffee by Monday Mornings">
     </div>
-    
-    <p class="copyright">© 2025 Coffee by Monday Mornings. All rights reserved</p>
+
+    <!-- Social Icons -->
+    <div>
+      <p class="connect-text">CONNECT WITH US</p>
+      <div class="social-icons">
+        <!-- Direct link to FB Page -->
+        <a href="https://www.facebook.com/profile.php?id=100092605117539" target="_blank">
+          <i class="bi bi-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com/coffeebymondaymornings/" target="_blank">
+          <i class="bi bi-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@coffeebymondaymornings" target="_blank">
+          <i class="bi bi-tiktok"></i>
+        </a>
+      </div>
+    </div>
   </div>
 
-  <script src="../public/assets/js/bootstrap.bundle.min.js"></script>
+  <hr>
+  <p class="copyright">© 2025 Coffee by Monday Mornings. All rights reserved</p>
 </footer>
 
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
