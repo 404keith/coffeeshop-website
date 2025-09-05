@@ -4,12 +4,15 @@
 ini_set('session.use_only_cookies', 1);
  ini_set('session.use_strict_mode', 1);  // it make sure that the website only use a session id that our server created, also makes the session id more complex.
 
+$https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
+$domain = $_SERVER['HTTP_HOST']; // works for localhost and vhosts
+
 session_set_cookie_params([
-'lifetime' => 1800, // cookie will get destroyed after certain amount of time, 1800=30mins in sec.
-'domain' => 'localhost',
-'path' => '/',
-'secure' => true,
-'httponly' => true
+    'lifetime' => 1800,
+    'domain'   => $domain,  
+    'path'     => '/',
+    'secure'   => $https,   
+    'httponly' => true
 ]);
 
 session_start();

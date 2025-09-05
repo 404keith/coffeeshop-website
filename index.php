@@ -1,12 +1,10 @@
 <?php
 require_once 'config/config.php';
+require 'router.php';
 
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
+//  /projects/coffeeshop-website/
 
-if ($uri == FILE_ROOT) {
- require APP_ROOT . '/views/layouts/body.php';
-}
 
 
 

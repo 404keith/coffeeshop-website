@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../config/config.php';
+require_once 'config/config.php';
  require_once APP_ROOT .  '/config/session.php'; 
 include APP_ROOT . '/views/layouts/header.php';
  
@@ -29,7 +29,7 @@ include APP_ROOT . '/views/layouts/header.php';
     <!-- <div class="background-img"></div> -->
 
      <div class="container-fluid d-flex justify-content-center ">
-    <form class="p-5 form-width " action="<?= FILE_ROOT ?>/views/auth/loginView.php" method="post">
+    <form class="p-5 form-width " action="<?= FILE_ROOT ?>/loginView" method="post">
         <div class="form-padding">
 
             <div class="row ">
@@ -78,7 +78,7 @@ include APP_ROOT . '/views/layouts/header.php';
 
             <!-- Register buttons -->
             <div class="text-center">
-                <p>Not yet registered? <a href="signup.php">Register here</a></p>
+                <p>Not yet registered? <a href="/signup">Register here</a></p>
             </div>
 
             <div><?php  check_login_errors(); ?></div>

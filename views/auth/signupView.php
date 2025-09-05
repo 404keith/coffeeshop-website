@@ -1,5 +1,5 @@
 <?php
-require_once '../../config/config.php';
+require_once 'config/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
  $username = $_POST['username'];
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				];
 				 $_SESSION['signup_data'] = $signupData;
 
-			 	header ('Location: '.FILE_ROOT.'/views/auth/signup.php');
+			 	header ('Location: '.FILE_ROOT.'/signup');
 
 				die(); 
 		 }
@@ -54,8 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		 create_user( $pdo,  $username,  $password,  $email, $first_name, $last_name );
 
 		 //done:
+				$_SESSION['signup_success'] = true;
 		 
-			 	header ('Location: '.FILE_ROOT.'/views/auth/signup.php?signup=success');	//in view, $_GET['signup']=success
+			 	header ('Location: '.FILE_ROOT.'/signup');
 
 		 $pdo = null;
 		 $statement = null;

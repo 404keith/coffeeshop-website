@@ -27,9 +27,9 @@ function check_login_errors(){
 				}
 
 				unset($_SESSION['errors_login'] );
-		} else if ( isset($_GET['login']) && $_GET['login'] === 'success'){
-			echo "<br>";
-            echo '<div class="alert alert-success" role="alert">  Login Success!</div>';
-		}
+			} else if (isset($_SESSION['login_success']) && $_SESSION['login_success'] === true) {
+				echo '<div class="alert alert-success" role="alert">Login Success!</div>';
+				unset($_SESSION['login_success']); // clear so it shows only once
+			}
 }
 

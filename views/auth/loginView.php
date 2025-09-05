@@ -1,5 +1,5 @@
 <?php
-require_once '../../config/config.php';
+require_once 'config/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$username = $_POST['username'];
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 				if ($errors) { 
 					$_SESSION['errors_login'] = $errors;
-					 	header ('Location: '.FILE_ROOT.'/views/auth/login.php');
+					 	header ('Location: '.FILE_ROOT.'/login');
 					    die(); 
 				}
 
@@ -46,8 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$_SESSION['user_id'] = $result['id'];
 				$_SESSION['user_username'] = htmlspecialchars($result['username']);
 			    $_SESSION['last_regeneration'] = time(); //reset time
+				$_SESSION['login_success'] = true;
 
-				header('Location: '.FILE_ROOT.'/views/auth/login.php?login=success');  // login sucess,  close script or end
+				header('Location: '.FILE_ROOT.'/login');  
+				
 				$pdo = null;
 				$statement = null;
 				die();
@@ -61,5 +63,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	header ('Location: '.APP_ROOT.'/public/index.php');
 	die();
 }
-
 
