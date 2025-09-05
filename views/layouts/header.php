@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title><?php echo SITE_NAME; ?></title>
+  <title><?= SITE_NAME ?></title>
 
- <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/assets/css/mdb.min.css" />  
-  <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/assets/css/bootstrap-icons.css">
-  <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/assets/css/header.css">
+ <link rel="stylesheet" href="<?= FILE_ROOT ?>public/assets/css/mdb.min.css" />  
+  <link rel="stylesheet" href="<?= FILE_ROOT ?>public/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?= FILE_ROOT ?>public/assets/css/bootstrap-icons.css">
+  <link rel="stylesheet" href="<?= FILE_ROOT ?>public/assets/css/header.css">
 
 
 </head>
@@ -19,26 +19,26 @@
 
     <!-- Left (desktop) -->
     <ul class="navbar-nav navbar-left d-none d-md-flex ms-5 text-color">
-      <li class="nav-item ms-5 textLeft"><a class="nav-link" href="index.php">HOME</a></li>
+      <li class="nav-item ms-5 textLeft"><a class="nav-link" href="<?= FILE_ROOT ?>">HOME</a></li>
       <li class="nav-item ms-5"><a class="nav-link" href="#">MENU</a></li>
       <li class="nav-item ms-5"><a class="nav-link" href="#">ABOUT US</a></li>
     </ul>
 
     <!-- Logo desktop (center) -->
-    <a class="navbar-brand fw-bold text-primary d-none d-md-block" href="<?php echo URL_ROOT; ?>">
-      <img src="<?php echo URL_ROOT; ?>/public/assets/images/logo.png" alt="logo" class="logo">
+    <a class="navbar-brand fw-bold text-primary d-none d-md-block" href="<?= FILE_ROOT ?>">
+      <img src="<?= FILE_ROOT ?>public/assets/images/logo.png" alt="logo" class="logo">
     </a>
 
     <!-- Logo mobile (right) -->
-    <a class="navbar-brand fw-bold text-primary d-md-none ms-5" href="<?php echo URL_ROOT; ?>">
-      <img src="<?php echo URL_ROOT; ?>/public/assets/images/logo.png" alt="logo" class="logo">
+    <a class="navbar-brand fw-bold text-primary d-md-none ms-5" href="<?= FILE_ROOT ?>">
+      <img src="<?= FILE_ROOT ?>public/assets/images/logo.png" alt="logo" class="logo">
     </a>
 
     <!-- Right (desktop) -->
     <ul class="navbar-nav navbar-right d-none d-md-flex align-items-center me-5 text-color">
       <li class="nav-item me-5"><a class="nav-link" href="#">CONTACT US</a></li>
       <li class="nav-item me-5"><a class="nav-link" href="#">CART</a></li>
-      <li class="nav-item me-5 textRight"><a class="nav-link" href="<?php echo URL_ROOT; ?>/views/auth/login.php">ACCOUNT</a></li>
+      <li class="nav-item me-5 textRight"><a class="nav-link" href="<?= FILE_ROOT ?>views/auth/login.php">ACCOUNT</a></li>
     </ul>
 
     <!-- Hamburger toggles OFFCANVAS on mobile -->
@@ -63,16 +63,16 @@
   </div>
   <div class="offcanvas-body">
     <ul class="navbar-nav d-md-none ms-3 me-3">
-      <li class="nav-item "><a class="nav-link" href="<?php echo URL_ROOT; ?>">Home</a></li>
+      <li class="nav-item "><a class="nav-link" href="<?= FILE_ROOT ?>">Home</a></li>
       <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas">Menu</a></li>
       <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas">About Us</a></li>
       <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas">Contact Us</a></li>
       <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas"><i class="bi bi-cart"></i> Cart</a></li>
-      <li class="nav-item "><a class="nav-link" href="<?php echo URL_ROOT; ?>/views/auth/login.php" ><i class="bi bi-person"></i> Account</a></li>
+      <li class="nav-item "><a class="nav-link" href="<?= FILE_ROOT ?>views/auth/login.php" ><i class="bi bi-person"></i> Account</a></li>
     </ul>
   </div>
 </div>
 
-<script src="<?php echo URL_ROOT; ?>/public/assets/js/bootstrap.bundle.min.js"></script>
+<script src="<?= FILE_ROOT ?>public/assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,131 @@
+   @font-face{
+        font-family:'campana';
+        src:url('../fonts/campana.otf') format('opentype');
+        font-weight:normal;
+        font-style:normal;
+        }
+
+        body{
+            background-color: #FFF6EB;      
+        }
+
+        /* .background-img{
+            position: fixed;    
+            top: 0;
+            left: 0;
+            width: 110%;
+            height: 100%;
+            background-image: url('../public/assets/images/login-background.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(3px);  
+            z-index: -1;           
+            transform: translate(-5%, 2%); 
+               
+        }
+
+         .background-img::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: #00000067;
+         } */
+
+        .form-width{
+            max-width: 700px; 
+            width: 80%;     
+            background-color: #FFF6EB;  
+        }
+
+        .form-outline .form-control:focus~.form-notch .form-notch-leading {
+
+        border-top: .125rem solid #D48423;
+        border-bottom: .125rem solid #D48423;
+        border-left: .125rem solid #D48423;
+        box-shadow:-1px 0px 0px 0px #D48423, 0px 1px 0px 0px #D48423, 0px -1px 0px 0px #D48423;
+        }
+        .form-outline .form-control:focus~.form-notch .form-notch-middle {
+           
+            border-bottom: .125rem solid;
+            border-color: #D48423;
+            border-top:none;
+            box-shadow: 0 1px 0 0 #D48423;
+            
+        }
+
+        .form-outline .form-control:focus {
+            background-color: #FFF6EB; 
+        }
+
+        .form-outline .form-control:focus~.form-notch .form-notch-trailing {
+           background-color: rgba(255, 246, 235, 0);  
+            border-color: currentcolor currentcolor currentcolor #E4A11B;
+            border-bottom: .125rem solid #D48423;
+            border-right: .125rem solid #D48423;
+            border-top: .125rem solid #D48423;
+            box-shadow: 1px 0 0 0 #D48423, 0 -1px 0 0 #D48423, 0 1px 0 0 #D48423;
+        }
+
+        .form-outline .form-control:focus~.form-label {
+            color: #D48423;
+        }		
+
+        .form-outline .form-control.active~.form-notch .form-notch-middle, .form-outline .form-control:focus~.form-notch .form-notch-middle {
+        border-top: 1px transparent;
+        }
+
+        .form-check-input:checked {
+        background-color: #D48423!important;
+        border-color: #D48423!important;
+        }
+
+       .btn-primary {
+        background-color: #D48423!important;
+        border-color: #D48423!important;
+        }
+
+        .btn-primary:hover {
+        background-color: #C3680B !important;
+        border-color: #C3680B !important;
+        }
+
+        .text-center a {
+        color: #D48423; 
+        text-decoration: none; 
+        }
+
+        .text-center a:hover {
+        color: #C3680B; 
+        text-decoration: underline;
+        }
+
+        .form-padding{
+            padding-top: 6rem;
+            padding-left:6rem;
+            padding-right:5rem;
+        }
+    
+        .alert{
+            text-align: center;
+        }
+
+           .welcome-text{
+           color: #D48423; 
+            text-align: center;
+            font-size: 9rem;
+            font-family: campana;
+            margin-top:-6rem;
+            padding-bottom: 1rem;
+        }
+        
+
+        .login-text{
+            color: #C3680B ;
+            font-size: 15px;
+            font-family: inter;
+            font-weight:bolder;
+            text-align: center;
+            margin-top: -2rem;
+            margin-bottom: 1.5rem;
+        }

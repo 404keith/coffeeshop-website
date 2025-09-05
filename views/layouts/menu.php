@@ -182,25 +182,25 @@
   <div class="menu d-none d-md-flex">
     <a href="#" class="item">
       
-      <img class="img1" src="<?php echo URL_ROOT; ?>/public/assets/images/drinkss.png" alt="Drinks" >
+      <img class="img1" src="<?php echo FILE_ROOT; ?>/public/assets/images/drinkss.png" alt="Drinks" >
       <!-- <img class="img1" src="../public/assets/images/drinkss.png" alt="Drinks"> -->
       <span>DRINKS</span>
     </a>
 
     <a href="#" class="item">
-            <img class="img2" src="<?php echo URL_ROOT; ?>/public/assets/images/waffless.png" alt="Drinks" >
+            <img class="img2" src="<?php echo FILE_ROOT; ?>/public/assets/images/waffless.png" alt="Drinks" >
       <!-- <img class="img2" src="../public/assets/images/waffless.png" alt="Waffles"> -->
       <span>WAFFLES</span>
     </a>
 
     <a href="#" class="item">
-            <img class="img3" src="<?php echo URL_ROOT; ?>/public/assets/images/pastriess.png" alt="Drinks" >
+            <img class="img3" src="<?php echo FILE_ROOT; ?>/public/assets/images/pastriess.png" alt="Drinks" >
       <!-- <img class="img3" src="../public/assets/images/pastriess.png" alt="Pastries"> -->
       <span>PASTRIES</span>
     </a>
 
     <a href="#" class="item">
-            <img class="img4" src="<?php echo URL_ROOT; ?>/public/assets/images/meriendaa.png" alt="Drinks" >
+            <img class="img4" src="<?php echo FILE_ROOT; ?>/public/assets/images/meriendaa.png" alt="Drinks" >
       <!-- <img class="img4" src="../public/assets/images/meriendaa.png" alt="Merienda"> -->
       <span>MERIENDA</span>
     </a>
@@ -212,28 +212,28 @@
 
       <div class="carousel-item active">
         <a href="#" class="item mx-auto">
-          <img src="<?php echo URL_ROOT; ?>/public/assets/images/drinkss.png" class="d-block w-75 mx-auto" alt="Drinks">
+          <img src="<?php echo FILE_ROOT; ?>/public/assets/images/drinkss.png" class="d-block w-75 mx-auto" alt="Drinks">
           <span>DRINKS</span>
         </a>
       </div>
 
       <div class="carousel-item">
         <a href="#" class="item mx-auto">
-          <img class="waf" src="<?php echo URL_ROOT; ?>/public/assets/images/waffless.png" class="d-block w-75 mx-auto" alt="Waffles">
+          <img class="waf" src="<?php echo FILE_ROOT; ?>/public/assets/images/waffless.png" class="d-block w-75 mx-auto" alt="Waffles">
           <span>WAFFLES</span>
         </a>
       </div>
 
       <div class="carousel-item">
         <a href="#" class="item mx-auto">
-          <img src="<?php echo URL_ROOT; ?>/public/assets/images/pastriess.png" class="d-block w-75 mx-auto" alt="Pastries">
+          <img src="<?php echo FILE_ROOT; ?>/public/assets/images/pastriess.png" class="d-block w-75 mx-auto" alt="Pastries">
           <span>PASTRIES</span>
         </a>
       </div>
 
       <div class="carousel-item">
         <a href="#" class="item mx-auto">
-          <img src="<?php echo URL_ROOT; ?>/public/assets/images/meriendaa.png" class="d-block w-75 mx-auto" alt="Merienda">
+          <img src="<?php echo FILE_ROOT; ?>/public/assets/images/meriendaa.png" class="d-block w-75 mx-auto" alt="Merienda">
           <span>MERIENDA</span>
         </a>
       </div>

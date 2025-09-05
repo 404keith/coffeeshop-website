@@ -11,19 +11,26 @@
   top: 100vh; 
   min-height: 120px;
 }
-
 .footer-content {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  margin: auto;
+  flex-direction: column; 
+  align-items: center;   
+  text-align: center; 
+  gap: 15px;              
 }
 
 .footer .logo img {
-  height: 50px;
+  height: 20px;   
+   
 }
+
+
+  .footer .logo {
+    margin: -5px auto;      
+    margin-bottom: -2rem;
+    text-align: center;   
+    width: 100%;         
+  }
 
 .footer .connect-text {
   font-size: 14px;
@@ -52,17 +59,17 @@
 .footer hr {
   border: none;
   border-top: 1px solid #e68a00;
-  width: 80%;
-  margin: 15px auto;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .footer .copyright {
   font-size: 12px;
-  margin: 0;
+  margin:0;
+  padding: 0;
   color: #e68a00;
   text-align: center;
-  width: 100%;
-  margin-top: 15px;
+
 }
 
 
@@ -73,7 +80,7 @@
   }
 
   .footer .logo {
-    margin-bottom: 15px;
+    margin-bottom: -2.5rem;
     text-align: center;   
     width: 100%;         
   }
@@ -88,15 +95,10 @@
 <footer class="footer">
   <div class="footer-content">
 
-    <div class="logo">
-      <img src="<?php echo URL_ROOT; ?>/public/assets/images/logo.png" alt="Coffee by Monday Mornings">
-    </div>
-
-    <!-- Social Icons -->
+  
     <div>
       <p class="connect-text">CONNECT WITH US</p>
       <div class="social-icons">
-        <!-- Direct link to FB Page -->
         <a href="https://www.facebook.com/profile.php?id=100092605117539" target="_blank">
           <i class="bi bi-facebook"></i>
         </a>
@@ -108,11 +110,20 @@
         </a>
       </div>
     </div>
-  </div>
+
+  
+ 
 
   <hr>
+
+    <div class="logo">
+      <img src="<?php echo FILE_ROOT; ?>/public/assets/images/logo.png" alt="Coffee by Monday Mornings">
+    </div>
+    
   <p class="copyright">© 2025 Coffee by Monday Mornings. All rights reserved</p>
+
 </footer>
+
 
 <!-- Bootstrap Icons CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">

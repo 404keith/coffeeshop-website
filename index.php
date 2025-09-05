@@ -1,10 +1,15 @@
 <?php
-
 require_once 'config/config.php';
-$url_root = URL_ROOT;
-$app_root = APP_ROOT;
 
-include APP_ROOT . '/views/layouts/body.php';
-//include homepage here
-?>
+
+$uri = $_SERVER['REQUEST_URI'];
+
+
+if ($uri == FILE_ROOT) {
+ require APP_ROOT . '/views/layouts/body.php';
+}
+
+
+
+
 

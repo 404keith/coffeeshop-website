@@ -32,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		 }
 
 
-		    require_once '../../config/session.php'; 
-		  // todo!
+		  require_once APP_ROOT .  '/config/session.php'; 
+
 
 		 if ($errors) {
 			 $_SESSION['errors_signup'] = $errors;
@@ -46,16 +46,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				];
 				 $_SESSION['signup_data'] = $signupData;
 
-			 	header ('Location: '.URL_ROOT.'/views/auth/signup.php');
+			 	header ('Location: '.FILE_ROOT.'/views/auth/signup.php');
 
-				die(); //exit if there is error, to not continue the code below
+				die(); 
 		 }
 
 		 create_user( $pdo,  $username,  $password,  $email, $first_name, $last_name );
 
 		 //done:
 		 
-			 	header ('Location: '.URL_ROOT.'/views/auth/signup.php?signup=success');	//in view, $_GET['signup']=success
+			 	header ('Location: '.FILE_ROOT.'/views/auth/signup.php?signup=success');	//in view, $_GET['signup']=success
 
 		 $pdo = null;
 		 $statement = null;

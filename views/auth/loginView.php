@@ -29,12 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				}
 
 			     // start session i used session.php for more security
-			   require_once '../../config/session.php';
+				 require_once APP_ROOT .  '/config/session.php'; 
+
 			
 
 				if ($errors) { 
 					$_SESSION['errors_login'] = $errors;
-					 	header ('Location: '.URL_ROOT.'/views/auth/login.php');
+					 	header ('Location: '.FILE_ROOT.'/views/auth/login.php');
 					    die(); 
 				}
 
@@ -44,10 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 				$_SESSION['user_id'] = $result['id'];
 				$_SESSION['user_username'] = htmlspecialchars($result['username']);
+			    $_SESSION['last_regeneration'] = time(); //reset time
 
-			  $_SESSION['last_regeneration'] = time(); //reset time
-
-				header('Location: '.URL_ROOT.'/views/auth/login.php?login=success');  // login sucess,  close script or end
+				header('Location: '.FILE_ROOT.'/views/auth/login.php?login=success');  // login sucess,  close script or end
 				$pdo = null;
 				$statement = null;
 				die();

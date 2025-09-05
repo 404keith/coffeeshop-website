@@ -12,5 +12,8 @@ define('URL_ROOT', 'http://localhost/projects/coffeeshop-website');    //for src
 define('APP_ROOT', dirname(dirname(__FILE__))); // for define or require (PHP)
 
 
+define('FILE_ROOT', '/projects/coffeeshop-website/' );
+
+
 define('SITE_NAME', 'Coffee By Monday Mornings');
 

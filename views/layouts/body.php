@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coffee by Monday Mornings</title>
- <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/assets/css/mdb.min.css" />  
-  <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/assets/css/bootstrap-icons.css">
+ <link rel="stylesheet" href="<?php echo FILE_ROOT; ?>/public/assets/css/mdb.min.css" />  
+  <link rel="stylesheet" href="<?php echo FILE_ROOT; ?>/public/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo FILE_ROOT; ?>/public/assets/css/bootstrap-icons.css">
   <style>
         body {
             margin: 0;
             background: 
                 linear-gradient(to bottom,rgba(182, 104, 9, 0.2) 35%,  #FFF6EB 100% ),
-                url('<?php echo URL_ROOT; ?>/public/assets/images/bg-plain.png');
+                url('<?php echo FILE_ROOT; ?>/public/assets/images/bg-plain.png');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -98,6 +98,7 @@
   
 </head>
 
+
 <body>
    <?php include APP_ROOT . '/views/layouts/header.php'; ?>
     <div class="hero">
@@ -110,7 +111,7 @@
         <button class="orderBtn">Order Now</button>
     </div>
 
-   <script src="<?php echo URL_ROOT; ?>/public/assets/js/bootstrap.bundle.min.js"></script>
+   <script src="<?php echo FILE_ROOT; ?>/public/assets/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
