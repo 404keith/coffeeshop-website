@@ -8,7 +8,7 @@
   padding: 30px 20px; 
   text-align: center; 
   width: 100%; 
-  top: 240vh; 
+  top: 100vh; 
   min-height: 120px;
 }
 
@@ -89,7 +89,7 @@
   <div class="footer-content">
 
     <div class="logo">
-      <img src="../public/assets/images/logo.png" alt="Coffee by Monday Mornings">
+      <img src="<?php echo URL_ROOT; ?>/public/assets/images/logo.png" alt="Coffee by Monday Mornings">
     </div>
 
     <!-- Social Icons -->

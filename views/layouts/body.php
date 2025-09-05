@@ -12,7 +12,7 @@
             margin: 0;
             background: 
                 linear-gradient(to bottom,rgba(182, 104, 9, 0.2) 35%,  #FFF6EB 100% ),
-                url('../public/assets/images/bg-plain.png');
+                url('<?php echo URL_ROOT; ?>/public/assets/images/bg-plain.png');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -99,7 +99,7 @@
 </head>
 
 <body>
-   <?php include('../views/layouts/header.php'); ?>
+   <?php include APP_ROOT . '/views/layouts/header.php'; ?>
     <div class="hero">
         <div class="cont">
             <h2>COFFEE THAT WARMS</h2>
@@ -110,9 +110,10 @@
         <button class="orderBtn">Order Now</button>
     </div>
 
-   <script src="../public/assets/js/bootstrap.bundle.min.js"></script>
+   <script src="<?php echo URL_ROOT; ?>/public/assets/js/bootstrap.bundle.min.js"></script>
 
 </body>
-<?php include('../views/layouts/menu.php'); ?>
-<?php include('../views/layouts/footer.php'); ?>
+
+   <?php include APP_ROOT . '/views/layouts/menu.php'; ?>
+   <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
 

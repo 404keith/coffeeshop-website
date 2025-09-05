@@ -216,6 +216,8 @@ include APP_ROOT . '/views/layouts/header.php';
             </div>
 
             <div><?php  check_login_errors(); ?></div>
+
+
         </form>  
 
          </div>  
@@ -223,6 +225,8 @@ include APP_ROOT . '/views/layouts/header.php';
     </div>
 
 <script src="<?php echo URL_ROOT; ?>/public/assets/js/mdb.umd.min.js"></script>
+   <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
+
 
 </body>
 </html>

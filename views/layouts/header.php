@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +9,10 @@
   <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/assets/css/bootstrap-icons.css">
   <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/public/assets/css/header.css">
+
+
+</head>
+<body>
 
 <nav class="navbar navbar-expand-md navbar-color py-3">
   <div class="container-fluid">
@@ -35,7 +38,7 @@
     <ul class="navbar-nav navbar-right d-none d-md-flex align-items-center me-5 text-color">
       <li class="nav-item me-5"><a class="nav-link" href="#">CONTACT US</a></li>
       <li class="nav-item me-5"><a class="nav-link" href="#">CART</a></li>
-      <li class="nav-item me-5 textRight"><a class="nav-link" href="#">ACCOUNT</a></li>
+      <li class="nav-item me-5 textRight"><a class="nav-link" href="<?php echo URL_ROOT; ?>/views/auth/login.php">ACCOUNT</a></li>
     </ul>
 
     <!-- Hamburger toggles OFFCANVAS on mobile -->
@@ -71,4 +74,5 @@
 </div>
 
 <script src="<?php echo URL_ROOT; ?>/public/assets/js/bootstrap.bundle.min.js"></script>
-
+</body>
+</html>
