@@ -28,14 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					   $errors['login_incorrect'] = 'Incorrect login info!';
 				}
 
-			     // start session used config for more secured
+			     // start session i used session.php for more security
 			   require_once '../../config/session.php';
 			
 
 				if ($errors) { 
 					$_SESSION['errors_login'] = $errors;
 					 	header ('Location: '.URL_ROOT.'/views/auth/login.php');
-					 die(); //exit if there is error, to not continue the code below
+					    die(); 
 				}
 
 				$newSessionId = session_create_id();
@@ -61,6 +61,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	header ('Location: '.APP_ROOT.'/public/index.php');
 	die();
 }
-
 
 

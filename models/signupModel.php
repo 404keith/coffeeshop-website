@@ -28,8 +28,9 @@ function get_email(object $pdo, string $email){
 	return $result;
 }
 
- function set_user( object $pdo, string $username, string $password, string $email){
-	 $query = "INSERT INTO users (username, pswd, email) VALUES (:username, :password, :email)";
+ function set_user(object $pdo, string $username, string $password, string $email, string $first_name, string $last_name)
+ {
+	 $query = "INSERT INTO users (username, pswd, email, first_name, last_name) VALUES (:username, :password, :email, :first_name, :last_name)";
  	$statement = $pdo-> prepare ($query);
 
 	$options = [ 'cost' => 12 ];
@@ -38,6 +39,8 @@ function get_email(object $pdo, string $email){
 	$statement -> bindParam(':username' , $username);
 	$statement -> bindParam(':password' , $hashedPassword);
  	$statement -> bindParam(':email' , $email);
+ 	$statement -> bindParam(':first_name' , $first_name);
+ 	$statement -> bindParam(':last_name' , $last_name);
  	$statement -> execute();
 
  }

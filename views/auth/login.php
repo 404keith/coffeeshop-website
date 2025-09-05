@@ -172,6 +172,7 @@ include APP_ROOT . '/views/layouts/header.php';
 
             <h1 class="login-text">Login</h1>
 
+
                     <!-- Username input -->
           <div data-mdb-input-init class="form-outline mb-4 ">
                 <input type="text" name="username" class="form-control" />
@@ -189,7 +190,13 @@ include APP_ROOT . '/views/layouts/header.php';
                 <div class="col d-flex justify-content-center">
                 <!-- Checkbox -->
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="form2Example34" checked />
+                    <input class="form-check-input" type="checkbox" value="
+
+                    <?php
+
+                    ?>  
+                    " 
+                    id="form2Example34" />
                     <label class="form-check-label" for="form2Example34"> Remember me </label>
                 </div>
                 </div>
@@ -201,7 +208,7 @@ include APP_ROOT . '/views/layouts/header.php';
             </div>
 
             <!-- Submit button -->
-            <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+            <button data-mdb-ripple-init type="submit" name="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
 
             <!-- Register buttons -->
             <div class="text-center">
@@ -209,11 +216,10 @@ include APP_ROOT . '/views/layouts/header.php';
             </div>
 
             <div><?php  check_login_errors(); ?></div>
+        </form>  
 
-     </form>  
-
-               </div>  
-          </div>
+         </div>  
+       </div>
     </div>
 
 <script src="<?php echo URL_ROOT; ?>/public/assets/js/mdb.umd.min.js"></script>
