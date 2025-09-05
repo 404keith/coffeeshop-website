@@ -27,8 +27,7 @@ include APP_ROOT . '/views/layouts/header.php';
         }
 
         body{
-                       background-color: #FFF6EB; 
-    
+            background-color: #FFF6EB;      
         }
 
         /* .background-img{
@@ -55,8 +54,8 @@ include APP_ROOT . '/views/layouts/header.php';
          } */
 
         .form-width{
-            max-width:600px; 
-            width: 100%;     
+            max-width: 700px; 
+            width: 80%;     
             background-color: #FFF6EB;  
         }
 
@@ -125,7 +124,7 @@ include APP_ROOT . '/views/layouts/header.php';
         .form-padding{
             padding-top: 6rem;
             padding-left:6rem;
-            padding-right:6rem;
+            padding-right:5rem;
         }
     
         .alert{
@@ -134,6 +133,7 @@ include APP_ROOT . '/views/layouts/header.php';
 
            .welcome-text{
            color: #D48423; 
+            text-align: center;
             font-size: 9rem;
             font-family: campana;
             margin-top:-6rem;
@@ -157,20 +157,46 @@ include APP_ROOT . '/views/layouts/header.php';
 
 <body>
         
-    <?php require_once 'loginAlerts.php'; ?>
-  
+    <?php require_once 'signupAlerts.php'; ?>
 
     <!-- <div class="background-img"></div> -->
 
      <div class="container-fluid d-flex justify-content-center ">
-    <form class="p-5 form-width " action="<?php echo URL_ROOT; ?>/views/auth/loginView.php" method="post">
+    <form class="p-5 form-width" action="<?php echo URL_ROOT; ?>/views/auth/signupView.php" method="post">
         <div class="form-padding">
 
-            <div class="row ">
-                <h1 class="welcome-text">Welcome</h1>
+            <div class="row  ">
+                <h1 class="welcome-text">Sign up</h1>
             </div>
+                <h1 class="login-text">Please enter the details below:</h1>
 
-            <h1 class="login-text">Login</h1>
+ <!--
+             <div class="row mb-4 ">
+                <div class="col d-flex justify-content-center ">
+                nme 
+                    <div data-mdb-input-init class="form-outline  ">
+                          <input type="text" name="firstname" class="form-control" />
+                          <label class="form-label" for="firstname">First name</label>
+                    </div>
+                </div>
+
+                <div class="col d-flex justify-content-center">
+                 name 
+                    <div data-mdb-input-init class="form-outline ">
+                          <input type="text" name="lastname" class="form-control" />
+                          <label class="form-label" for="lastname">Last name</label>
+                    </div>
+                </div>
+
+            </div> -->
+
+            
+               
+                    <!-- email input -->
+          <div data-mdb-input-init class="form-outline mb-4 ">
+                <input type="email" name="email" class="form-control" />
+                <label class="form-label" for="email">Email</label>
+            </div>
 
                     <!-- Username input -->
           <div data-mdb-input-init class="form-outline mb-4 ">
@@ -179,36 +205,24 @@ include APP_ROOT . '/views/layouts/header.php';
             </div>
 
             <!-- Password input -->
-            <div data-mdb-input-init class="form-outline mb-4 ">
+            <div data-mdb-input-init class="form-outline mb-4">
                 <input type="password" name="password" class="form-control" />
                 <label class="form-label" for="password">Password</label>
             </div>
 
-            <!-- 2 column grid layout for inline styling -->
-            <div class="row mb-4">
-                <div class="col d-flex justify-content-center">
-                <!-- Checkbox -->
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="form2Example34" checked />
-                    <label class="form-check-label" for="form2Example34"> Remember me </label>
-                </div>
-                </div>
-
-                <div class="col text-center">
-                <!-- Simple link -->
-                <a href="#!">Forgot password?</a>
-                </div>
-            </div>
+          
 
             <!-- Submit button -->
-            <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+            <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
 
             <!-- Register buttons -->
             <div class="text-center">
-                <p>Not yet registered? <a href="signup.php">Register here</a></p>
+                <p>Already signed up? <a href="login.php">Login here</a></p>
             </div>
 
-            <div><?php  check_login_errors(); ?></div>
+        <div><?php
+           check_signup_errors();
+        ?></div>
 
      </form>  
 

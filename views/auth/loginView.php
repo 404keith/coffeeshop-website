@@ -1,15 +1,14 @@
 <?php
-
-
+require_once '../../config/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$username = $_POST['username'];
 	   $password = $_POST['password'];
 
 		try {
-		    require '../../config/config.php';
-			require '../../models/loginModel.php';
-			require '../../controllers/loginController.php';
+		   require APP_ROOT .'/config/dbhandler.php';
+			require APP_ROOT .'/models/loginModel.php';
+			require APP_ROOT .'/controllers/loginController.php';
 
 			//ERROR HANDLERS:
 			// functions in CONTROLLER file
@@ -33,9 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			   require_once '../../config/session.php';
 			
 
-				if ($errors) {
+				if ($errors) { 
 					$_SESSION['errors_login'] = $errors;
-					 header('Location: ../../public/index.php');
+					 	header ('Location: '.URL_ROOT.'/views/auth/login.php');
 					 die(); //exit if there is error, to not continue the code below
 				}
 
@@ -48,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 			  $_SESSION['last_regeneration'] = time(); //reset time
 
-				header('Location: ../../public/index.php?login=success');  // login sucess,  close script or end
+				header('Location: '.URL_ROOT.'/views/auth/login.php?login=success');  // login sucess,  close script or end
 				$pdo = null;
 				$statement = null;
 				die();
@@ -59,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 } else {
-	header ('Location: ../public/index.php');
+	header ('Location: '.APP_ROOT.'/public/index.php');
 	die();
 }
 

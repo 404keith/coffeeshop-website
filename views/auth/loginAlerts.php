@@ -18,9 +18,11 @@ function check_login_errors(){
 				echo "<br>";
 
 				foreach ($errors as $error) {
-						echo '<div class="alert alert-danger" role="alert">
- '.$error.'
-</div>';
+                    if($error=='Fill in all fields!'){
+                         echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';
+                         break;
+                    } 
+                   echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';
 				}
 
 				unset($_SESSION['errors_login'] );
