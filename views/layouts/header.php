@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="<?= FILE_ROOT ?>/public/assets/css/bootstrap-icons.min.css">
   <link rel="stylesheet" href="<?= FILE_ROOT ?>/public/assets/css/fonts.css">
   <link rel="stylesheet" href="<?= FILE_ROOT ?>/public/assets/css/header.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 
