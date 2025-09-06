@@ -22,6 +22,14 @@ switch ($uri) {
         include 'views/auth/loginView.php';
         break;
 
+    case 'admin':
+        include 'views/layouts/admin_dashboard.php';
+        break;
+
+    case 'stocks':
+            include 'views/layouts/admin_stocks.php';
+            break;
+
     default:
         http_response_code(404);
         echo "Page not found!";
