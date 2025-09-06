@@ -234,7 +234,7 @@
         </a>
       </div>
 
-    </div>
+</div>
 
     <!-- Carousel Controls -->
     <button class="carousel-control-prev" type="button" data-bs-target="#menuCarousel" data-bs-slide="prev">
@@ -257,6 +257,3 @@
 
 </div>
 
-<div class="conn4">
-
-</div>

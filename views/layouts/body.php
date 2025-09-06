@@ -108,10 +108,10 @@
             <p>Discover our handcrafted brews and delightful breakfast treats</p>
             <p>that brighten your day.</p>
         </div>    
-        <button class="orderBtn">Order Now</button>
+        <button class="orderBtn" onclick="scrollToSection('section-menu')">Order Now</button>
     </div>
 
-    <section id="section-menu">
+    <section id="section-menu" >
          <?php include APP_ROOT . '/views/home/menu.php'; ?>
     </section>
 
