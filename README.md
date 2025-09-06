@@ -1,6 +1,6 @@
 # coffeeshop-website
 
-STRUCTURE:
+#STRUCTURE:
 coffee-shop/
 ├── config/
 │   ├── database.php          # Database connection configuration
