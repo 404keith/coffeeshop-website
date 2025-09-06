@@ -1,7 +1,3 @@
-<!-- 
-    <link rel="stylesheet" href="../public/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../public/assets/css/bootstrap-icons.css"> -->
-    <title>Document</title>
 
     <style>
         .conn2{
@@ -250,7 +246,7 @@
   </div>
 </div>
 
-<!-- <script src="../public/assets/js/bootstrap.bundle.min.js"></script> -->
+
 <div class=conn3>
   <div>
     <h2>About Us</h2>

@@ -18,7 +18,7 @@ define('APP_ROOT', dirname(dirname(__FILE__))); // for define or require (PHP)
 
 define('SITE_NAME', 'Coffee By Monday Mornings');
 
-$uri = $_SERVER['REQUEST_URI'];
+//$uri = $_SERVER['REQUEST_URI'];
 // // Get project folder name dynamically
 // $basePath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 // // Remove base path

@@ -1,35 +1,34 @@
 <?php
 
-declare (strict_types=1); //enable type declaration
+declare(strict_types=1); // Enable strict type declarations
 
-
-function output_username (){
-		if (isset($_SESSION['user_id'])) {
-				echo "You are logged in as " .$_SESSION['user_username'];
-		} else {
-			echo "You are not logged in";
-		}
+function output_username(): void
+{
+    if (isset($_SESSION['user_id'])) {
+        echo "You are logged in as " . $_SESSION['user_username'];
+    } else {
+        echo "You are not logged in";
+    }
 }
 
+function check_login_errors(): void
+{
+    if (isset($_SESSION['errors_login'])) {
+        $errors = $_SESSION['errors_login'];
 
-function check_login_errors(){
-		if (isset($_SESSION['errors_login'])) {
-				$errors = $_SESSION['errors_login'];
+        echo "<br>";
 
-				echo "<br>";
+        foreach ($errors as $error) {
+            if ($error === 'Fill in all fields!') {
+                echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
+                break;
+            }
+            echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
+        }
 
-				foreach ($errors as $error) {
-                    if($error=='Fill in all fields!'){
-                         echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';
-                         break;
-                    } 
-                   echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';
-				}
-
-				unset($_SESSION['errors_login'] );
-			} else if (isset($_SESSION['login_success']) && $_SESSION['login_success'] === true) {
-				echo '<div class="alert alert-success" role="alert">Login Success!</div>';
-				unset($_SESSION['login_success']); // clear so it shows only once
-			}
+        unset($_SESSION['errors_login']);
+    } elseif (isset($_SESSION['login_success']) && $_SESSION['login_success'] === true) {
+        echo '<div class="alert alert-success" role="alert">Login Success!</div>';
+        unset($_SESSION['login_success']); // clear so it shows only once
+    }
 }
-

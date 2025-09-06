@@ -109,10 +109,7 @@
           <i class="bi bi-tiktok"></i>
         </a>
       </div>
-    </div>
-
-  
- 
+    </div> 
 
   <hr>
 
@@ -124,6 +121,9 @@
 
 </footer>
 
+<script src="<?= FILE_ROOT ?>/public/assets/js/mdb.umd.min.js"></script>
+<script src="<?php echo FILE_ROOT; ?>/public/assets/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo FILE_ROOT; ?>/public/assets/js/all.min.js"></script>
 
 <!-- Bootstrap Icons CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
