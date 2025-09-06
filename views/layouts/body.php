@@ -96,9 +96,11 @@
   
 </head>
 
-   <?php include APP_ROOT . '/views/layouts/header.php'; ?>
 
 <body>
+
+   <?php include APP_ROOT . '/views/layouts/header.php'; ?>
+   
     <div class="hero">
         <div class="cont">
             <h2>COFFEE THAT WARMS</h2>
@@ -108,8 +110,15 @@
         </div>    
         <button class="orderBtn">Order Now</button>
     </div>
+
+    <section id="section-menu">
+         <?php include APP_ROOT . '/views/layouts/menu.php'; ?>
+    </section>
+
+   <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
+
 </body>
 
-   <?php include APP_ROOT . '/views/layouts/menu.php'; ?>
-   <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
+    
+
 

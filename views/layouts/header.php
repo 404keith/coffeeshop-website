@@ -23,7 +23,7 @@
     <!-- Left (desktop) -->
     <ul class="navbar-nav navbar-left d-none d-md-flex ms-5 text-color">
       <li class="nav-item ms-5 textLeft"><a class="nav-link" href="/">HOME</a></li>
-      <li class="nav-item ms-5"><a class="nav-link" href="#">MENU</a></li>
+      <li class="nav-item ms-5"><a class="nav-link" href="#" onclick="scrollToSection('section-menu')">MENU</a></li>
       <li class="nav-item ms-5"><a class="nav-link" href="#">ABOUT US</a></li>
     </ul>
 
