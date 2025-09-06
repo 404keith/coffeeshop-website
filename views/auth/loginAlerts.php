@@ -13,6 +13,7 @@ function output_username(): void
 
 function check_login_errors(): void
 {
+    
     if (isset($_SESSION['errors_login'])) {
         $errors = $_SESSION['errors_login'];
 
@@ -25,10 +26,17 @@ function check_login_errors(): void
             }
             echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
         }
-
         unset($_SESSION['errors_login']);
+        
     } elseif (isset($_SESSION['login_success']) && $_SESSION['login_success'] === true) {
         echo '<div class="alert alert-success" role="alert">Login Success!</div>';
-        unset($_SESSION['login_success']); // clear so it shows only once
-    }
+        //unset($_SESSION['login_success']); // clear so it shows only once
+    }    
+}
+
+function displayName (){
+    if (isset($_SESSION['login_success']) && $_SESSION['login_success'] === true) {
+        echo '<div class="alert alert-success" role="alert">Hello! '.$_SESSION['user_username'].'</div>';
+        
+    }    
 }

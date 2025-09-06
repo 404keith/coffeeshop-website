@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,11 +98,15 @@
 
 
 <body>
-
+    <?php include APP_ROOT .'/views/auth/loginAlerts.php';?>
    <?php include APP_ROOT . '/views/layouts/header.php'; ?>
-   
+
     <div class="hero">
+       
         <div class="cont">
+             <?php
+               displayName();
+            ?>
             <h2>COFFEE THAT WARMS</h2>
             <h2>YOUR HEART</h2>
             <p>Discover our handcrafted brews and delightful breakfast treats</p>
@@ -110,11 +115,13 @@
         <button class="orderBtn" onclick="scrollToSection('section-menu')">Order Now</button>
     </div>
 
+   
     <section id="section-menu" >
          <?php include APP_ROOT . '/views/home/menu.php'; ?>
     </section>
 
    <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
+   
 
 </body>
 
