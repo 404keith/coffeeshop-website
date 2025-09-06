@@ -1,0 +1,21 @@
+@font-face{
+      font-family:'inter';
+      src:url('../fonts/Inter_18pt-Regular.ttf') format('truetype');
+      font-weight:normal;
+      font-style:normal;
+    }
+  
+@font-face{
+      font-family:'campana';
+      src:url("../fonts/campana.otf") format('opentype');
+      font-weight:normal;
+      font-style:normal;
+      }
+
+    @font-face {
+  font-family: "bootstrap-icons";
+  src: url("../fonts/bootstrap-icons.woff2") format("woff2"),
+       url("../fonts/bootstrap-icons.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
