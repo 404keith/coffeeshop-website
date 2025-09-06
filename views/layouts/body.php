@@ -112,7 +112,7 @@
     </div>
 
     <section id="section-menu">
-         <?php include APP_ROOT . '/views/layouts/menu.php'; ?>
+         <?php include APP_ROOT . '/views/home/menu.php'; ?>
     </section>
 
    <?php include APP_ROOT . '/views/layouts/footer.php'; ?>

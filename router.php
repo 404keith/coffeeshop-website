@@ -3,7 +3,7 @@ $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
 switch ($uri) {
     case '':
-        include 'views/home.php';
+        include 'views/home/home.php';
         break;
 
     case 'login':

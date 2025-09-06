@@ -4,6 +4,10 @@
 
     .navbar-color { background-color:#281A11; }
 
+    li{
+      cursor: pointer;
+    }
+
     .text-color .nav-link{
       color:rgba(212,132,35,1);
       margin-top:.5rem;
