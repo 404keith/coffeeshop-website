@@ -168,11 +168,16 @@
       background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23D48423' viewBox='0 0 16 16'%3E%3Cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
     }
     }
-
+    
+     .conn2 .section-title, 
+     .conn3 .section-title{
+      font-family: 'inter';
+    }
     </style>
+    
 
     <div class="conn2">
-  <h2>Menu</h2>
+  <h2 class="section-title">Menu</h2>
 
   <!-- Desktop/Tablet Menu (Flex Layout) -->
   <div class="menu d-none d-md-flex">
@@ -202,8 +207,8 @@
     </a>
   </div>
 
-  <!-- Mobile Menu (Carousel) -->
-  <div id="menuCarousel" class="carousel slide d-md-none" data-bs-ride="carousel">
+  <!-- Mobile Menu (Carousel) -->  
+<div id="menuCarousel" class="carousel slide d-md-none" data-bs-ride="carousel">
     <div class="carousel-inner text-center">
 
       <div class="carousel-item active">
@@ -234,7 +239,7 @@
         </a>
       </div>
 
-</div>
+    </div>
 
     <!-- Carousel Controls -->
     <button class="carousel-control-prev" type="button" data-bs-target="#menuCarousel" data-bs-slide="prev">
@@ -249,7 +254,7 @@
 
 <div class=conn3>
   <div>
-    <h2>About Us</h2>
+    <h2 class="section-title" >About Us</h2>
     <div class="map-container">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241.24887418612965!2d120.94748347775354!3d14.656963711249894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b4535370f9f7%3A0x441dd0c9b6a53ee5!2s826%20M.%20Naval%20St%2C%20Navotas%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1757057543016!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
