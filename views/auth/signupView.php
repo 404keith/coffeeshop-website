@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				die(); 
 		 }
 
-		 create_user( $pdo,  $username,  $password,  $email, $first_name, $last_name );
+		 create_user( $pdo, $first_name, $last_name, $username,  $password,  $email);
 
 		 //done:
 				$_SESSION['signup_success'] = true;

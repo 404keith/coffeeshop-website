@@ -39,7 +39,7 @@ function is_email_registered(object $pdo, string $email){
 	}
 }
 
-function create_user(object $pdo, string $username, string $password, string $email, string $first_name, string $last_name ){
-	 set_user( $pdo, $username,  $password,  $email, $first_name, $last_name );
+function create_user(object $pdo, string $first_name, string $last_name, string $username, string $password, string $email){
+	 set_user( $pdo, $first_name, $last_name, $username,  $password,  $email );
 }
 

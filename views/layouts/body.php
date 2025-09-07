@@ -120,7 +120,6 @@
          <?php include APP_ROOT . '/views/home/menu.php'; ?>
     </section>
 
-   <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
    
 
 </body>

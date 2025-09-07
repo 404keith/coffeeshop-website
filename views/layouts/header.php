@@ -22,8 +22,8 @@
 
     <!-- Left (desktop) -->
     <ul class="navbar-nav navbar-left d-none d-md-flex ms-5 text-color">
-      <li class="nav-item ms-5 textLeft"><a class="nav-link" href="/">HOME</a></li>
-      <li class="nav-item ms-5"><a class="nav-link" onclick="scrollToSection('section-menu')">MENU</a></li>
+      <li class="nav-item ms-5 textLeft"><a class="nav-link" href="/"><i class="bi bi-house icon"></i></a></li>
+      <li class="nav-item ms-5"><a class="nav-link" onclick="scrollToSection('section-menu')"><i class="bi bi-cup-hot icon"></i></a></li>
       <li class="nav-item ms-5"><a class="nav-link" href="#">ABOUT US</a></li>
     </ul>
 
@@ -40,8 +40,8 @@
     <!-- Right (desktop) -->
     <ul class="navbar-nav navbar-right d-none d-md-flex align-items-center me-5 text-color">
       <li class="nav-item me-5"><a class="nav-link" href="#">CONTACT US</a></li>
-      <li class="nav-item me-5"><a class="nav-link" href="#">CART</a></li>
-      <li class="nav-item me-5 textRight"><a class="nav-link" href="<?= FILE_ROOT ?>/login">ACCOUNT</a></li> 
+      <li class="nav-item me-5"><a class="nav-link" href="#"><i class="bi bi-cart2 icon"></i></a></li>
+      <li class="nav-item me-5 textRight"><a class="nav-link" href="<?= FILE_ROOT ?>/login"><i class="bi bi-person icon" ></i></a></li> 
     </ul>
 
     

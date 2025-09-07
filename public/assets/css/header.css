@@ -11,14 +11,16 @@
     .text-color .nav-link{
       color:rgba(212,132,35,1);
       margin-top:.5rem;
-      font-size:14px;
+      font-size:15px;
     }
 
       .textLeft .nav-link{
           margin-left:3rem;
+
       }
       .textRight .nav-link{
-              margin-right:3rem;
+          margin-right:3rem;
+
       }
 
     .text-color .nav-link:hover{ color:rgba(123,61,0,1); }
@@ -79,7 +81,10 @@
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23d48423'><path d='M2.146 2.854a.5.5 0 0 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z'/></svg>");
   }
 
+.icon{
+  font-size: 1.2rem;
 
+}
 
 
 

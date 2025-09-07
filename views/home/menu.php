@@ -262,3 +262,5 @@
 
 </div>
 
+   <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
+      
