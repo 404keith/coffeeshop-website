@@ -1,3 +1,7 @@
+<?php
+  require_once APP_ROOT . '/helpers/accountMenu.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,43 +45,54 @@
     <ul class="navbar-nav navbar-right d-none d-md-flex align-items-center me-5 text-color">
       <li class="nav-item me-5"><a class="nav-link" href="#">CONTACT US</a></li>
       <li class="nav-item me-5"><a class="nav-link" href="#"><i class="bi bi-cart2 icon"></i></a></li>
-      <li class="nav-item me-5 textRight"><a class="nav-link" href="<?= FILE_ROOT ?>/login"><i class="bi bi-person icon" ></i></a></li> 
+        <li class="nav-item dropdown me-5 textRight">
+                    <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-person icon"></i>
+                    </a>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+                    <?php renderAccountMenu(FILE_ROOT); ?>
+                  </ul>
+          </li>
     </ul>
 
     
-
+<?php
+  //  data-bs-toggle="offcanvas"
+  //     data-bs-target="#mobileMenu"
+  //     aria-controls="mobileMenu"
+  //     aria-label="Toggle navigation"
+?>
     <!-- Hamburger toggles OFFCANVAS on mobile -->
-    <button
-      class="navbar-toggler me-5"
-      type="button"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#mobileMenu"
-      aria-controls="mobileMenu"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <button class="navbar-toggler btn me-5" id="openMobileMenu"> <span class="navbar-toggler-icon"></span> </button>
 
   </div>
 </nav>
 
 <!-- Offcanvas Sidebar (Mobile) -->
-<div class="offcanvas offcanvas-end offcanvas-custom" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+<div class="offcanvas offcanvas-end offcanvas-custom" data-bs-scroll="true" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel" >
   <div class="offcanvas-header">
     <h6 class="offcanvas-title" id="mobileMenuLabel"></h6>
-    <button type="button" class="btn-close me-5" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <button type="button" class="btn-close me-5" data-bs-dismiss="offcanvas"  aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
     <ul class="navbar-nav d-md-none ms-3 me-3">
-      <li class="nav-item "><a class="nav-link" href="<?= FILE_ROOT ?>">Home</a></li>
-      <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas">Menu</a></li>
+      <li class="nav-item"><a class="nav-link" href="/"><i class="bi bi-house icon"></i> Home</a></li>
+      <li class="nav-item"><a class="nav-link"  onclick="scrollToSection('section-menu')" ><i class="bi bi-cup-hot icon"></i> Menu</a></li>
       <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas">About Us</a></li>
       <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas">Contact Us</a></li>
       <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas"><i class="bi bi-cart"></i> Cart</a></li>
-      <li class="nav-item "><a class="nav-link" href="<?= FILE_ROOT ?>/login" ><i class="bi bi-person"></i> Account</a></li>
+       <li class="nav-item dropdown me-5 textRight">
+                    <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-person icon"></i> Account
+                    </a>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+                    <?php renderAccountMenu(FILE_ROOT); ?>
+                  </ul>
+          </li>
     </ul>
   </div>
 </div>
-</body>
 
+</body>
 
 </html>

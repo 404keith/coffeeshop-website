@@ -2,7 +2,10 @@
 
     * { font-family:'inter'; }
 
-    .navbar-color { background-color:#281A11; }
+    .navbar-color {
+       background-color:#281A11;
+       /* background-color:#fff6eb; */
+      }
 
     li{
       cursor: pointer;
@@ -87,8 +90,43 @@
 }
 
 
+  /* Dropdown menu background, border, shadow */
+  .dropdown-menu {
+      background-color: #fff;      /* white background */
+      border: 1px solid #ddd;      /* light border */
+      border-radius: 0.5rem;       /* rounded corners */
+      box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15); /* shadow */
+      min-width: 200px;            /* width */
+      padding: 0.5rem 0;
+  }
 
+  /* Dropdown items */
+  .dropdown-menu .dropdown-item {
+      color: #333;                 /* text color */
+      padding: 10px 20px;          /* spacing */
+      transition: background 0.3s; /* smooth hover */
+  }
 
+  /* Hover/focus on items */
+  .dropdown-menu .dropdown-item:hover,
+  .dropdown-menu .dropdown-item:focus {
+      background-color: #007bff;   /* blue background on hover */
+      color: #fff;                 /* white text on hover */
+  }
+
+  /* Dropdown divider (optional) */
+  .dropdown-menu .dropdown-divider {
+      border-top: 1px solid #ddd;
+      margin: 0.25rem 0;
+  }
+
+  /* Optional: style first item differently (like a greeting) */
+  .dropdown-menu .dropdown-item-text {
+      font-weight: 500;
+      color: #555;
+      padding: 10px 20px;
+      cursor: default;  /* non-clickable */
+  }
 
 
   

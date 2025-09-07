@@ -60,7 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 } else {
-	header ('Location: '.APP_ROOT.'/public/index.php');
+					header('Location: /');  
+
 	die();
 }
 

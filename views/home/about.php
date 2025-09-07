@@ -1,0 +1,36 @@
+<style>
+.conn3 {
+    padding: 120px 40px;
+    background: linear-gradient(to bottom, rgba(212,132,35,1), #FFF6EB 100%);
+    text-align: center;
+    height: 140vh; 
+    width: 100%;
+    position: relative; /* make it relative so footer won't overlap */
+}
+
+.map-container {
+    width: 100%;
+    height: 400px;
+}
+
+iframe {
+    width: 70%;
+    height: 100%;
+    border: 0;
+}
+</style>
+
+<div class="conn3">
+    <h2 class="section-title">About Us</h2>
+    <div class="map-container">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241.24887418612965!2d120.94748347775354!3d14.656963711249894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b4535370f9f7%3A0x441dd0c9b6a53ee5!2s826%20M.%20Naval%20St%2C%20Navotas%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1757057543016!5m2!1sen!2sph" 
+            width="600" 
+            height="450" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</div>
