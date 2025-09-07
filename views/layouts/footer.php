@@ -96,7 +96,7 @@
             </div>
         </div>
 
-        <hr>
+        <hr> <!-- line  -->
 
         <div class="logo">
             <img src="<?php echo FILE_ROOT; ?>/public/assets/images/logo.png" alt="Coffee by Monday Mornings">
@@ -109,6 +109,6 @@
 </footer>
 
 <script src="<?= FILE_ROOT ?>/public/assets/js/mdb.umd.min.js"></script>
-  <script src="<?php echo FILE_ROOT; ?>/public/assets/js/bootstrap.bundle.js"></script>
-  <script src="<?php echo FILE_ROOT; ?>/public/assets/js/all.min.js"></script>
-  <script src="<?php echo FILE_ROOT; ?>/public/assets/js/functions.js"></script>
+<script src="<?php echo FILE_ROOT; ?>/public/assets/js/bootstrap.bundle.js"></script>
+<script src="<?php echo FILE_ROOT; ?>/public/assets/js/all.min.js"></script>
+<script src="<?php echo FILE_ROOT; ?>/public/assets/js/functions.js"></script>

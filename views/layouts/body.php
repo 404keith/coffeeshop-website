@@ -26,7 +26,7 @@ body {
 }
 
 .cont {
-    margin-top: 10vh;
+    margin-top: -5vh;
     padding: 0 15px;
 }
 
@@ -37,7 +37,7 @@ body {
 }
 
 .cont p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin: 5px 0;
 }
 
@@ -78,12 +78,12 @@ body {
 </head>
 
 <body>
-    <?php include APP_ROOT .'/views/auth/loginAlerts.php'; ?>
+    <!-- <?php include APP_ROOT .'/views/auth/loginAlerts.php'; ?> -->
 
     <!-- Hero Section -->
     <div class="hero">
         <div class="cont">
-            <?php displayName(); ?>
+            <!-- <?php displayName(); ?> -->
             <h2>COFFEE THAT WARMS</h2>
             <h2>YOUR HEART</h2>
             <p>Discover our handcrafted brews and delightful breakfast treats</p>

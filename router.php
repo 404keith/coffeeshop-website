@@ -13,6 +13,10 @@ switch ($uri) {
     case 'signup':
         include 'views/auth/signup.php';
         break;
+        
+    case 'logout':
+        include 'views/auth/logout.php';
+        break;
 
     case 'signupView':
         include 'views/auth/signupView.php';
@@ -28,6 +32,9 @@ switch ($uri) {
 
     case 'stocks':
             include 'views/layouts/admin_stocks.php';
+            break;
+    case 'test':
+            include 'test.php';
             break;
 
     default:

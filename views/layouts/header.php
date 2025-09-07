@@ -50,6 +50,7 @@
                       <i class="bi bi-person icon"></i>
                     </a>
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+                    <i class="bi bi-person-circle dropdown-account-icon"></i>
                     <?php renderAccountMenu(FILE_ROOT); ?>
                   </ul>
           </li>
@@ -86,6 +87,7 @@
                       <i class="bi bi-person icon"></i> Account
                     </a>
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+                    <i class="bi bi-person-circle dropdown-account-icon"></i>
                     <?php renderAccountMenu(FILE_ROOT); ?>
                   </ul>
           </li>
