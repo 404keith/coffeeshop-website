@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			    $_SESSION['last_regeneration'] = time(); //reset time
 				$_SESSION['login_success'] = true;
 
-				header('Location: '.FILE_ROOT.'/login');  
+				header('Location: /');  
 				
 				$pdo = null;
 				$statement = null;

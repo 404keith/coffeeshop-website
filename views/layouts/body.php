@@ -1,9 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coffee by Monday Mornings</title>
 
   <style>
         body {
@@ -96,20 +96,35 @@
   
 </head>
 
-   <?php include APP_ROOT . '/views/layouts/header.php'; ?>
 
 <body>
+    <?php include APP_ROOT .'/views/auth/loginAlerts.php';?>
+   <?php include APP_ROOT . '/views/layouts/header.php'; ?>
+
     <div class="hero">
+       
         <div class="cont">
+             <?php
+               displayName();
+            ?>
             <h2>COFFEE THAT WARMS</h2>
             <h2>YOUR HEART</h2>
             <p>Discover our handcrafted brews and delightful breakfast treats</p>
             <p>that brighten your day.</p>
         </div>    
-        <button class="orderBtn">Order Now</button>
+        <button class="orderBtn" onclick="scrollToSection('section-menu')">Order Now</button>
     </div>
+
+   
+    <section id="section-menu" >
+         <?php include APP_ROOT . '/views/home/menu.php'; ?>
+    </section>
+
+   <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
+   
+
 </body>
 
-   <?php include APP_ROOT . '/views/layouts/menu.php'; ?>
-   <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
+    
+
 
