@@ -1,5 +1,5 @@
 <?php
-  require_once APP_ROOT . '/helpers/accountMenu.php';
+  require_once APP_ROOT . '/helpers/header_dropdowns.php';
 ?>
 
 <!DOCTYPE html>
@@ -26,9 +26,12 @@
 
     <!-- Left (desktop) -->
     <ul class="navbar-nav navbar-left d-none d-md-flex ms-5 text-color">
-      <li class="nav-item ms-5 textLeft"><a class="nav-link" href="/"><i class="bi bi-house icon"></i></a></li>
-      <li class="nav-item ms-5"><a class="nav-link" onclick="scrollToSection('section-menu')"><i class="bi bi-cup-hot icon"></i></a></li>
-      <li class="nav-item ms-5"><a class="nav-link" href="#">ABOUT US</a></li>
+      <li class="nav-item ms-5 textLeft">
+        <a class="nav-link d-flex align-items-center" href="/">
+          <i class="bi bi-house icon fs-7 house-icon ms-5"></i></a>
+      </li>
+      <li class="nav-item ms-5"><a class="nav-link d-flex align-items-center" onclick="scrollToSection('section-menu')"><i class="bi bi-cup-hot icon fs-7"></i></a></li>
+      <li class="nav-item ms-5 nav-text"><a class="nav-link" href="#">ABOUT US</a></li>
     </ul>
 
     <!-- Logo desktop (center) -->
@@ -42,19 +45,36 @@
     </a>
 
     <!-- Right (desktop) -->
-    <ul class="navbar-nav navbar-right d-none d-md-flex align-items-center me-5 text-color">
-      <li class="nav-item me-5"><a class="nav-link" href="#">CONTACT US</a></li>
-      <li class="nav-item me-5"><a class="nav-link" href="#"><i class="bi bi-cart2 icon"></i></a></li>
-        <li class="nav-item dropdown me-5 textRight">
-                    <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="bi bi-person icon"></i>
-                    </a>
-                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
-                    <i class="bi bi-person-circle dropdown-account-icon"></i>
-                    <?php renderAccountMenu(FILE_ROOT); ?>
-                  </ul>
-          </li>
-    </ul>
+  <ul class="navbar-nav navbar-right d-none d-md-flex align-items-center me-5 text-color">
+    <!-- Contact -->
+    <li class="nav-item me-5 nav-text">
+      <a class="nav-link d-flex align-items-center" href="#">CONTACT US</a>
+    </li>
+
+    <!-- Cart Dropdown -->
+    <li class="nav-item dropdown textRight">
+      <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="cartDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-cart2 icon fs-7"></i>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cartDropdown">
+        <?php renderCartMenu(FILE_ROOT); ?>
+      </ul>
+    </li>
+
+    <!-- Account Dropdown -->
+    <li class="nav-item dropdown me-5 textRight">
+      <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-person icon fs-7"></i>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end ms-4" aria-labelledby="accountDropdown">
+        <i class="bi bi-person-circle dropdown-account-icon"></i>
+        <?php renderAccountMenu(FILE_ROOT); ?>
+      </ul>
+    </li>
+
+    <li class="me-5"></li>
+  </ul>
+
 
     
 <?php
@@ -78,7 +98,20 @@
   <div class="offcanvas-body">
     <ul class="navbar-nav d-md-none ms-3 me-3">
       <li class="nav-item"><a class="nav-link" href="/"><i class="bi bi-house icon"></i> Home</a></li>
-      <li class="nav-item"><a class="nav-link"  onclick="scrollToSection('section-menu')" ><i class="bi bi-cup-hot icon"></i> Menu</a></li>
+
+      <li class="nav-item">
+          <a class="nav-link"
+              <?php
+                  if ($uri === '') {
+                    echo 'onclick="scrollToSection(\'section-menu\')"';
+                  } else {
+                    echo 'href="/"';
+                  }
+              ?>
+          ><i class="bi bi-cup-hot icon"></i> Menu</a>
+      </li>
+
+
       <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas">About Us</a></li>
       <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas">Contact Us</a></li>
       <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas"><i class="bi bi-cart"></i> Cart</a></li>

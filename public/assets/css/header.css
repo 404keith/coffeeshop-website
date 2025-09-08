@@ -13,7 +13,7 @@
 
     .text-color .nav-link{
       color:rgba(212,132,35,1);
-      margin-top:.5rem;
+      margin-top:.3rem;
       font-size:13px;
     }
 
@@ -28,7 +28,7 @@
 
     .text-color .nav-link:hover{ color:rgba(123,61,0,1); }
 
-    .logo{ max-width:125px; height:49px; }
+    .logo{ max-width:90px; height:auto; }
 
     @media (min-width:768px){
       .navbar .container-fluid{
@@ -57,8 +57,8 @@
 
     /* Offcanvas (sidebar) look & feel */
     .offcanvas-custom{
-     --bs-offcanvas-width: 13rem;            /* sidebar width */
-      background:#fff6eb;       /* match navbar */
+     --bs-offcanvas-width: 13rem;           
+      background:#fff6eb;       
     }
     .offcanvas-custom .nav-link{
       color:rgba(212,132,35,1);
@@ -87,8 +87,16 @@
 .icon{
   font-size: 16px;
 
+
+}
+.house-icon{
+  margin-top:1.4px;
+  font-size:16.5px;
 }
 
+.nav-text{
+  margin-top:2px;
+}
 
   /* Dropdown menu background, border, shadow */
 
@@ -101,11 +109,11 @@
   .dropdown-menu {
       margin-top: 50px;
       background-color:#fff6eb;
-      border-radius: 1rem;       /* rounded corners */
-      box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15); /* shadow */
-      min-width: 200px;            /* width */
+      border-radius: 1rem;   
+      box-shadow: 0 1rem 1rem rgba(0,0,0,0.15); 
+      min-width: 200px;           
       padding: 0.5rem 0;
-       transform: translateX(1.4rem) translateY(.2rem); 
+       transform: translateX(1.9rem) translateY(.2rem); 
   }
 
   /* Dropdown items */
@@ -114,29 +122,38 @@
     margin-right: 10px;
     width: 90%;
     border-radius: 5rem;
-      color: #281A11 ;           /* text color */
-      padding: 10px 20px;          /* spacing */
+      color: #281A11 ;          
+      padding: 10px 20px;         
       margin-top:.1rem;
-      transition: background .4s; /* smooth hover */
+      transition: background .3s; /* smooth hover */
       text-align: center;
       background-color:#edddc9;
+  display: block !important;
+
 
   }
 
   /* Hover/focus on items */
-  .dropdown-menu .dropdown-item:hover,
-  .dropdown-menu .dropdown-item:focus {
-      background-color: #3b1700;   /* blue background on hover */
-      color: #fff;                 /* white text on hover */
+  .dropdown-menu 
+.btn:hover {
+      background-color: #3b1700;   
+      color: #fff;                 
   }
 
   /* Dropdown divider (optional) */
-  .dropdown-menu .dropdown-divider {
-      border-top: 1px solid #ddd;
+  .dropdown-menu .dropdown-divider{
       margin: 0.25rem 0;
   }
 
-  /* Optional: style first item differently (like a greeting) */
+  .btn-account {
+   border-top:1px rgb(237, 227, 210) solid;
+   margin-left:10px;
+   margin-right:10px;
+   margin-bottom: 10px;
+   width:90%;
+
+  }
+  /* greeting) */
   .dropdown-menu .dropdown-item-text {
       font-family: 'inter';
       color: #231200;
@@ -145,14 +162,15 @@
       cursor: default;  /* non-clickable */
   }
 
-.nav-link.dropdown-toggle:hover,
-.nav-link.dropdown-toggle:focus,
-.nav-link.dropdown-toggle:active {
-    color:rgb(100, 55, 0);
-    text-decoration: none; /* optional */
-    outline: none; /* remove blue outline */
-    box-shadow: none; /* remove focus shadow */
+
+.btn-account:hover, 
+.btn-account:focus, 
+.btn-account:active {
+   color:rgb(100, 55, 0);
+    text-decoration: none; 
+    outline: none; 
 }
+
 
 
 body{

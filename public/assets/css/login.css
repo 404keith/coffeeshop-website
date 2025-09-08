@@ -29,6 +29,7 @@ body{
     max-width:600px; 
     width: 100%;     
     background-color: #FFF6EB;  
+    height:90vh;
 }
 
 .form-outline .form-control:focus~.form-notch .form-notch-leading {

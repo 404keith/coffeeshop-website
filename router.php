@@ -43,15 +43,15 @@ switch ($uri) {
          break;
 
     case 'waffles':
-         include 'views/products/waffles.php';
+         include 'views/products/wafflesView.php';
          break;
 
     case 'pastries':
-         include 'views/products/pastries.php';
+         include 'views/products/pastriesView.php';
          break;
 
     case 'merienda':
-         include 'views/products/merienda.php';
+         include 'views/products/meriendaView.php';
          break;
 
 
