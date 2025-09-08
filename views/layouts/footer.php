@@ -1,7 +1,6 @@
-<style>
+<style> 
   .footer {
-    /* background-color: #FFF6EB; */
-       background-color:#281A11;
+    background-color:#281A11;
     color: #e68a00;
     padding: 30px 20px;
     margin-top: 50px;
@@ -39,7 +38,6 @@
     letter-spacing: 1px;
   }
 
-  /* Social icon hover effect */
   .transition {
     transition: color 0.3s ease, transform 0.3s ease;
   }
@@ -48,7 +46,6 @@
     transform: scale(1.2);
   }
 
-  /* Newsletter input text */
   .footer input {
     color: #000;
   }
@@ -57,16 +54,26 @@
     height: 20px;
   }
 
- .copyright{
+  .copyright{
     font-size:12px;
+  }
+
+  @media (max-width: 767.98px) {
+    .footer .row { --bs-gutter-x: 0.75rem; }
+    .footer .text-center-xs { text-align:center; }
+  }
+
+  @media (min-width: 768px) {
+    .footer-gap {
+      margin-bottom: 2.5rem; /* gap only for desktop */
+    }
   }
 </style>
 
 <footer class="footer">
   <div class="container">
     <div class="row">
-      <!-- Column 1: About -->
-      <div class="col-12 col-md-2 ms-5 mb-3 text-center text-md-start">
+      <div class="col-4 col-md-2 ms-md-5 mb-3 text-center text-md-start order-1 order-md-1">
         <h6 class="small fw-semibold mb-2">ABOUT US</h6>
         <ul class="nav flex-column">
           <li class="nav-item mb-2"><a href="#" class="nav-link p-0 small">Our Story</a></li>
@@ -75,8 +82,7 @@
         </ul>
       </div>
 
-      <!-- Column 2: Services -->
-      <div class="col-12 col-md-1 mb-3 text-center text-md-start">
+      <div class="col-4 col-md-1 mb-3 text-center text-md-start order-3 order-md-2">
         <h6 class="small fw-semibold mb-2">SERVICES</h6>
         <ul class="nav flex-column">
           <li class="nav-item mb-2"><a href="#" class="nav-link p-0 small">Menu</a></li>
@@ -85,11 +91,9 @@
         </ul>
       </div>
 
-      <!-- Spacer Column (empty) -->
-      <div class="col-12 col-md-1 ms-2"></div>
-  
-      <!-- Column 3: Social (centered) -->
-      <div class="col-12 col-md-3 mb-3 text-center">
+      <div class="d-none d-md-block col-md-1 ms-2 order-md-3"></div>
+
+      <div class="col-4 col-md-3 mb-3 text-center order-2 order-md-4 footer-gap">
         <h6 class="small fw-semibold mb-2 connect-title">CONNECT WITH US</h6>
         <div class="d-flex justify-content-center gap-3">
           <a href="https://www.facebook.com/profile.php?id=100092605117539" target="_blank" class="fs-5 transition">
@@ -104,22 +108,16 @@
         </div>
       </div>
 
-      <!-- Spacer Column (empty) -->
-      <div class="col-12 col-md-1"></div>
+      <div class="d-none d-md-block col-md-1 ms-2 order-md-4"></div>
 
-      <!-- Column 4: Newsletter Subscription -->
-      <div class="col-12 col-md-3 mb-3 text-center text-md-start">
+
+      <div class="col-12 col-md-3 mb-3 text-center text-md-start order-4 order-md-6">
         <form>
           <h6 class="fw-semibold mb-2">Subscribe to our newsletter</h6>
           <p class="mb-2">Monthly digest of what's new and exciting from us.</p>
           <div class="d-flex flex-column flex-sm-row w-100 gap-2">
             <label for="newsletter1" class="visually-hidden">Email address</label>
-            <input
-              id="newsletter1"
-              type="email"
-              class="form-control"
-              placeholder="Email address"
-            />
+            <input id="newsletter1" type="email" class="form-control" placeholder="Email address" />
             <button class="btn btn-primary" type="button">Subscribe</button>
           </div>
         </form>
@@ -128,33 +126,17 @@
 
     <hr class="border-warning">
 
-    <div class="text-center mb-3">
+    <!-- <div class="text-center mb-3">
       <img src="<?php echo FILE_ROOT; ?>/public/assets/images/logo.png" alt="Coffee by Monday Mornings" class="footer-logo">
-    </div>
+    </div> -->
 
     <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
       <p class="mb-0 copyright">&copy; 2025 Coffee by Monday Mornings. All rights reserved</p>
-      <!-- <ul class="list-unstyled d-flex mb-0">
-        <li class="ms-3">
-          <a href="https://www.instagram.com/coffeebymondaymornings/" class="fs-5 transition">
-            <i class="bi bi-instagram"></i>
-          </a>
-        </li>
-        <li class="ms-3">
-          <a href="https://www.facebook.com/profile.php?id=100092605117539" class="fs-5 transition">
-            <i class="bi bi-facebook"></i>
-          </a>
-        </li>
-        <li class="ms-3">
-          <a href="https://www.tiktok.com/@coffeebymondaymornings" class="fs-5 transition">
-            <i class="bi bi-tiktok"></i>
-          </a>
-        </li>
-      </ul> -->
-       <img src="<?php echo FILE_ROOT; ?>/public/assets/images/logo.png" alt="Coffee by Monday Mornings" class="footer-logo">
+      <img src="<?php echo FILE_ROOT; ?>/public/assets/images/logo.png" alt="Coffee by Monday Mornings" class="footer-logo">
+    </div>
   </div>
-
 </footer>
+
 
 <script src="<?= FILE_ROOT ?>/public/assets/js/mdb.umd.min.js"></script>
 <script src="<?php echo FILE_ROOT; ?>/public/assets/js/bootstrap.bundle.js"></script>
