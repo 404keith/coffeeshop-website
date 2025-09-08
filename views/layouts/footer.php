@@ -1,6 +1,7 @@
 <style>
   .footer {
-    background-color: #f8e4d3ff;
+    /* background-color: #FFF6EB; */
+       background-color:#281A11;
     color: #e68a00;
     padding: 30px 20px;
     margin-top: 50px;
