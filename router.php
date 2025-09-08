@@ -31,11 +31,29 @@ switch ($uri) {
         break;
 
     case 'stocks':
-            include 'views/layouts/admin_stocks.php';
-            break;
+         include 'views/layouts/admin_stocks.php';
+         break;
+
     case 'test':
-            include 'test.php';
-            break;
+         include 'test.php';
+         break;
+
+    case 'drinks':
+         include 'views/products/drinks.php';
+         break;
+
+    case 'waffles':
+         include 'views/products/waffles.php';
+         break;
+
+    case 'pastries':
+         include 'views/products/pastries.php';
+         break;
+
+    case 'merienda':
+         include 'views/products/merienda.php';
+         break;
+
 
     default:
         http_response_code(404);

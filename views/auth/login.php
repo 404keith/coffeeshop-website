@@ -71,8 +71,6 @@ include APP_ROOT . '/views/layouts/header.php';
             </div> <!-- /.form-padding -->
         </form>
     </div> <!-- /.container-fluid -->
-
-    <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
-
 </body>
 </html>
+    <?php include APP_ROOT . '/views/layouts/footer.php'; ?>

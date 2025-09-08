@@ -125,7 +125,7 @@
 
     <!-- Desktop/Tablet Menu -->
     <div class="menu d-none d-md-flex">
-        <a href="#" class="item">
+        <a href="<?php echo FILE_ROOT; ?>/drinks" class="item">
             <img class="img1" src="<?php echo FILE_ROOT; ?>/public/assets/images/drinkss.png" alt="Drinks">
             <span>DRINKS</span>
         </a>
@@ -147,7 +147,7 @@
     <div id="menuCarousel" class="carousel slide d-md-none" data-bs-ride="carousel">
         <div class="carousel-inner text-center">
             <div class="carousel-item active">
-                <a href="#" class="item mx-auto">
+                <a href="<?php echo FILE_ROOT; ?>/drinks" class="item mx-auto">
                     <img src="<?php echo FILE_ROOT; ?>/public/assets/images/drinkss.png" class="d-block w-75 mx-auto" alt="Drinks">
                     <span>DRINKS</span>
                 </a>
