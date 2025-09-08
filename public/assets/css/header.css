@@ -154,3 +154,7 @@
     box-shadow: none; /* remove focus shadow */
 }
 
+
+body{
+  background-color: #fff6eb;
+}

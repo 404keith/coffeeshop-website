@@ -39,7 +39,7 @@ switch ($uri) {
          break;
 
     case 'drinks':
-         include 'views/products/drinks.php';
+         include 'views/products/drinksView.php';
          break;
 
     case 'waffles':
