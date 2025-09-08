@@ -7,7 +7,7 @@ try {
     require APP_ROOT . '/controllers/productController.php';
     require APP_ROOT . '/controllers/categoryController.php';
 
-    $category_id = 1; //drinks!
+    $category_id = 1; //drinks! 
     $products = category_show($pdo, $category_id);
 
     // Load HTML layout

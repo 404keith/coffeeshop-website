@@ -57,7 +57,7 @@
     height: 20px;
   }
 
-  p{
+ .copyright{
     font-size:12px;
   }
 </style>
@@ -133,7 +133,7 @@
     </div>
 
     <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
-      <p class="mb-0">&copy; 2025 Coffee by Monday Mornings. All rights reserved</p>
+      <p class="mb-0 copyright">&copy; 2025 Coffee by Monday Mornings. All rights reserved</p>
       <!-- <ul class="list-unstyled d-flex mb-0">
         <li class="ms-3">
           <a href="https://www.instagram.com/coffeebymondaymornings/" class="fs-5 transition">

@@ -3,6 +3,7 @@
 <div class="container mt-5">
     <h2 class="mb-4">Drinks</h2>
     <div class="row g-4">
+
         <?php foreach ($products as $product): ?>
             <div class="col-md-3 d-flex">
                 <div class="card flex-fill shadow-sm">
@@ -23,5 +24,10 @@
                 </div>
             </div>
         <?php endforeach; ?>
+        
     </div>
 </div>
+  <script src="<?= FILE_ROOT ?>/public/assets/js/mdb.umd.min.js"></script>
+<script src="<?php echo FILE_ROOT; ?>/public/assets/js/bootstrap.bundle.js"></script>
+<script src="<?php echo FILE_ROOT; ?>/public/assets/js/all.min.js"></script>
+<script src="<?php echo FILE_ROOT; ?>/public/assets/js/functions.js"></script>

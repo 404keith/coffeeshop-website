@@ -20,7 +20,11 @@ function get_product_by_id(object $pdo, int $id): array|false {
 }
 
 function get_products_by_category(object $pdo, int $category_id): array {
-    $query = "SELECT * FROM products WHERE category_id = :category_id";
+    $query = "SELECT * FROM products 
+              WHERE category_id = :category_id
+              GROUP BY name
+              ORDER BY created_at DESC
+    ";
     $statement = $pdo->prepare($query);
     $statement->bindParam(':category_id', $category_id, PDO::PARAM_INT);
     $statement->execute();
