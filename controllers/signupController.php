@@ -1,8 +1,8 @@
 <?php
 declare (strict_types=1); //enable type declaration
 
-function is_input_empty(string $username, string $password, string $email){
-	if (empty($username) || empty($password) || empty($email)) {
+function is_input_empty(string $first_name, string $last_name, string $username, string $password, string $email){
+	if (empty($first_name) || empty($last_name) || empty($username) || empty($password) || empty($email)) {
 		return true;
 	}
 	else {

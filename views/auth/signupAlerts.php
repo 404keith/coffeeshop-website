@@ -25,6 +25,7 @@ function check_signup_errors()
     }
 }
 
+         
 function signupInput($field): string
 {
     $value = '';
@@ -33,7 +34,9 @@ function signupInput($field): string
         unset($_SESSION['signup_data']);
     } else {
         // First name
-        if ($field === 'first_name' && isset($_SESSION['signup_data']['first_name'])) {
+        if ($field === 'first_name' && isset($_SESSION['signup_data']['first_name'])
+            // && !isset($_SESSION['errors_signup']['empty_input'])
+        ) {
             $value = htmlspecialchars($_SESSION['signup_data']['first_name']);
         }
 

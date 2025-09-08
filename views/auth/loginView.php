@@ -3,7 +3,7 @@ require_once 'config/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$username = $_POST['username'];
-	   $password = $_POST['password'];
+	    $password = $_POST['password'];
 
 		try {
 		   require APP_ROOT .'/config/dbhandler.php';
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					 $errors['empty_input'] = 'Fill in all fields!';
 				}
 
-		  	$result = get_user($pdo, $username);
+	  	$result = get_user($pdo, $username);
 
 				if (is_username_wrong($result)) {
 						$errors['login_incorrect'] = 'Incorrect login info!';
@@ -29,9 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				}
 
 			     // start session i used session.php for more security
-				 require_once APP_ROOT .  '/config/session.php'; 
-
-			
+				 require_once APP_ROOT .  '/config/session.php'; 	
 
 				if ($errors) { 
 					$_SESSION['errors_login'] = $errors;
@@ -45,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 				$_SESSION['user_id'] = $result['id'];
 				$_SESSION['user_username'] = htmlspecialchars($result['username']);
+				$_SESSION['user_firstname'] = htmlspecialchars($result['first_name']);
 			    $_SESSION['last_regeneration'] = time(); //reset time
 				$_SESSION['login_success'] = true;
 

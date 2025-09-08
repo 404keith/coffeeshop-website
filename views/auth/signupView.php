@@ -16,8 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    //ERROR HANDLERS:
 	 // functions in controller file
 	     $errors = [];
-	   if (is_input_empty($username, $password, $email)){
-				$errors['empty_input'] = 'Fill in all fields!';
+	   if (is_input_empty($first_name, $last_name, $username, $password, $email)){
+			$errors['empty_input'] = 'Fill in all fields!';
 	   }
 
 		 if ( is_email_invalid($email)) {
@@ -45,6 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					'last_name'  => $last_name !== '' ? trim($last_name) : null,
 				];
 				 $_SESSION['signup_data'] = $signupData;
+		
+
 
 			 	header ('Location: '.FILE_ROOT.'/signup');
 
