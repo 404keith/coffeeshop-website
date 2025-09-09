@@ -18,14 +18,19 @@ $routes = [
     'test' => 'test.php',    // add ka lang bagong line dito pre kapag may idadagdag ka 
 ];
 
+function route ($uri, $routes){
+    if (array_key_exists($uri, $routes)) {
+      require $routes[$uri];    
+    } else {
+    abort(404);
+    }
+}
+
 function abort($code){
     http_response_code($code);
     require 'views/response_status/'.$code.'.php';
     die();
 }
 
-if (array_key_exists($uri, $routes)) {
-    require $routes[$uri];    
-} else {
-  abort(404);
-}
+
+route($uri, $routes);
