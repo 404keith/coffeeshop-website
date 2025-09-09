@@ -15,7 +15,7 @@ $routes = [
     'waffles' => 'views/products/wafflesView.php',
     'pastries' => 'views/products/pastriesView.php',
     'merienda' => 'views/products/meriendaView.php',
-    'test' => 'test.php',
+    'test' => 'test.php',    // add ka lang bagong line dito pre kapag may idadagdag ka 
 ];
 
 function abort($code){
