@@ -1,6 +1,6 @@
 <style>
 .conn2 {
-    padding: 120px 40px;
+    padding: 100px 200px;
     background:#D68421;
     text-align: center;
     height: 100vh;
@@ -47,17 +47,19 @@
 .img4 { width: 300px; top: -250px; left: -30px; object-fit: cover; }
 
 .item span {
-    background: #fedcaaff;
+    background: #281A11;
     padding: 12px 10px;
     width: 100%;
     text-align: center;
     font-weight: bold;
     border-radius: 0 0 20px 20px;
-    display: inline-block;
 }
 
 .item:hover {
     transform: scale(1.1);
+    background: linear-gradient(to top, #150e09ff, #573f30ff 100%);
+
+    
 }
 
 /* Mobile Carousel Fix */
@@ -114,13 +116,12 @@
     }
 }
 
-.section-title {
-    font-family: 'inter';
-}
+
 </style>
 
 <div class="conn2">
     <h2 class="section-title">Menu</h2>
+    <p>meow meow meow meow meow meow meow</p>
 
     <!-- Desktop/Tablet Menu -->
     <div class="menu d-none d-md-flex">
