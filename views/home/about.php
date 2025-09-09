@@ -18,6 +18,13 @@ iframe {
     height: 100%;
     border: 0;
 }
+
+.section-title {
+    font-family: 'pacifico';
+    color:#fff6eb;
+    font-size: 3rem;
+}
+
 </style>
 
 <div class="conn3">

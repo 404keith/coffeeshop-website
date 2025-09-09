@@ -1,7 +1,7 @@
 <style>
 .conn2 {
     padding: 120px 40px;
-    background: linear-gradient(to bottom, #FFF6EB 90%, #FFF6EB 100%);
+    background:#D68421;
     text-align: center;
     height: 100vh;
     position: relative; /* changed from absolute for better flow */
@@ -11,8 +11,7 @@
 .conn2 h2 {
     font-family: 'pacifico';
     font-size: 3rem;
-    font-weight: bold;
-    color: #D4842C;
+    color: #fff6eb;
 }
 
 .menu {
@@ -48,7 +47,7 @@
 .img4 { width: 300px; top: -250px; left: -30px; object-fit: cover; }
 
 .item span {
-    background: #e68a00;
+    background: #fedcaaff;
     padding: 12px 10px;
     width: 100%;
     text-align: center;
@@ -115,7 +114,7 @@
     }
 }
 
-.conn2 .section-title {
+.section-title {
     font-family: 'inter';
 }
 </style>
