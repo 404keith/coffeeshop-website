@@ -3,7 +3,7 @@
 <div class="container mt-5">
   <div class="row align-items-center justify-content-center mb-4">
     <div class="col-auto">
-      <a href="/merienda" class="product-toggle">
+      <a href="/waffles" class="product-toggle">
         <i class="bi bi-caret-left-fill fs-5"></i>
       </a>
     </div>
@@ -11,7 +11,7 @@
       <h2 class="mb-0 product-title">Pastries</h2>
     </div>
     <div class="col-auto">
-      <a href="/waffles" class="product-toggle">
+      <a href="/merienda" class="product-toggle">
         <i class="bi bi-caret-right-fill fs-5 "></i>
       </a>
     </div>
