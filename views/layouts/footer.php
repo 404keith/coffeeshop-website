@@ -139,13 +139,13 @@
     <!-- <div class="text-center mb-3">
       <img src="<?php echo FILE_ROOT; ?>/public/assets/images/logo.png" alt="Coffee by Monday Mornings" class="footer-logo">
     </div> -->
+<hr class="border-warning">
 
     <div class="text-center ">
     <img src="<?php echo FILE_ROOT; ?>/public/assets/images/logo.png" alt="Coffee by Monday Mornings" class="footer-logo mb-2">
     <p class="mb-0 copyright">&copy; 2025 Coffee by Monday Mornings. All rights reserved</p>
 </div>
 
-    <hr class="border-warning">
 
 
 </footer>
