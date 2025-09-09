@@ -1,63 +1,31 @@
 <?php
+
 $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
-switch ($uri) {
-    case '':
-        include 'views/home/home.php';
-        break;
+$routes = [
+    '' => 'views/home/home.php',
+    'login' => 'views/auth/login.php',
+    'signup' => 'views/auth/signup.php',
+    'logout' => 'views/auth/logout.php',
+    'signupView' => 'views/auth/signupView.php',
+    'loginView' => 'views/auth/loginView.php',
+    'admin' => 'views/layouts/admin_dashboard.php',
+    'stocks' => 'views/layouts/admin_stocks.php',
+    'drinks' => 'views/products/drinksView.php',
+    'waffles' => 'views/products/wafflesView.php',
+    'pastries' => 'views/products/pastriesView.php',
+    'merienda' => 'views/products/meriendaView.php',
+    'test' => 'test.php',
+];
 
-    case 'login':
-        include 'views/auth/login.php';
-        break;
-
-    case 'signup':
-        include 'views/auth/signup.php';
-        break;
-        
-    case 'logout':
-        include 'views/auth/logout.php';
-        break;
-
-    case 'signupView':
-        include 'views/auth/signupView.php';
-        break;
-    
-    case 'loginView':
-        include 'views/auth/loginView.php';
-        break;
-
-    case 'admin':
-        include 'views/layouts/admin_dashboard.php';
-        break;
-
-    case 'stocks':
-         include 'views/layouts/admin_stocks.php';
-         break;
-
-    case 'test':
-         include 'test.php';
-         break;
-
-    case 'drinks':
-         include 'views/products/drinksView.php';
-         break;
-
-    case 'waffles':
-         include 'views/products/wafflesView.php';
-         break;
-
-    case 'pastries':
-         include 'views/products/pastriesView.php';
-         break;
-
-    case 'merienda':
-         include 'views/products/meriendaView.php';
-         break;
-
-
-    default:
-        http_response_code(404);
-        echo "Page not found!";
-        break;
+function abort($code){
+    http_response_code($code);
+    require 'views/response_status/'.$code.'.php';
+    die();
 }
-//a
+
+if (array_key_exists($uri, $routes)) {
+    require $routes[$uri];    
+} else {
+  abort(404);
+}
