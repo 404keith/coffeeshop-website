@@ -94,7 +94,7 @@
 
     #menuCarousel .item span {
         display: block;
-        background: #e68a00;
+        background: #281A11;
         color: white;
         font-weight: bold;
         padding: 12px 10px;
@@ -102,18 +102,6 @@
         text-align: center;
     }
 
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        background-size: 100% 100%;
-    }
-
-    .carousel-control-prev-icon {
-        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23D48423' viewBox='0 0 16 16'%3E%3Cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E");
-    }
-
-    .carousel-control-next-icon {
-        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23D48423' viewBox='0 0 16 16'%3E%3Cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
-    }
 }
 
 
@@ -174,10 +162,11 @@
 
         <!-- Carousel Controls -->
         <button class="carousel-control-prev" type="button" data-bs-target="#menuCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
+            <i class="bi bi-caret-left-fill fs-3 me-5"></i>
         </button>
+        
         <button class="carousel-control-next" type="button" data-bs-target="#menuCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
+            <i class="bi bi-caret-right-fill fs-3 ms-5"></i>
         </button>
     </div>
 </div>
