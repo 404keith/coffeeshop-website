@@ -37,12 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $success = handle_reset_password($pdo, $token, $password);
 
         if ($success) {
-            $_SESSION['reset_success'] = 'Password successfully reset. You can log in now.';
+            $_SESSION['reset_success'] = 'success';
             header('Location: ' . FILE_ROOT . '/login');
             exit;
         } else {
             $_SESSION['errors_reset'] = ['invalid_token' => 'Invalid or expired reset link.'];
-            echo 'failed';
+             abort(401);
             exit;
         }
 

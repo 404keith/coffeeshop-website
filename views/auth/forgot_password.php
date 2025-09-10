@@ -39,7 +39,7 @@ include APP_ROOT . '/views/layouts/header.php';
 
             
                 <div>
-                    <?php check_input_errors(); ?>
+                    <?php forgotPasswordAlert(); ?>
                 </div>
 
             </div>

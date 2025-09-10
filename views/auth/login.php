@@ -65,7 +65,8 @@ include APP_ROOT . '/views/layouts/header.php';
                 </div>
 
                 <div>
-                    <?php check_login_errors(); ?>
+                    <?php check_login_errors();
+                          resetPasswordAlert(); ?>
                 </div>
 
             </div> <!-- /.form-padding -->

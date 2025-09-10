@@ -1,8 +1,13 @@
 <?php
-
 declare(strict_types=1); // Enable strict type declarations
 
+function printSuccess($error){
+    echo '<div class="alert alert-success" role="alert">' . htmlspecialchars($error) . '</div>';
+}
 
+function printFailed($error){
+    echo '<div class="alert alert-danger" role="alert">' . htmlspecialchars($error) . '</div>';
+}
 // ------------------------------------------ LOGIN  ------------------------------------------------------
 function output_username(): void
 {
@@ -23,15 +28,16 @@ function check_login_errors(): void
 
         foreach ($errors as $error) {
             if ($error === 'Fill in all fields!') {
-                echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
+                printFailed($error);
                 break;
             }
-            echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
+                printFailed($error);
+
         }
         unset($_SESSION['errors_login']);
         
     } elseif (isset($_SESSION['login_success']) && $_SESSION['login_success'] === true) {
-        echo '<div class="alert alert-success" role="alert">Login Success!</div>';
+       printSuccess('Login Success!');
         //unset($_SESSION['login_success']); // clear so it shows only once
     }    
 }
@@ -54,17 +60,18 @@ function check_signup_errors()
 
         foreach ($errors as $error) {
             if ($error === 'Fill in all fields!') {
-                echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
+                printFailed($error);
                 break;
             }
-            echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
+                printFailed($error);
+
         }
 
         unset($_SESSION['errors_signup']);
 
     } elseif (isset($_SESSION['signup_success']) && $_SESSION['signup_success'] === true) {
         echo "<br>";
-        echo '<div class="alert alert-success" role="alert">Sign-up Success!</div>';
+        printSuccess('Sign up success!');
         unset($_SESSION['signup_success']);
     }
 }
@@ -115,31 +122,64 @@ function signupInput($field): string
 
 // ------------------------------------------ FORGOT PASSWORD  ------------------------------------------------------
 
-function check_input_errors(): void
+function forgotPasswordAlert(): void
 {
-    
+
     if (isset($_SESSION['errors_reset'])) {
         $errors = $_SESSION['errors_reset'];
 
         echo "<br>";
 
-        foreach ($errors as $error) {
-            if ($error === 'Email field cannot be empty!') {
-                echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
-                break;
-            }
-            if ($error === 'Reset request failed!') {
-            echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
-        }
-        }
+foreach ($errors as $key => $message) {
+    switch ($key) {
+        case 'empty_email':
+             printFailed($message);
+              break;
+    }
+}
         unset($_SESSION['errors_reset']);
-        
-    } elseif (isset($_SESSION['reset_success']) && $_SESSION['reset_success'] === true) {
-        echo '<div class="alert alert-success" role="alert">a reset link has been sent to your email!</div>';
-                unset($_SESSION['reset_success']);
 
-    }    
+    } else  if(isset($_SESSION['reset_success']) && $_SESSION['reset_success'] === true){
+              printSuccess('A reset link has been sent to your email!');
+              unset($_SESSION['reset_success']);
+              unset($_SESSION['errors_reset']);
+        }
+        
 }
 
 
 // ------------------------------------------ RESET PASSWORD  ------------------------------------------------------
+
+function resetPasswordAlert(): void
+{
+
+    if (isset($_SESSION['errors_reset'])) {
+        $errors = $_SESSION['errors_reset'];
+
+        echo "<br>";
+
+foreach ($errors as $key => $message) {
+    switch ($key) {
+        case 'password_mismatch':
+        case 'empty_password':
+        case 'reset_failed':
+        case 'invalid_token':
+             printFailed($message);
+              break 2;
+    }
+}
+        unset($_SESSION['errors_reset']);
+
+
+    } else  if(isset($_SESSION['reset_success']) && $_SESSION['reset_success'] === 'success'){
+              printSuccess('Successfully changed your password, you can log in now!');
+            unset($_SESSION['errors_reset']);
+             unset($_SESSION['reset_success']);
+
+        }
+        
+}
+
+
+
+       

@@ -27,7 +27,7 @@ function handle_send_reset_link(object $pdo, string $email): void {
     if (is_user_not_found($user)) return;
 
     $token = bin2hex(random_bytes(32));
-    $expires = date("Y-m-d H:i:s", strtotime("+8 hour"));
+    $expires = date("Y-m-d H:i:s", strtotime(datetime: "+7 hour"));
     create_password_reset($pdo, $email, $token, $expires);
 
     $resetLink = FILE_ROOT . "coffeeshop-website.local/reset?token=" . urlencode($token);
