@@ -133,6 +133,7 @@ function forgotPasswordAlert(): void
 foreach ($errors as $key => $message) {
     switch ($key) {
         case 'empty_email':
+        case 'reset_failed':
              printFailed($message);
               break;
     }
@@ -162,7 +163,6 @@ foreach ($errors as $key => $message) {
     switch ($key) {
         case 'password_mismatch':
         case 'empty_password':
-        case 'reset_failed':
         case 'invalid_token':
              printFailed($message);
               break 2;
