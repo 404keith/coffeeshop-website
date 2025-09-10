@@ -78,12 +78,10 @@ body {
 </head>
 
 <body>
-    <!-- <?php include APP_ROOT .'/views/auth/loginAlerts.php'; ?> -->
 
     <!-- Hero Section -->
     <div class="hero">
         <div class="cont">
-            <!-- <?php displayName(); ?> -->
             <h2>COFFEE THAT WARMS</h2>
             <h2>YOUR HEART</h2>
             <p>Discover our handcrafted brews and delightful breakfast treats</p>
