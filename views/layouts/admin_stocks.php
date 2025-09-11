@@ -1,75 +1,10 @@
 <?php
-// --- Database Connection and Processing Logic ---
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "mondaymornings";
+require_once APP_ROOT . '/config/dbhandler.php';
+require_once APP_ROOT . '/controllers/stocksController.php';
 
-try {
-    // Connect to the database
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Function to calculate stock status based on percentages
-    function calculateStockStatus($current, $min) {
-        if ($min == 0) {
-            return 'In Stock';
-        }
-        $percentage = ($current / $min) * 100;
-        if ($percentage >= 90) {
-            return 'High';
-        } elseif ($percentage >= 20) {
-            return 'Medium';
-        } else {
-            return 'Low';
-        }
-    }
-
-    // 1. Process the 'Add Product' form submission
-    if (isset($_POST['submit_product'])) {
-        $name = $_POST['name'];
-        $category = $_POST['category'];
-        $current = $_POST['current'];
-        $min = $_POST['min'];
-
-        $status = calculateStockStatus($current, $min);
-        $last_restocked = date('Y-m-d');
-
-        $sql = "INSERT INTO stocks (name, category, current, min, status, last) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$name, $category, $current, $min, $status, $last_restocked]);
-
-        header("Location: stocks");
-        exit();
-    }
-
-    // 2. Process the 'Update Product' form submission
-    if (isset($_POST['update_product'])) {
-        $id = $_POST['product_id'];
-        $name = $_POST['name'];
-        $category = $_POST['category'];
-        $current = $_POST['current'];
-        $min = $_POST['min'];
-
-        $status = calculateStockStatus($current, $min);
-
-        $sql = "UPDATE stocks SET name=?, category=?, current=?, min=?, status=? WHERE id=?";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$name, $category, $current, $min, $status, $id]);
-
-        header("Location: stocks");
-        exit();
-    }
-
-    // 3. Fetch all products from the database for display
-    $sql = "SELECT * FROM stocks";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    $stocks = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-} catch(PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
-}
+$controller = new StockController($pdo);
+$controller->handleRequest();
+$stocks = $controller->getStocks();
 ?>
 
 <!DOCTYPE html>
@@ -143,6 +78,10 @@ try {
                                    data-min="<?= htmlspecialchars($item['min']) ?>">
                                    ✎ Edit
                                 </a>
+                                <form action="stocks" method="post" style="display:inline;">
+                                    <input type="hidden" name="delete_id" value="<?= htmlspecialchars($item['id']) ?>">
+                                    <button type="submit" name="delete_product" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?');">🗑 Delete</button>
+                                </form>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -157,10 +96,11 @@ try {
     </div>
 </div>
 
+<!--add product modal -->
 <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header">  
                 <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -182,6 +122,22 @@ try {
                         <label for="min" class="form-label">Minimum Stock</label>
                         <input type="number" class="form-control" id="min" name="min" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="category_id" class="form-label">Category ID  (1 drinks, 2 pastries, 3 waffles, 4 merienda)</label>
+                        <input type="number" class="form-control" id="category_id" name="category_id" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="description" name="description">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="price" name="price" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image URL</label>
+                        <input type="text" class="form-control" id="image" name="image">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -192,6 +148,7 @@ try {
     </div>
 </div>
 
+<!-- edit modal -->
 <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -218,6 +175,22 @@ try {
                         <label for="edit-min" class="form-label">Minimum Stock</label>
                         <input type="number" class="form-control" id="edit-min" name="min" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="edit-category-id" class="form-label">Category ID (1 drinks, 2 pastries, 3 waffles, 4 merienda)</label>
+                        <input type="number" class="form-control" id="edit-category-id" name="category_id">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="edit-description" name="description">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-price" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="edit-price" name="price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-image" class="form-label">Image URL</label>
+                        <input type="text" class="form-control" id="edit-image" name="image">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -239,18 +212,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const category = button.getAttribute('data-category');
         const current = button.getAttribute('data-current');
         const min = button.getAttribute('data-min');
-        
-        const modalIdInput = editModal.querySelector('#edit-product-id');
-        const modalNameInput = editModal.querySelector('#edit-name');
-        const modalCategoryInput = editModal.querySelector('#edit-category');
-        const modalCurrentInput = editModal.querySelector('#edit-current');
-        const modalMinInput = editModal.querySelector('#edit-min');
+        const category_id = button.getAttribute('data-category-id') || '';
+        const description = button.getAttribute('data-description') || '';
+        const price = button.getAttribute('data-price') || '';
+        const image = button.getAttribute('data-image') || '';
 
-        modalIdInput.value = id;
-        modalNameInput.value = name;
-        modalCategoryInput.value = category;
-        modalCurrentInput.value = current;
-        modalMinInput.value = min;
+        editModal.querySelector('#edit-product-id').value = id;
+        editModal.querySelector('#edit-name').value = name;
+        editModal.querySelector('#edit-category').value = category;
+        editModal.querySelector('#edit-current').value = current;
+        editModal.querySelector('#edit-min').value = min;
+        editModal.querySelector('#edit-category-id').value = category_id;
+        editModal.querySelector('#edit-description').value = description;
+        editModal.querySelector('#edit-price').value = price;
+        editModal.querySelector('#edit-image').value = image;
     });
 });
 </script>

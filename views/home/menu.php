@@ -1,3 +1,14 @@
+<?php 
+require_once APP_ROOT . '/config/dbhandler.php';
+require_once APP_ROOT . '/models/productModel.php';
+
+$products = get_all_products($pdo);
+
+foreach ($products as $product) {
+    // Display product info
+}
+?>
+
 <style>
 .conn2 {
     padding: 100px 200px;
