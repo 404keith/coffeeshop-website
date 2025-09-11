@@ -31,7 +31,7 @@
           <i class="bi bi-house icon fs-7 house-icon ms-5"></i></a>
       </li>
       <li class="nav-item ms-5"><a class="nav-link d-flex align-items-center" onclick="scrollToSection('section-menu')"><i class="bi bi-cup-hot icon fs-7"></i></a></li>
-      <li class="nav-item ms-5 nav-text"><a class="nav-link" href="#">ABOUT US</a></li>
+      <li class="nav-item ms-5 nav-text"><a class="nav-link" onclick="scrollToSection('section-about')">ABOUT US</a></li>
     </ul>
 
     <!-- Logo desktop (center) -->
@@ -127,6 +127,8 @@
     </ul>
   </div>
 </div>
+
+
 
 </body>
 

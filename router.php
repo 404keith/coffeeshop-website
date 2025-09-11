@@ -17,7 +17,8 @@ $routes = [
     'merienda' => 'views/products/meriendaView.php',
     'test' => 'test.php',   
     'test2' => 'test2.php',   
-    'test4' => 'test4.php',   
+    'test4' => 'test4.php', 
+      
 
      // add ka lang bagong line dito pre kapag may idadagdag ka 
 ];
