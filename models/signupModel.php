@@ -45,3 +45,23 @@ function get_email(object $pdo, string $email){
  	$statement -> execute();
 
  }
+
+ function set_admin(object $pdo, string $first_name, string $last_name,  string $email, string $username, string $password)
+{
+    $query = "INSERT INTO users(username, first_name, last_name, email, password, role) VALUES (:username, :first_name, :last_name, :email, :password, :role)";
+
+    $statement = $pdo->prepare($query);
+
+    $options = ['cost' => 12];
+    $hashedPassword = password_hash($password, PASSWORD_BCRYPT, $options);
+    $role = 'admin';
+
+    $statement->bindParam(':username', $username);
+    $statement->bindParam(':first_name', $first_name);
+    $statement->bindParam(':last_name', $last_name);
+    $statement->bindParam(':password', $hashedPassword);
+    $statement->bindParam(':email', $email);
+    $statement->bindParam(':role', $role);
+    
+    $statement->execute();
+}

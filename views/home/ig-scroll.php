@@ -268,39 +268,39 @@
 </head>
 <body>
   
-<p class="hello-text">Hello</p>
+<p class="hello-text">Hello, Monday!</p>
     <section class="insta-section">
         <aside class="insta-carousel">
             <div class="insta-carousel-wrapper">
                 <div class="insta-item" id="slide-0">
-                    <img src="https://assets.codepen.io/108082/jake-and-fin-1.jpg" alt="" width="418" height="418">
+                    <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_1.jpg"  alt="" width="418" height="418">
                 </div>
                 <div class="insta-item" id="slide-1">
-                    <img src="https://assets.codepen.io/108082/jake-and-fin-2.jpg" alt="" width="418" height="418">
+                     <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_2.jpg"  alt="" width="418" height="418">
                 </div>
                 <div class="insta-item" id="slide-2">
-                    <img src="https://assets.codepen.io/108082/jake-and-fin-3.jpg" alt="" width="418" height="418">
+                     <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_3.jpg"  alt="" width="418" height="418">
                 </div>
                 <div class="insta-item" id="slide-3">
-                    <img src="https://assets.codepen.io/108082/jake-and-fin-4.jpg" alt="" width="418" height="418">
+                     <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_4.jpg"  alt="" width="418" height="418">
                 </div>
                 <div class="insta-item" id="slide-4">
-                    <img src="https://assets.codepen.io/108082/jake-and-fin-5.jpg" alt="" width="418" height="418">
+                     <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_5.jpg"  alt="" width="418" height="418">
                 </div>
                 <div class="insta-item" id="slide-5">
-                    <img src="https://assets.codepen.io/108082/jake-and-fin-6.jpg" alt="" width="418" height="418">
+                    <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_6.jpg"  alt="" width="418" height="418">
                 </div>
                 <div class="insta-item" id="slide-6">
-                    <img src="https://assets.codepen.io/108082/jake-and-fin-7.jpg" alt="" width="418" height="418">
+                     <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_7.jpg"  alt="" width="418" height="418">
                 </div>
             </div>
         </aside>
         <article class="insta-card">
             <header class="insta-header">
                 <figure>
-                    <img src="https://assets.codepen.io/108082/jake-dog.png" alt="Jake Dog" width="42" height="42">
+                    <img src="<?php echo FILE_ROOT; ?>/public/assets/images/logo2.png"  alt="Jake Dog" width="42" height="42">
                     <figcaption>
-                        <h4>Jake the Dog</h4>
+                        <h4>Monday Mornings</h4>
                     </figcaption>
                 </figure>
             </header>

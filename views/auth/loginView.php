@@ -42,16 +42,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				session_id($sessionId);
 
 				$_SESSION['user_id'] = $result['id'];
+				$_SESSION['user_role'] = $result['role'];
 				$_SESSION['user_username'] = htmlspecialchars($result['username']);
 				$_SESSION['user_firstname'] = htmlspecialchars($result['first_name']);
 			    $_SESSION['last_regeneration'] = time(); //reset time
 				$_SESSION['login_success'] = true;
 
-				header('Location: /');  
-				
-				$pdo = null;
-				$statement = null;
-				die();
+				if (isset($_SESSION['user_role']) && $_SESSION['user_role']==='admin'){
+					header('Location: /admin');  
+					$pdo = null;
+					$statement = null;
+					die();
+
+				} else {
+					header('Location: /');  
+					$pdo = null;
+					$statement = null;
+					die();
+				}
 
 		} catch (PDOException $e) {
 			 die('Query Failed: '. $e->getMessage());
