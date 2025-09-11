@@ -22,7 +22,6 @@ $routes = [
     'test' => 'test.php',   
     'test2' => 'test2.php',   
     'test4' => 'test4.php',   
-    'test5' => 'test5.php',   
 
      // add ka lang bagong line dito pre kapag may idadagdag ka 
 ];

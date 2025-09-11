@@ -109,7 +109,7 @@
 
 <div class="conn2">
     <h2 class="section-title">Menu</h2>
-    <p>meow meow meow meow meow meow meow</p>
+    <p>“Hungry? Thirsty? We’ve got just the thing to make your day sweeter and brighter!”</p>
 
     <!-- Desktop/Tablet Menu -->
     <div class="menu d-none d-md-flex">
