@@ -22,8 +22,11 @@ $routes = [
     'test' => 'test.php',   
     'test2' => 'test2.php',   
     'test4' => 'test4.php',   
+    'test5' => 'test5.php',   
+    'createAdmin' => 'views/auth/createAdmin.php',   
+    'createAdminView' => 'views/auth/createAdminView.php',   
+    'signupAdmin' => 'views/admin/signup.php',
 
-     // add ka lang bagong line dito pre kapag may idadagdag ka 
 ];
 
 function route ($uri, $routes){

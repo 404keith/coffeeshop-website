@@ -23,7 +23,10 @@ define('SITE_NAME', 'Coffee By Monday Mornings');
 $uri = $_SERVER['REQUEST_URI'];
 
 $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+
 // // Get project folder name dynamically
 // $basePath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 // // Remove base path
 // $uri = preg_replace("#^" . preg_quote($basePath) . "#", '', $uri);
+
+define('CREATE_ADMIN', '444');

@@ -1,0 +1,80 @@
+<?php
+require_once 'config/config.php';
+require_once APP_ROOT . '/config/session.php'; 
+include APP_ROOT . '/views/layouts/header.php';
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?= FILE_ROOT ?>/public/assets/css/signup.css" />
+</head>
+
+<body>
+
+    <?php require_once 'alerts.php'; ?>
+
+    <div class="container-fluid d-flex justify-content-center">
+        <form class="p-5 form-width" action="<?= FILE_ROOT ?>/createAdminView" method="post">
+
+            <div class="form-padding">
+                <div class="row">
+                    <h1 class="login-text mb-5 fs-1">ADMIN SIGNUP</h1>
+                </div>
+
+                <h1 class="login-text">Please enter the details below:</h1>
+
+                <!-- First and Last Name -->
+                <div class="row mb-4">
+                    <div class="col d-flex justify-content-center">
+                        <div data-mdb-input-init class="form-outline">
+                            <input type="text" value="<?= signupInput('first_name') ?>" name="first_name" class="form-control" />
+                            <label class="form-label" for="first_name">First name</label>
+                        </div>
+                    </div>
+
+                    <div class="col d-flex justify-content-center">
+                        <div data-mdb-input-init class="form-outline">
+                            <input type="text" value="<?= signupInput('last_name') ?>" name="last_name" class="form-control" />
+                            <label class="form-label" for="last_name">Last name</label>
+                        </div>
+                    </div>
+                </div>
+                  <!-- Email input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="text" value="<?= signupInput('email') ?>" name="email" class="form-control" />
+                    <label class="form-label" for="email">Email</label>
+                </div>
+
+
+                <!-- Username input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="text" value="<?= signupInput('username') ?>" name="username" class="form-control" />
+                    <label class="form-label" for="username">Username</label>
+                </div>
+
+                <!-- Password input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="password" name="password" class="form-control" />
+                    <label class="form-label" for="password">Password</label>
+                </div>
+
+                <!-- Submit button -->
+                <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
+
+                <div>
+                    <?php check_signup_errors(); ?>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+    <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
+
+</body>
+</html>
