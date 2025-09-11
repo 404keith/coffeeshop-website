@@ -14,6 +14,47 @@
             height: 100%;
         }
 
+        .d {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: black;
+        background-color: #FFF6EB;
+        position: relative; 
+        z-index: 1; 
+        overflow: hidden; 
+        }
+
+        .d::before {
+        content: '';
+        position: absolute;
+        top: -5%; 
+        left: -5%;
+        width: 110%; 
+        height: 110%;
+        background-image: url('<?php echo FILE_ROOT; ?>/public/assets/images/bg-plain.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover; 
+        filter: blur(4px) brightness(80%);
+        z-index: -1; 
+        }
+
+        .d::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #D68421;
+        background-image: linear-gradient(to bottom, rgba(255, 254, 252, 0) 50%, #FFF6EB 100%);
+        z-index: -1; 
+        }
+
         /* Main container for the Instagram carousel section. */
         .insta-section {
             display: flex;
@@ -67,7 +108,7 @@
         :root {
             --light: 0;
             --max-width-post: 420px;
-            --primary:#56453b;
+            --primary:#FFF6EB;
 
             --bg: linear-gradient(to bottom, #e07b00ff 90%, #FFF6EB 100%);
             --text-primary: hsl(
@@ -173,6 +214,7 @@
             width: 100%;
             border: var(--border);
             border-radius: 20px;
+            border-bottom: #D68421 1px solid;
         }
 
         .insta-section .insta-header {
@@ -259,24 +301,27 @@
 
         .hello-text{
           text-align: center;
-          font-family: 'pacifico';
-          margin-bottom: -3rem;
-          color: #D68421;
+          font-family: 'pacifico';  
+          margin-top:3rem;
+          margin-bottom: -4rem;
+          color: var(--primary);
           font-size: 3rem;
+  
         }
     </style>
 </head>
 <body>
   
+<div class="d">
 <p class="hello-text">Hello, Monday!</p>
     <section class="insta-section">
         <aside class="insta-carousel">
             <div class="insta-carousel-wrapper">
                 <div class="insta-item" id="slide-0">
-                    <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_1.jpg"  alt="" width="418" height="418">
+                    <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_6.jpg"  alt="" width="418" height="418">
                 </div>
                 <div class="insta-item" id="slide-1">
-                     <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_2.jpg"  alt="" width="418" height="418">
+                     <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_5.jpg"  alt="" width="418" height="418">
                 </div>
                 <div class="insta-item" id="slide-2">
                      <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_3.jpg"  alt="" width="418" height="418">
@@ -327,6 +372,7 @@
             </footer>
         </article>
     </section>
+    </div>
     <!-- <script>
         let CHECKED = false;
         document.addEventListener("pointerdown", (e) => {

@@ -13,6 +13,8 @@ foreach ($products as $product) {
 .conn2 {
     padding: 100px 200px;
     background:#D68421;
+          /* background-image:  url('<?php echo FILE_ROOT; ?>/public/assets/images/background-3.png'); */
+
     text-align: center;
     height: 100vh;
     position: relative; /* changed from absolute for better flow */

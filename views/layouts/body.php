@@ -17,9 +17,10 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #fff;
-    background: linear-gradient(to bottom, rgba(182, 104, 9, 0.2) 35%, #FFF6EB 100%),
-                url('<?php echo FILE_ROOT; ?>/public/assets/images/bg-plain.png');
+    color:black;
+    background-color: #FFF6EB;
+    background:
+                url('<?php echo FILE_ROOT; ?>/public/assets/images/background-2.png');
     background-repeat: no-repeat;
     background-position: top center;
     background-size: cover;
@@ -31,6 +32,7 @@ body {
 }
 
 .cont h2 {
+    color: #281A11;
     font-size: 3rem;
     font-weight: bold;
     margin: 0;
@@ -38,6 +40,7 @@ body {
 
 .cont p {
     font-size: 1rem;
+    color: #281A11;
     margin: 5px 0;
 }
 

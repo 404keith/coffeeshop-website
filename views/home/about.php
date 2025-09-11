@@ -2,6 +2,8 @@
 .conn3 {
     padding: 120px 40px;
     background: linear-gradient(to bottom, rgba(212,132,35,1), #FFF6EB 100%);
+    /* background-image: linear-gradient(to bottom, rgba(255, 254, 252, 0) 50%, #FFF6EB 100%),
+                           url('<?php echo FILE_ROOT; ?>/public/assets/images/background-3.png'); */
     text-align: center;
     height: 140vh; 
     width: 100%;
