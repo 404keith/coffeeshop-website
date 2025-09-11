@@ -18,23 +18,22 @@ $stocks = $controller->getStocks();
         body { background-color: #fff6eb; }
         .sidebar { background: #281A11; min-height: 100vh; padding-top: 20px; color: #fff; }
         .sidebar a { color: #D48423; text-decoration: none; display: block; padding: 12px; }
-        .sidebar a:hover { background: rgba(145, 106, 83, 0.4); }
+        .sidebar a:hover, .active{ background: rgba(145, 106, 83, 0.4); }
         .content { padding: 20px; }
         .table-light { border: 2px solid #000; border-radius: 8px; padding: 20px; margin-bottom: 20px; background: #fff; }
         tr { border: 1px solid #000; border-radius: 8px; padding: 20px; margin-bottom: 20px; background: #fff; }
     </style>
 </head>
 <body>
-
+ <?php include APP_ROOT . '/views/layouts/adminNav.php'; ?>
 <div class="container-fluid">
     <div class="row">
 
         <div class="col-md-2 sidebar">
-            <h4 class="text-center">Admin Panel</h4>
             <a href="admin">Dashboard</a>
             <a href="stocks">Stocks</a>
-            <a href="#">Sales</a>
-            <a href="#">Orders</a>
+            <a href="sales">Sales</a>
+            <a href="orders">Orders</a>
         </div>
 
         <div class="col-md-10 content">
