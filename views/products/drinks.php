@@ -7,11 +7,9 @@
         <i class="bi bi-caret-left-fill fs-5"></i>
       </a>
     </div>
-
     <div class="col text-center">
       <h2 class="mb-0 product-title">Drinks</h2>
     </div>
-
     <div class="col-auto"  style="transform: translateX(-31rem);">
       <a href="/waffles" class="product-toggle">
         <i class="bi bi-caret-right-fill fs-5 "></i>
