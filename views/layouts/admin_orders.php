@@ -25,18 +25,16 @@
   </style>
 </head>
 <body>
+    <?php include APP_ROOT . '/views/layouts/adminNav.php'; ?>
   <div class="container-fluid">
     <div class="row">
-      <!-- Sidebar -->
       <div class="col-2 sidebar">
-        <h5 class="text-center mb-4">Monday Mornings</h5>
         <a href="admin">Dashboard</a>
         <a href="stocks">Stocks</a>
         <a href="sales">Sales</a>
         <a href="orders" class="active">Orders</a>
       </div>
 
-      <!-- Main Content -->
       <div class="col-10 p-4">
         <h4>ORDER MANAGEMENT</h4>
         <p>Track and manage customer orders in real-time</p>
@@ -47,7 +45,6 @@
           <div class="col-md-3"><div class="card-box">Completed</div></div>
         </div>
 
-        <!-- Orders Table -->
         <div class="card mt-4">
           <div class="card-body">
             <h6>All Orders</h6>

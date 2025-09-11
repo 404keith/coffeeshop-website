@@ -39,13 +39,11 @@ $active_orders = "";
     }
 
   </style>
-    
+      <?php include APP_ROOT . '/views/layouts/adminNav.php'; ?>
         <div class="container-fluid">
         <div class="row">
            
             <div class="col-md-2 sidebar">
-            <h4 class="text-center">Admin Panel</h4>
-            
             <i class="fas fa-house"></i><a href="admin">Dashboard</a>
             <i class="fas fa-box"></i><a href="stocks">Stocks</a>
             <i class="fas fa-chart-line"></i><a href="sales">Sales</a>

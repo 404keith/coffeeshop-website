@@ -25,18 +25,16 @@
   </style>
 </head>
 <body>
+  <?php include APP_ROOT . '/views/layouts/adminNav.php'; ?>
   <div class="container-fluid">
     <div class="row">
-      <!-- Sidebar -->
       <div class="col-2 sidebar">
-        <h5 class="text-center mb-4">Monday Mornings</h5>
         <a href="admin">Dashboard</a>
         <a href="stocks">Stocks</a>
         <a href="sales" class="active">Sales</a>
         <a href="orders">Orders</a>
       </div>
 
-      <!-- Main Content -->
       <div class="col-10 p-4">
         <h4>SALES OVERVIEW</h4>
         <p>Track your coffee shop’s sales performance and analytics</p>

@@ -25,12 +25,11 @@ $stocks = $controller->getStocks();
     </style>
 </head>
 <body>
-
+ <?php include APP_ROOT . '/views/layouts/adminNav.php'; ?>
 <div class="container-fluid">
     <div class="row">
 
         <div class="col-md-2 sidebar">
-            <h4 class="text-center">Admin Panel</h4>
             <a href="admin">Dashboard</a>
             <a href="stocks">Stocks</a>
             <a href="sales">Sales</a>
