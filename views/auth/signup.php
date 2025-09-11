@@ -15,7 +15,7 @@ include APP_ROOT . '/views/layouts/header.php';
 
 <body>
 
-    <?php require_once 'signupAlerts.php'; ?>
+    <?php require_once 'alerts.php'; ?>
 
     <div class="container-fluid d-flex justify-content-center">
         <form class="p-5 form-width" action="<?= FILE_ROOT ?>/signupView" method="post">

@@ -1,16 +1,16 @@
 <?php include APP_ROOT . '/views/layouts/header.php'; ?>
 
 <div class="container mt-5">
-  <div class="row align-items-center justify-content-center mb-4">
-    <div class="col-auto">
-      <a href="/pastries" class="product-toggle">
+  <div class="row align-items-center mb-4">
+    <div class="col-auto" style="transform: translateX(31rem);">
+      <a href="/pastries" class="product-toggle" >
         <i class="bi bi-caret-left-fill fs-5"></i>
       </a>
     </div>
-    <div class="col-auto">
+    <div class="col text-center">
       <h2 class="mb-0 product-title">Merienda</h2>
     </div>
-    <div class="col-auto">
+    <div class="col-auto" style="transform: translateX(-31rem);">
       <a href="/drinks" class="product-toggle">
         <i class="bi bi-caret-right-fill fs-5 "></i>
       </a>

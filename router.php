@@ -7,6 +7,10 @@ $routes = [
     'login' => 'views/auth/login.php',
     'signup' => 'views/auth/signup.php',
     'logout' => 'views/auth/logout.php',
+    'forgot' => 'views/auth/forgot_password.php',
+    'forgot_passwordView' => 'views/auth/forgotView.php',
+    'reset' => 'views/auth/reset_password.php',
+    'reset_pass' => 'views/auth/resetView.php',
     'signupView' => 'views/auth/signupView.php',
     'loginView' => 'views/auth/loginView.php',
     'admin' => 'views/layouts/admin_dashboard.php',
@@ -26,7 +30,8 @@ $routes = [
 function route ($uri, $routes){
     if (array_key_exists($uri, $routes)) {
       require $routes[$uri];    
-    } else {
+    } 
+    else {
     abort(404);
     }
 }

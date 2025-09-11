@@ -13,7 +13,7 @@ include APP_ROOT . '/views/layouts/header.php';
 </head>
 
 <body>     
-    <?php require_once 'loginAlerts.php'; ?>
+    <?php require_once 'alerts.php'; ?>
     <!-- <div class="background-img"></div> -->
 
     <div class="container-fluid d-flex justify-content-center">
@@ -50,7 +50,7 @@ include APP_ROOT . '/views/layouts/header.php';
 
                     <div class="col text-center">
                         <!-- Simple link -->
-                        <a href="#!">Forgot password?</a>
+                        <a href="/forgot">Forgot password?</a>
                     </div>
                 </div>
 
@@ -65,7 +65,8 @@ include APP_ROOT . '/views/layouts/header.php';
                 </div>
 
                 <div>
-                    <?php check_login_errors(); ?>
+                    <?php check_login_errors();
+                          resetPasswordAlert(); ?>
                 </div>
 
             </div> <!-- /.form-padding -->
