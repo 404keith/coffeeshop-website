@@ -21,7 +21,7 @@
 
 
 <body>
-<nav class="navbar navbar-expand-md navbar-color py-3 navbar-color shadow">
+<nav class="navbar navbar-expand-md navbar-color  py-3 navbar-color shadow">
   <div class="container-fluid">
 
     <!-- Left (desktop) -->

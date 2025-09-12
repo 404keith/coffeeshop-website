@@ -51,7 +51,8 @@
         width: 100%;
         height: 100%;
         background-color: #D68421;
-        background-image: linear-gradient(to bottom, rgba(255, 254, 252, 0) 50%, #FFF6EB 100%);
+        background-image: linear-gradient(to bottom, rgba(255, 254, 252, 0) 50%, #FFF6EB 100%), 
+                           linear-gradient(to top , rgba(255, 254, 252, 0) 80%, rgba(255, 157, 38, 1) 100%);
         z-index: -1; 
         }
 
@@ -107,7 +108,7 @@
         /* Root variables for theming and sizing */
         :root {
             --light: 0;
-            --max-width-post: 420px;
+            --max-width-post: 330px;
             --primary:#FFF6EB;
 
             --bg: linear-gradient(to bottom, #e07b00ff 90%, #FFF6EB 100%);
@@ -177,7 +178,7 @@
         /* Styling for each slide item */
         .insta-section .insta-carousel .insta-item {
             position: absolute;
-            max-width: 418px;
+            max-width: 328px;
             height: 100%;
             margin-inline: var(--container-padding-horizontal);
             opacity: 0;
@@ -209,12 +210,11 @@
         /* Main Instagram card styling */
         .insta-section .insta-card {
             --pading-horizontal: 16px;
-            --border: 1.5px solid var(--primary);
+            --border: 2px solid var(--primary);
             max-width: var(--max-width-post);
             width: 100%;
             border: var(--border);
             border-radius: 20px;
-            border-bottom: #D68421 1px solid;
         }
 
         .insta-section .insta-header {
