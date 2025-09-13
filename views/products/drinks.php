@@ -1,33 +1,28 @@
-<?php include APP_ROOT . '/views/layouts/header.php'; ?>
+<?php
+include APP_ROOT . '/views/layouts/header.php';
+require_once APP_ROOT . '/helpers/product_icons.php';
 
-<div class="container mt-5">
+?>
+
+<div class="container mt-3">
   <div class="row align-items-center mb-4">
-    <div class="col-auto" style="transform: translateX(31rem);">
-      <a href="/merienda" class="product-toggle">
-        <i class="bi bi-caret-left-fill fs-5"></i>
-      </a>
-    </div>
-    <div class="col text-center">
-      <h2 class="mb-0 product-title">Drinks</h2>
-    </div>
-    <div class="col-auto"  style="transform: translateX(-31rem);">
-      <a href="/waffles" class="product-toggle">
-        <i class="bi bi-caret-right-fill fs-5 "></i>
-      </a>
+    <div class="col">
+      <div class="d-flex align-items-center">
+        <?php displayProductIcons(); ?>
+      </div>
     </div>
   </div>
-  
+
   <div class="row g-4">
     <?php if (empty($products)) {
-        echo '<p style="color:red">Product is empty</p>';
+      echo '<p style="color:red">Product is empty</p>';
     } ?>
 
     <?php foreach ($products as $product): ?>
       <div class="col-md-3 d-flex">
         <div class="card flex-fill shadow-sm">
-          <img src="<?= htmlspecialchars($product['image']) ?>" 
-              class="card-img-top" 
-              alt="<?= htmlspecialchars($product['name']) ?>">
+          <img src="<?= htmlspecialchars($product['image']) ?>" class="card-img-top"
+            alt="<?= htmlspecialchars($product['name']) ?>">
           <div class="card-body">
             <h5 class="card-title"><?= htmlspecialchars($product['name']) ?></h5>
             <p class="card-text"><?= htmlspecialchars($product['description']) ?></p>

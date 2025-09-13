@@ -1,6 +1,5 @@
 <?php
 
-
 // Database credentials
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'mondaymornings');
@@ -15,7 +14,7 @@ define('APP_ROOT', dirname(dirname(__FILE__))); // for define or require (PHP)
 
 
 // define('FILE_ROOT', '/projects/coffeeshop-website/' ); // REMOVE COMMENT IF GOING BACK TO XAMPP LOCALHOST
- define('FILE_ROOT', '' ); 
+define('FILE_ROOT', '');
 
 
 define('SITE_NAME', 'Coffee By Monday Mornings');

@@ -1,7 +1,8 @@
 <?php
 declare(strict_types=1);
 
-function order_checkout(object $pdo, int $user_id): int {
+function order_checkout(object $pdo, int $user_id): int
+{
     $cartItems = get_cart_items($pdo, $user_id);
 
     if (empty($cartItems)) {
@@ -13,7 +14,8 @@ function order_checkout(object $pdo, int $user_id): int {
     return $orderId;
 }
 
-function order_show(object $pdo, int $id): array {
+function order_show(object $pdo, int $id): array
+{
     return [
         'order' => get_order($pdo, $id),
         'items' => get_order_items($pdo, $id),

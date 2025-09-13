@@ -5,15 +5,18 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 
-function is_email_empty(string $email): bool {
+function is_email_empty(string $email): bool
+{
     return empty($email);
 }
 
-function is_user_not_found(bool|array $user): bool {
+function is_user_not_found(bool|array $user): bool
+{
     return !$user;
 }
 
-function is_password_empty(string $password): bool {
+function is_password_empty(string $password): bool
+{
     return empty($password);
 }
 
@@ -22,9 +25,11 @@ function is_password_empty(string $password): bool {
 /**
  * Send password reset link
  */
-function handle_send_reset_link(object $pdo, string $email): void {
+function handle_send_reset_link(object $pdo, string $email): void
+{
     $user = get_user_by_email($pdo, $email);
-    if (is_user_not_found($user)) return;
+    if (is_user_not_found($user))
+        return;
 
     $token = bin2hex(random_bytes(32));
     $expires = date("Y-m-d H:i:s", strtotime(datetime: "+7 hour"));
@@ -52,7 +57,7 @@ function handle_send_reset_link(object $pdo, string $email): void {
         $mail->isHTML(true);
         $mail->Subject = 'Password Reset';
 
-        $mail->Body    =    "<h1>Password Reset:</h1>
+        $mail->Body = "<h1>Password Reset:</h1>
                             Click here to reset your password: <a href='$resetLink'>$resetLink</a>
                             ";
 
@@ -66,7 +71,8 @@ function handle_send_reset_link(object $pdo, string $email): void {
 /**
  * Reset the password with token
  */
-function handle_reset_password(object $pdo, string $token, string $newPassword): bool {
+function handle_reset_password(object $pdo, string $token, string $newPassword): bool
+{
     $reset = find_valid_token($pdo, $token);
 
     if (!$reset) {

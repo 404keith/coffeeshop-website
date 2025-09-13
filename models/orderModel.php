@@ -2,7 +2,8 @@
 // used for communication to DATABASE (MYSQL)
 declare(strict_types=1);
 
-function create_order(object $pdo, int $user_id, array $cartItems): int {
+function create_order(object $pdo, int $user_id, array $cartItems): int
+{
     $pdo->beginTransaction();
 
     $total = 0;
@@ -14,7 +15,7 @@ function create_order(object $pdo, int $user_id, array $cartItems): int {
     $query = "INSERT INTO orders (user_id, total) VALUES (:user_id, :total)";
     $statement = $pdo->prepare($query);
     $statement->execute([':user_id' => $user_id, ':total' => $total]);
-    $orderId = (int)$pdo->lastInsertId();
+    $orderId = (int) $pdo->lastInsertId();
 
     // insert order items + reduce stock
     foreach ($cartItems as $item) {
@@ -37,7 +38,8 @@ function create_order(object $pdo, int $user_id, array $cartItems): int {
     return $orderId;
 }
 
-function get_order(object $pdo, int $id): array|false {
+function get_order(object $pdo, int $id): array|false
+{
     $query = "SELECT * FROM orders WHERE id = :id";
     $statement = $pdo->prepare($query);
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
@@ -45,7 +47,8 @@ function get_order(object $pdo, int $id): array|false {
     return $statement->fetch(PDO::FETCH_ASSOC);
 }
 
-function get_order_items(object $pdo, int $order_id): array {
+function get_order_items(object $pdo, int $order_id): array
+{
     $query = "SELECT oi.*, p.name 
               FROM order_items oi
               JOIN products p ON oi.product_id = p.id

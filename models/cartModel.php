@@ -2,7 +2,8 @@
 // used for communication to DATABASE (MYSQL)
 declare(strict_types=1);
 
-function get_cart_items(object $pdo, int $user_id): array {
+function get_cart_items(object $pdo, int $user_id): array
+{
     $query = "SELECT ci.id, ci.quantity, p.id AS product_id, p.name, p.price, p.image, p.stock
               FROM cart_items ci
               JOIN products p ON ci.product_id = p.id
@@ -14,7 +15,8 @@ function get_cart_items(object $pdo, int $user_id): array {
     return $result;
 }
 
-function add_to_cart(object $pdo, int $user_id, int $product_id, int $quantity): void {
+function add_to_cart(object $pdo, int $user_id, int $product_id, int $quantity): void
+{
     // check if item already exists
     $query = "SELECT id, quantity FROM cart_items WHERE user_id = :user_id AND product_id = :product_id";
     $statement = $pdo->prepare($query);
@@ -33,13 +35,15 @@ function add_to_cart(object $pdo, int $user_id, int $product_id, int $quantity):
     }
 }
 
-function remove_from_cart(object $pdo, int $user_id, int $product_id): void {
+function remove_from_cart(object $pdo, int $user_id, int $product_id): void
+{
     $query = "DELETE FROM cart_items WHERE user_id = :user_id AND product_id = :product_id";
     $statement = $pdo->prepare($query);
     $statement->execute([':user_id' => $user_id, ':product_id' => $product_id]);
 }
 
-function clear_cart(object $pdo, int $user_id): void {
+function clear_cart(object $pdo, int $user_id): void
+{
     $query = "DELETE FROM cart_items WHERE user_id = :user_id";
     $statement = $pdo->prepare($query);
     $statement->execute([':user_id' => $user_id]);

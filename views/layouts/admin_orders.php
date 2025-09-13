@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +11,26 @@
       background-color: #FFF6EB;
       font-family: Arial, sans-serif;
     }
-    .sidebar { background: #281A11; min-height: 100vh; padding-top: 20px; color: #fff; }
-    .sidebar a { color: #D48423; text-decoration: none; display: block; padding: 12px; }
-    .sidebar a:hover, .active{ background: rgba(145, 106, 83, 0.4); }
+
+    .sidebar {
+      background: #281A11;
+      min-height: 100vh;
+      padding-top: 20px;
+      color: #fff;
+    }
+
+    .sidebar a {
+      color: #D48423;
+      text-decoration: none;
+      display: block;
+      padding: 12px;
+    }
+
+    .sidebar a:hover,
+    .active {
+      background: rgba(145, 106, 83, 0.4);
+    }
+
     .card-box {
       border: 1px solid #ddd;
       padding: 20px;
@@ -21,11 +39,11 @@
       background: #fff;
       height: 100px;
     }
-    
   </style>
 </head>
+
 <body>
-    <?php include APP_ROOT . '/views/layouts/adminNav.php'; ?>
+  <?php include APP_ROOT . '/views/layouts/adminNav.php'; ?>
   <div class="container-fluid">
     <div class="row">
       <div class="col-2 sidebar">
@@ -39,10 +57,18 @@
         <h4>ORDER MANAGEMENT</h4>
         <p>Track and manage customer orders in real-time</p>
         <div class="row g-3">
-          <div class="col-md-3"><div class="card-box">Pending</div></div>
-          <div class="col-md-3"><div class="card-box">Preparing</div></div>
-          <div class="col-md-3"><div class="card-box">Ready</div></div>
-          <div class="col-md-3"><div class="card-box">Completed</div></div>
+          <div class="col-md-3">
+            <div class="card-box">Pending</div>
+          </div>
+          <div class="col-md-3">
+            <div class="card-box">Preparing</div>
+          </div>
+          <div class="col-md-3">
+            <div class="card-box">Ready</div>
+          </div>
+          <div class="col-md-3">
+            <div class="card-box">Completed</div>
+          </div>
         </div>
 
         <div class="card mt-4">
@@ -81,4 +107,5 @@
   </div>
 
 </body>
+
 </html>
