@@ -21,15 +21,17 @@ function get_product_by_id(object $pdo, int $id): array|false
     return $result;
 }
 
-function get_products_by_category(object $pdo, int $category_id): array
+function get_products_by_category(object $pdo, string $category_name): array
 {
-    $query = "SELECT * FROM products 
-              WHERE category_id = :category_id
-              GROUP BY name
-              ORDER BY created_at DESC
-    ";
+    $query = "SELECT p.* FROM products p
+              JOIN categories c ON p.category_id = c.id
+              WHERE c.name = :category_name
+              GROUP BY p.name
+              ORDER BY p.created_at DESC";
+
     $statement = $pdo->prepare($query);
-    $statement->bindParam(':category_id', $category_id, PDO::PARAM_INT);
+
+    $statement->bindParam(':category_name', $category_name, PDO::PARAM_STR);
     $statement->execute();
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $result;

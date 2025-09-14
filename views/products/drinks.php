@@ -8,7 +8,9 @@ require_once APP_ROOT . '/helpers/product_icons.php';
   <div class="row align-items-center mb-4">
     <div class="col">
       <div class="d-flex align-items-center">
+
         <?php displayProductIcons(); ?>
+
       </div>
     </div>
   </div>
