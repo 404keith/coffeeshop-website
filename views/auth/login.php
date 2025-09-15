@@ -1,22 +1,24 @@
 <?php
 require_once 'config/config.php';
-require_once APP_ROOT . '/config/session.php'; 
+require_once APP_ROOT . '/config/session.php';
 include APP_ROOT . '/views/layouts/header.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= FILE_ROOT ?>/public/assets/css/login.css" />
 </head>
 
-<body>     
+<body>
     <?php require_once 'alerts.php'; ?>
     <!-- <div class="background-img"></div> -->
 
     <div class="container-fluid d-flex justify-content-center">
+
         <form class="p-5 form-width" action="<?= FILE_ROOT ?>/loginView" method="post">
             <div class="form-padding">
 
@@ -66,12 +68,14 @@ include APP_ROOT . '/views/layouts/header.php';
 
                 <div>
                     <?php check_login_errors();
-                          resetPasswordAlert(); ?>
+                    resetPasswordAlert(); ?>
                 </div>
 
             </div> <!-- /.form-padding -->
         </form>
-    </div> <!-- /.container-fluid -->
+
+    </div>
 </body>
+
 </html>
-    <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
+<?php include APP_ROOT . '/views/layouts/footer.php'; ?>

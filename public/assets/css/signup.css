@@ -1,5 +1,16 @@
 body {
-  background-color: #fff6eb;
+  background-image: url("../images/login-background.png");
+  background-color: #fae5cc;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-fluid.d-flex.justify-content-center {
+  flex-grow: 1;
 }
 
 /* .background-img{
@@ -26,10 +37,12 @@ body {
     } */
 
 .form-width {
-  max-width: 700px;
-  width: 80%;
+  max-width: 600px;
+  width: 100%;
+  height: 80vh;
+  border-radius: 3rem;
   background-color: #fff6eb;
-  height: 100vh;
+  margin: 3rem auto 5rem;
 }
 
 .form-outline .form-control:focus ~ .form-notch .form-notch-leading {
@@ -106,7 +119,7 @@ body {
 .welcome-text {
   color: #d48423;
   text-align: center;
-  font-size: 9rem;
+  font-size: 6rem;
   font-family: campana;
   margin-top: -6rem;
   padding-bottom: 1rem;
