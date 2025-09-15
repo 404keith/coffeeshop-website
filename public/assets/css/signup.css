@@ -121,7 +121,7 @@ body {
   text-align: center;
   font-size: 6rem;
   font-family: campana;
-  margin-top: -6rem;
+  margin: -6rem 1.3rem 0 0;
   padding-bottom: 1rem;
 }
 
@@ -131,6 +131,5 @@ body {
   font-family: inter;
   font-weight: bolder;
   text-align: center;
-  margin-top: -2rem;
-  margin-bottom: 1.5rem;
+  margin: -2rem 1.3rem 2rem 0;
 }

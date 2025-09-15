@@ -22,7 +22,7 @@ include APP_ROOT . '/views/layouts/header.php';
         <form class="p-5 form-width" action="<?= FILE_ROOT ?>/loginView" method="post">
             <div class="form-padding">
 
-                <div class="row">
+                <div>
                     <h1 class="welcome-text">Welcome</h1>
                 </div>
 
