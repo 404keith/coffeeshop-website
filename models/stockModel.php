@@ -1,37 +1,48 @@
 <?php
-class Stock {
-    private $pdo;
+// used for communication to DATABASE (MYSQL)
+declare(strict_types=1);
 
-    function __construct($pdo) {
-        $this->pdo = $pdo;
-    }
-    //fetching all stocks
-  function getAll() {
-        $stmt = $this->pdo->prepare("SELECT * FROM stocks");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    //adding a product to stock
-    function add($name, $category, $current, $min, $status, $last_restocked) {
-        $sql = "INSERT INTO stocks (name, category, current, min, status, last) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$name, $category, $current, $min, $status, $last_restocked]);
-    }
-    //updating stock details
-    function update($id, $name, $category, $current, $min, $status) {
-        $sql = "UPDATE stocks SET name=?, category=?, current=?, min=?, status=? WHERE id=?";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$name, $category, $current, $min, $status, $id]);
-    }
-    //deleting a stock item
-    function delete($id) {
-    $stmt = $this->pdo->prepare("DELETE FROM stocks WHERE id = ?");
-    $stmt->execute([$id]);
-    }
-    //fetching a stock item by id
-    function getById($id) {
-    $stmt = $this->pdo->prepare("SELECT * FROM stocks WHERE id = ?");
-    $stmt->execute([$id]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
+function get_all_products(object $pdo): array {
+    $query = "SELECT * FROM products";
+    $statement = $pdo->prepare($query);
+    $statement->execute();
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
 }
+
+function get_product_by_id(object $pdo, int $id): array|false {
+    $query = "SELECT * FROM products WHERE id = :id";
+    $statement = $pdo->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+     $result = $statement->fetch(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function get_products_by_category(object $pdo, int $category_id): array {
+    $query = "SELECT * FROM products 
+              WHERE category_id = :category_id
+              GROUP BY name
+              ORDER BY created_at DESC
+    ";
+    $statement = $pdo->prepare($query);
+    $statement->bindParam(':category_id', $category_id, PDO::PARAM_INT);
+    $statement->execute();
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+
+function add_product(object $pdo, int $category_id, string $name, string $description, int $price, int $stock, string $image) {
+    $query = "INSERT INTO products (category_id, name, description, price, stock, image)
+              VALUES (:category_id, :name, :description, :price, :stock, :image);";
+    $statement = $pdo->prepare($query);
+    $statement->bindParam(':category_id', $category_id, PDO::PARAM_INT);
+    $statement->bindParam(':name', $name);
+    $statement->bindParam(':description', $description);
+    $statement->bindParam(':price', $price, PDO::PARAM_INT);
+    $statement->bindParam(':stock', $stock, PDO::PARAM_INT);    
+    $statement->bindParam(':image', $image);
+    $statement->execute(); 
+}
+

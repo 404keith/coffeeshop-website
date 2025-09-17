@@ -7,7 +7,7 @@ class StockController {
     private $pdo; 
     // Initialize with PDO instance
      function __construct($pdo) {
-        $this->stock = new Stock($pdo);
+        $this->stock = new stockModel($pdo);
         $this->pdo = $pdo; 
     }
     // Handling form submissions
