@@ -41,7 +41,7 @@
 
 <nav class="admin-navbar">
   <div>
-    <img src="<?= FILE_ROOT ?>/public/assets/images/logo.png" alt="Monday Mornings" class="logo">
+    <a href="/"><img src="<?= FILE_ROOT ?>/public/assets/images/logo.png" alt="Monday Mornings" class="logo"></a>
   </div>
   <div>
     <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="" data-bs-toggle="dropdown"

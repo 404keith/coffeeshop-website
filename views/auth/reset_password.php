@@ -1,6 +1,6 @@
 <?php
 require_once 'config/config.php';
-require_once APP_ROOT . '/config/session.php'; 
+require_once APP_ROOT . '/config/session.php';
 include APP_ROOT . '/views/layouts/header.php';
 
 // Get token from query string
@@ -9,18 +9,20 @@ $token = $_GET['token'] ?? '';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= FILE_ROOT ?>/public/assets/css/login.css" />
 </head>
 
-<body>     
+<body>
     <?php require_once 'alerts.php'; ?>
-    
+
     <div class="container-fluid d-flex justify-content-center">
         <form class="p-5 form-width" action="<?= FILE_ROOT ?>/reset_pass" method="post">
-            <img src="<?= FILE_ROOT ?>/public/assets/images/sad-face.png" alt="Reset" class="img-fluid mb-2 mx-auto d-block" style="max-width: 200px;">
+            <img src="<?= FILE_ROOT ?>/public/assets/images/remembered_icon.png" alt="Reset"
+                class="img-fluid mb-2 mx-auto d-block" style="max-width: 130px;">
 
             <div class="form-padding">
                 <div class="row">
@@ -46,19 +48,19 @@ $token = $_GET['token'] ?? '';
                 </div>
 
                 <!-- Submit button -->
-              <button data-mdb-ripple-init type="submit" name="submit" class="btn btn-primary btn-block mb-4">
+                <button data-mdb-ripple-init type="submit" name="submit" class="btn btn-primary btn-block mb-4">
                     Reset Password
                 </button>
 
                 <div>
-                   <?php
-                      resetPasswordAlert();
-                   ?>
+                    <?php
+                    resetPasswordAlert();
+                    ?>
                 </div>
             </div>
         </form>
-    </div> 
+    </div>
 </body>
+
 </html>
 <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
-

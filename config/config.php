@@ -19,6 +19,10 @@ define('FILE_ROOT', '');
 
 define('SITE_NAME', 'Coffee By Monday Mornings');
 
+// Email Credentials
+define('EMAIL_USERNAME', 'mondaymornings.test123@gmail.com');
+define('EMAIL_PASSWORD', 'lwik oyjs xrbq etxl');
+
 $uri = $_SERVER['REQUEST_URI'];
 
 $uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');

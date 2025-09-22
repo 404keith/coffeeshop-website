@@ -109,7 +109,7 @@ body {
 .form-padding {
   padding-top: 6rem;
   padding-left: 6rem;
-  padding-right: 5rem;
+  padding-right: 6rem;
 }
 
 .alert {
@@ -131,5 +131,6 @@ body {
   font-family: inter;
   font-weight: bolder;
   text-align: center;
-  margin: -2rem 1.3rem 2rem 0;
+  margin-top: -1.5rem;
+  margin-bottom: 1.5rem;
 }

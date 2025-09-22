@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // no errors -> send reset link
         handle_send_reset_link($pdo, $email);
+        unset($_SESSION['errors_reset']);
 
         $_SESSION['reset_success'] = true;
         header('Location: ' . FILE_ROOT . '/forgot');

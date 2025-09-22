@@ -21,10 +21,8 @@ function is_password_empty(string $password): bool
 }
 
 
+// ** Send password reset link
 
-/**
- * Send password reset link
- */
 function handle_send_reset_link(object $pdo, string $email): void
 {
     $user = get_user_by_email($pdo, $email);
@@ -46,8 +44,8 @@ function handle_send_reset_link(object $pdo, string $email): void
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'mondaymornings.test123@gmail.com';
-        $mail->Password = 'lwik oyjs xrbq etxl';
+        $mail->Username = EMAIL_USERNAME;
+        $mail->Password = EMAIL_PASSWORD;
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
@@ -57,9 +55,18 @@ function handle_send_reset_link(object $pdo, string $email): void
         $mail->isHTML(true);
         $mail->Subject = 'Password Reset';
 
-        $mail->Body = "<h1>Password Reset:</h1>
-                            Click here to reset your password: <a href='$resetLink'>$resetLink</a>
-                            ";
+        // Image path and CID
+        $image_path = APP_ROOT . '/public/assets/images/forgot_icon.png';
+        $cid = 'forgot_icon';
+
+        // Embed the image
+        $mail->addEmbeddedImage($image_path, $cid, 'forgot_icon.png');
+
+        $mail->Body = '
+        <img src="cid:' . $cid . '" alt="Sad face" class="img-fluid mb-2 mx-auto d-block" style="max-width: 130px;">
+        <h1>Password Reset:</h1>
+        Click here to reset your password: <a href="' . $resetLink . '">' . $resetLink . '</a>
+    ';
 
         $mail->send();
     } catch (Exception $e) {
@@ -68,9 +75,8 @@ function handle_send_reset_link(object $pdo, string $email): void
 }
 
 
-/**
- * Reset the password with token
- */
+// ** Reset the password with token
+
 function handle_reset_password(object $pdo, string $token, string $newPassword): bool
 {
     $reset = find_valid_token($pdo, $token);
