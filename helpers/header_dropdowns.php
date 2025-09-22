@@ -27,8 +27,6 @@ function renderCartMenu($fileRoot, $pdo)
 
     $userId = $_SESSION['user_id'];
 
-    // Fetch cart items for the logged-in user
-    // We also need the cart item's ID for updating/removing.
     $sql = "SELECT ci.id, ci.quantity, p.name, p.price, p.image FROM cart_items ci JOIN products p ON ci.product_id = p.id WHERE ci.user_id = :user_id";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['user_id' => $userId]);

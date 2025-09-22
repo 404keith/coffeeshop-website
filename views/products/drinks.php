@@ -38,7 +38,6 @@ if (isset($_SESSION['add_to_cart_error'])) {
   </div>
 </div>
 
-
 <?php if (empty($products)) {
   echo '<p style="color:red">Product is empty</p>';
 } ?>
