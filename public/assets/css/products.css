@@ -22,27 +22,24 @@
   border-radius: 10rem;
 }
 
-.card img {
-  margin: auto;
-  width: 290px;
-  margin-top: -12rem;
-  padding: 0;
-}
-
 .card {
-  margin-top: 7rem;
+  margin-top: 4rem;
   border-radius: 2rem;
   height: auto;
   border: none;
   margin-bottom: 2rem;
 }
 
-.stock {
-  border-radius: 2rem;
+.card img {
+  margin: auto;
+  width: 290px;
+  margin-top: -5rem;
+  padding: 0;
+  margin-bottom: -0.5rem;
 }
 
-.card-text {
-  margin-top: -3.5rem;
+.stock {
+  border-radius: 2rem;
 }
 
 .star {

@@ -1,6 +1,4 @@
 <?php
-// placeOrderController.php - This file handles the checkout form submission.
-
 require_once APP_ROOT . '/config/config.php';
 require_once APP_ROOT . '/config/session.php';
 require_once APP_ROOT . '/config/dbhandler.php';
@@ -15,13 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $userId = $_SESSION['user_id'];
-
-    // In a real application, you would:
+    // todo
     // a. Validate the submitted form data (shipping info).
     // b. Create a new order record in an 'orders' table.
     // c. Move the cart items to an 'order_items' table.
 
-    // For this example, we'll simulate a successful order by just clearing the cart.
     try {
         $sql = "DELETE FROM cart_items WHERE user_id = :user_id";
         $stmt = $pdo->prepare($sql);

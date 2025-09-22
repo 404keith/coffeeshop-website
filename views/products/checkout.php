@@ -40,7 +40,6 @@ require APP_ROOT . '/views/products/checkoutView.php';
                 <hr class="my-4">
 
                 <h5 class="card-title">Shipping Information</h5>
-                <!-- The form action now points to a new controller that will handle the order submission -->
                 <form action="<?= FILE_ROOT ?>/place-order" method="POST">
                     <div class="row">
                         <div class="mb-3 col-md-6">

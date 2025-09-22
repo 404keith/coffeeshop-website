@@ -1,6 +1,5 @@
 <?php
 
-// cart-actions.php - This file is a dedicated controller that handles all POST actions for the cart (add, update, remove).
 
 require_once APP_ROOT . '/config/config.php';
 require_once APP_ROOT . '/config/session.php';
@@ -10,7 +9,6 @@ require_once APP_ROOT . '/models/cartModel.php';
 // Check if the request is a POST request and an action is set.
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
-    // 1. Authentication Check: Ensure the user is logged in.
     if (!isset($_SESSION['user_id'])) {
         $_SESSION['add_to_cart_error'] = 'You must be logged in to manage your cart.';
         header('Location: ' . FILE_ROOT . '/login');
@@ -79,7 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     exit();
 
 } else {
-    // If the request method is not POST or GET, redirect to home.
     header('Location: ' . FILE_ROOT);
     exit();
 }

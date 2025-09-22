@@ -39,57 +39,52 @@ if (isset($_SESSION['add_to_cart_error'])) {
 </div>
 
 
-<div class="row g-4">
-  <?php if (empty($products)) {
-    echo '<p style="color:red">Product is empty</p>';
-  } ?>
-  <div class="container mt-3 w-75"> <!-- narrowed container -->
-    <div class="row g-4 justify-content-center"> <!-- center columns -->
-      <?php foreach ($products as $product): ?>
-        <div class="col-md-4 d-flex"> <!-- exactly 3 per row on md+ -->
-          <div class="card flex-fill shadow-sm">
+<?php if (empty($products)) {
+  echo '<p style="color:red">Product is empty</p>';
+} ?>
+<div class="container mt-3 w-75"> <!-- narrowed container -->
+  <div class="row g-4 justify-content-center"> <!-- only one row, centered -->
+    <?php foreach ($products as $product): ?>
+      <div class="col-md-4 d-flex"> <!-- 3 per row on md+, auto centered -->
+        <div class="card flex-fill shadow-sm">
 
-            <img src="<?PHP echo FILE_ROOT ?> <?= htmlspecialchars($product['image']) ?>" class="card-img-top"
-              alt="<?= htmlspecialchars($product['name']) ?>">
+          <img src="<?php echo FILE_ROOT ?> <?= htmlspecialchars($product['image']) ?>" class="card-img-top"
+            alt="<?= htmlspecialchars($product['name']) ?>">
 
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-center card-text">
-                <h5 class="card-title mb-0 fw-bold"><?= htmlspecialchars($product['name']) ?></h5>
-                <p class="fw-bold mb-0 price ">P <?= number_format($product['price'], 2) ?></p>
-              </div>
-              <p class="fs=1"><?= htmlspecialchars($product['description']) ?></p>
-
-
-              <!--  add-to-cart form -->
-              <form method="POST" action="<?= FILE_ROOT ?>/cart-actions">
-                <input type="hidden" name="action" value="add">
-                <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
-
-                <div class="d-flex gap-2 star mb-1">
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                  <i class="bi bi-star-fill"></i>
-                </div>
-
-                <h5 class="card-title product_type">
-                  <?= strtoupper(htmlspecialchars($product['product_type'])) ?>
-                </h5>
-
-
-
-                <div class="d-flex gap-2">
-                  <button type="submit" class="btn btn-primary btn-rounded w-75">Add to Cart</button>
-                  <input type="number" name="quantity" value="1" min="1" class="form-control w-25">
-                </div>
-
-              </form>
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center card-text">
+              <h5 class="card-title mb-0 fw-bold"><?= htmlspecialchars($product['name']) ?></h5>
+              <p class="fw-bold mb-0 price">P <?= number_format($product['price'], 2) ?></p>
             </div>
+
+            <p class="fs-6"><?= htmlspecialchars($product['description']) ?></p>
+
+            <!-- add-to-cart form -->
+            <form method="POST" action="<?= FILE_ROOT ?>/cart-actions">
+              <input type="hidden" name="action" value="add">
+              <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+
+              <div class="d-flex gap-2 star mb-1">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+
+              <h5 class="card-title product_type">
+                <?= strtoupper(htmlspecialchars($product['product_type'])) ?>
+              </h5>
+
+              <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary btn-rounded w-75">Add to Cart</button>
+                <input type="number" name="quantity" value="1" min="1" class="form-control w-25">
+              </div>
+            </form>
           </div>
         </div>
-      <?php endforeach; ?>
-    </div>
+      </div>
+    <?php endforeach; ?>
   </div>
 </div>
 
