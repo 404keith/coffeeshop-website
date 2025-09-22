@@ -1,0 +1,64 @@
+.welcome-text {
+  text-align: center;
+  color: #d48423;
+  font-size: 5rem;
+  font-family: campana;
+  margin: -6rem 0rem 0 0;
+  margin-bottom: -5rem;
+}
+
+.btn-primary {
+  color: white;
+  border: none;
+  padding: 0.4rem;
+  background-color: #d48423 !important;
+  border-color: #d48423 !important;
+  border-radius: 10rem;
+}
+
+.btn-primary:hover {
+  background-color: #c3680b !important;
+  border-color: #c3680b !important;
+  border-radius: 10rem;
+}
+
+.card img {
+  margin: auto;
+  width: 290px;
+  margin-top: -12rem;
+  padding: 0;
+}
+
+.card {
+  margin-top: 7rem;
+  border-radius: 2rem;
+  height: auto;
+  border: none;
+  margin-bottom: 2rem;
+}
+
+.stock {
+  border-radius: 2rem;
+}
+
+.card-text {
+  margin-top: -3.5rem;
+}
+
+.star {
+  margin-top: -1rem;
+  color: gold;
+}
+
+.product_type {
+  color: #d48423;
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 12px;
+  border: 1px solid #d48423;
+  border-radius: 4rem;
+}
+
+.price {
+  color: #d48423;
+}

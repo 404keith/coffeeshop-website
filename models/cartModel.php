@@ -1,50 +1,84 @@
 <?php
-// used for communication to DATABASE (MYSQL)
-declare(strict_types=1);
 
-function get_cart_items(object $pdo, int $user_id): array
+// cartModel.php
+
+/**
+ * Adds a product to the user's cart. If the product already exists,
+ * it updates the quantity. Otherwise, it inserts a new cart item.
+ *
+ * @param PDO $pdo The database connection object.
+ * @param int $userId The ID of the logged-in user.
+ * @param int $productId The ID of the product to add.
+ * @param int $quantity The quantity to add.
+ * @return bool True on success, false on failure.
+ */
+function addProductToCart($pdo, $userId, $productId, $quantity)
 {
-    $query = "SELECT ci.id, ci.quantity, p.id AS product_id, p.name, p.price, p.image, p.stock
-              FROM cart_items ci
-              JOIN products p ON ci.product_id = p.id
-              WHERE ci.user_id = :user_id";
-    $statement = $pdo->prepare($query);
-    $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $statement->execute();
-    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-    return $result;
-}
+    try {
+        // First, check if the product is already in the user's cart
+        $sql = "SELECT id, quantity FROM cart_items WHERE user_id = :user_id AND product_id = :product_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['user_id' => $userId, 'product_id' => $productId]);
+        $item = $stmt->fetch(PDO::FETCH_ASSOC);
 
-function add_to_cart(object $pdo, int $user_id, int $product_id, int $quantity): void
-{
-    // check if item already exists
-    $query = "SELECT id, quantity FROM cart_items WHERE user_id = :user_id AND product_id = :product_id";
-    $statement = $pdo->prepare($query);
-    $statement->execute([':user_id' => $user_id, ':product_id' => $product_id]);
-    $existing = $statement->fetch(PDO::FETCH_ASSOC);
-
-    if ($existing) {
-        $newQty = $existing['quantity'] + $quantity;
-        $update = "UPDATE cart_items SET quantity = :quantity WHERE id = :id";
-        $stmt = $pdo->prepare($update);
-        $stmt->execute([':quantity' => $newQty, ':id' => $existing['id']]);
-    } else {
-        $insert = "INSERT INTO cart_items (user_id, product_id, quantity) VALUES (:user_id, :product_id, :quantity)";
-        $stmt = $pdo->prepare($insert);
-        $stmt->execute([':user_id' => $user_id, ':product_id' => $product_id, ':quantity' => $quantity]);
+        if ($item) {
+            // If the item exists, update its quantity
+            $newQuantity = $item['quantity'] + $quantity;
+            $updateSql = "UPDATE cart_items SET quantity = :quantity, updated_at = NOW() WHERE id = :id";
+            $updateStmt = $pdo->prepare($updateSql);
+            $updateStmt->execute(['quantity' => $newQuantity, 'id' => $item['id']]);
+        } else {
+            // If the item doesn't exist, insert a new row
+            $insertSql = "INSERT INTO cart_items (user_id, product_id, quantity) VALUES (:user_id, :product_id, :quantity)";
+            $insertStmt = $pdo->prepare($insertSql);
+            $insertStmt->execute(['user_id' => $userId, 'product_id' => $productId, 'quantity' => $quantity]);
+        }
+        return true;
+    } catch (PDOException $e) {
+        error_log("Error adding product to cart: " . $e->getMessage());
+        return false;
     }
 }
 
-function remove_from_cart(object $pdo, int $user_id, int $product_id): void
+/**
+ * Updates the quantity of a specific cart item.
+ *
+ * @param PDO $pdo The database connection object.
+ * @param int $userId The ID of the logged-in user.
+ * @param int $cartItemId The ID of the cart item to update.
+ * @param int $quantity The new quantity.
+ * @return bool True on success, false on failure.
+ */
+function updateCartItem($pdo, $userId, $cartItemId, $quantity)
 {
-    $query = "DELETE FROM cart_items WHERE user_id = :user_id AND product_id = :product_id";
-    $statement = $pdo->prepare($query);
-    $statement->execute([':user_id' => $user_id, ':product_id' => $product_id]);
+    try {
+        $sql = "UPDATE cart_items SET quantity = :quantity, updated_at = NOW() WHERE id = :id AND user_id = :user_id";
+        $stmt = $pdo->prepare($sql);
+        $result = $stmt->execute(['quantity' => $quantity, 'id' => $cartItemId, 'user_id' => $userId]);
+        return $result;
+    } catch (PDOException $e) {
+        error_log("Error updating cart item: " . $e->getMessage());
+        return false;
+    }
 }
 
-function clear_cart(object $pdo, int $user_id): void
+/**
+ * Removes a specific cart item.
+ *
+ * @param PDO $pdo The database connection object.
+ * @param int $userId The ID of the logged-in user.
+ * @param int $cartItemId The ID of the cart item to remove.
+ * @return bool True on success, false on failure.
+ */
+function removeCartItem($pdo, $userId, $cartItemId)
 {
-    $query = "DELETE FROM cart_items WHERE user_id = :user_id";
-    $statement = $pdo->prepare($query);
-    $statement->execute([':user_id' => $user_id]);
+    try {
+        $sql = "DELETE FROM cart_items WHERE id = :id AND user_id = :user_id";
+        $stmt = $pdo->prepare($sql);
+        $result = $stmt->execute(['id' => $cartItemId, 'user_id' => $userId]);
+        return $result;
+    } catch (PDOException $e) {
+        error_log("Error removing cart item: " . $e->getMessage());
+        return false;
+    }
 }

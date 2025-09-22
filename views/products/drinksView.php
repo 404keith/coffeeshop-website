@@ -10,7 +10,7 @@ try {
     $category_name = 'drink';
     $products = category_show($pdo, $category_name);
 
-    // Load HTML layout
+    // Load HTML layout 
     require APP_ROOT . '/views/products/drinks.php';
 
 } catch (PDOException $e) {

@@ -1,5 +1,8 @@
 <?php
 require_once APP_ROOT . '/helpers/header_dropdowns.php';
+require APP_ROOT . '/config/dbhandler.php';
+
+
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +64,7 @@ require_once APP_ROOT . '/helpers/header_dropdowns.php';
             <i class="bi bi-cart2 icon fs-7"></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cartDropdown">
-            <?php renderCartMenu(FILE_ROOT); ?>
+            <?php renderCartMenu(FILE_ROOT, $pdo); ?>
           </ul>
         </li>
 
