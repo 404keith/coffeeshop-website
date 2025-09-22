@@ -1,6 +1,6 @@
-<style> 
+<style>
   .footer {
-    background-color:#281A11;
+    background-color: #281A11;
     color: #D68421;
     padding: 30px 20px;
     margin-top: 50px;
@@ -41,6 +41,7 @@
   .transition {
     transition: color 0.3s ease, transform 0.3s ease;
   }
+
   .transition:hover {
     color: #ffae42 !important;
     transform: scale(1.2);
@@ -54,18 +55,24 @@
     height: 20px;
   }
 
-  .copyright{
-    font-size:12px;
+  .copyright {
+    font-size: 12px;
   }
 
   @media (max-width: 767.98px) {
-    .footer .row { --bs-gutter-x: 0.75rem; }
-    .footer .text-center-xs { text-align:center; }
+    .footer .row {
+      --bs-gutter-x: 0.75rem;
+    }
+
+    .footer .text-center-xs {
+      text-align: center;
+    }
   }
 
   @media (min-width: 768px) {
     .footer-gap {
-      margin-bottom: 2.5rem; /* gap only for desktop */
+      margin-bottom: 2.5rem;
+      /* gap only for desktop */
     }
   }
 </style>
@@ -92,7 +99,7 @@
       </div>
 
       <div class="d-none d-md-block col-md-1 ms-2 order-md-3"></div>
-      
+
 
       <div class="col-4 col-md-3 mb-1 text-center order-2 order-md-4 footer-gap">
         <h6 class="small mb-2">ORDER NOW</h6>
@@ -139,12 +146,13 @@
     <!-- <div class="text-center mb-3">
       <img src="<?php echo FILE_ROOT; ?>/public/assets/images/logo.png" alt="Coffee by Monday Mornings" class="footer-logo">
     </div> -->
-<hr class="border-warning">
+    <hr class="border-warning">
 
     <div class="text-center ">
-    <img src="<?php echo FILE_ROOT; ?>/public/assets/images/logo.png" alt="Coffee by Monday Mornings" class="footer-logo mb-2">
-    <p class="mb-0 copyright">&copy; 2025 Coffee by Monday Mornings. All rights reserved</p>
-</div>
+      <img src="<?php echo FILE_ROOT; ?>/public/assets/images/logo.png" alt="Coffee by Monday Mornings"
+        class="footer-logo mb-2">
+      <p class="mb-0 copyright">&copy; 2025 Coffee by Monday Mornings. All rights reserved</p>
+    </div>
 
 
 

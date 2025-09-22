@@ -2,9 +2,9 @@
 ob_start();
 
 require_once 'config/config.php';
-require_once APP_ROOT . '/config/session.php'; 
+require_once APP_ROOT . '/config/session.php';
 require_once APP_ROOT . '/views/layouts/header.php';
-require_once APP_ROOT . '/views/auth/alerts.php'; 
+require_once APP_ROOT . '/views/auth/alerts.php';
 
 
 if (!isset($_SESSION['attempts'])) {
@@ -19,8 +19,7 @@ if (isset($_POST['password'])) {
         unset($_SESSION['failed_attempt']);
         unset($_SESSION['attempts']);
         exit;
-    }
-     else {
+    } else {
         $_SESSION['failed_attempt'] = true;
         $_SESSION['attempts']++;
         if ($_SESSION['attempts'] >= 3) {
@@ -36,13 +35,15 @@ if (isset($_POST['password'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= FILE_ROOT ?>/public/assets/css/signup.css" />
 </head>
+
 <body>
-    
+
     <div class="container-fluid d-flex justify-content-center">
         <form class="p-5 form-width" method="post">
             <div class="form-padding">
@@ -58,10 +59,10 @@ if (isset($_POST['password'])) {
                 </div>
                 <div>
                     <?php
-                         if (isset($_SESSION['failed_attempt'])) {
-                            printFailed('wrong password, remaining attempts: '.(3 - $_SESSION['attempts']).'');
-                            unset($_SESSION['failed_attempt']);
-                         }
+                    if (isset($_SESSION['failed_attempt'])) {
+                        printFailed('wrong password, remaining attempts: ' . (3 - $_SESSION['attempts']) . '');
+                        unset($_SESSION['failed_attempt']);
+                    }
                     ?>
                 </div>
 
@@ -70,11 +71,12 @@ if (isset($_POST['password'])) {
         </form>
     </div>
 
-   
+
 
     <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
 
 </body>
+
 </html>
 <?php
 // End output buffering and send all content to the browser.

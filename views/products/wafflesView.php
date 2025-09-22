@@ -7,8 +7,9 @@ try {
     require APP_ROOT . '/controllers/productController.php';
     require APP_ROOT . '/controllers/categoryController.php';
 
-    $category_id = 3; //
-    $products = category_show($pdo, $category_id);
+    $category_name = 'waffle';
+    $products = category_show($pdo, $category_name);
+
 
     // Load HTML layout
     require APP_ROOT . '/views/products/waffles.php';

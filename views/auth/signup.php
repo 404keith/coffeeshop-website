@@ -1,6 +1,6 @@
 <?php
 require_once 'config/config.php';
-require_once APP_ROOT . '/config/session.php'; 
+require_once APP_ROOT . '/config/session.php';
 include APP_ROOT . '/views/layouts/header.php';
 ?>
 
@@ -21,7 +21,7 @@ include APP_ROOT . '/views/layouts/header.php';
         <form class="p-5 form-width" action="<?= FILE_ROOT ?>/signupView" method="post">
 
             <div class="form-padding">
-                <div class="row">
+                <div>
                     <h1 class="welcome-text">Sign up</h1>
                 </div>
 
@@ -31,14 +31,16 @@ include APP_ROOT . '/views/layouts/header.php';
                 <div class="row mb-4">
                     <div class="col d-flex justify-content-center">
                         <div data-mdb-input-init class="form-outline">
-                            <input type="text" value="<?= signupInput('first_name') ?>" name="first_name" class="form-control" />
+                            <input type="text" value="<?= signupInput('first_name') ?>" name="first_name"
+                                class="form-control" />
                             <label class="form-label" for="first_name">First name</label>
                         </div>
                     </div>
 
                     <div class="col d-flex justify-content-center">
                         <div data-mdb-input-init class="form-outline">
-                            <input type="text" value="<?= signupInput('last_name') ?>" name="last_name" class="form-control" />
+                            <input type="text" value="<?= signupInput('last_name') ?>" name="last_name"
+                                class="form-control" />
                             <label class="form-label" for="last_name">Last name</label>
                         </div>
                     </div>
@@ -82,4 +84,5 @@ include APP_ROOT . '/views/layouts/header.php';
     <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
 
 </body>
+
 </html>

@@ -1,15 +1,13 @@
 <style>
+  .btn-primary {
+    background-color: #D48423 !important;
+    border-color: #D48423 !important;
+  }
 
- .btn-primary {
-background-color: #D48423!important;
-border-color: #D48423!important;
-}
-
-.btn-primary:hover {
-background-color: #C3680B !important;
-border-color: #C3680B !important;
-}
-  
+  .btn-primary:hover {
+    background-color: #C3680B !important;
+    border-color: #C3680B !important;
+  }
 </style>
 
 <footer class="footer" style="background-color: #3a2412; color: #e68a00; padding: 30px 20px; margin-top: 50px;">
@@ -19,13 +17,16 @@ border-color: #C3680B !important;
       <div class="col-6 col-md-3 mb-3 text-center text-md-start">
         <h6 class="small fw-semibold mb-2" style="letter-spacing: 1px; color: #e68a00;">CONNECT WITH US</h6>
         <div class="d-flex justify-content-center justify-content-md-start gap-3">
-          <a href="https://www.facebook.com/profile.php?id=100092605117539" target="_blank" class="fs-5 transition" style="color: #e68a00;">
+          <a href="https://www.facebook.com/profile.php?id=100092605117539" target="_blank" class="fs-5 transition"
+            style="color: #e68a00;">
             <i class="bi bi-facebook"></i>
           </a>
-          <a href="https://www.instagram.com/coffeebymondaymornings/" target="_blank" class="fs-5 transition" style="color: #e68a00;">
+          <a href="https://www.instagram.com/coffeebymondaymornings/" target="_blank" class="fs-5 transition"
+            style="color: #e68a00;">
             <i class="bi bi-instagram"></i>
           </a>
-          <a href="https://www.tiktok.com/@coffeebymondaymornings" target="_blank" class="fs-5 transition" style="color: #e68a00;">
+          <a href="https://www.tiktok.com/@coffeebymondaymornings" target="_blank" class="fs-5 transition"
+            style="color: #e68a00;">
             <i class="bi bi-tiktok"></i>
           </a>
         </div>
@@ -58,13 +59,8 @@ border-color: #C3680B !important;
           <p class="small mb-2" style="color: #e68a00;">Monthly digest of what's new and exciting from us.</p>
           <div class="d-flex flex-column flex-sm-row w-100 gap-2">
             <label for="newsletter1" class="visually-hidden">Email address</label>
-            <input
-              id="newsletter1"
-              type="email"
-              class="form-control"
-              placeholder="Email address"
-            />
-            <button class="btn btn-primary" type="button" >Subscribe</button>
+            <input id="newsletter1" type="email" class="form-control" placeholder="Email address" />
+            <button class="btn btn-primary" type="button">Subscribe</button>
           </div>
         </form>
       </div>
@@ -73,7 +69,8 @@ border-color: #C3680B !important;
     <hr class="border-warning">
 
     <div class="text-center mb-3">
-      <img src="<?php echo FILE_ROOT; ?>/public/assets/images/logo.png" alt="Coffee by Monday Mornings" style="height: 20px;">
+      <img src="<?php echo FILE_ROOT; ?>/public/assets/images/logo.png" alt="Coffee by Monday Mornings"
+        style="height: 20px;">
     </div>
 
     <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
@@ -85,7 +82,8 @@ border-color: #C3680B !important;
           </a>
         </li>
         <li class="ms-3">
-          <a href="https://www.facebook.com/profile.php?id=100092605117539" class="fs-5 transition" style="color: #e68a00;">
+          <a href="https://www.facebook.com/profile.php?id=100092605117539" class="fs-5 transition"
+            style="color: #e68a00;">
             <i class="bi bi-facebook"></i>
           </a>
         </li>
@@ -97,7 +95,7 @@ border-color: #C3680B !important;
       </ul>
     </div>
   </div>
-  
+
 </footer>
 
 <style>
@@ -105,6 +103,7 @@ border-color: #C3680B !important;
   .transition {
     transition: color 0.3s ease, transform 0.3s ease;
   }
+
   .transition:hover {
     color: #ffae42 !important;
     transform: scale(1.2);
