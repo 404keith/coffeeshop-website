@@ -1,5 +1,4 @@
 <?php
-include APP_ROOT . '/views/layouts/header.php';
 include APP_ROOT . '/views/products/cartView.php';
 ?>
 
@@ -27,6 +26,7 @@ include APP_ROOT . '/views/products/cartView.php';
             <a href="<?= FILE_ROOT ?>/drinks" class="btn btn-primary mt-3">Buy Now</a>
         </div>
     <?php else: ?>
+        <?php include APP_ROOT . '/views/layouts/header.php'; ?>
         <div class="card shadow-sm mx-auto" style="max-width:1000px">
             <div class="card-body">
                 <ul class="list-group list-group-flush">
@@ -34,25 +34,45 @@ include APP_ROOT . '/views/products/cartView.php';
                     <?php foreach ($cartItems as $item): ?>
                         <?php $itemTotal = $item['price'] * $item['quantity']; ?>
                         <?php $total += $itemTotal; ?>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 class="my-0"><?= htmlspecialchars($item['name']) ?></h6>
-                                <small class="text-muted">P <?= number_format($item['price'], 2) ?> each</small>
+
+                        <!-- col1 -->
+                        <li class="list-group-item">
+                            <div class="row align-items-center">
+                                <!-- col1: Product Info -->
+                                <div class="col-md-5">
+                                    <h6 class="my-0"><?= htmlspecialchars($item['name']) ?></h6>
+                                    <small class="text-muted">P <?= number_format($item['price'], 2) ?> each</small>
+                                </div>
+
+                                <!-- col2: Price (centered column, text left aligned) -->
+                                <div class="col-md-3 d-flex justify-content-center">
+                                    <span class="text-muted w-100 text-start">
+                                        P <?= number_format($itemTotal, 2) ?>
+                                    </span>
+                                </div>
+
+                                <!-- col3: Actions -->
+                                <div class="col-md-4 d-flex justify-content-end">
+                                    <form method="POST" action="<?= FILE_ROOT ?>/cart-actions"
+                                        class="d-flex align-items-center">
+                                        <input type="hidden" name="cart_item_id" value="<?= (int) $item['id'] ?>">
+                                        <input type="number" name="quantity" value="<?= (int) $item['quantity'] ?>" min="1"
+                                            class="form-control me-2" style="width: 80px;">
+
+                                        <!-- buttons -->
+                                        <button type="submit" name="action" value="update" class="btn btn-primary btn-sm me-2"
+                                            style="width:30px; height:30px;">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                        <button type="submit" name="action" value="remove" class="btn btn-danger btn-sm"
+                                            style="width:29px; height:29px;">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
-
-                            <!-- Price -->
-                            <span class="text-muted">P <?= number_format($itemTotal, 2) ?></span>
-
-                            <form method="POST" action="<?= FILE_ROOT ?>/cart-actions" class="d-flex align-items-center">
-                                <input type="hidden" name="cart_item_id" value="<?= (int) $item['id'] ?>">
-                                <input type="number" name="quantity" value="<?= (int) $item['quantity'] ?>" min="1"
-                                    class="form-control me-2" style="width: 80px;">
-                                <button type="submit" name="action" value="update"
-                                    class="btn btn-primary btn-sm me-2">/</button>
-                                <button type="submit" name="action" value="remove" class="btn btn-danger btn-sm">X</button>
-                            </form>
-
                         </li>
+
                     <?php endforeach; ?>
                     <li class="list-group-item d-flex justify-content-between align-items-center fw-bold">
                         <span>Total</span>

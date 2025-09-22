@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // 1. Authentication Check
     if (!isset($_SESSION['user_id'])) {
         $_SESSION['checkout_error'] = 'You must be logged in to place an order.';
-        header('Location: ' . FILE_ROOT . '/login');
+        header('Location: ' . FILE_ROOT . '/products');
         exit();
     }
 

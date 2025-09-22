@@ -12,7 +12,7 @@ try {
 
 
     // Load HTML layout
-    require APP_ROOT . '/views/products/pastries.php';
+    require APP_ROOT . '/views/products/products.php';
 
 } catch (PDOException $e) {
     die('Query Failed: ' . $e->getMessage());

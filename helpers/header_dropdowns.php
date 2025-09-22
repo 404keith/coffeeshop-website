@@ -52,8 +52,9 @@ function renderCartMenu($fileRoot, $pdo)
             echo '<form method="POST" action="' . $fileRoot . '/cart-actions" class="d-flex align-items-center">';
             echo '<input type="hidden" name="cart_item_id" value="' . $item['id'] . '">';
             echo '<input type="number" name="quantity" value="' . htmlspecialchars($item['quantity']) . '" min="1" class="form-control form-control-sm mx-2" style="width: 60px;">';
-            echo '<button type="submit" name="action" value="update" class="btn btn-primary btn-sm me-2">/</button>';
-            echo '<button type="submit" name="action" value="remove" class="btn btn-danger btn-sm me-2">X</button>';
+            echo '<button  style="width:30px; height:30px; type="submit" name="action" value="update" class="btn btn-primary btn-sm me-2"><i class="bi bi-pencil-square"></i>
+</button>';
+            echo '<button style="width:29px; height:29px; type="submit" name="action" value="remove" class="btn btn-danger btn-sm me-2"><i class="bi bi-trash"></i></button>';
             echo '</form>';
             echo '</div>';
             echo '</li>';

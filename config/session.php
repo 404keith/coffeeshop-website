@@ -22,19 +22,19 @@ if (isset($_SESSION['user_id'])) {
 		regenerate_session_id_loggedin();
 
 	} else {
-		$interval = 60 * 30; // 30 MINUTES
+		$interval = 60 * 60; // 60 MINUTES
 		if (time() - $_SESSION['last_regeneration'] >= $interval) {
 			regenerate_session_id_loggedin();
 		}
 	}
 
 } else {
-	//regenerate session id every 30 mins:
+	//regenerate session id every num mins:
 	if (!isset($_SESSION['last_regeneration'])) {
 		regenerate_session_id();
 
 	} else {
-		$interval = 60 * 30; // 30 MINUTES
+		$interval = 60 * 60; // 60 MINUTES
 		if (time() - $_SESSION['last_regeneration'] >= $interval) {
 			regenerate_session_id();
 		}

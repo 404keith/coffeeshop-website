@@ -34,8 +34,18 @@ require APP_ROOT . '/config/dbhandler.php';
           <a class="nav-link d-flex align-items-center" href="/">
             <i class="bi bi-house icon fs-7 house-icon ms-5"></i></a>
         </li>
-        <li class="nav-item ms-5"><a class="nav-link d-flex align-items-center"
-            onclick="scrollToSection('section-menu')"><i class="bi bi-cup-hot icon fs-7"></i></a></li>
+
+        <li class="nav-item ms-5">
+          <a class="nav-link" <?php
+          if ($uri === '') {
+            echo 'onclick="scrollToSection(\'section-menu\')"';
+          } else {
+            echo 'href="/drinks"';
+          }
+          ?>><i class=" bi bi-cup-hot icon fs-7"></i></a>
+        </li>
+
+
         <li class="nav-item ms-5 nav-text"><a class="nav-link" onclick="scrollToSection('section-about')">ABOUT US</a>
         </li>
       </ul>
