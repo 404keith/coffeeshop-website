@@ -158,8 +158,27 @@
 
 </footer>
 
+<!-- alert time in seconds -->
+<?php
+$uri = $_SERVER['REQUEST_URI'];
+
+switch ($uri) {
+  case '/my-orders':
+    $alertTimeSeconds = 20;
+    break;
+  default:
+    $alertTimeSeconds = 2;
+    break;
+}
+
+displayAlertTimeJs($alertTimeSeconds);
+?>
+
 
 <script src="<?= FILE_ROOT ?>/public/assets/js/mdb.umd.min.js"></script>
 <script src="<?php echo FILE_ROOT; ?>/public/assets/js/bootstrap.bundle.js"></script>
 <script src="<?php echo FILE_ROOT; ?>/public/assets/js/all.min.js"></script>
 <script src="<?php echo FILE_ROOT; ?>/public/assets/js/functions.js"></script>
+
+
+<!-- alerts -->

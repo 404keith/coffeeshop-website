@@ -11,7 +11,7 @@ try {
     $products = category_show($pdo, $category_name);
 
     // Load HTML layout 
-    require APP_ROOT . '/views/products/drinks.php';
+    require APP_ROOT . '/views/products/products.php';
 
 } catch (PDOException $e) {
     die('Query Failed: ' . $e->getMessage());

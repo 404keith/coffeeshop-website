@@ -16,7 +16,7 @@ if (isset($_SESSION['add_to_cart_success'])) {
 if (isset($_SESSION['add_to_cart_error'])) {
   echo '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert" style="position:fixed; top:70px; left:50%; transform:translateX(-50%); z-index:1000;">';
   echo $_SESSION['add_to_cart_error'];
-  echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+  echo '<button type="button" class="btn-close ms-5" data-bs-dismiss="alert" aria-label="Close" style="width:10px; height:17px;"></button>';
   echo '</div>';
   unset($_SESSION['add_to_cart_error']);
 }
@@ -26,11 +26,29 @@ if (isset($_SESSION['add_to_cart_error'])) {
   <link rel="stylesheet" href="<?= FILE_ROOT ?>/public/assets/css/products.css" />
 </head>
 
-
+<?php
+$currentURI = $_SERVER['REQUEST_URI'];
+switch ($currentURI) {
+  case '/drinks':
+    $title = 'Drinks';
+    break;
+  case '/merienda':
+    $title = 'Merienda';
+    break;
+  case '/waffles':
+    $title = 'Waffles';
+    break;
+  case '/pastries':
+    $title = 'Pastries';
+    break;
+}
+?>
 <div class="container ">
   <div class="row align-items-center">
     <div class=" col">
-      <h1 class="welcome-text mt-4 text-center">Drinks</h1>
+      <h1 class="welcome-text mt-4 text-center"><?php
+      echo htmlspecialchars($title);
+      ?></h1>
       <div class="d-flex justify-content-center align-items-center mb-3">
         <?php displayProductIcons(); ?>
       </div>
@@ -60,6 +78,10 @@ if (isset($_SESSION['add_to_cart_error'])) {
 
             <!-- add-to-cart form -->
             <form method="POST" action="<?= FILE_ROOT ?>/cart-actions">
+
+              <!-- SAVE URI  -->
+              <input type="hidden" name="redirect" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
+
               <input type="hidden" name="action" value="add">
               <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
 
@@ -87,7 +109,22 @@ if (isset($_SESSION['add_to_cart_error'])) {
   </div>
 </div>
 
+
+
 <script src="<?= FILE_ROOT ?>/public/assets/js/mdb.umd.min.js"></script>
 <script src="<?php echo FILE_ROOT; ?>/public/assets/js/bootstrap.bundle.js"></script>
 <script src="<?php echo FILE_ROOT; ?>/public/assets/js/all.min.js"></script>
 <script src="<?php echo FILE_ROOT; ?>/public/assets/js/functions.js"></script>
+
+
+<!-- alerts -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(() => {
+      document.querySelectorAll(".alert").forEach(alert => {
+        let bsAlert = new bootstrap.Alert(alert);
+        bsAlert.close();
+      });
+    }, 2000); // 2 seconds
+  });
+</script>

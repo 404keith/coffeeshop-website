@@ -1,8 +1,7 @@
 <?php
-require_once APP_ROOT . '/helpers/header_dropdowns.php';
 require APP_ROOT . '/config/dbhandler.php';
-
-
+require_once APP_ROOT . '/helpers/header_dropdowns.php';
+include APP_ROOT . '/helpers/alerts.php';
 ?>
 
 <!DOCTYPE html>
@@ -34,8 +33,18 @@ require APP_ROOT . '/config/dbhandler.php';
           <a class="nav-link d-flex align-items-center" href="/">
             <i class="bi bi-house icon fs-7 house-icon ms-5"></i></a>
         </li>
-        <li class="nav-item ms-5"><a class="nav-link d-flex align-items-center"
-            onclick="scrollToSection('section-menu')"><i class="bi bi-cup-hot icon fs-7"></i></a></li>
+
+        <li class="nav-item ms-5">
+          <a class="nav-link" <?php
+          if ($uri === '') {
+            echo 'onclick="scrollToSection(\'section-menu\')"';
+          } else {
+            echo 'href="/drinks"';
+          }
+          ?>><i class=" bi bi-cup-hot icon fs-7"></i></a>
+        </li>
+
+
         <li class="nav-item ms-5 nav-text"><a class="nav-link" onclick="scrollToSection('section-about')">ABOUT US</a>
         </li>
       </ul>
@@ -82,8 +91,6 @@ require APP_ROOT . '/config/dbhandler.php';
 
         <li class="me-5"></li>
       </ul>
-
-
 
       <?php
       //  data-bs-toggle="offcanvas"
@@ -136,6 +143,17 @@ require APP_ROOT . '/config/dbhandler.php';
       </ul>
     </div>
   </div>
+
+  <div class="cart-alerts sticky-alerts mt-3 w-50 mx-auto">
+    <?php
+    printCartAlerts();
+    check_signup_errors();
+    check_login_errors();
+    resetPasswordAlert();
+    logoutAlert();
+    ?>
+  </div>
+
 
 
 

@@ -1,22 +1,47 @@
 <?php
 declare(strict_types=1);
 
-function cart_index(object $pdo, int $user_id): array
+require_once APP_ROOT . '/config/config.php';
+require_once APP_ROOT . '/config/session.php';
+require_once APP_ROOT . '/config/dbhandler.php';
+require_once APP_ROOT . '/models/cartModel.php';
+
+/**
+ * Get all cart items for the user.
+ */
+function cart_index(PDO $pdo, int $userId): array
 {
-    return get_cart_items($pdo, $user_id);
+    return getCartItems($pdo, $userId);
 }
 
-function cart_add(object $pdo, int $user_id, int $product_id, int $qty): void
+/**
+ * Add a product to the cart.
+ */
+function cart_add(PDO $pdo, int $userId, int $productId, int $qty): bool
 {
-    add_to_cart($pdo, $user_id, $product_id, $qty);
+    return addProductToCart($pdo, $userId, $productId, $qty);
 }
 
-function cart_remove(object $pdo, int $user_id, int $product_id): void
+/**
+ * Update a specific cart item.
+ */
+function cart_update(PDO $pdo, int $userId, int $cartItemId, int $qty): bool
 {
-    remove_from_cart($pdo, $user_id, $product_id);
+    return updateCartItem($pdo, $userId, $cartItemId, $qty);
 }
 
-function cart_clear(object $pdo, int $user_id): void
+/**
+ * Remove a specific cart item.
+ */
+function cart_remove(PDO $pdo, int $userId, int $cartItemId): bool
 {
-    clear_cart($pdo, $user_id);
+    return removeCartItem($pdo, $userId, $cartItemId);
+}
+
+/**
+ * Clear all items in a user's cart.
+ */
+function cart_clear(PDO $pdo, int $userId): bool
+{
+    return clearCart($pdo, $userId);
 }

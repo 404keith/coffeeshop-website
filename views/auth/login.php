@@ -13,68 +13,69 @@ include APP_ROOT . '/views/layouts/header.php';
     <link rel="stylesheet" href="<?= FILE_ROOT ?>/public/assets/css/login.css" />
 </head>
 
-<body>
-    <?php require_once 'alerts.php'; ?>
-    <!-- <div class="background-img"></div> -->
+<body class="d-flex flex-column min-vh-100">
+    <main class="flex-fill">
+        <!-- <div class="background-img"></div> -->
 
-    <div class="container-fluid d-flex justify-content-center">
+        <div class="container-fluid d-flex justify-content-center">
 
-        <form class="p-5 form-width" action="<?= FILE_ROOT ?>/loginView" method="post">
-            <div class="form-padding">
+            <form class="p-5 form-width" action="<?= FILE_ROOT ?>/loginView" method="post">
+                <div class="form-padding">
 
-                <div>
-                    <h1 class="welcome-text">Welcome</h1>
-                </div>
+                    <div>
+                        <h1 class="welcome-text">Welcome</h1>
+                    </div>
 
-                <h1 class="login-text">Login</h1>
+                    <h1 class="login-text">Login</h1>
 
-                <!-- Username input -->
-                <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="text" name="username" class="form-control" />
-                    <label class="form-label" for="username">Username</label>
-                </div>
+                    <!-- Username input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <input type="text" name="username" class="form-control" />
+                        <label class="form-label" for="username">Username</label>
+                    </div>
 
-                <!-- Password input -->
-                <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="password" name="password" class="form-control" />
-                    <label class="form-label" for="password">Password</label>
-                </div>
+                    <!-- Password input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <input type="password" name="password" class="form-control" />
+                        <label class="form-label" for="password">Password</label>
+                    </div>
 
-                <!-- 2 column grid layout for inline styling -->
-                <div class="row mb-4">
-                    <div class="col d-flex justify-content-center">
-                        <!-- Checkbox -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="form2Example34" />
-                            <label class="form-check-label" for="form2Example34">Remember me</label>
+                    <!-- 2 column grid layout for inline styling -->
+                    <div class="row mb-4">
+                        <div class="col d-flex justify-content-center">
+                            <!-- Checkbox -->
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="form2Example34" />
+                                <label class="form-check-label" for="form2Example34">Remember me</label>
+                            </div>
+                        </div>
+
+                        <div class="col text-center">
+                            <!-- Simple link -->
+                            <a href="/forgot">Forgot password?</a>
                         </div>
                     </div>
 
-                    <div class="col text-center">
-                        <!-- Simple link -->
-                        <a href="/forgot">Forgot password?</a>
+                    <!-- Submit button -->
+                    <button data-mdb-ripple-init type="submit" name="submit" class="btn btn-primary btn-block mb-4">
+                        Sign in
+                    </button>
+
+                    <!-- Register buttons -->
+                    <div class="text-center">
+                        <p>Not yet registered? <a href="/signup">Register here</a></p>
                     </div>
-                </div>
 
-                <!-- Submit button -->
-                <button data-mdb-ripple-init type="submit" name="submit" class="btn btn-primary btn-block mb-4">
-                    Sign in
-                </button>
+                    <div>
+                        <?php check_login_errors();
+                        resetPasswordAlert(); ?>
+                    </div>
 
-                <!-- Register buttons -->
-                <div class="text-center">
-                    <p>Not yet registered? <a href="/signup">Register here</a></p>
-                </div>
+                </div> <!-- /.form-padding -->
+            </form>
 
-                <div>
-                    <?php check_login_errors();
-                    resetPasswordAlert(); ?>
-                </div>
-
-            </div> <!-- /.form-padding -->
-        </form>
-
-    </div>
+        </div>
+    </main>
 </body>
 
 </html>

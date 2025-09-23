@@ -1,15 +1,67 @@
 <?php
+
 declare(strict_types=1); // Enable strict type declarations
 
-function printSuccess($error)
+
+function printFailed(string $message, bool $raw = false): void
 {
-    echo '<div class="alert alert-success" role="alert">' . htmlspecialchars($error) . '</div>';
+    echo '<div class="alert alert-danger text-center alert-dismissible fade show popup-alert w-75 mx-auto" role="alert">'
+        . ($raw ? $message : htmlspecialchars($message))
+        . '</div>';
 }
 
-function printFailed($error)
+function printSuccess(string $message, bool $raw = false): void
 {
-    echo '<div class="alert alert-danger" role="alert">' . htmlspecialchars($error) . '</div>';
+    echo '<div class="alert alert-success text-center alert-dismissible fade show popup-alert w-75 mx-auto" role="alert">'
+        . ($raw ? $message : htmlspecialchars($message))
+        . '</div>';
 }
+
+
+function displayAlertTimeJs($seconds)
+{
+    $time = $seconds * 1000;
+    echo ' <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(() => {
+      document.querySelectorAll(".alert").forEach(alert => {
+        let bsAlert = new bootstrap.Alert(alert);
+        bsAlert.close();
+      });
+    }, ' . $time . '); 
+  });
+</script>';
+}
+// ----- CART -------
+function printCartAlerts()
+{
+    if (isset($_SESSION['add_to_cart_error'])) {
+        printFailed($_SESSION['add_to_cart_error'], true);
+        unset($_SESSION['add_to_cart_error']);
+    }
+
+    if (isset($_SESSION['add_to_cart_success'])) {
+        printSuccess($_SESSION['add_to_cart_success']);
+
+        unset($_SESSION['add_to_cart_success']);
+    }
+}
+
+
+// ---- LOGOUT -----
+function logoutAlert(): void
+{
+    if (isset($_SESSION['logout_success'])) {
+        printSuccess($_SESSION['logout_success']);
+        unset($_SESSION['logout_success']);
+    }
+}
+
+
+// ---- LOGIN AND SIGNUP -------
+
+
+
 // ------------------------------------------ LOGIN  ------------------------------------------------------
 function output_username(): void
 {
@@ -40,7 +92,7 @@ function check_login_errors(): void
 
     } elseif (isset($_SESSION['login_success']) && $_SESSION['login_success'] === true) {
         printSuccess('Login Success!');
-        //unset($_SESSION['login_success']); // clear so it shows only once
+        unset($_SESSION['login_success']); // clear so it shows only once
     }
 }
 
