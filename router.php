@@ -18,6 +18,11 @@ $publicRoutes = [
     'waffles' => 'views/products/wafflesView.php',
     'pastries' => 'views/products/pastriesView.php',
     'merienda' => 'views/products/meriendaView.php',
+    'cart' => 'views/products/cart.php',
+    'cartView' => 'views/products/cartView.php',
+    'cart-actions' => 'views/products/cart-actions.php',
+    'checkout' => 'views/products/checkout.php',
+    'checkoutView' => 'views/products/checkoutView.php',
     'test' => 'test.php',
     'test2' => 'test2.php',
     'test4' => 'test4.php',
@@ -42,24 +47,20 @@ $allRoutes = array_merge($publicRoutes, $adminRoutes);
 function route($uri, $publicRoutes, $adminRoutes)
 {
     if (array_key_exists($uri, $adminRoutes)) {
-        // Check if the user is logged in as an admin
+
         if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
             require $adminRoutes[$uri];
         } else {
-            header('Location: /login');
-            $pdo = null;
-            $statement = null;
-            die();
+            header('Location: /');
+            exit;
         }
-        abort(404);
-    }
-    // Check if the requested URI is a public route
-    else if (array_key_exists($uri, $publicRoutes)) {
+    } elseif (array_key_exists($uri, $publicRoutes)) {
         require $publicRoutes[$uri];
     } else {
         abort(404);
     }
 }
+
 function abort($code)
 {
     http_response_code($code);

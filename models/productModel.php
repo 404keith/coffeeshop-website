@@ -38,12 +38,13 @@ function get_products_by_category(object $pdo, string $category_name): array
 }
 
 
-function add_product(object $pdo, int $category_id, string $name, string $description, int $price, int $stock, string $image)
+function add_product(object $pdo, int $category_id, string $product_type, string $name, string $description, int $price, int $stock, string $image)
 {
-    $query = "INSERT INTO products (category_id, name, description, price, stock, image)
+    $query = "INSERT INTO products (category_id, product_type, name, description, price, stock, image)
               VALUES (:category_id, :name, :description, :price, :stock, :image);";
     $statement = $pdo->prepare($query);
     $statement->bindParam(':category_id', $category_id, PDO::PARAM_INT);
+    $statement->bindParam(':product_type', $product_type, PDO::PARAM_INT);
     $statement->bindParam(':name', $name);
     $statement->bindParam(':description', $description);
     $statement->bindParam(':price', $price, PDO::PARAM_INT);

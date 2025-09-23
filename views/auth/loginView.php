@@ -2,72 +2,75 @@
 require_once 'config/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		$username = $_POST['username'];
-	    $password = $_POST['password'];
+	$username = $_POST['username'];
+	$password = $_POST['password'];
 
-		try {
-		   require APP_ROOT .'/config/dbhandler.php';
-			require APP_ROOT .'/models/loginModel.php';
-			require APP_ROOT .'/controllers/loginController.php';
+	try {
+		require APP_ROOT . '/config/dbhandler.php';
+		require APP_ROOT . '/models/loginModel.php';
+		require APP_ROOT . '/controllers/loginController.php';
 
-			//ERROR HANDLERS:
-			// functions in CONTROLLER file
-					$errors = [];
-				if (is_input_empty($username, $password)){
-					 $errors['empty_input'] = 'Fill in all fields!';
-				}
-
-	  	$result = get_user($pdo, $username);
-
-				if (is_username_wrong($result)) {
-						$errors['login_incorrect'] = 'Incorrect login info!';
-				}
-
-				if (!is_username_wrong($result) &&
-				     is_password_wrong($password, $result['password'])) {
-					   $errors['login_incorrect'] = 'Incorrect login info!';
-				}
-
-			     // start session i used session.php for more security
-				 require_once APP_ROOT .  '/config/session.php'; 	
-
-				if ($errors) { 
-					$_SESSION['errors_login'] = $errors;
-					 	header ('Location: '.FILE_ROOT.'/login');
-					    die(); 
-				}
-
-				$newSessionId = session_create_id();
-				$sessionId = $newSessionId . "_" .$result['id'];
-				session_id($sessionId);
-
-				$_SESSION['user_id'] = $result['id'];
-				$_SESSION['user_role'] = $result['role'];
-				$_SESSION['user_username'] = htmlspecialchars($result['username']);
-				$_SESSION['user_firstname'] = htmlspecialchars($result['first_name']);
-			    $_SESSION['last_regeneration'] = time(); //reset time
-				$_SESSION['login_success'] = true;
-
-				if (isset($_SESSION['user_role']) && $_SESSION['user_role']==='admin'){
-					header('Location: /admin');  
-					$pdo = null;
-					$statement = null;
-					die();
-
-				} else {
-					header('Location: /');  
-					$pdo = null;
-					$statement = null;
-					die();
-				}
-
-		} catch (PDOException $e) {
-			 die('Query Failed: '. $e->getMessage());
+		//ERROR HANDLERS:
+		// functions in CONTROLLER file
+		$errors = [];
+		if (is_input_empty($username, $password)) {
+			$errors['empty_input'] = 'Fill in all fields!';
 		}
+
+		$result = get_user($pdo, $username);
+
+		if (is_username_wrong($result)) {
+			$errors['login_incorrect'] = 'Incorrect login info!';
+		}
+
+		if (
+			!is_username_wrong($result) &&
+			is_password_wrong($password, $result['password'])
+		) {
+			$errors['login_incorrect'] = 'Incorrect login info!';
+		}
+
+		// start session i used session.php for more security
+		require_once APP_ROOT . '/config/session.php';
+
+		if ($errors) {
+			$_SESSION['errors_login'] = $errors;
+			header('Location: ' . FILE_ROOT . '/login');
+			die();
+		}
+
+		$newSessionId = session_create_id();
+		$sessionId = $newSessionId . "_" . $result['id'];
+		session_id($sessionId);
+
+		$_SESSION['user_id'] = $result['id'];
+		$_SESSION['user_role'] = $result['role'];
+		$_SESSION['user_username'] = htmlspecialchars($result['username']);
+		$_SESSION['user_firstname'] = htmlspecialchars($result['first_name']);
+		$_SESSION['last_regeneration'] = time(); //reset time
+		$_SESSION['login_success'] = true;
+
+		if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
+			header('Location: /admin');
+			$pdo = null;
+			$statement = null;
+			die();
+
+		} else {
+			header('Location: /');
+			$pdo = null;
+			$statement = null;
+			die();
+
+		}
+
+	} catch (PDOException $e) {
+		die('Query Failed: ' . $e->getMessage());
+	}
 
 
 } else {
-					header('Location: /');  
+	header('Location: /');
 
 	die();
 }

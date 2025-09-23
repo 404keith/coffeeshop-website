@@ -35,7 +35,7 @@ function displayProductIcons()
         echo '
         <a href="' . $href_uri . '" class="' . $anchor_class . '">
             <i class="' . $icon_class . ' ' . $icon_size_class . ' ' . $def_class . '">  </i>
-            <p class="' . $n_class . '">' . $product_name . '</p>
+            <p class="' . $n_class . '"> </p>
         </a>';
     }
 
