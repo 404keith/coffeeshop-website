@@ -39,6 +39,8 @@ include APP_ROOT . '/views/layouts/header.php';
                 <?php elseif (!is_array($orders) || empty($orders)): ?>
                     <div class="alert alert-info text-center">
                         You have no orders yet.
+                        <br>
+                        <a href="<?= FILE_ROOT ?>/drinks" class="btn btn-primary mt-3">Buy Now</a>
                     </div>
                 <?php else: ?>
                     <div class="list-group">
