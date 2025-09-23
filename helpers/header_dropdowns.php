@@ -4,15 +4,17 @@ function renderAccountMenu($fileRoot)
     if (isset($_SESSION['user_id'])) {
         echo '<li class="dropdown-item-text text-center mb-2">Hello, ' . htmlspecialchars($_SESSION['user_firstname']) . '</li>';
 
+        // START of the new button
+        echo '<li><a class="btn btn-account mb-2" href="' . $fileRoot . '/my-orders">My Orders</a></li>';
+        // END of the new button
+
         if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
             echo '<li><a class="btn btn-account " href="' . $fileRoot . '/admin">Dashboard</a></li>';
-
         }
-        echo '<li><a class="btn btn-account " href="' . $fileRoot . '/logout">Logout</a></li>';
-
+        echo '<li><a class="dropdown-item btn btn-account " href="' . $fileRoot . '/logout">Logout</a></li>';
     } else {
-        echo '<li><a class="btn btn-account  mb-2" href="' . $fileRoot . '/login">Login</a></li>';
-        echo '<li><a class="btn  btn-account" href="' . $fileRoot . '/signup">Signup</a></li>';
+        echo '<li><a class="dropdown-item btn btn-account mb-2" href="' . $fileRoot . '/login">Login</a></li>';
+        echo '<li><a class="dropdown-item btn btn-account" href="' . $fileRoot . '/signup">Signup</a></li>';
     }
 }
 
@@ -35,7 +37,7 @@ function renderCartMenu($fileRoot, $pdo)
     if (empty($cartItems)) {
         echo '<li><span class="dropdown-item-text">Your cart is empty.</span></li>';
         echo '<li><hr class="dropdown-divider"></li>';
-        echo '<li><a class="dropdown-item" href="' . $fileRoot . '/drinks">Start Shopping</a></li>';
+        echo '<li><a class="dropdown-item btn btn-account mt-1 mb-1" href="' . $fileRoot . '/drinks">Buy Now</a></li>';
     } else {
         $total = 0;
         echo '<li><h6 class="dropdown-header">Your Cart:</h6></li>';
@@ -50,6 +52,9 @@ function renderCartMenu($fileRoot, $pdo)
             echo '<strong>' . htmlspecialchars($item['name']) . '</strong> - P ' . number_format($item['price'], 2);
             echo '</div>';
             echo '<form method="POST" action="' . $fileRoot . '/cart-actions" class="d-flex align-items-center">';
+            echo '<!-- save uri -->
+                 <input type="hidden" name="redirect" value="' . htmlspecialchars($_SERVER['REQUEST_URI']) . '">';
+
             echo '<input type="hidden" name="cart_item_id" value="' . $item['id'] . '">';
             echo '<input type="number" name="quantity" value="' . htmlspecialchars($item['quantity']) . '" min="1" class="form-control form-control-sm mx-2" style="width: 60px;">';
             echo '<button  style="width:30px; height:30px; type="submit" name="action" value="update" class="btn btn-primary btn-sm me-2"><i class="bi bi-pencil-square"></i>
@@ -63,7 +68,7 @@ function renderCartMenu($fileRoot, $pdo)
         echo '<li><hr class="dropdown-divider"></li>';
         echo '<li><span class="dropdown-item-text fw-bold">Total: P ' . number_format($total, 2) . '</span></li>';
         echo '<li><hr class="dropdown-divider"></li>';
-        echo '<li><a class="dropdown-item text-primary" href="' . $fileRoot . '/cart">View Cart</a></li>';
-        echo '<li><a class="dropdown-item text-primary" href="' . $fileRoot . '/checkout">Checkout</a></li>';
+        echo '<li><a class="dropdown-item btn btn-primary mb-2 text-white ms-3 mt-2" href="' . $fileRoot . '/cart">View Cart</a></li>';
+        echo '<li><a class="dropdown-item btn btn-primary text-white ms-3" href="' . $fileRoot . '/checkout">Checkout</a></li>';
     }
 }

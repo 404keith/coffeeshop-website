@@ -41,24 +41,54 @@ include APP_ROOT . '/views/layouts/header.php';
             opacity: 0.5;
             transition: opacity 0.3s ease;
         }
+
+        /* Match the pickup color */
+        .btn-pickup {
+            background-color: #D68421 !important;
+            border-color: #D68421 !important;
+            color: white !important;
+        }
+
+        .btn-pickup:hover {
+            background-color: #b76615 !important;
+            border-color: #b76615 !important;
+        }
+
+        /* Match the delivery color */
+        .btn-delivery {
+            background-color: #155E63 !important;
+            border-color: #155E63 !important;
+            color: white !important;
+        }
+
+        .btn-delivery:hover {
+            background-color: #0f4347 !important;
+            border-color: #0f4347 !important;
+        }
+
+        .title {
+            font-family: 'pacifico';
+            color: #D68421;
+            font-size: 3rem;
+        }
     </style>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
-
+<body class="d-flex flex-column min-vh-100" style="height:80rem">
     <main class="flex-fill">
+
         <div class="container mt-5">
-            <h2 class="mb-4 text-center">Checkout</h2>
+            <h2 class="mt-2 text-center title">Checkout</h2>
 
             <?php if (empty($cartItems)): ?>
-                <div class="alert alert-info text-center" role="alert">
+                <div class="alert-info text-center" role="alert">
                     Your cart is empty. Please add some items before checking out.
                     <br>
                     <a href="<?= FILE_ROOT ?>/drinks" class="btn btn-primary mt-3">Buy Now</a>
                 </div>
             <?php else: ?>
                 <!-- Choose Option First -->
-                <div class="d-flex justify-content-center align-items-center mb-5" style="height:20rem;">
+                <div class="d-flex justify-content-center align-items-center mb-5" style="height:20rem; margin-top:-2rem">
                     <div class="row text-center w-100" style="max-width: 1000px;">
                         <div class="col-md-6" id="pickupBtn">
                             <button class="btn btn-lg w-100 p-5 option-btn option-pickup">
@@ -101,14 +131,41 @@ include APP_ROOT . '/views/layouts/header.php';
 
                         <hr class="my-4">
 
-                        <!-- Extra: Hidden input for option -->
-                        <form method="POST" action="<?= FILE_ROOT ?>/place-order">
-                            <input type="hidden" name="order_type" id="orderType" value="">
-                            <button type="submit" class="btn btn-primary btn-lg w-100 mt-4">Place Order</button>
+                        <!-- Pickup Form -->
+                        <form id="pickupForm" method="POST" action="<?= FILE_ROOT ?>/place-order" class="d-none">
+                            <input type="hidden" name="order_type" value="pickup">
+                            <button type="submit" class="btn btn-lg w-100 mt-4 btn-pickup">Place Order (Pickup)</button>
+                        </form>
+
+                        <!-- Delivery Form -->
+                        <form id="deliveryForm" method="POST" action="<?= FILE_ROOT ?>/place-order" class="d-none">
+                            <input type="hidden" name="order_type" value="delivery">
+
+                            <div class="mb-3">
+                                <label for="fullName" class="form-label">Full Name</label>
+                                <input type="text" name="full_name" id="fullName" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Shipping Address</label>
+                                <textarea name="address" id="address" class="form-control" required></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" name="phone" id="phone" class="form-control" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-lg w-100 mt-4 btn-delivery">Place Order (Delivery)</button>
                         </form>
                     </div>
                 </div>
-            <?php endif; ?>
+
+
+
+            </div>
+            </div>
+        <?php endif; ?>
         </div>
     </main>
 
@@ -116,11 +173,14 @@ include APP_ROOT . '/views/layouts/header.php';
 </body>
 
 <script>
+
     document.addEventListener("DOMContentLoaded", function () {
         const pickupBtn = document.getElementById("pickupBtn");
         const deliveryBtn = document.getElementById("deliveryBtn");
         const checkoutForm = document.getElementById("checkoutForm");
-        const orderType = document.getElementById("orderType");
+
+        const pickupForm = document.getElementById("pickupForm");
+        const deliveryForm = document.getElementById("deliveryForm");
 
         function resetColumns() {
             pickupBtn.classList.remove("col-md-9", "col-md-3", "dimmed");
@@ -136,10 +196,10 @@ include APP_ROOT . '/views/layouts/header.php';
 
             pickupBtn.classList.replace("col-md-6", "col-md-9");
             deliveryBtn.classList.replace("col-md-6", "col-md-3");
-
             deliveryBtn.classList.add("dimmed");
 
-            orderType.value = "pickup";
+            pickupForm.classList.remove("d-none");
+            deliveryForm.classList.add("d-none");
         });
 
         deliveryBtn?.addEventListener("click", function () {
@@ -148,10 +208,11 @@ include APP_ROOT . '/views/layouts/header.php';
 
             deliveryBtn.classList.replace("col-md-6", "col-md-9");
             pickupBtn.classList.replace("col-md-6", "col-md-3");
-
             pickupBtn.classList.add("dimmed");
 
-            orderType.value = "delivery";
+            deliveryForm.classList.remove("d-none");
+            pickupForm.classList.add("d-none");
         });
     });
+
 </script>

@@ -78,7 +78,8 @@ switch ($currentURI) {
 
             <!-- add-to-cart form -->
             <form method="POST" action="<?= FILE_ROOT ?>/cart-actions">
-              <!-- save uri  -->
+
+              <!-- SAVE URI  -->
               <input type="hidden" name="redirect" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
 
               <input type="hidden" name="action" value="add">
@@ -108,7 +109,22 @@ switch ($currentURI) {
   </div>
 </div>
 
+
+
 <script src="<?= FILE_ROOT ?>/public/assets/js/mdb.umd.min.js"></script>
 <script src="<?php echo FILE_ROOT; ?>/public/assets/js/bootstrap.bundle.js"></script>
 <script src="<?php echo FILE_ROOT; ?>/public/assets/js/all.min.js"></script>
 <script src="<?php echo FILE_ROOT; ?>/public/assets/js/functions.js"></script>
+
+
+<!-- alerts -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(() => {
+      document.querySelectorAll(".alert").forEach(alert => {
+        let bsAlert = new bootstrap.Alert(alert);
+        bsAlert.close();
+      });
+    }, 2000); // 2 seconds
+  });
+</script>

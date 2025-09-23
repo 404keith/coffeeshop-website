@@ -12,6 +12,8 @@
 <?php require APP_ROOT . '/views/layouts/body.php'; ?>
 
 
+
+
 <section id="section-menu">
    <?php include APP_ROOT . '/views/home/menu.php'; ?>
 </section>

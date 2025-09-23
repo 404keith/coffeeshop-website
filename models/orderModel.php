@@ -1,60 +1,91 @@
 <?php
-// used for communication to DATABASE (MYSQL)
 declare(strict_types=1);
 
-function create_order(object $pdo, int $user_id, array $cartItems): int
+/**
+ * Create a new order with optional delivery info and cart items
+ */
+function createOrder($pdo, $userId, $orderType, $total, $fullName, $address, $phone, $cartItems)
 {
     $pdo->beginTransaction();
 
-    $total = 0;
-    foreach ($cartItems as $item) {
-        $total += $item['price'] * $item['quantity'];
-    }
+    $stmt = $pdo->prepare("INSERT INTO orders 
+        (user_id, order_type, total, full_name, address, phone, created_at)
+        VALUES (:user_id, :order_type, :total, :full_name, :address, :phone, NOW())");
+    $stmt->execute([
+        'user_id' => $userId,
+        'order_type' => $orderType,
+        'total' => $total,
+        'full_name' => $fullName,
+        'address' => $address,
+        'phone' => $phone
+    ]);
 
-    // insert order
-    $query = "INSERT INTO orders (user_id, total) VALUES (:user_id, :total)";
-    $statement = $pdo->prepare($query);
-    $statement->execute([':user_id' => $user_id, ':total' => $total]);
-    $orderId = (int) $pdo->lastInsertId();
+    $orderId = $pdo->lastInsertId();
 
-    // insert order items + reduce stock
+    $stmtItem = $pdo->prepare("INSERT INTO order_items 
+        (order_id, product_id, quantity, price)
+        VALUES (:order_id, :product_id, :quantity, :price)");
+
     foreach ($cartItems as $item) {
-        $insertItem = "INSERT INTO order_items (order_id, product_id, quantity, price) 
-                       VALUES (:order_id, :product_id, :quantity, :price)";
-        $stmt = $pdo->prepare($insertItem);
-        $stmt->execute([
-            ':order_id' => $orderId,
-            ':product_id' => $item['product_id'],
-            ':quantity' => $item['quantity'],
-            ':price' => $item['price']
+        $stmtItem->execute([
+            'order_id' => $orderId,
+            'product_id' => $item['product_id'],
+            'quantity' => $item['quantity'],
+            'price' => $item['price']
         ]);
-
-        $updateStock = "UPDATE products SET stock = stock - :qty WHERE id = :id";
-        $stmt = $pdo->prepare($updateStock);
-        $stmt->execute([':qty' => $item['quantity'], ':id' => $item['product_id']]);
     }
 
     $pdo->commit();
     return $orderId;
 }
 
-function get_order(object $pdo, int $id): array|false
+
+/**
+ * Fetch an order by ID
+ */
+function getOrder(object $pdo, int $id): array|false
 {
-    $query = "SELECT * FROM orders WHERE id = :id";
-    $statement = $pdo->prepare($query);
-    $statement->bindParam(':id', $id, PDO::PARAM_INT);
-    $statement->execute();
-    return $statement->fetch(PDO::FETCH_ASSOC);
+    $sql = "SELECT * FROM orders WHERE id = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':id' => $id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-function get_order_items(object $pdo, int $order_id): array
+/**
+ * Fetch an order by ID with user security check
+ */
+function getOrderById(object $pdo, int $orderId, int $userId): array|false
 {
-    $query = "SELECT oi.*, p.name 
-              FROM order_items oi
-              JOIN products p ON oi.product_id = p.id
-              WHERE oi.order_id = :order_id";
-    $statement = $pdo->prepare($query);
-    $statement->bindParam(':order_id', $order_id, PDO::PARAM_INT);
-    $statement->execute();
-    return $statement->fetchAll(PDO::FETCH_ASSOC);
+    $sql = "SELECT * FROM orders WHERE id = :order_id AND user_id = :user_id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':order_id' => $orderId,
+        ':user_id' => $userId
+    ]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
+function getOrdersByUserId($pdo, int $userId)
+{
+    $sql = "SELECT * FROM orders WHERE user_id = :user_id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':user_id' => $userId
+    ]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+/**
+ * Fetch order items for a given order
+ */
+function getOrderItems(object $pdo, int $orderId): array
+{
+    $sql = "SELECT oi.*, p.name 
+            FROM order_items oi
+            JOIN products p ON oi.product_id = p.id
+            WHERE oi.order_id = :order_id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':order_id' => $orderId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
