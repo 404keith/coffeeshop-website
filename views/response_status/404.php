@@ -25,9 +25,16 @@
     }
 </style>
 
-<div class="center-container">
-    <img src="<?php echo FILE_ROOT; ?>/public/assets/images/sad-face.png" alt="Sad face" class="img-fluid mb-4"
-        style="max-width: 200px;">
-    <h3 class="mb-3">404 PAGE NOT FOUND</h3>
-    <a href="/" class="btn btn-go-home">Go back home</a>
-</div>
+<body>
+    <main>
+        <div class="center-container">
+            <img src="<?php echo FILE_ROOT; ?>/public/assets/images/sad-face.png" alt="Sad face" class="img-fluid mb-4"
+                style="max-width: 200px;">
+            <h3 class="mb-3">404 PAGE NOT FOUND</h3>
+            <a href="/" class="btn btn-go-home">Go back home</a>
+        </div>
+    </main>
+</body>
+
+
+<?php include APP_ROOT . '/views/layouts/footer.php'; ?>

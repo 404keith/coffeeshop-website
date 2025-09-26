@@ -14,11 +14,9 @@ include APP_ROOT . '/views/layouts/header.php';
 </head>
 
 <body>
-    <?php require_once 'alerts.php'; ?>
 
     <div class="container-fluid d-flex justify-content-center">
-        <form class="p-5 form-width" action="<?= FILE_ROOT ?>/forgot_passwordView" method="post"
-            id="forgot-password-form">
+        <form class="p-5 form-width" action="<?= FILE_ROOT ?>/forgot_pass" method="post" id="forgot-password-form">
             <img src="<?php echo FILE_ROOT; ?>/public/assets/images/forgot_icon.png" alt="Sad face"
                 class="img-fluid mb-2 mx-auto d-block" style="max-width: 130px;">
             <div class="form-padding">
@@ -41,10 +39,6 @@ include APP_ROOT . '/views/layouts/header.php';
                     Enter email
                 </button>
 
-
-                <div id="alert">
-                    <?php forgotPasswordAlert(); ?>
-                </div>
 
                 <div id="loading-spinner" style="display: none;">
                     <img src="<?php echo FILE_ROOT; ?>/public/assets/images/loading-animation.gif" alt="Loading..."

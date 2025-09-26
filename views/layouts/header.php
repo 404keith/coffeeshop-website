@@ -2,6 +2,8 @@
 require APP_ROOT . '/config/dbhandler.php';
 require_once APP_ROOT . '/helpers/header_dropdowns.php';
 include APP_ROOT . '/helpers/alerts.php';
+
+$uri = $_SERVER['REQUEST_URI'];
 ?>
 
 <!DOCTYPE html>
@@ -146,11 +148,17 @@ include APP_ROOT . '/helpers/alerts.php';
 
   <div class="cart-alerts sticky-alerts mt-3 w-50 mx-auto">
     <?php
-    printCartAlerts();
-    check_signup_errors();
-    check_login_errors();
-    resetPasswordAlert();
-    logoutAlert();
+
+    if ($uri == '/forgot') {
+      forgotPasswordAlert();
+    } else {
+      printCartAlerts();
+      check_signup_errors();
+      check_login_errors();
+      resetPasswordAlert();
+      logoutAlert();
+    }
+
     ?>
   </div>
 

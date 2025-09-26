@@ -17,7 +17,6 @@ $token = $_GET['token'] ?? '';
 </head>
 
 <body>
-    <?php require_once 'alerts.php'; ?>
 
     <div class="container-fluid d-flex justify-content-center">
         <form class="p-5 form-width" action="<?= FILE_ROOT ?>/reset_pass" method="post">
@@ -52,11 +51,7 @@ $token = $_GET['token'] ?? '';
                     Reset Password
                 </button>
 
-                <div>
-                    <?php
-                    resetPasswordAlert();
-                    ?>
-                </div>
+
             </div>
         </form>
     </div>

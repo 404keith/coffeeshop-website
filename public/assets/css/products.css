@@ -1,3 +1,8 @@
+body {
+  background: url("/public/assets/images/background-4.png") no-repeat center
+    center fixed;
+  background-size: cover;
+}
 .welcome-text {
   text-align: center;
   color: #d48423;

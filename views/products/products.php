@@ -43,7 +43,7 @@ switch ($currentURI) {
     break;
 }
 ?>
-<div class="container ">
+<div class="container">
   <div class="row align-items-center">
     <div class=" col">
       <h1 class="welcome-text mt-4 text-center"><?php
@@ -109,22 +109,24 @@ switch ($currentURI) {
   </div>
 </div>
 
+<div style="height:40vh"></div>
 
-
-<script src="<?= FILE_ROOT ?>/public/assets/js/mdb.umd.min.js"></script>
+<!-- <script src="<?= FILE_ROOT ?>/public/assets/js/mdb.umd.min.js"></script>
 <script src="<?php echo FILE_ROOT; ?>/public/assets/js/bootstrap.bundle.js"></script>
 <script src="<?php echo FILE_ROOT; ?>/public/assets/js/all.min.js"></script>
-<script src="<?php echo FILE_ROOT; ?>/public/assets/js/functions.js"></script>
+<script src="<?php echo FILE_ROOT; ?>/public/assets/js/functions.js"></script> -->
 
 
 <!-- alerts -->
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(() => {
-      document.querySelectorAll(".alert").forEach(alert => {
-        let bsAlert = new bootstrap.Alert(alert);
-        bsAlert.close();
-      });
-    }, 2000); // 2 seconds
-  });
+  // document.addEventListener("DOMContentLoaded", function () {
+  //   setTimeout(() => {
+  //     document.querySelectorAll(".alert").forEach(alert => {
+  //       let bsAlert = new bootstrap.Alert(alert);
+  //       bsAlert.close();
+  //     });
+  //   }, 2000); // 2 seconds
+  // });
 </script>
+
+<?php include APP_ROOT . '/views/layouts/footer.php'; ?>

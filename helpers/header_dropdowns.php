@@ -4,12 +4,11 @@ function renderAccountMenu($fileRoot)
     if (isset($_SESSION['user_id'])) {
         echo '<li class="dropdown-item-text text-center mb-2">Hello, ' . htmlspecialchars($_SESSION['user_firstname']) . '</li>';
 
-        // START of the new button
-        echo '<li><a class="btn btn-account mb-2" href="' . $fileRoot . '/my-orders">My Orders</a></li>';
-        // END of the new button
-
         if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
             echo '<li><a class="btn btn-account " href="' . $fileRoot . '/admin">Dashboard</a></li>';
+        } else {
+            echo '<li><a class="btn btn-account mb-2" href="' . $fileRoot . '/my-orders">My Orders</a></li>';
+
         }
         echo '<li><a class="dropdown-item btn btn-account " href="' . $fileRoot . '/logout">Logout</a></li>';
     } else {

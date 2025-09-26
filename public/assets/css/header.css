@@ -4,13 +4,14 @@
 
 .navbar-color {
   background-color: #281a11;
+  /* background-color: #fff6eb; */
+
   position: sticky;
   top: 0;
   z-index: 1030;
   transition:
     background-color 0.3s ease,
     box-shadow 0.3s ease;
-  /* background-color:#fff6eb; */
 }
 
 li {
