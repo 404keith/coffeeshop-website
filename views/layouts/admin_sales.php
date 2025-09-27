@@ -37,7 +37,7 @@
       border-radius: 8px;
       text-align: center;
       background: #fff;
-      height: 100px;
+      height: 120px;
     }
   </style>
 </head>
@@ -58,74 +58,79 @@
         <p>Track your coffee shop’s sales performance and analytics</p>
         <div class="row g-3">
           <div class="col-md-3">
-            <div class="card-box">Today's Revenue</div>
+            <div class="card-box">
+              <h6>Today's Revenue</h6>
+              <h5>₱<?= number_format($todayRevenue, 2) ?></h5>
+            </div>
           </div>
           <div class="col-md-3">
-            <div class="card-box">Average Order</div>
+            <div class="card-box">
+              <h6>Average Order</h6>
+              <h5>₱<?= number_format($avgOrder, 2) ?></h5>
+            </div>
           </div>
           <div class="col-md-3">
-            <div class="card-box">This Week</div>
+            <div class="card-box">
+              <h6>This Week</h6>
+              <h5>₱<?= number_format($weekRevenue, 2) ?></h5>
+            </div>
           </div>
           <div class="col-md-3">
-            <div class="card-box">Growth Rate</div>
+            <div class="card-box">
+              <h6>Growth Rate</h6>
+              <h5><?= number_format($growthRate, 2) ?>%</h5>
+            </div>
           </div>
         </div>
 
-        <!-- Tabs -->
-        <ul class="nav nav-tabs mt-4">
-          <li class="nav-item"><a class="nav-link active" href="#">Daily Sales</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Weekly Sales</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Monthly Sales</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Top Products</a></li>
-        </ul>
+        <!-- Daily Sales Table -->
+        <div class="mt-4">
+          <h6>Daily Sales This Week</h6>
+          <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+              <tr>
+                <th>Date</th>
+                <th>Revenue (₱)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php if (!empty($dailySales)): ?>
+                <?php foreach ($dailySales as $row): ?>
+                  <tr>
+                    <td><?= htmlspecialchars($row['day']) ?></td>
+                    <td><?= number_format($row['revenue'], 2) ?></td>
+                  </tr>
+                <?php endforeach; ?>
+              <?php else: ?>
+                <tr><td colspan="2" class="text-center">No sales this week</td></tr>
+              <?php endif; ?>
+            </tbody>
+          </table>
+        </div>
 
-        <div class="row mt-4">
-          <div class="col-md-6">
-            <div class="card-box" style="height:300px;">
-              <h6>Daily Sales This Week</h6>
-              <canvas id="salesChart"></canvas>
+        <!-- Sales by Category -->
+        <div class="mt-4">
+          <h6>Sales by Category</h6>
+          <?php 
+            $totalSales = array_sum(array_column($categorySales, 'total')); 
+            if ($totalSales > 0):
+              foreach ($categorySales as $cat): 
+                $percent = ($cat['total'] / $totalSales) * 100;
+          ?>
+            <p class="mb-1"><strong><?= ucfirst($cat['order_type']) ?></strong>: ₱<?= number_format($cat['total'], 2) ?> (<?= number_format($percent, 2) ?>%)</p>
+            <div class="progress mb-3" style="height: 20px;">
+              <div class="progress-bar bg-success" role="progressbar" 
+                style="width: <?= $percent ?>%;" 
+                aria-valuenow="<?= $percent ?>" aria-valuemin="0" aria-valuemax="100">
+                <?= number_format($percent, 1) ?>%
+              </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card-box" style="height:300px;">
-              <h6>Sales by Category</h6>
-              <canvas id="categoryChart"></canvas>
-            </div>
-          </div>
+          <?php endforeach; else: ?>
+            <p>No sales by category yet</p>
+          <?php endif; ?>
         </div>
       </div>
     </div>
   </div>
-
-
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    // Bar Chart
-    new Chart(document.getElementById("salesChart"), {
-      type: "bar",
-      data: {
-        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-        datasets: [{
-          label: "Revenue",
-          data: [1200, 1500, 1600, 1800, 2200, 2600, 2400],
-          backgroundColor: "#A0522D"
-        }]
-      }
-    });
-
-    // Pie Chart
-    new Chart(document.getElementById("categoryChart"), {
-      type: "pie",
-      data: {
-        labels: ["Coffee", "Pastries", "Sandwiches", "Cold Drinks"],
-        datasets: [{
-          data: [65, 20, 10, 5],
-          backgroundColor: ["#A0522D", "#D2691E", "#C0A060", "#E0B050"]
-        }]
-      }
-    });
-  </script>
 </body>
-
 </html>
