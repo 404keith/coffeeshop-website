@@ -1,3 +1,18 @@
+<?php 
+require_once APP_ROOT . '/config/dbhandler.php';
+require_once APP_ROOT . '/controllers/SalesController.php';
+
+$controller = new SalesController($conn);
+$data = $controller->index();
+
+$todayRevenue  = $data['todayRevenue'];
+$avgOrder      = $data['avgOrder'];
+$weekRevenue   = $data['weekRevenue'];
+$growthRate    = $data['growthRate'];
+$dailySales    = $data['dailySales'];
+$categorySales = $data['categorySales'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

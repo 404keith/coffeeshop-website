@@ -10,26 +10,27 @@ class SalesController
 
     public function index()
     {
-        // Today's revenue
         $today = date('Y-m-d');
-        $sql = "SELECT SUM(total) as total FROM orders WHERE DATE(created_at) = ? AND status='completed'";
+
+        // Today’s revenue
+        $sql = "SELECT SUM(total) FROM orders WHERE DATE(created_at) = ? AND status='completed'";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$today]);
         $todayRevenue = $stmt->fetchColumn() ?? 0;
 
         // Average order
-        $sql = "SELECT AVG(total) as avgOrder FROM orders WHERE status='completed'";
+        $sql = "SELECT AVG(total) FROM orders WHERE status='completed'";
         $avgOrder = $this->db->query($sql)->fetchColumn() ?? 0;
 
         // This week revenue
         $weekStart = date('Y-m-d', strtotime('monday this week'));
         $weekEnd   = date('Y-m-d', strtotime('sunday this week'));
-        $sql = "SELECT SUM(total) as total FROM orders WHERE DATE(created_at) BETWEEN ? AND ? AND status='completed'";
+        $sql = "SELECT SUM(total) FROM orders WHERE DATE(created_at) BETWEEN ? AND ? AND status='completed'";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$weekStart, $weekEnd]);
         $weekRevenue = $stmt->fetchColumn() ?? 0;
 
-        // Growth rate (compare this week vs last week)
+        // Last week revenue (for growth rate)
         $lastWeekStart = date('Y-m-d', strtotime('monday last week'));
         $lastWeekEnd   = date('Y-m-d', strtotime('sunday last week'));
         $stmt = $this->db->prepare($sql);
@@ -57,7 +58,13 @@ class SalesController
                 GROUP BY order_type";
         $categorySales = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-        // Pass data to view
-        include APP_ROOT . '/views/sales.php';
+        return [
+            'todayRevenue'  => $todayRevenue,
+            'avgOrder'      => $avgOrder,
+            'weekRevenue'   => $weekRevenue,
+            'growthRate'    => $growthRate,
+            'dailySales'    => $dailySales,
+            'categorySales' => $categorySales
+        ];
     }
 }
