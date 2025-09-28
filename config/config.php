@@ -1,4 +1,11 @@
 <?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Dotenv\Dotenv;
+
+// Load .env file
+$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
 
 // Database credentials
 define('DB_HOST', 'localhost');
@@ -20,8 +27,8 @@ define('FILE_ROOT', '');
 define('SITE_NAME', 'Coffee By Monday Mornings');
 
 // Email Credentials
-define('EMAIL_USERNAME', 'mondaymornings.test123@gmail.com');
-define('EMAIL_PASSWORD', 'lwik oyjs xrbq etxl');
+define('EMAIL_USERNAME', $_ENV['EMAIL_USERNAME']);
+define('EMAIL_PASSWORD', $_ENV['EMAIL_PASSWORD']);
 
 $uri = $_SERVER['REQUEST_URI'];
 
