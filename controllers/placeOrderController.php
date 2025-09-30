@@ -41,6 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: ' . FILE_ROOT . '/checkout');
             exit();
         }
+    } else {
+        $fullName = getUserFullName($pdo, $userId);
     }
 
     try {
@@ -57,7 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         foreach ($cartItems as $item) {
             $total += $item['price'] * $item['quantity'];
         }
-
         // Place order and get the new order ID
         $orderId = createOrder($pdo, $userId, $orderType, $total, $fullName, $address, $phone, $cartItems);
 
@@ -69,9 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         clearCart($pdo, $userId);
 
         $_SESSION['order_success'] = 'Thank you! Your order has been placed successfully.';
-
-        // *** IMPORTANT: The redirect line has been REMOVED to keep the same URL. ***
-        // *** THIS IS NOT A RECOMMENDED PRACTICE. ***
 
     } catch (PDOException $e) {
         error_log("Error placing order: " . $e->getMessage());

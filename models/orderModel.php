@@ -89,3 +89,17 @@ function getOrderItems(object $pdo, int $orderId): array
     $stmt->execute([':order_id' => $orderId]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function getUserFullName(PDO $pdo, int $userId): string|false
+{
+    $sql = "SELECT first_name, last_name FROM users WHERE id = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':id' => $userId]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row) {
+        return $row['first_name'] . ' ' . $row['last_name'];
+    }
+
+    return false; // user not found
+}

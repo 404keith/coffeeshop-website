@@ -4,7 +4,7 @@ ob_start();
 require_once 'config/config.php';
 require_once APP_ROOT . '/config/session.php';
 require_once APP_ROOT . '/views/layouts/header.php';
-require_once APP_ROOT . '/views/auth/alerts.php';
+require_once APP_ROOT . '/helpers/alerts.php';
 
 
 if (!isset($_SESSION['attempts'])) {
