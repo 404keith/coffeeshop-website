@@ -9,7 +9,7 @@ class DashboardController {
     public function index() {
         $data = [];
 
-        // ✅ Total Sales
+        // Total Sales
         $sql = "SELECT COALESCE(SUM(total), 0) AS total_sales 
                 FROM orders 
                 WHERE status = 'completed'";
@@ -17,39 +17,39 @@ class DashboardController {
         $stmt->execute();
         $data['total_sales'] = $stmt->fetchColumn();
 
-        // ✅ Total Orders
+        // Total Orders
         $sql = "SELECT COUNT(*) FROM orders";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $data['total_orders'] = $stmt->fetchColumn();
 
-        // ✅ Active Orders
+        // Active Orders
         $sql = "SELECT COUNT(*) FROM orders WHERE status = 'pending'";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $data['active_orders'] = $stmt->fetchColumn();
 
-        // ✅ Low Stock Products Count
+        // Low Stock Products Count
         $sql = "SELECT COUNT(*) FROM products WHERE stock < 10";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $data['low_stock'] = $stmt->fetchColumn();
 
-        // ✅ Recent Orders (last 5)
+        // Recent Orders (last 10 recent boss)
         $sql = "SELECT id, full_name, total, status, created_at 
                 FROM orders 
                 ORDER BY created_at DESC 
-                LIMIT 5";
+                LIMIT 10";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $data['recent_orders'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // ✅ Low Stock Alerts (products with stock < 10)
+        // Low Stock Alerts 
         $sql = "SELECT id, name, stock 
                 FROM products 
                 WHERE stock < 10 
                 ORDER BY stock ASC 
-                LIMIT 5";
+                LIMIT 10";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         $data['low_stock_list'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
