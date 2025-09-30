@@ -25,6 +25,12 @@ $categorySales = $data['categorySales'];
     body {
       background-color: #FFF6EB;
       font-family: Arial, sans-serif;
+                  background-color: #FFF6EB;
+            background:
+                url('<?php echo FILE_ROOT; ?>/public/assets/images/background-2.png');
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: cover;
     }
 
     .sidebar {
@@ -47,7 +53,7 @@ $categorySales = $data['categorySales'];
     }
 
     .card-box {
-      border: 1px solid #ddd;
+      border: 2px solid #000;
       padding: 20px;
       border-radius: 8px;
       text-align: center;
@@ -122,7 +128,7 @@ $categorySales = $data['categorySales'];
           </table>
         </div>
 
-        <!-- Sales by Category -->
+        <!-- Sales by Category Graph-->
         <div class="mt-4">
           <h6>Sales by Category</h6>
           <?php 

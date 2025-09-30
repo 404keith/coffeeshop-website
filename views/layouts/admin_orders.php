@@ -16,11 +16,16 @@ $counts = $controller->getStatusCounts();
     <title>Order Management</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #FFF6EB; font-family: Arial, sans-serif; }
+        body { background-color: #FFF6EB; font-family: Arial, sans-serif;            background-color: #FFF6EB;
+            background:
+                url('<?php echo FILE_ROOT; ?>/public/assets/images/background-2.png');
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: cover; }
         .sidebar { background: #281A11; min-height: 100vh; padding-top: 20px; color: #fff; }
         .sidebar a { color: #D48423; text-decoration: none; display: block; padding: 12px; }
         .sidebar a:hover, .active { background: rgba(145,106,83,0.4); }
-        .card-box { border: 1px solid #ddd; padding: 20px; border-radius: 8px; text-align: center; background: #fff; height: 100px; font-size: 20px; font-weight: bold; }
+        .card-box { border: 2px solid #000; padding: 20px; border-radius: 8px; text-align: center; background: #fff; height: 100px; font-size: 20px; font-weight: bold; }
     </style>
 </head>
 <body>

@@ -18,6 +18,12 @@ $stocks = $controller->getStocks();
     <style>
         body {
             background-color: #fff6eb;
+                        background-color: #FFF6EB;
+            background:
+                url('<?php echo FILE_ROOT; ?>/public/assets/images/background-2.png');
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: cover;
         }
 
         .sidebar {
@@ -62,7 +68,6 @@ $stocks = $controller->getStocks();
 </head>
 
 <body>
-    <?php include APP_ROOT . '/views/layouts/adminNav.php'; ?>
     <div class="container-fluid">
         <div class="row">
 
@@ -77,8 +82,7 @@ $stocks = $controller->getStocks();
                 <h3>Stock Management</h3>
                 <p>Manage your inventory and track stock levels</p>
 
-                <button type="button" class="btn btn-warning mb-3 float-end" data-bs-toggle="modal"
-                    data-bs-target="#addProductModal">
+                <button type="button" class="btn btn-warning mb-3 float-end" data-bs-toggle="modal" data-bs-target="#addProductModal">
                     Add Product
                 </button>
 

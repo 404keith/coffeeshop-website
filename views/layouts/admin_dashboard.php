@@ -19,6 +19,12 @@ $low_stock_list = $data['low_stock_list'];
 <style>
   body {
     background-color: #fff6eb;
+                background-color: #FFF6EB;
+            background:
+                url('<?php echo FILE_ROOT; ?>/public/assets/images/background-2.png');
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: cover;
   }
 
   .sidebar {
@@ -68,16 +74,16 @@ $low_stock_list = $data['low_stock_list'];
       <p>Welcome back! Here's what's happening at your coffee shop today.</p>
       <div class="row">
         <div class="col-md-3">
-          <div class="card-custom">Total Sales: <?= $total_sales ?></div>
+          <div class="card-custom"><b>Total Sales:</b> <?= $total_sales ?></div>
         </div>
         <div class="col-md-3">
-          <div class="card-custom">Total Orders: <?= $total_orders ?></div>
+          <div class="card-custom"><b>Total Orders: </b><?= $total_orders ?></div>
         </div>
         <div class="col-md-3">
-          <div class="card-custom">Low Stock Products: <?= $low_stock ?></div>
+          <div class="card-custom"><b>Low Stock Products:</b> <?= $low_stock ?></div>
         </div>
         <div class="col-md-3">
-          <div class="card-custom">Active Orders: <?= $active_orders ?></div>
+          <div class="card-custom"><b>Active Orders: </b><?= $active_orders ?></div>
         </div>
       </div>
 
