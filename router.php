@@ -29,10 +29,11 @@ $publicRoutes = [
     'test2' => 'test2.php',
     'test4' => 'test4.php',
     'test5' => 'test5.php',
+
 ];
 
 $adminRoutes = [
-    'admin' => 'views/admin/index.php',
+        'admin' => 'views/admin/index.php',
     'dashboard' => 'views/layouts/admin_dashboard.php',
     'stocks' => 'views/layouts/admin_stocks.php',
     'sales' => 'views/layouts/admin_sales.php',

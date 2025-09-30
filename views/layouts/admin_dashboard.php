@@ -1,9 +1,17 @@
 <?php
+require_once APP_ROOT . '/config/dbhandler.php';
+require_once APP_ROOT . '/controllers/DashboardController.php';
 
-$total_sales = "";
-$total_orders = "";
-$low_stock = "";
-$active_orders = "";
+$controller = new DashboardController($conn);
+$data = $controller->index();
+
+$total_sales   = $data['total_sales'];
+$total_orders  = $data['total_orders'];
+$low_stock     = $data['low_stock'];
+$active_orders = $data['active_orders'];
+$recent_orders = $data['recent_orders'];
+$low_stock_list = $data['low_stock_list'];
+
 ?>
 
 
@@ -11,6 +19,12 @@ $active_orders = "";
 <style>
   body {
     background-color: #fff6eb;
+                background-color: #FFF6EB;
+            background:
+                url('<?php echo FILE_ROOT; ?>/public/assets/images/background-2.png');
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: cover;
   }
 
   .sidebar {
@@ -43,7 +57,7 @@ $active_orders = "";
     background: #fff;
   }
 </style>
-<?php include APP_ROOT . '/views/layouts/adminNav.php'; ?>
+
 <div class="container-fluid">
   <div class="row">
 
@@ -60,31 +74,69 @@ $active_orders = "";
       <p>Welcome back! Here's what's happening at your coffee shop today.</p>
       <div class="row">
         <div class="col-md-3">
-          <div class="card-custom">Total Sales: <?= $total_sales ?></div>
+          <div class="card-custom"><b>Total Sales:</b> <?= $total_sales ?></div>
         </div>
         <div class="col-md-3">
-          <div class="card-custom">Total Orders: <?= $total_orders ?></div>
+          <div class="card-custom"><b>Total Orders: </b><?= $total_orders ?></div>
         </div>
         <div class="col-md-3">
-          <div class="card-custom">Low Stock Products: <?= $low_stock ?></div>
+          <div class="card-custom"><b>Low Stock Products:</b> <?= $low_stock ?></div>
         </div>
         <div class="col-md-3">
-          <div class="card-custom">Active Orders: <?= $active_orders ?></div>
+          <div class="card-custom"><b>Active Orders: </b><?= $active_orders ?></div>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card-custom">
-            <h5>Recent Orders</h5>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card-custom">
-            <h5>Low Stock Alerts</h5>
-          </div>
-        </div>
-      </div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card-custom">
+      <h5>Recent Orders</h5>
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($recent_orders as $order): ?>
+            <tr>
+              <td><?= $order['id'] ?></td>
+              <td><?= htmlspecialchars($order['full_name']) ?></td>
+              <td>₱<?= number_format($order['total'], 2) ?></td>
+              <td><?= ucfirst($order['status']) ?></td>
+              <td><?= date("M d, Y H:i", strtotime($order['created_at'])) ?></td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
     </div>
   </div>
+
+  <div class="col-md-6">
+    <div class="card-custom">
+      <h5>Low Stock Alerts</h5>
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($low_stock_list as $product): ?>
+            <tr>
+              <td><?= htmlspecialchars($product['name']) ?></td>
+              <td><?= $product['stock'] ?></td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 </div>
