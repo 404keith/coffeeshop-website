@@ -64,6 +64,7 @@ $categorySales = $data['categorySales'];
 </head>
 
 <body>
+  <?php include APP_ROOT . '/views/layouts/adminNav.php'; ?>
   <div class="container-fluid">
     <div class="row">
       <div class="col-2 sidebar">
