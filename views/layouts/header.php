@@ -38,7 +38,7 @@ $uri = $_SERVER['REQUEST_URI'];
 
         <li class="nav-item ms-5">
           <a class="nav-link" <?php
-          if ($uri === '') {
+          if ($uri === '/') {
             echo 'onclick="scrollToSection(\'section-menu\')"';
           } else {
             echo 'href="/drinks"';
