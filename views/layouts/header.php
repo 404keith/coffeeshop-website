@@ -119,7 +119,7 @@ $uri = $_SERVER['REQUEST_URI'];
 
         <li class="nav-item">
           <a class="nav-link" <?php
-          if ($uri === '') {
+          if ($uri === '/') {
             echo 'onclick="scrollToSection(\'section-menu\')"';
           } else {
             echo 'href="/"';
@@ -130,7 +130,7 @@ $uri = $_SERVER['REQUEST_URI'];
 
         <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas">About Us</a></li>
         <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas">Contact Us</a></li>
-        <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas"><i class="bi bi-cart"></i>
+        <li class="nav-item "><a class="nav-link" href="/cart"><i class="bi bi-cart"></i>
             Cart</a></li>
         <li class="nav-item dropdown me-5 textRight">
           <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown"

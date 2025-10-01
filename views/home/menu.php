@@ -117,7 +117,6 @@ foreach ($products as $product) {
             box-shadow: none;
             /* background-color: #f9ede2ff; */
             animation: none;
-            /* Crucial: remove animation on mobile */
             border-radius: 4px;
         }
 
@@ -131,55 +130,76 @@ foreach ($products as $product) {
         }
 
 
-        /* Mobile Carousel Fix */
-        @media (max-width: 768px) {
-            #menuCarousel .carousel-inner {
-                display: flex;
-                align-items: center;
-            }
+        /* Mobile Carousel Styles */
+        #menuCarousel .carousel-inner {
+            display: flex;
+            align-items: center;
+        }
 
-            #menuCarousel .item {
-                width: 260px;
-                height: 420px;
-                margin: auto;
-                background: white;
-                border-radius: 4px;
-                padding-top: 120px;
-                position: relative;
-                display: flex;
-                text-decoration: none;
-                flex-direction: column;
-                justify-content: flex-end;
-                padding-bottom: 5rem;
-            }
+        #menuCarousel .item {
+            width: 260px;
+            height: 420px;
+            margin: auto;
+            background: white;
+            border-radius: 4px;
+            padding-top: 120px;
+            position: relative;
+            display: flex;
+            text-decoration: none;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-bottom: 5rem;
+        }
 
-            #menuCarousel .item img {
-                position: absolute;
-                top: 0;
-                margin-top: 8rem;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 70px;
-                height: auto;
-                object-fit: contain;
-            }
+        #menuCarousel .item img {
+            position: absolute;
+            top: 0;
+            margin-top: 8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: auto;
+            object-fit: contain;
+        }
 
-            #menuCarousel .item span {
-                display: block;
-                text-decoration: none;
-                color: black;
-                font-weight: bold;
-                padding: 12px 10px;
-                border-radius: 0 0 20px 20px;
-                text-align: center;
-            }
+        #menuCarousel .item span {
+            display: block;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            padding: 12px 10px;
+            border-radius: 0 0 20px 20px;
+            text-align: center;
+        }
 
-            #menuCarousel .item span:hover {
-                color: #D68421;
-
-            }
+        #menuCarousel .item span:hover {
+            color: #D68421;
 
         }
+
+        #menuCarousel .item .img {
+            display: block;
+            /* Default state: show regular image */
+        }
+
+        #menuCarousel .item .img_hover {
+            display: none;
+            /* Default state: hide hover image */
+        }
+
+        #menuCarousel .item:hover .img {
+            display: none;
+            /* On hover/tap: hide regular image */
+        }
+
+        #menuCarousel .item:hover .img_hover {
+            display: block;
+            /* On hover/tap: show hover image */
+        }
+
+        /* ------------------------------------------------ */
+
+    }
 </style>
 
 <div class="conn2">
@@ -187,26 +207,6 @@ foreach ($products as $product) {
     <p>“Hungry? Thirsty? We’ve got just the thing to make your day sweeter and brighter!”</p>
 
     <!-- Desktop/Tablet Menu -->
-    <!-- <div class="menu d-none d-md-flex">
-        <a href="<?php echo FILE_ROOT; ?>/drinks" class="item">
-            <img class="img1" src="<?php echo FILE_ROOT; ?>/public/assets/images/drinkss.png" alt="Drinks">
-            <span>DRINKS</span>
-        </a>
-        <a href="<?php echo FILE_ROOT; ?>/waffles" class="item">
-            <img class="img2" src="<?php echo FILE_ROOT; ?>/public/assets/images/waffless.png" alt="Waffles">
-            <span>WAFFLES</span>
-        </a>
-        <a href="<?php echo FILE_ROOT; ?>/pastries" class="item">
-            <img class="img3" src="<?php echo FILE_ROOT; ?>/public/assets/images/pastriess.png" alt="Pastries">
-            <span>PASTRIES</span>
-        </a>
-        <a href="<?php echo FILE_ROOT; ?>/merienda" class="item">
-            <img class="img4" src="<?php echo FILE_ROOT; ?>/public/assets/images/meriendaa.png" alt="Merienda">
-            <span>MERIENDA</span>
-        </a>
-    </div> -->
-
-
     <div class="row menu d-none d-md-flex">
 
         <div class="col-3">
@@ -253,18 +253,25 @@ foreach ($products as $product) {
             <div class="carousel-item active">
                 <a href="<?php echo FILE_ROOT; ?>/drinks" class="item">
                     <img src="<?php echo FILE_ROOT; ?>/public/assets/images/drinks_home.png" class="img" alt="Drinks">
+                    <img class="img_hover" src="<?php echo FILE_ROOT; ?>/public/assets/images/drinks_home_hover.png"
+                        alt="Drinks">
                     <span>DRINKS</span>
                 </a>
             </div>
             <div class="carousel-item">
                 <a href="<?php echo FILE_ROOT; ?>/waffles" class="item">
                     <img src="<?php echo FILE_ROOT; ?>/public/assets/images/waffles_home.png" class="img" alt="Waffles">
+                    <img class="img_hover" src="<?php echo FILE_ROOT; ?>/public/assets/images/waffles_home_hover.png"
+                        alt="Waffles">
                     <span>WAFFLES</span>
                 </a>
             </div>
             <div class="carousel-item">
                 <a href="<?php echo FILE_ROOT; ?>/pastries" class="item">
-                    <img src="<?php echo FILE_ROOT; ?>/public/assets/images/pastries_home.png" class=img"
+                    <!-- FIX: Corrected class="img" typo here -->
+                    <img src="<?php echo FILE_ROOT; ?>/public/assets/images/pastries_home.png" class="img"
+                        alt="Pastries">
+                    <img class="img_hover" src="<?php echo FILE_ROOT; ?>/public/assets/images/pastries_home_hover.png"
                         alt="Pastries">
                     <span>PASTRIES</span>
                 </a>
@@ -272,6 +279,8 @@ foreach ($products as $product) {
             <div class="carousel-item">
                 <a href="<?php echo FILE_ROOT; ?>/merienda" class="item">
                     <img src="<?php echo FILE_ROOT; ?>/public/assets/images/merienda_home.png" class="img"
+                        alt="Merienda">
+                    <img class="img_hover" src="<?php echo FILE_ROOT; ?>/public/assets/images/merienda_home_hover.png"
                         alt="Merienda">
                     <span>MERIENDA</span>
                 </a>

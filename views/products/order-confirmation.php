@@ -1,5 +1,12 @@
 <?php
 include APP_ROOT . '/views/layouts/header.php';
+
+// Retrieve and clear the success message from the session if it exists.
+$success_message = '';
+if (isset($_SESSION['order_success'])) {
+    $success_message = $_SESSION['order_success'];
+    unset($_SESSION['order_success']); // Clear it so it doesn't show on refresh
+}
 ?>
 
 
@@ -9,7 +16,17 @@ include APP_ROOT . '/views/layouts/header.php';
             <?= htmlspecialchars($error_message) ?>
         </div>
     <?php elseif ($order): ?>
-        <h2 class="text-center mb-4">Order Confirmation</h2>
+
+        <!-- ACTUAL ORDER CONFIRMATION MESSAGE -->
+        <?php if ($success_message): ?>
+            <div class="alert bg-primary text-white text-center shadow-lg mb-5 mx-auto p-4 rounded-3" style="max-width: 800px;">
+                <h4 class="alert-heading fw-bold"><i class="bi bi-check-circle-fill me-2"></i>Order Placed Successfully!</h4>
+                <p class="mb-0"><?= htmlspecialchars($success_message) ?></p>
+            </div>
+        <?php endif; ?>
+        <!-- END ORDER CONFIRMATION MESSAGE -->
+
+        <h2 class="text-center mb-4">Order Summary</h2>
         <div class="card shadow-sm mx-auto" style="max-width: 800px;">
             <div class="card-body">
                 <h5 class="card-title mb-3">Order #<?= htmlspecialchars($order['id']) ?></h5>
