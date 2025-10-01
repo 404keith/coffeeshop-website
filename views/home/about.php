@@ -11,14 +11,18 @@
     }
 
     .map-container {
-        width: 100%;
-        height: 400px;
+        width: 50%;
+        height: 300px;
+        position: absolute;
+        bottom: 50px;
+        left: 50px;
     }
 
     iframe {
         width: 70%;
         height: 100%;
         border: 0;
+                border-radius: 20px;
     }
 
     .section-title2 {
@@ -30,6 +34,13 @@
         padding-bottom: 50px;
     }
 
+    .title2 {
+        color: #fff6eb;
+        font-family: 'pacifico';
+
+    }
+
+    
     .tite {
         margin-bottom: 100px;
         color: #fff6eb;
@@ -50,33 +61,13 @@
     }
 
     .pp2{
-    
     position: absolute;
     right: 70px;
     font-size: 1.3rem;  
     line-height: 1.8;   
     max-width: 700px;  
     bottom: 120px;
-    } */
-
-    .orderBtn {
-        display: block;
-        margin: 30px auto;
-        background-color: #D4842C;
-        color: white;
-        border: none;
-        padding: 12px 40px;
-        border-radius: 50px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .orderBtn:hover {
-        background-color: #B66809;
-        transform: scale(1.05);
-    }
+    } 
 
     .image-left img{
         position: absolute;
@@ -144,18 +135,18 @@
         <img src="<?php echo FILE_ROOT; ?>/public/assets/images/abt1.jpg" alt="topimg">
       </div>
 
-      <div class="image-bottom">
+      <!-- <div class="image-bottom">
         <img src="<?php echo FILE_ROOT; ?>/public/assets/images/abt2.jpg" alt="botimg">
-      </div>
+      </div> -->
 
     <div class="image-right">
         <img src="<?php echo FILE_ROOT; ?>/public/assets/images/abt4.jpg" alt="rimg">
       </div>
     </div>
 
-        <!-- <button class="orderBtn" href="/public/assets/images/abt1.JPG">About Us</button> -->
-<!-- <div class="map-container"> -->
-        <!-- <iframe 
+<div class="map-container">
+        <h1 class="title2">Store Location</h1> 
+         <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241.24887418612965!2d120.94748347775354!3d14.656963711249894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b4535370f9f7%3A0x441dd0c9b6a53ee5!2s826%20M.%20Naval%20St%2C%20Navotas%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1757057543016!5m2!1sen!2sph" 
             width="600" 
             height="450" 
@@ -163,6 +154,6 @@
             allowfullscreen="" 
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade">
-        </iframe> -->
+        </iframe>
     </div>
 </div>
