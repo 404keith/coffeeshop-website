@@ -65,7 +65,7 @@ $uri = $_SERVER['REQUEST_URI'];
       <ul class="navbar-nav navbar-right d-none d-md-flex align-items-center me-5 text-color">
         <!-- Contact -->
         <li class="nav-item me-5 nav-text">
-          <a class="nav-link d-flex align-items-center" href="#">CONTACT US</a>
+          <a class="nav-link d-flex align-items-center" href="contact">CONTACT US</a>
         </li>
 
         <!-- Cart Dropdown -->

@@ -14,7 +14,7 @@
         width: 50%;
         height: 300px;
         position: absolute;
-        bottom: 50px;
+        bottom: 70px;
         left: 50px;
     }
 
@@ -22,7 +22,7 @@
         width: 70%;
         height: 100%;
         border: 0;
-                border-radius: 20px;
+        border-radius: 20px;
     }
 
     .section-title2 {

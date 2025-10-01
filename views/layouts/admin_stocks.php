@@ -2,6 +2,8 @@
 require_once APP_ROOT . '/config/dbhandler.php';
 require_once APP_ROOT . '/controllers/stocksController.php';
 
+// Assuming $pdo is correctly instantiated elsewhere, e.g., in dbhandler.php
+// For a complete, runnable example, you'd need the actual PDO object
 $controller = new StockController($pdo);
 $controller->handleRequest();
 $stocks = $controller->getStocks();
@@ -18,7 +20,6 @@ $stocks = $controller->getStocks();
     <style>
         body {
             background-color: #fff6eb;
-                        background-color: #FFF6EB;
             background:
                 url('<?php echo FILE_ROOT; ?>/public/assets/images/background-2.png');
             background-repeat: no-repeat;
@@ -68,7 +69,7 @@ $stocks = $controller->getStocks();
 </head>
 
 <body>
-    <?php include APP_ROOT . '/views/layouts/adminNav.php'; ?>
+    <?php include APP_ROOT . '/views/layouts/adminNav.php'; // Assuming this file exists ?>
     <div class="container-fluid">
         <div class="row">
 
@@ -83,7 +84,8 @@ $stocks = $controller->getStocks();
                 <h3>Stock Management</h3>
                 <p>Manage your inventory and track stock levels</p>
 
-                <button type="button" class="btn btn-warning mb-3 float-end" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                <button type="button" class="btn btn-warning mb-3 float-end" data-bs-toggle="modal"
+                    data-bs-target="#addProductModal">
                     Add Product
                 </button>
 
@@ -146,7 +148,7 @@ $stocks = $controller->getStocks();
                     <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="stocks" method="post">
+                <form action="stocks" method="post" **enctype="multipart/form-data"**>
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="name" class="form-label">Product Name</label>
@@ -174,8 +176,8 @@ $stocks = $controller->getStocks();
                             <input type="number" class="form-control" id="stock" name="stock" required>
                         </div>
                         <div class="mb-3">
-                            <label for="image" class="form-label">Image URL</label>
-                            <input type="text" class="form-control" id="image" name="image">
+                            <label for="image" class="form-label">Upload Image</label>
+                            <input type="file" class="form-control" id="image" name="image" **accept="image/\*"**>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -195,8 +197,9 @@ $stocks = $controller->getStocks();
                     <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="stocks" method="post">
+                <form action="stocks" method="post" **enctype="multipart/form-data"**>
                     <input type="hidden" name="product_id" id="edit-product-id">
+                    <input type="hidden" name="current_image" id="edit-current-image">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="edit-name" class="form-label">Product Name</label>
@@ -223,8 +226,9 @@ $stocks = $controller->getStocks();
                             <input type="number" class="form-control" id="edit-stock" name="stock" required>
                         </div>
                         <div class="mb-3">
-                            <label for="edit-image" class="form-label">Image URL</label>
-                            <input type="text" class="form-control" id="edit-image" name="image">
+                            <label for="edit-image-upload" class="form-label">Upload New Image (Leave blank to keep
+                                current)</label>
+                            <input type="file" class="form-control" id="edit-image-upload" name="image" **accept="image/\*"**>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -249,7 +253,7 @@ $stocks = $controller->getStocks();
                 const description = button.getAttribute('data-description');
                 const price = button.getAttribute('data-price');
                 const stock = button.getAttribute('data-stock');
-                const image = button.getAttribute('data-image');
+                const image = button.getAttribute('data-image'); // This is the current image path
 
                 editModal.querySelector('#edit-product-id').value = id;
                 editModal.querySelector('#edit-name').value = name;
@@ -258,9 +262,12 @@ $stocks = $controller->getStocks();
                 editModal.querySelector('#edit-description').value = description;
                 editModal.querySelector('#edit-price').value = price;
                 editModal.querySelector('#edit-stock').value = stock;
-                editModal.querySelector('#edit-image').value = image;
+                editModal.querySelector('#edit-current-image').value = image; // Store current image path**
+                // Note: File input value cannot be set for security.
+                // It's cleared on open, and the user must re-select an image if they want to change it.
             });
         });
     </script>
 </body>
+
 </html>
