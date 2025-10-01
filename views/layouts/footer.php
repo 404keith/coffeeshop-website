@@ -183,6 +183,7 @@ displayAlertTimeJs($alertTimeSeconds);
 <script src="<?php echo FILE_ROOT; ?>/public/assets/js/bootstrap.bundle.js"></script>
 <script src="<?php echo FILE_ROOT; ?>/public/assets/js/all.min.js"></script>
 <script src="<?php echo FILE_ROOT; ?>/public/assets/js/functions.js"></script>
+<script src="<?php echo FILE_ROOT; ?>/public/assets/js/password.js"></script>
 
 
 <!-- alerts -->
