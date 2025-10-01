@@ -15,14 +15,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $errors = [];
 
+        // 1. Check if token exists
         if (empty($token)) {
             $errors['missing_token'] = 'Reset token is missing!';
         }
 
+        // 2. Validate password length
+        if (strlen($password) < 8 || strlen($password) > 64) {
+            $errors['invalid_password_length'] = 'Password must be between 8 and 64 characters.';
+        }
+
+        // 3. Check empty fields
         if (empty($password) || empty($confirmPassword)) {
             $errors['empty_password'] = 'Password fields cannot be empty!';
         }
 
+        // 4. Check match
         if ($password !== $confirmPassword) {
             $errors['password_mismatch'] = 'Passwords do not match!';
         }
@@ -42,16 +50,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } else {
             $_SESSION['errors_reset'] = ['invalid_token' => 'Invalid or expired reset link.'];
-             abort(401);
+            header('Location: ' . FILE_ROOT . '/forgot');
             exit;
         }
 
     } catch (PDOException $e) {
-        die('Query Failed: ' . $e->getMessage());
+        error_log('Query Failed: ' . $e->getMessage());
+        die('A database error occurred. Please try again later.');
     }
 
 } else {
-    // If not POST, block direct access without token
+    // Block direct access without token
     $token = $_GET['token'] ?? '';
     if (empty($token)) {
         require_once APP_ROOT . '/config/session.php';
@@ -59,5 +68,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: ' . FILE_ROOT . '/forgot');
         exit;
     }
-
 }

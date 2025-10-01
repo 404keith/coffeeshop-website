@@ -30,13 +30,25 @@ function get_products_by_category(object $pdo, string $category_name): array
               ORDER BY p.created_at DESC";
 
     $statement = $pdo->prepare($query);
-
     $statement->bindParam(':category_name', $category_name, PDO::PARAM_STR);
     $statement->execute();
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
 
+/**
+ * Decrements the stock of a product by the quantity ordered.
+ * Uses a conditional update (stock >= :quantity) to prevent setting negative stock.
+ */
+function decrement_product_stock(object $pdo, int $product_id, int $quantity): int
+{
+    $query = "UPDATE products SET stock = stock - :quantity WHERE id = :id AND stock >= :quantity;";
+    $statement = $pdo->prepare($query);
+    $statement->bindParam(':quantity', $quantity, PDO::PARAM_INT);
+    $statement->bindParam(':id', $product_id, PDO::PARAM_INT);
+    $statement->execute();
+    return $statement->rowCount(); // Returns 1 if stock was updated, 0 if not (e.g., failed stock check)
+}
 
 function add_product(object $pdo, int $category_id, string $name, string $description, int $price, int $stock, string $image)
 {
@@ -51,4 +63,3 @@ function add_product(object $pdo, int $category_id, string $name, string $descri
     $statement->bindParam(':image', $image);
     $statement->execute();
 }
-

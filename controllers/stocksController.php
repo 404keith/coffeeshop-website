@@ -1,13 +1,16 @@
 <?php
 
-class StockController {
+class StockController
+{
     private $pdo;
 
-    public function __construct(PDO $pdo) {
+    public function __construct(PDO $pdo)
+    {
         $this->pdo = $pdo;
     }
 
-    public function handleRequest() {
+    public function handleRequest()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['submit_product'])) {
                 $this->addProduct();
@@ -19,7 +22,8 @@ class StockController {
         }
     }
 
-    public function getStocks() {
+    public function getStocks()
+    {
         try {
             // Correct table name here
             $sql = "SELECT id, category_id, product_type, name, description, price, stock, image FROM products";
@@ -33,10 +37,28 @@ class StockController {
         }
     }
 
-    private function addProduct() {
-        // Correct table name here
-        $sql = "INSERT INTO products (category_id, product_type, name, description, price, stock, image) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private function addProduct()
+    {
         try {
+            // Handle image upload
+            $imagePath = null;
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                $uploadDir = APP_ROOT . '/public/uploads/';
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0777, true);
+                }
+
+                $filename = time() . '_' . basename($_FILES['image']['name']);
+                $targetPath = $uploadDir . $filename;
+
+                if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
+                    // store relative path for loading in frontend
+                    $imagePath = '/public/uploads/' . $filename;
+                }
+            }
+
+            $sql = "INSERT INTO products (category_id, product_type, name, description, price, stock, image) 
+                VALUES (?, ?, ?, ?, ?, ?, ?)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([
                 $_POST['category_id'],
@@ -45,19 +67,40 @@ class StockController {
                 $_POST['description'] ?? null,
                 $_POST['price'],
                 $_POST['stock'],
-                $_POST['image'] ?? null
+                $imagePath
             ]);
-            header("Location: stocks"); // Redirect to the same page to show changes
+
+            header("Location: stocks");
             exit();
         } catch (PDOException $e) {
             echo "Error adding product: " . $e->getMessage();
         }
     }
 
-    private function updateProduct() {
-        // Correct table name here
-        $sql = "UPDATE products SET category_id = ?, product_type = ?, name = ?, description = ?, price = ?, stock = ?, image = ? WHERE id = ?";
+    private function updateProduct()
+    {
         try {
+            // Default to current image
+            $imagePath = $_POST['current_image'] ?? null;
+
+            // If new image uploaded, replace it
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                $uploadDir = APP_ROOT . '/public/uploads/';
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0777, true);
+                }
+
+                $filename = time() . '_' . basename($_FILES['image']['name']);
+                $targetPath = $uploadDir . $filename;
+
+                if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
+                    $imagePath = '/public/uploads/' . $filename;
+                }
+            }
+
+            $sql = "UPDATE products 
+                SET category_id = ?, product_type = ?, name = ?, description = ?, price = ?, stock = ?, image = ? 
+                WHERE id = ?";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([
                 $_POST['category_id'],
@@ -66,9 +109,10 @@ class StockController {
                 $_POST['description'] ?? null,
                 $_POST['price'],
                 $_POST['stock'],
-                $_POST['image'] ?? null,
+                $imagePath,
                 $_POST['product_id']
             ]);
+
             header("Location: stocks");
             exit();
         } catch (PDOException $e) {
@@ -76,7 +120,8 @@ class StockController {
         }
     }
 
-    private function deleteProduct() {
+    private function deleteProduct()
+    {
         // Correct table name here
         $sql = "DELETE FROM products WHERE id = ?";
         try {

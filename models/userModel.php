@@ -19,3 +19,14 @@ function update_user_password(object $pdo, string $email, string $hashedPassword
         ':email' => $email
     ]);
 }
+
+function getUserEmail(object $pdo, int $userId): string|false
+{
+    $query = "SELECT email FROM users WHERE id = :id LIMIT 1";
+    $statement = $pdo->prepare($query);
+    $statement->bindParam(':id', $userId, PDO::PARAM_INT);
+    $statement->execute();
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+    return $result ? $result['email'] : false;
+}

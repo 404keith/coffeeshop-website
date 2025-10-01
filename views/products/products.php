@@ -1,7 +1,7 @@
 <?php
 include APP_ROOT . '/views/layouts/header.php';
 require_once APP_ROOT . '/helpers/product_icons.php';
-require_once APP_ROOT . '/config/session.php'; // Ensure session is started here 
+require_once APP_ROOT . '/config/session.php';
 
 // ALERTS 
 if (isset($_SESSION['add_to_cart_success'])) {
@@ -45,10 +45,10 @@ switch ($currentURI) {
 ?>
 <div class="container">
   <div class="row align-items-center">
-    <div class=" col">
-      <h1 class="welcome-text mt-4 text-center"><?php
-      echo htmlspecialchars($title);
-      ?></h1>
+    <div class="col">
+      <h1 class="welcome-text mt-4 text-center">
+        <?php echo htmlspecialchars($title); ?>
+      </h1>
       <div class="d-flex justify-content-center align-items-center mb-3">
         <?php displayProductIcons(); ?>
       </div>
@@ -59,14 +59,20 @@ switch ($currentURI) {
 <?php if (empty($products)) {
   echo '<p style="color:red">Product is empty</p>';
 } ?>
-<div class="container mt-3 w-75"> <!-- narrowed container -->
-  <div class="row g-4 justify-content-center"> <!-- only one row, centered -->
-    <?php foreach ($products as $product): ?>
-      <div class="col-md-4 d-flex"> <!-- 3 per row on md+, auto centered -->
+
+<div class="container mt-3 w-75">
+  <div class="row g-4 justify-content-center">
+    <?php foreach ($products as $product):
+      $is_in_stock = $product['stock'] > 0;
+      $stock_text = $is_in_stock ? 'In Stock' : 'Out of Stock';
+      $stock_color = $is_in_stock ? 'text-success' : 'text-danger';
+      ?>
+      <div class="col-md-4 d-flex">
         <div class="card flex-fill shadow-sm">
 
-          <img src="<?php echo FILE_ROOT ?> <?= htmlspecialchars($product['image']) ?>" class="card-img-top"
+          <img src="<?= FILE_ROOT . htmlspecialchars($product['image']) ?>" class="card-img-top"
             alt="<?= htmlspecialchars($product['name']) ?>">
+
 
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center card-text">
@@ -76,10 +82,15 @@ switch ($currentURI) {
 
             <p class="fs-6"><?= htmlspecialchars($product['description']) ?></p>
 
+            <!-- Stock Status Display -->
+            <p class="mb-2 fw-semibold <?= $stock_color ?>">
+              <?= $stock_text ?> (<?= $product['stock'] ?> available)
+            </p>
+
             <!-- add-to-cart form -->
             <form method="POST" action="<?= FILE_ROOT ?>/cart-actions">
 
-              <!-- SAVE URI  -->
+              <!-- SAVE URI -->
               <input type="hidden" name="redirect" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
 
               <input type="hidden" name="action" value="add">
@@ -98,8 +109,27 @@ switch ($currentURI) {
               </h5>
 
               <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-primary btn-rounded w-75">Add to Cart</button>
-                <input type="number" name="quantity" value="1" min="1" class="form-control w-25">
+                <button type="submit" class="btn btn-primary btn-rounded w-75" <?= $is_in_stock ? '' : 'disabled' ?>>
+                  <?= $is_in_stock ? 'Add to Cart' : 'Out of Stock' ?>
+                </button>
+                <!-- <input type="number" name="quantity" value="1" min="1" max="<?= $product['stock'] ?>"
+                  class="form-control w-25" <?= $is_in_stock ? '' : 'disabled' ?>> -->
+
+                <?php
+                require_once APP_ROOT . '/models/cartModel.php';
+
+                // Get quantity already in cart for this product
+                $in_cart_qty = getCartQuantity($pdo, $_SESSION['user_id'] ?? 0, $product['id']);
+
+                // Remaining stock user can add
+                $remaining_stock = $product['stock'] - $in_cart_qty;
+                ?>
+                <input type="number" name="quantity" value="1" min="1"
+                  max="<?= $remaining_stock > 0 ? $remaining_stock : 1 ?>" class="form-control w-25" <?= $is_in_stock && $remaining_stock > 0 ? '' : 'disabled' ?>>
+
+
+
+
               </div>
             </form>
           </div>
@@ -108,25 +138,5 @@ switch ($currentURI) {
     <?php endforeach; ?>
   </div>
 </div>
-
-<div style="height:40vh"></div>
-
-<!-- <script src="<?= FILE_ROOT ?>/public/assets/js/mdb.umd.min.js"></script>
-<script src="<?php echo FILE_ROOT; ?>/public/assets/js/bootstrap.bundle.js"></script>
-<script src="<?php echo FILE_ROOT; ?>/public/assets/js/all.min.js"></script>
-<script src="<?php echo FILE_ROOT; ?>/public/assets/js/functions.js"></script> -->
-
-
-<!-- alerts -->
-<script>
-  // document.addEventListener("DOMContentLoaded", function () {
-  //   setTimeout(() => {
-  //     document.querySelectorAll(".alert").forEach(alert => {
-  //       let bsAlert = new bootstrap.Alert(alert);
-  //       bsAlert.close();
-  //     });
-  //   }, 2000); // 2 seconds
-  // });
-</script>
 
 <?php include APP_ROOT . '/views/layouts/footer.php'; ?>

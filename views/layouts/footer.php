@@ -132,9 +132,9 @@
 
       <div class="d-none d-md-block col-md-1 ms-2 order-md-4"></div>
 
-
+      <!-- email subscription -->
       <div class="col-12 col-md-3 mb-3 text-center text-md-start order-4 order-md-6">
-        <form method="post" action="<?= FILE_ROOT ?>/emailController">
+        <form method="post">
           <h6 class="fw-semibold mb-2">Subscribe to our newsletter</h6>
           <p class="mb-2 p-0 small">Monthly digest of what's new and exciting from us.</p>
           <div class="d-flex flex-column flex-sm-row w-100 gap-2">
@@ -143,6 +143,20 @@
             <button class="btn btn-primary" type="submit">Subscribe</button>
           </div>
         </form>
+
+        <?php
+        require_once APP_ROOT . '/controllers/emailController.php';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
+          $email = trim($_POST['email']);
+          if (sendSubscriptionEmail($email)) {
+            $_SESSION['subscription_success'] = "Thank you for subscribing!";
+          } else {
+            $_SESSION['subscription_error'] = "Could not send subscription email.";
+          }
+          exit;
+        }
+        ?>
       </div>
     </div>
 

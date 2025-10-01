@@ -101,38 +101,37 @@ $stocks = $controller->getStocks();
                     </thead>
                     <tbody>
                         <?php if (!empty($stocks)): ?>
-                        <?php foreach ($stocks as $item): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($item["name"]) ?></td>
-                            <td><?= htmlspecialchars($item["category_id"]) ?></td>
-                            <td><?= htmlspecialchars($item["stock"]) ?></td>
-                            <td><?= htmlspecialchars($item["price"]) ?></td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-dark edit-btn" data-bs-toggle="modal"
-                                    data-bs-target="#editProductModal"
-                                    data-id="<?= htmlspecialchars($item['id']) ?>"
-                                    data-name="<?= htmlspecialchars($item['name']) ?>"
-                                    data-category-id="<?= htmlspecialchars($item['category_id']) ?>"
-                                    data-product-type="<?= htmlspecialchars($item['product_type']) ?>"
-                                    data-description="<?= htmlspecialchars($item['description']) ?>"
-                                    data-price="<?= htmlspecialchars($item['price']) ?>"
-                                    data-stock="<?= htmlspecialchars($item['stock']) ?>"
-                                    data-image="<?= htmlspecialchars($item['image']) ?>">
-                                    ✎ Edit
-                                </a>
-                                <form action="stocks" method="post" style="display:inline;">
-                                    <input type="hidden" name="delete_id" value="<?= htmlspecialchars($item['id']) ?>">
-                                    <button type="submit" name="delete_product" class="btn btn-sm btn-danger"
-                                        onclick="return confirm('Are you sure you want to delete this product?');">🗑
-                                        Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
+                            <?php foreach ($stocks as $item): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($item["name"]) ?></td>
+                                    <td><?= htmlspecialchars($item["category_id"]) ?></td>
+                                    <td><?= htmlspecialchars($item["stock"]) ?></td>
+                                    <td><?= htmlspecialchars($item["price"]) ?></td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-dark edit-btn" data-bs-toggle="modal"
+                                            data-bs-target="#editProductModal" data-id="<?= htmlspecialchars($item['id']) ?>"
+                                            data-name="<?= htmlspecialchars($item['name']) ?>"
+                                            data-category-id="<?= htmlspecialchars($item['category_id']) ?>"
+                                            data-product-type="<?= htmlspecialchars($item['product_type']) ?>"
+                                            data-description="<?= htmlspecialchars($item['description']) ?>"
+                                            data-price="<?= htmlspecialchars($item['price']) ?>"
+                                            data-stock="<?= htmlspecialchars($item['stock']) ?>"
+                                            data-image="<?= htmlspecialchars($item['image']) ?>">
+                                            ✎ Edit
+                                        </a>
+                                        <form action="stocks" method="post" style="display:inline;">
+                                            <input type="hidden" name="delete_id" value="<?= htmlspecialchars($item['id']) ?>">
+                                            <button type="submit" name="delete_product" class="btn btn-sm btn-danger"
+                                                onclick="return confirm('Are you sure you want to delete this product?');">🗑
+                                                Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
                         <?php else: ?>
-                        <tr>
-                            <td colspan="5" class="text-center">No stock items found.</td>
-                        </tr>
+                            <tr>
+                                <td colspan="5" class="text-center">No stock items found.</td>
+                            </tr>
                         <?php endif; ?>
                     </tbody>
                 </table>
@@ -148,7 +147,7 @@ $stocks = $controller->getStocks();
                     <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="stocks" method="post" **enctype="multipart/form-data"**>
+                <form action="stocks" method="post" **enctype="multipart/form-data" **>
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="name" class="form-label">Product Name</label>
@@ -177,7 +176,7 @@ $stocks = $controller->getStocks();
                         </div>
                         <div class="mb-3">
                             <label for="image" class="form-label">Upload Image</label>
-                            <input type="file" class="form-control" id="image" name="image" **accept="image/\*"**>
+                            <input type="file" class="form-control" id="image" name="image" **accept="image/\*" **>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -197,7 +196,7 @@ $stocks = $controller->getStocks();
                     <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="stocks" method="post" **enctype="multipart/form-data"**>
+                <form action="stocks" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="product_id" id="edit-product-id">
                     <input type="hidden" name="current_image" id="edit-current-image">
                     <div class="modal-body">
@@ -228,7 +227,8 @@ $stocks = $controller->getStocks();
                         <div class="mb-3">
                             <label for="edit-image-upload" class="form-label">Upload New Image (Leave blank to keep
                                 current)</label>
-                            <input type="file" class="form-control" id="edit-image-upload" name="image" **accept="image/\*"**>
+                            <input type="file" class="form-control" id="edit-image-upload" name="image"
+                                **accept="image/\*" **>
                         </div>
                     </div>
                     <div class="modal-footer">

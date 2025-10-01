@@ -4,6 +4,7 @@ require_once APP_ROOT . '/config/config.php';
 require_once APP_ROOT . '/config/session.php';
 require_once APP_ROOT . '/config/dbhandler.php';
 require_once APP_ROOT . '/models/cartModel.php';
+require_once APP_ROOT . '/models/productModel.php';
 
 
 // Check if the request is a POST request and an action is set.
@@ -23,22 +24,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
     switch ($action) {
         case 'add':
-            // Handle adding a new product to the cart
             $productId = filter_input(INPUT_POST, 'product_id', FILTER_VALIDATE_INT);
             $quantity = filter_input(INPUT_POST, 'quantity', FILTER_VALIDATE_INT);
 
             if ($productId === false || $quantity === false || $quantity <= 0) {
                 $_SESSION['add_to_cart_error'] = 'Invalid product or quantity specified.';
             } else {
-                if (addProductToCart($pdo, $userId, $productId, $quantity)) {
-                    $_SESSION['add_to_cart_success'] = 'Product successfully added to your cart!';
+                //  Get product info
+                $product = get_product_by_id($pdo, $productId);
+
+                if (!$product) {
+                    $_SESSION['add_to_cart_error'] = 'Product not found.';
                 } else {
-                    $_SESSION['add_to_cart_error'] = 'An unexpected error occurred. Please try again.';
+                    //  Get already-in-cart quantity
+                    $in_cart_qty = getCartQuantity($pdo, $userId, $productId);
+
+                    //  Remaining stock
+                    $remaining_stock = $product['stock'] - $in_cart_qty;
+
+                    if ($quantity > $remaining_stock) {
+                        $_SESSION['add_to_cart_error'] = 'You cannot add more than the available stock.';
+                    } else {
+                        if (addProductToCart($pdo, $userId, $productId, $quantity)) {
+                            $_SESSION['add_to_cart_success'] = 'Product successfully added to your cart!';
+                        } else {
+                            $_SESSION['add_to_cart_error'] = 'An unexpected error occurred. Please try again.';
+                        }
+                    }
                 }
             }
             header('Location: ' . FILE_ROOT . $redirect);
-
             break;
+
 
         case 'update':
             // Handle updating the quantity of a cart item

@@ -4,6 +4,10 @@ require_once APP_ROOT . '/config/session.php';
 require_once APP_ROOT . '/config/dbhandler.php';
 require_once APP_ROOT . '/models/cartModel.php';
 require_once APP_ROOT . '/models/orderModel.php';
+require_once APP_ROOT . '/models/productModel.php';
+require_once APP_ROOT . '/models/userModel.php';
+require_once APP_ROOT . '/controllers/EmailController.php';
+
 
 // Initialize variables for the view
 $order = null;
@@ -59,12 +63,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         foreach ($cartItems as $item) {
             $total += $item['price'] * $item['quantity'];
         }
+
+        //Check stocks:
+        foreach ($cartItems as $item) {
+            $stmt = $pdo->prepare("SELECT stock FROM products WHERE id = :id");
+            $stmt->execute(['id' => $item['product_id']]);
+            $stockRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$stockRow || $stockRow['stock'] < $item['quantity']) {
+                $_SESSION['add_to_cart_error'] = "Sorry, not enough stock for {$item['name']}.";
+                header('Location: ' . FILE_ROOT . '/cart');
+                exit();
+            }
+        }
+
         // Place order and get the new order ID
         $orderId = createOrder($pdo, $userId, $orderType, $total, $fullName, $address, $phone, $cartItems);
+
+        // 2. DEDUCT STOCK FOR EACH ITEM IN THE ORDER
+        foreach ($cartItems as $item) {
+            $product_id = $item['product_id'];
+            $quantity_ordered = $item['quantity'];
+
+            // Call the product model function to decrement the stock
+            $rows_affected = decrement_product_stock($pdo, (int) $product_id, (int) $quantity_ordered);
+
+            if ($rows_affected === 0) {
+                // If the stock deduction failed (e.g., due to a race condition), log it.
+                error_log("Stock deduction failed for product ID: {$product_id} in order ID: {$orderId}. Check logs.");
+            }
+        }
+
+
+        // ----------------------------------------------------
 
         // Fetch the newly created order for the confirmation view
         $order = getOrderById($pdo, (int) $orderId, (int) $userId);
         $orderItems = getOrderItems($pdo, $order['id']);
+        $userEmail = getUserEmail($pdo, $userId);
+        sendOrderEmail($userEmail, $order, $orderItems);
 
         // Clear cart after order
         clearCart($pdo, $userId);
@@ -88,4 +125,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // This is the content that would have been in order-confirmation.php.
 // The variables $order, $orderItems, and $error_message are now available here.
 include APP_ROOT . '/views/products/pickup.php';
-
