@@ -1,0 +1,234 @@
+* {
+  font-family: "inter";
+}
+
+.navbar-color {
+  background-color: #281a11;
+  /* background-color: #fff6eb; */
+
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+li {
+  cursor: pointer;
+}
+
+.text-color .nav-link {
+  color: rgba(212, 132, 35, 1);
+  margin-top: 0.3rem;
+  font-size: 13px;
+}
+
+.textLeft .nav-link {
+  margin-left: 3rem;
+}
+.textRight .nav-link {
+  margin-right: 3rem;
+}
+
+.text-color .nav-link:hover {
+  color: rgba(123, 61, 0, 1);
+}
+
+.logo {
+  max-width: 90px;
+  height: auto;
+  margin-left: 10px;
+}
+
+@media (min-width: 768px) {
+  .navbar .container-fluid {
+    display: flex;
+    justify-content: space-between; /* logo sa kaliwa, account sa kanan */
+    align-items: center;
+  }
+  .navbar-brand {
+    justify-content: flex-start;
+  }
+  .navbar-left {
+    justify-content: flex-start;
+  }
+  .navbar-right {
+    justify-content: flex-end;
+  }
+}
+
+.navbar-toggler {
+  border-color: rgba(212, 132, 35, 1);
+  background-color: transparent;
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(212,132,35,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Offcanvas (sidebar) look & feel */
+.offcanvas-custom {
+  --bs-offcanvas-width: 13rem;
+  background: #fff6eb;
+}
+.offcanvas-custom .nav-link {
+  color: rgba(212, 132, 35, 1);
+  font-size: 20px;
+  padding: 0.6rem 0;
+  margin-top: 5px;
+}
+.offcanvas-custom .nav-link:hover {
+  color: rgba(123, 61, 0, 1);
+}
+.offcanvas-custom .offcanvas-header {
+  border-bottom: 4px solid rgba(0, 0, 0, 0.06);
+  padding-bottom: 1.8rem;
+  padding-top: 1.65rem;
+}
+
+.btn-close {
+  width: 2rem;
+  height: 2rem;
+  background-size: 2rem;
+  opacity: 1;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23d48423'><path d='M2.146 2.854a.5.5 0 0 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z'/></svg>");
+}
+
+.icon {
+  font-size: 16px;
+}
+.house-icon {
+  margin-top: 1.4px;
+  font-size: 16.5px;
+}
+
+.nav-text {
+  margin-top: 2px;
+}
+
+/* Dropdown menu background, border, shadow */
+
+.dropdown-account-icon {
+  padding: 5rem;
+  font-size: 50px;
+  color: #281a11;
+}
+
+.dropdown-menu {
+  margin-top: 50px;
+  background-color: #fff6eb;
+  border-radius: 1rem;
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  padding: 0.5rem 0;
+  transform: translateX(1.9rem) translateY(0.2rem);
+}
+
+/* Dropdown items */
+.dropdown-menu .dropdown-item {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 90%;
+  border-radius: 5rem;
+  color: #281a11;
+  padding: 10px 20px;
+  margin-top: 0.1rem;
+  transition: background 0.3s; /* smooth hover */
+  text-align: center;
+  background-color: #edddc9;
+  display: block !important;
+}
+
+/* Hover/focus on items */
+.dropdown-menu .btn:hover {
+  background-color: #3b1700;
+  color: #fff;
+}
+
+/* Dropdown divider (optional) */
+.dropdown-menu .dropdown-divider {
+  margin: 0.25rem 0;
+}
+
+.btn-account {
+  border-top: 1px rgb(237, 227, 210) solid;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 90%;
+}
+/* greeting) */
+.dropdown-menu .dropdown-item-text {
+  font-family: "inter";
+  color: #231200;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: default; /* non-clickable */
+}
+
+.btn-account:hover,
+.btn-account:focus,
+.btn-account:active {
+  color: rgb(100, 55, 0);
+  text-decoration: none;
+  outline: none;
+}
+
+body {
+  background-color: #fff6eb;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Pacifico&display=swap");
+
+.product-toggle {
+  color: #b46a0f;
+  margin-top: 5rem;
+}
+
+.product-toggle:hover {
+  color: #dd9133;
+}
+
+.product-title {
+  color: #d68421;
+  font-size: 5rem;
+  font-family: "campana";
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* ALERTS */
+.cart-alerts.sticky-alerts {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  z-index: 1050;
+  background: transparent;
+}
+
+.popup-alert {
+  animation: popUp 0.4s ease-out;
+}
+
+@keyframes popUp {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

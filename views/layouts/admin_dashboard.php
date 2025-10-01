@@ -57,7 +57,7 @@ $low_stock_list = $data['low_stock_list'];
     background: #fff;
   }
 </style>
-
+<?php include APP_ROOT . '/views/layouts/adminNav.php'; ?>
 <div class="container-fluid">
   <div class="row">
 
