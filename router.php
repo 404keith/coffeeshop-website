@@ -30,7 +30,7 @@ $publicRoutes = [
     'test2' => 'test2.php',
     'test4' => 'test4.php',
     'test5' => 'test5.php',
-
+    'contact' => 'views/home/contact.php'
 ];
 
 $adminRoutes = [
