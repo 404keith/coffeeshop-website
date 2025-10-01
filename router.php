@@ -19,6 +19,7 @@ $publicRoutes = [
     'pastries' => 'views/products/pastriesView.php',
     'merienda' => 'views/products/meriendaView.php',
     'place-order' => 'controllers/placeOrderController.php',
+    'order-details' => 'controllers/order-detailsController.php',
     'cart' => 'views/products/cart.php',
     'cartView' => 'views/products/cartView.php',
     'cart-actions' => 'views/products/cart-actions.php',
@@ -33,7 +34,7 @@ $publicRoutes = [
 ];
 
 $adminRoutes = [
-        'admin' => 'views/admin/index.php',
+    'admin' => 'views/admin/index.php',
     'dashboard' => 'views/layouts/admin_dashboard.php',
     'stocks' => 'views/layouts/admin_stocks.php',
     'sales' => 'views/layouts/admin_sales.php',

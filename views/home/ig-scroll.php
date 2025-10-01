@@ -350,7 +350,7 @@
                             height="418">
                     </div>
                     <div class="insta-item" id="slide-1">
-                        <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_5.jpg" alt="" width="418"
+                        <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_8.jpg" alt="" width="418"
                             height="418">
                     </div>
                     <div class="insta-item" id="slide-2">
@@ -358,7 +358,7 @@
                             height="418">
                     </div>
                     <div class="insta-item" id="slide-3">
-                        <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_4.jpg" alt="" width="418"
+                        <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_9.jpg" alt="" width="418"
                             height="418">
                     </div>
                     <div class="insta-item" id="slide-4">
@@ -366,7 +366,7 @@
                             height="418">
                     </div>
                     <div class="insta-item" id="slide-5">
-                        <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_6.jpg" alt="" width="418"
+                        <img src="<?php echo FILE_ROOT; ?>/public/assets/images/MERIENDA.jpg" alt="" width="418"
                             height="418">
                     </div>
                     <div class="insta-item" id="slide-6">

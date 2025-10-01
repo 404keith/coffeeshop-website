@@ -8,7 +8,7 @@ $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
 $domain = $_SERVER['HTTP_HOST']; // works for localhost and vhosts
 
 session_set_cookie_params([
-	'lifetime' => 1800,
+	'lifetime' => 60 * 60 * 24 * 7, // 7 days
 	'domain' => $domain,
 	'path' => '/',
 	'secure' => $https,
