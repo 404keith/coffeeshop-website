@@ -57,6 +57,16 @@ function logoutAlert(): void
     }
 }
 
+// ---- EMAIL SUBSCRIPTION -----
+function emailSubscribeAlert(): void
+{
+    if (isset($_SESSION['subscription_success'])) {
+        printSuccess($_SESSION['subscription_success']);
+        unset($_SESSION['subscription_success']);
+    }
+}
+
+
 
 // ---- LOGIN AND SIGNUP -------
 

@@ -45,10 +45,10 @@ function regenerate_session_id_loggedin()
 {
 	session_regenerate_id(true); // - regenerate a more secure or complex session id.
 
-	$userId = $_SESSION['user_id'];
-	$newSessionId = session_create_id();
-	$sessionId = $newSessionId . "_" . $userId;
-	session_id($sessionId);
+	// $userId = $_SESSION['user_id'];
+	// $newSessionId = session_create_id();
+	// $sessionId = $newSessionId . "_" . $userId;
+	// session_id($sessionId);
 
 	// session_create_id()- can mix user name, for creating session id.
 	$_SESSION['last_regeneration'] = time();

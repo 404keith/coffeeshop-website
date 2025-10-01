@@ -19,6 +19,7 @@ $publicRoutes = [
     'pastries' => 'views/products/pastriesView.php',
     'merienda' => 'views/products/meriendaView.php',
     'place-order' => 'controllers/placeOrderController.php',
+    'emailController' => 'controllers/emailController.php',
     'order-details' => 'controllers/order-detailsController.php',
     'cart' => 'views/products/cart.php',
     'cartView' => 'views/products/cartView.php',

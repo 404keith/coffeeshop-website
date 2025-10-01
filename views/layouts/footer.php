@@ -134,13 +134,13 @@
 
 
       <div class="col-12 col-md-3 mb-3 text-center text-md-start order-4 order-md-6">
-        <form>
+        <form method="post" action="<?= FILE_ROOT ?>/emailController">
           <h6 class="fw-semibold mb-2">Subscribe to our newsletter</h6>
           <p class="mb-2 p-0 small">Monthly digest of what's new and exciting from us.</p>
           <div class="d-flex flex-column flex-sm-row w-100 gap-2">
             <label for="newsletter1" class="visually-hidden">Email address</label>
-            <input id="newsletter1" type="email" class="form-control" placeholder="Email address" />
-            <button class="btn btn-primary" type="button">Subscribe</button>
+            <input id="newsletter1" name="email" type="email" class="form-control" placeholder="Email address" />
+            <button class="btn btn-primary" type="submit">Subscribe</button>
           </div>
         </form>
       </div>

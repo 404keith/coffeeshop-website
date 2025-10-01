@@ -152,6 +152,7 @@ $uri = $_SERVER['REQUEST_URI'];
     if ($uri == '/forgot') {
       forgotPasswordAlert();
     } else {
+      // emailSubscribeAlert();
       printCartAlerts();
       check_signup_errors();
       check_login_errors();
