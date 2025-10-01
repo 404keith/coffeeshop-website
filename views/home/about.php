@@ -1,6 +1,6 @@
 <style>
     .conn3 {
-        padding: 120px 40px;
+        /* padding: 120px 40px; */
         background: linear-gradient(to bottom, rgba(212, 132, 35, 1), #FFF6EB 100%);
         background-image: linear-gradient(to bottom, rgba(255, 254, 252, 0) 50%, #FFF6EB 100%),
                            url('<?php echo FILE_ROOT; ?>/public/assets/images/background-3.png');
@@ -21,18 +21,43 @@
         border: 0;
     }
 
-    .section-title {
+    .section-title2 {
         font-family: 'pacifico';
         color: #fff6eb;
         font-size: 3rem;
+        position: relative;
+        top: 50px;
+        padding-bottom: 50px;
     }
 
     .tite {
-        margin-bottom: 20px;
+        margin-bottom: 100px;
         color: #fff6eb;
         font-family: 'pacifico';
         font-size: 5rem;
+        position: absolute;
+        right: 170px;
     }
+
+    .pp{
+    color: #fff6eb;
+    position: absolute;
+    left: 120px;
+    font-size: 1.3rem;  
+    line-height: 1.8;   
+    max-width: 800px; 
+    bottom: 420px; 
+    }
+
+    .pp2{
+    
+    position: absolute;
+    right: 70px;
+    font-size: 1.3rem;  
+    line-height: 1.8;   
+    max-width: 700px;  
+    bottom: 120px;
+    } */
 
     .orderBtn {
         display: block;
@@ -73,7 +98,7 @@
 
     .image-right img{
     position: absolute;
-    width: 350px;
+    width: 400px;
     height: 450px;   
     right: 150px;
     border-radius: 25px;
@@ -87,7 +112,7 @@
     "bottom right";
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  margin-top: 40px;
+
 }
     @media (max-width: 768px) {
   .image-grid {
@@ -102,14 +127,16 @@
 </style>
 
 <div class="conn3">
-    <h2 class="section-title">About</h2>
+    <h2 class="section-title2">About</h2>
     <h1 class="tite">Monday Morning's</h1>
     <br>
 
   
-    <p>“We’re not just about serving delicious food we’re about creating experiences. <br>Our café is built on the idea
+    <p class="pp">“We’re not just about serving delicious food we’re about creating experiences. <br>Our café is built on the idea
         of togetherness, where every drink warms your heart <br>and every bite sparks joy. Step inside, take a seat, and
         let us be part of your everyday story.”</p>
+
+        <p class="pp2">"At Monday Morning’s, we believe every day deserves a warm start. From the aroma of freshly brewed coffee to the comfort of homemade meals, our café is a space where people gather, connect, and create lasting memories."</p>
     
 
     <div class="image-grid">
