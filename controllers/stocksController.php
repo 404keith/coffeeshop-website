@@ -16,22 +16,24 @@ class StockController
                 $this->addProduct();
             } elseif (isset($_POST['update_product'])) {
                 $this->updateProduct();
-            } elseif (isset($_POST['delete_product'])) {
-                $this->deleteProduct();
-            }
+                } elseif (isset($_POST['archive_product'])) {
+                    $this->archiveProduct();
+                } elseif (isset($_POST['restore_product'])) {
+                    $this->restoreProduct();
+                }
         }
     }
 
     public function getStocks()
     {
         try {
-            // Correct table name here
-            $sql = "SELECT id, category_id, product_type, name, description, price, stock, image FROM products";
+            $sql = "SELECT id, category_id, product_type, name, description, price, stock, image 
+                    FROM products 
+                    WHERE is_archived = 0"; // <— fixed
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            // In a real application, you'd log this error instead of echoing
             echo "Error: " . $e->getMessage();
             return [];
         }
@@ -120,17 +122,43 @@ class StockController
         }
     }
 
-    private function deleteProduct()
+    public function getArchived()
     {
-        // Correct table name here
-        $sql = "DELETE FROM products WHERE id = ?";
         try {
+            $sql = "SELECT id, category_id, product_type, name, description, price, stock, image 
+                    FROM products 
+                    WHERE is_archived = 1";
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([$_POST['delete_id']]);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error fetching archived: " . $e->getMessage();
+            return [];
+        }
+    }
+
+    private function archiveProduct()
+    {
+        try {
+            $stmt = $this->pdo->prepare("UPDATE products SET is_archived = 1 WHERE id = ?");
+            $stmt->execute([$_POST['archive_id']]);
             header("Location: stocks");
             exit();
         } catch (PDOException $e) {
-            echo "Error deleting product: " . $e->getMessage();
+            echo "Error archiving product: " . $e->getMessage();
         }
     }
+
+    private function restoreProduct()
+    {
+        try {
+            $stmt = $this->pdo->prepare("UPDATE products SET is_archived = 0 WHERE id = ?");
+            $stmt->execute([$_POST['restore_id']]);
+            header("Location: archived_products");
+            exit();
+        } catch (PDOException $e) {
+            echo "Error restoring product: " . $e->getMessage();
+        }
+    }
+
 }

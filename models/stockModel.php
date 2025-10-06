@@ -47,4 +47,17 @@ class Stock
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+      function archive($id)
+    {
+        $stmt = $this->pdo->prepare("UPDATE products SET is_archived = 1 WHERE id = ?");
+        $stmt->execute([$id]);
+    }
+
+    // Restore archived product
+    function restore($id)
+    {
+        $stmt = $this->pdo->prepare("UPDATE products SET is_archived = 0 WHERE id = ?");
+        $stmt->execute([$id]);
+    }
 }

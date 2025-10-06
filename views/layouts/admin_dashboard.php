@@ -44,7 +44,7 @@ $low_stock_list = $data['low_stock_list'];
   .sidebar a:hover {
     background: rgba(145, 106, 83, 0.4);
   }
-
+          .sidebar a:hover, .active { background: rgba(145,106,83,0.4); }
   .content {
     padding: 20px;
   }
@@ -62,10 +62,11 @@ $low_stock_list = $data['low_stock_list'];
   <div class="row">
 
     <div class="col-md-2 sidebar">
-      <i class="fas fa-house"></i><a href="admin">Dashboard</a>
+      <i class="fas fa-house"></i><a href="admin" class="active">Dashboard</a>
       <i class="fas fa-box"></i><a href="stocks">Stocks</a>
       <i class="fas fa-chart-line"></i><a href="sales">Sales</a>
       <i class="fas fa-cart-shopping"></i><a href="orders">Orders</a>
+                          <a href="archived_products"> archived_products</a>
     </div>
 
 

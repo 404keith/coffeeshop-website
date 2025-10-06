@@ -44,6 +44,7 @@ $adminRoutes = [
     'createAdmin' => 'views/auth/createAdmin.php',
     'createAdminView' => 'views/auth/createAdminView.php',
     'signupAdmin' => 'views/admin/signup.php',
+        'archived_products' => 'views/layouts/archived_products.php',
 ];
 
 // Combine all routes for easy lookup
