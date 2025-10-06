@@ -76,7 +76,8 @@
                     <a href="stocks" class="active">Stocks</a>
                     <a href="sales">Sales</a>
                     <a href="orders">Orders</a>
-                    <a href="archived_products"> archived_products</a>
+                    <a href="archived_products"> Archived Products</a>
+
                 </div>
 
                 <div class="col-md-10 content">

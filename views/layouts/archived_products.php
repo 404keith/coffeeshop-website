@@ -39,7 +39,8 @@ $archived = $controller->getArchived();
                 <a href="stocks">Stocks</a>
                 <a href="sales">Sales</a>
                 <a href="orders">Orders</a>
-                <a href="archived_products" class="active"> archived_products</a>
+                <a href="archived_products" class="active"> Archived Products</a>
+
             </div>
 
             <!-- Main Content -->

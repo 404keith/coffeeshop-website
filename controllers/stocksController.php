@@ -16,11 +16,11 @@ class StockController
                 $this->addProduct();
             } elseif (isset($_POST['update_product'])) {
                 $this->updateProduct();
-                } elseif (isset($_POST['archive_product'])) {
-                    $this->archiveProduct();
-                } elseif (isset($_POST['restore_product'])) {
-                    $this->restoreProduct();
-                }
+            } elseif (isset($_POST['archive_product'])) {
+                $this->archiveProduct();
+            } elseif (isset($_POST['restore_product'])) {
+                $this->restoreProduct();
+            }
         }
     }
 
@@ -29,7 +29,7 @@ class StockController
         try {
             $sql = "SELECT id, category_id, product_type, name, description, price, stock, image 
                     FROM products 
-                    WHERE is_archived = 0"; // <— fixed
+                    WHERE is_archived = 0";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -42,25 +42,32 @@ class StockController
     private function addProduct()
     {
         try {
-            // Handle image upload
-            $imagePath = null;
+            // 🔹 Step 1: Check if product already exists
+            $check = $this->pdo->prepare("SELECT COUNT(*) FROM products WHERE name = ? AND is_archived = 0");
+            $check->execute([$_POST['name']]);
+            $exists = $check->fetchColumn();
+
+            if ($exists > 0) {
+                echo "<script>alert('⚠️ Product already exists!'); window.location.href='stocks';</script>";
+                exit();
+            }
+
+            $imagePath = '/public/uploads/default.png'; 
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
                 $uploadDir = APP_ROOT . '/public/uploads/';
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0777, true);
-                }
+                if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
 
                 $filename = time() . '_' . basename($_FILES['image']['name']);
                 $targetPath = $uploadDir . $filename;
 
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
-                    // store relative path for loading in frontend
                     $imagePath = '/public/uploads/' . $filename;
                 }
             }
 
-            $sql = "INSERT INTO products (category_id, product_type, name, description, price, stock, image) 
-                VALUES (?, ?, ?, ?, ?, ?, ?)";
+            // 🔹 Step 3: Insert product
+            $sql = "INSERT INTO products (category_id, product_type, name, description, price, stock, image, is_archived)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, 0)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([
                 $_POST['category_id'],
@@ -82,10 +89,8 @@ class StockController
     private function updateProduct()
     {
         try {
-            // Default to current image
             $imagePath = $_POST['current_image'] ?? null;
 
-            // If new image uploaded, replace it
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
                 $uploadDir = APP_ROOT . '/public/uploads/';
                 if (!is_dir($uploadDir)) {
@@ -101,8 +106,8 @@ class StockController
             }
 
             $sql = "UPDATE products 
-                SET category_id = ?, product_type = ?, name = ?, description = ?, price = ?, stock = ?, image = ? 
-                WHERE id = ?";
+                    SET category_id = ?, product_type = ?, name = ?, description = ?, price = ?, stock = ?, image = ? 
+                    WHERE id = ?";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([
                 $_POST['category_id'],
@@ -160,5 +165,4 @@ class StockController
             echo "Error restoring product: " . $e->getMessage();
         }
     }
-
 }

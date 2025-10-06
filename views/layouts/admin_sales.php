@@ -72,7 +72,8 @@ $categorySales = $data['categorySales'];
         <a href="stocks">Stocks</a>
         <a href="sales" class="active">Sales</a>
         <a href="orders">Orders</a>
-        <a href="archived_products"> archived_products</a>
+        <a href="archived_products"> Archived Products</a>
+
       </div>
 
       <div class="col-10 p-4">

@@ -37,7 +37,7 @@ $counts = $controller->getStatusCounts();
             <a href="stocks">Stocks</a>
             <a href="sales">Sales</a>
             <a href="orders" class="active">Orders</a>
-                                <a href="archived_products"> archived_products</a>
+            <a href="archived_products"> Archived Products</a>
         </div>
 
         <div class="col-10 p-4">

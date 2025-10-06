@@ -66,7 +66,7 @@ $low_stock_list = $data['low_stock_list'];
       <i class="fas fa-box"></i><a href="stocks">Stocks</a>
       <i class="fas fa-chart-line"></i><a href="sales">Sales</a>
       <i class="fas fa-cart-shopping"></i><a href="orders">Orders</a>
-                          <a href="archived_products"> archived_products</a>
+      <a href="archived_products"> Archived Products</a>
     </div>
 
 
