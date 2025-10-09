@@ -11,18 +11,19 @@ class SalesController
     public function index()
     {
         $today = date('Y-m-d');
+        $year = $_GET['year'] ?? date('Y');
 
-        // Today’s revenue
+        // Today's revenue
         $sql = "SELECT SUM(total) FROM orders WHERE DATE(created_at) = ? AND status='completed'";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$today]);
         $todayRevenue = $stmt->fetchColumn() ?? 0;
 
-        // Average order
+        // Average order value
         $sql = "SELECT AVG(total) FROM orders WHERE status='completed'";
         $avgOrder = $this->db->query($sql)->fetchColumn() ?? 0;
 
-        // This week revenue
+        // Weekly revenue
         $weekStart = date('Y-m-d', strtotime('monday this week'));
         $weekEnd   = date('Y-m-d', strtotime('sunday this week'));
         $sql = "SELECT SUM(total) FROM orders WHERE DATE(created_at) BETWEEN ? AND ? AND status='completed'";
@@ -37,11 +38,11 @@ class SalesController
         $stmt->execute([$lastWeekStart, $lastWeekEnd]);
         $lastWeekRevenue = $stmt->fetchColumn() ?? 0;
 
-        $growthRate = $lastWeekRevenue > 0 
-            ? (($weekRevenue - $lastWeekRevenue) / $lastWeekRevenue) * 100 
+        $growthRate = $lastWeekRevenue > 0
+            ? (($weekRevenue - $lastWeekRevenue) / $lastWeekRevenue) * 100
             : 0;
 
-        // Daily sales this week
+        // Daily sales (this week)
         $sql = "SELECT DATE(created_at) as day, SUM(total) as revenue
                 FROM orders
                 WHERE DATE(created_at) BETWEEN ? AND ? AND status='completed'
@@ -58,13 +59,25 @@ class SalesController
                 GROUP BY order_type";
         $categorySales = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
+        // ✅ Monthly sales (based on selected year)
+        $sql = "SELECT DATE_FORMAT(created_at, '%M') AS month, SUM(total) AS revenue
+                FROM orders
+                WHERE YEAR(created_at) = ? AND status='completed'
+                GROUP BY MONTH(created_at)
+                ORDER BY MONTH(created_at)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$year]);
+        $monthlySales = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
         return [
             'todayRevenue'  => $todayRevenue,
             'avgOrder'      => $avgOrder,
             'weekRevenue'   => $weekRevenue,
             'growthRate'    => $growthRate,
             'dailySales'    => $dailySales,
-            'categorySales' => $categorySales
+            'categorySales' => $categorySales,
+            'monthlySales'  => $monthlySales,
+            'year'          => $year
         ];
     }
 }
