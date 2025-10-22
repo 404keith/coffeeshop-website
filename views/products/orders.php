@@ -99,7 +99,7 @@ include APP_ROOT . '/views/layouts/header.php';
                     </div>
                 <?php elseif (empty($filtered_orders)): ?>
                     <div class="alert alert-info text-center py-4">
-                        No orders found with the status "<?= htmlspecialchars($current_status) ?>".
+                        No "<?= htmlspecialchars($current_status) ?>" orders found.
                     </div>
                 <?php else: ?>
                     <div class="list-group mb-4">
