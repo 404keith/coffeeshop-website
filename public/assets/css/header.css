@@ -2,6 +2,44 @@
   font-family: "inter";
 }
 
+/* ------ NEW -----  */
+:root {
+  --bs-primary: #d68421;
+  --bs-primary-rgb: 214, 132, 33;
+}
+
+/* Custom styles for outline buttons */
+.btn-outline-primary {
+  color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+  color: #fff;
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+}
+
+/* --- PAGINATION OVERRIDES --- */
+
+/* Style for the active page link ("hold state") - a.k.a the current page */
+.pagination .page-item.active .page-link {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: #fff;
+}
+
+/* Style for the disabled page links (e.g., "Previous" on page 1) */
+.pagination .page-item.disabled .page-link {
+  color: #6c757d;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+
+/* -----------  */
+
 .navbar-color {
   background-color: #281a11;
   /* background-color: #fff6eb; */

@@ -7,6 +7,8 @@ if (isset($_SESSION['order_success'])) {
     $success_message = $_SESSION['order_success'];
     unset($_SESSION['order_success']); // Clear it so it doesn't show on refresh
 }
+
+$formattedDate = date('F j, Y g:i A', strtotime($order['created_at']));
 ?>
 
 
@@ -38,7 +40,7 @@ if (isset($_SESSION['order_success'])) {
                     <p><strong>Phone:</strong> <?= htmlspecialchars($order['phone']) ?></p>
                 <?php endif; ?>
 
-                <p><strong>Order Date:</strong> <?= htmlspecialchars($order['created_at']) ?></p>
+                <p><strong>Order Date:</strong> <?= htmlspecialchars($formattedDate) ?></p>
 
                 <hr>
 
