@@ -13,6 +13,7 @@ define('DB_NAME', 'mondaymornings');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 
+define('LOCAL_URL', 'http://coffeeshop-website.local/');
 
 // for file path!
 define('URL_ROOT', 'http://localhost/projects/coffeeshop-website');    //for src and href (HTML)

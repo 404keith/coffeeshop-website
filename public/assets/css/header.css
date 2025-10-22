@@ -152,7 +152,7 @@ li {
   color: #fff;
 }
 
-/* Dropdown divider (optional) */
+/* Dropdown divider */
 .dropdown-menu .dropdown-divider {
   margin: 0.25rem 0;
 }
@@ -162,7 +162,13 @@ li {
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
+  text-align: center;
+  border-radius: 1rem;
+  background-color: #e9dccd;
+  height: 3rem;
   width: 90%;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 /* greeting) */
 .dropdown-menu .dropdown-item-text {

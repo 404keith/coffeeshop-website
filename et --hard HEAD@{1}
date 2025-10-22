@@ -1,0 +1,101 @@
+[33m7c6bae6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: pull: Fast-forward
+[33m86b7b6b[m HEAD@{1}: commit: fixed out of stock
+[33m68da35f[m HEAD@{2}: commit: added length for signup
+[33m7109619[m HEAD@{3}: commit (merge): a
+[33m790f7a8[m HEAD@{4}: commit: changed pics
+[33m50f2788[m HEAD@{5}: pull: Fast-forward
+[33m21d198e[m HEAD@{6}: commit: changed pics
+[33m281dc06[m HEAD@{7}: commit (merge): view order details
+[33mbdaf391[m HEAD@{8}: commit: view order details
+[33m35a5048[m HEAD@{9}: commit: a
+[33m2eee7a3[m HEAD@{10}: commit (merge): a
+[33mcad7a83[m HEAD@{11}: commit: c
+[33medd2783[m HEAD@{12}: commit: dot
+[33mdf5307f[m HEAD@{13}: commit: edited menu bg and products bg
+[33m55c47ab[m HEAD@{14}: commit: checkout
+[33m6208220[m HEAD@{15}: commit: checkout
+[33m741f920[m HEAD@{16}: commit: checkout page
+[33m6d95f6d[m HEAD@{17}: commit: add to cart
+[33m1bb5a9c[m HEAD@{18}: commit: add to cart
+[33m2bb7385[m HEAD@{19}: commit: add to cart
+[33mefba0a6[m HEAD@{20}: commit: 3 col prod
+[33mfa1038f[m HEAD@{21}: commit: added login routes
+[33md4cd3c8[m HEAD@{22}: commit: added animation in forgot-password
+[33meff0234[m HEAD@{23}: commit: fixed signup css
+[33md081f3d[m HEAD@{24}: commit: added style in login/signup
+[33m935ac96[m HEAD@{25}: commit: added style in login/signup
+[33m90848ae[m HEAD@{26}: commit: added category name
+[33m82168b0[m HEAD@{27}: commit: product_icons
+[33m70e3b76[m HEAD@{28}: commit: admin dropdown
+[33m3055670[m HEAD@{29}: commit (merge): .
+[33m829786b[m HEAD@{30}: commit: .
+[33m23d92a6[m HEAD@{31}: commit (merge): a
+[33m5642e44[m HEAD@{32}: commit: adminsignup
+[33m0fe3af8[m HEAD@{33}: commit (merge): Merge branch 'main' of https://github.com/404keith/coffeeshop-website
+[33m70a21aa[m HEAD@{34}: commit: a
+[33madd2b7e[m HEAD@{35}: commit: p
+[33maf1aaa1[m HEAD@{36}: commit: fixed forgot password
+[33md615538[m HEAD@{37}: commit: to fix: reset password
+[33m20760fb[m HEAD@{38}: commit: menu
+[33md8d5064[m HEAD@{39}: commit: adjust
+[33mfeda3dd[m HEAD@{40}: commit: edited menu
+[33ma2e485c[m HEAD@{41}: commit: added new section
+[33md069290[m HEAD@{42}: commit: edited footer
+[33mc2c5357[m HEAD@{43}: commit: edited footer
+[33m7829049[m HEAD@{44}: commit: router
+[33m67f54e1[m HEAD@{45}: commit: edited routes
+[33m7a25fd6[m HEAD@{46}: commit: edited routes
+[33m5acaed5[m HEAD@{47}: commit: footer
+[33m98dac28[m HEAD@{48}: commit: asdasdasd
+[33ma7b97d1[m HEAD@{49}: commit: edited hello, message in login btn
+[33ma89c35f[m HEAD@{50}: commit: "done"
+[33me66bbc5[m HEAD@{51}: commit: changed db
+[33m062b9a2[m HEAD@{52}: commit: a
+[33m9d39b4f[m HEAD@{53}: checkout: moving from admin to main
+[33m30f63b7[m[33m ([m[1;31morigin/admin[m[33m, [m[1;32madmin[m[33m)[m HEAD@{54}: checkout: moving from Rsales_orders to admin
+[33mc742b0d[m[33m ([m[1;31morigin/Rsales_orders[m[33m, [m[1;32mRsales_orders[m[33m)[m HEAD@{55}: checkout: moving from main to Rsales_orders
+[33m9d39b4f[m HEAD@{56}: commit: added products
+[33m0aa916f[m HEAD@{57}: commit: ,
+[33mcda91fb[m HEAD@{58}: commit: ,
+[33m06bcf0e[m HEAD@{59}: commit: ,
+[33mb61ffe7[m HEAD@{60}: commit: ,
+[33m1717e78[m HEAD@{61}: commit: added logout
+[33m0627118[m HEAD@{62}: commit: js fixed
+[33m0c70704[m HEAD@{63}: commit: to fix: white gaps
+[33m44079a5[m HEAD@{64}: commit: a
+[33m30f63b7[m[33m ([m[1;31morigin/admin[m[33m, [m[1;32madmin[m[33m)[m HEAD@{65}: checkout: moving from admin to main
+[33m30f63b7[m[33m ([m[1;31morigin/admin[m[33m, [m[1;32madmin[m[33m)[m HEAD@{66}: checkout: moving from main to admin
+[33m30f63b7[m[33m ([m[1;31morigin/admin[m[33m, [m[1;32madmin[m[33m)[m HEAD@{67}: merge admin: Fast-forward
+[33mbc06d72[m HEAD@{68}: checkout: moving from admin to main
+[33m30f63b7[m[33m ([m[1;31morigin/admin[m[33m, [m[1;32madmin[m[33m)[m HEAD@{69}: checkout: moving from admin to admin
+[33m30f63b7[m[33m ([m[1;31morigin/admin[m[33m, [m[1;32madmin[m[33m)[m HEAD@{70}: commit: new db
+[33mdc2b985[m HEAD@{71}: pull origin admin: Fast-forward
+[33mbc06d72[m HEAD@{72}: checkout: moving from main to admin
+[33mbc06d72[m HEAD@{73}: commit: k:
+[33mc348aba[m HEAD@{74}: commit: ASDasd
+[33m9610f2c[m HEAD@{75}: commit: clickable menu btns
+[33m19dbaa7[m HEAD@{76}: commit: issue: footer
+[33m17ec1c1[m HEAD@{77}: commit: section
+[33md0a7ed1[m HEAD@{78}: commit: added favicon
+[33m212ac9a[m HEAD@{79}: commit: added bootstrap icons
+[33m4d62a08[m HEAD@{80}: commit: file structure
+[33mbe1e94a[m HEAD@{81}: commit: k: cleaned
+[33md4aa775[m HEAD@{82}: commit: k
+[33me0b9b16[m HEAD@{83}: commit: index d
+[33mc56a587[m HEAD@{84}: commit: haha
+[33ma64a3b9[m HEAD@{85}: commit (merge): .
+[33mb07e92b[m HEAD@{86}: commit: t
+[33m50e2dd9[m HEAD@{87}: reset: moving to HEAD~1
+[33mcf1d096[m HEAD@{88}: pull: Fast-forward
+[33m1da09dd[m HEAD@{89}: commit: keith
+[33m2577647[m HEAD@{90}: commit: fixed signup
+[33m584c1e2[m HEAD@{91}: commit: new database sql
+[33m72101a8[m HEAD@{92}: commit: asdasdads
+[33m9c02544[m HEAD@{93}: commit: signup/login
+[33m0ff4495[m HEAD@{94}: commit: login alert
+[33md0ef755[m HEAD@{95}: commit: done login-form only
+[33m533dd54[m HEAD@{96}: commit: fixed text size
+[33ma20d7ec[m HEAD@{97}: commit: message
+[33m7c6811f[m HEAD@{98}: commit: title
+[33mc12ebee[m HEAD@{99}: commit: header done
+[33m292eca1[m HEAD@{100}: clone: from https://github.com/404keith/coffeeshop-website.git

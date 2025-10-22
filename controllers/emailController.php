@@ -63,21 +63,99 @@ function sendOrderEmail(string $email, array $order, array $orderItems): bool
                 . number_format($item['price'] * $item['quantity'], 2) . "</li>";
         }
 
+        $heartIcon = APP_ROOT . "/public/assets/images/heart.png";
+        $logoIcon = APP_ROOT . "/public/assets/images/logo.png";
+        $cartIcon = APP_ROOT . "/public/assets/images/cart.png";
+
+        $facebookIcon = APP_ROOT . "/public/assets/images/facebook.png";
+        $instagramIcon = APP_ROOT . "/public/assets/images/instagram.png";
+        $tiktokIcon = APP_ROOT . "/public/assets/images/tiktok.png";
+
+        $mail->addEmbeddedImage($facebookIcon, 'facebookicon');
+        $mail->addEmbeddedImage($instagramIcon, 'igicon');
+        $mail->addEmbeddedImage($tiktokIcon, 'tiktokicon');
+
+        $mail->addEmbeddedImage($cartIcon, 'carticon');
+        $mail->addEmbeddedImage($heartIcon, 'hearticon');
+        $mail->addEmbeddedImage($logoIcon, 'logoicon');
+
+        $formattedDate = date('F j, Y g:i A', strtotime($order['created_at']));
+
         $mail->Body = "
-            <h2>Thank you for your order!</h2>
-            <p>Hello {$order['full_name']},</p>
-            <p>We’ve received your order #{$order['id']} placed on {$order['created_at']}.</p>
+<div style=\"width: 100%; padding: 10px 0;\">
+  <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">
+    <tr>
+      <td align=\"center\">
+        <!-- Centered Container Table -->
+        <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"700\" style=\"border-radius: 8px; margin: 0 auto;\">
+          <tr>
+            <td style=\"padding: 30px; font-family: Arial, sans-serif; color: #333333;\">
+
+            <div style=\"padding-bottom:10px;\">
+              <img src=\"cid:logoicon\" alt=\"Heart\" width=\"auto\" height=\"24\" style=\"vertical-align: middle; \">
+              <span style=\"color: #555555; font-weight:bold; font-size: 12px; vertical-align: middle; padding-left:5px; \">Coffee by Monday Mornings</span>
+            </div>
+
+              <h1 style=\"text-align: left; margin-top: 0; color: #2c3e50;\">Thank you for your order!
+                <img src=\"cid:hearticon\" alt=\"Heart\" width=\"24\" height=\"24\" style=\"vertical-align: middle;\">
+              </h1>
+              
+              <h2 style=\"font-size: 18px; font-weight: normal;\">Hello {$order['full_name']},</h2>
+              
+              <p style=\"font-size: 16px; line-height: 1.5;\">
+                We’ve received your order <strong>#{$order['id']}</strong> placed on {$formattedDate}.
+              </p>
+              
+
+              <h3 style=\"border-top: 2px solid #eeeeee; padding-top: 20px; margin-top: 30px; margin-bottom: 20px;\">
+               <img src=\"cid:carticon\" alt=\"Cart\" height=\"22\" style=\"vertical-align: middle; margin-right: 8px;\">
+                Orders:
+             </h3>
+              
+              <ul style=\"list-style: none; padding: 0;  margin-left:25px;\">
+                 {$itemsHtml}
+              </ul>
+              
+              <p style=\"font-size: 18px; font-weight: bold; margin-top: 20px; margin-bottom: 30px;\">
+                Total: P " . number_format($order['total'], 2) . "
+              </p>
+              
+              <p style=\"font-size: 16px;\">We’ll notify you once it’s ready to pickup.</p>
+
+
+       <hr style=\"border: none; border-top: 1px solid #dddddd; margin: 20px 0;\">
+
+        <div style=\"text-align: left;\">
             
-            <h3>Order Summary:</h3>
-            <ul>
-                {$itemsHtml}
-            </ul>
-            <p><strong>Total: P " . number_format($order['total'], 2) . "</strong></p>
+            <p style=\"color: #555555; font-size: 14px; margin: 0 0 10px 0;\">
+                Follow Us:
+            </p>
             
-            <p>We’ll notify you once it’s ready.</p>
-            <br>
-            <p>— Coffee by Monday Mornings</p>
-        ";
+            <div>
+                <a href=\"https://www.facebook.com/profile.php?id=100092605117539\" target=\"_blank\" style=\"text-decoration: none; margin-right: 10px;\">
+                    <img src=\"cid:facebookicon\" alt=\"Facebook\" height=\"24\" style=\"vertical-align: middle;\">
+                </a>
+                
+                <a href=\"https://www.instagram.com/coffeebymondaymornings/\" target=\"_blank\" style=\"text-decoration: none; margin-right: 10px;\">
+                    <img src=\"cid:igicon\" alt=\"Instagram\" height=\"24\" style=\"vertical-align: middle;\">
+                </a>
+                
+                <a href=\"https://www.tiktok.com/@coffeebymondaymornings\" target=\"_blank\" style=\"text-decoration: none;\">
+                    <img src=\"cid:tiktokicon\" alt=\"TikTok\" height=\"24\" style=\"vertical-align: middle;\">
+                </a>
+            </div>
+
+        </div>
+              
+
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+";
 
         return $mail->send();
     } catch (Exception $e) {
