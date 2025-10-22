@@ -16,7 +16,8 @@
 
 .btn-outline-primary:hover,
 .btn-outline-primary:focus,
-.btn-outline-primary:active {
+.btn-outline-primary:active,
+.btn-outline-primary.active {
   color: #fff;
   background-color: var(--bs-primary) !important;
   border-color: var(--bs-primary) !important;
