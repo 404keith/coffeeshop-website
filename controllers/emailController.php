@@ -35,6 +35,35 @@ function sendSubscriptionEmail(string $email): bool
     }
 }
 
+function send_verification_email(string $email, string $code): bool
+{
+    try {
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = EMAIL_USERNAME;
+        $mail->Password = EMAIL_PASSWORD;
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+
+        $mail->setFrom('mondaymornings.test123@gmail.com', 'Coffee by Monday Mornings');
+        $mail->addAddress($email);
+
+        $mail->isHTML(true);
+        $mail->Subject = 'Your Verification Code';
+        $mail->Body = '
+            <h1>Verification Code</h1>
+            <p>Your verification code is: <strong>' . $code . '</strong></p>
+            <p>Use this code to complete your registration.</p>';
+
+        return $mail->send();
+    } catch (Exception $e) {
+        error_log("Verification Mail Error: {$e->getMessage()}");
+        return false;
+    }
+}
+
 /**
  * Sends an order confirmation email
  */
