@@ -1,0 +1,121 @@
+/* General Menu Styles */
+.menu-container {
+    padding: 80px 0;
+    background-color: #fdfaf6;
+    text-align: center;
+}
+
+.menu-container h2 {
+    font-family: 'Pacifico', cursive;
+    font-size: 3.5rem;
+    color: #8B4513; /* SaddleBrown */
+    margin-bottom: 20px;
+}
+
+.menu-container p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 50px;
+}
+
+/* Desktop Menu */
+.desktop-menu {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.menu-item {
+    position: relative;
+    width: 280px;
+    height: 420px;
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+}
+
+.menu-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.menu-item-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+}
+
+.menu-item:hover .menu-item-background {
+    transform: scale(1.1);
+}
+
+.menu-item-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    color: #fff;
+    text-align: center;
+}
+
+.menu-item-content span {
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Mobile Menu */
+@media (max-width: 768px) {
+    .desktop-menu {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-menu {
+        display: none;
+    }
+}
+
+.mobile-menu {
+    padding: 0 20px;
+}
+
+.carousel-item {
+    text-align: center;
+}
+
+.mobile-menu .menu-item {
+    margin: 0 auto 30px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menu-item {
+    animation: fadeIn 0.5s ease-out forwards;
+}

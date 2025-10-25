@@ -15,9 +15,12 @@ foreach ($products as $product) {
         background: #fff6eb;
         background-position: center -15.2rem;
         text-align: center;
-        height: 100vh;
+        /* MODIFIED: Use min-height for flexibility */
+        min-height: 100vh;
         position: relative;
         width: 100%;
+        /* MODIFIED: Set height to auto so min-height takes over */
+        height: auto;
     }
 
     .conn2 h2 {
@@ -48,12 +51,10 @@ foreach ($products as $product) {
         content: none;
     }
 
-
     .item:hover {
         /* background-color: #f5e4d2ff; */
         border-radius: 16px;
     }
-
 
     .menu .item img {
         position: absolute;
@@ -72,8 +73,6 @@ foreach ($products as $product) {
         transform: translateX(-50%);
     }
 
-
-
     .menu .item .img_hover {
         display: none;
     }
@@ -86,8 +85,6 @@ foreach ($products as $product) {
         display: block;
     }
 
-
-
     .menu .item span {
         display: block;
         color: black;
@@ -99,8 +96,6 @@ foreach ($products as $product) {
         transition: color 0.2s ease-out;
     }
 
-
-
     .menu {
         gap: 0 !important;
         margin-top: 50px;
@@ -110,6 +105,14 @@ foreach ($products as $product) {
 
     /* Mobile Carousel Fix */
     @media (max-width: 768px) {
+
+        */ .conn2 {
+            padding: 50px 20px;
+            /* Reduced padding for mobile */
+            min-height: auto;
+            /* Let content define height */
+            height: auto;
+        }
 
         /* Resetting desktop hover effects for mobile */
         .item:hover {
@@ -130,7 +133,6 @@ foreach ($products as $product) {
         }
 
 
-        /* Mobile Carousel Styles */
         #menuCarousel .carousel-inner {
             display: flex;
             align-items: center;
@@ -140,7 +142,8 @@ foreach ($products as $product) {
             width: 260px;
             height: 420px;
             margin: auto;
-            background: white;
+            /* MODIFIED: Match web view background color */
+            background: #f9ede2ff;
             border-radius: 4px;
             padding-top: 120px;
             position: relative;
@@ -174,7 +177,6 @@ foreach ($products as $product) {
 
         #menuCarousel .item span:hover {
             color: #D68421;
-
         }
 
         #menuCarousel .item .img {
@@ -197,7 +199,18 @@ foreach ($products as $product) {
             /* On hover/tap: show hover image */
         }
 
-        /* ------------------------------------------------ */
+
+        #menuCarousel .carousel-control-prev,
+        #menuCarousel .carousel-control-next {
+            width: 4%;
+
+        }
+
+        #menuCarousel .carousel-control-prev i,
+        #menuCarousel .carousel-control-next i {
+            color: #D68421;
+            font-size: 3.5rem;
+        }
 
     }
 </style>
@@ -268,7 +281,6 @@ foreach ($products as $product) {
             </div>
             <div class="carousel-item">
                 <a href="<?php echo FILE_ROOT; ?>/pastries" class="item">
-                    <!-- FIX: Corrected class="img" typo here -->
                     <img src="<?php echo FILE_ROOT; ?>/public/assets/images/pastries_home.png" class="img"
                         alt="Pastries">
                     <img class="img_hover" src="<?php echo FILE_ROOT; ?>/public/assets/images/pastries_home_hover.png"
@@ -288,14 +300,12 @@ foreach ($products as $product) {
         </div>
 
         <!-- Carousel Controls -->
-        <button class="carousel-control-prev" style="color:black" type="button" data-bs-target="#menuCarousel"
-            data-bs-slide="prev">
-            <i class="bi bi-caret-left-fill fs-3 me-5"></i>
+        <button class="carousel-control-prev" type="button" data-bs-target="#menuCarousel" data-bs-slide="prev">
+            <i class="bi bi-caret-left-fill"></i>
         </button>
 
-        <button class="carousel-control-next" style="color:black" type="button" data-bs-target="#menuCarousel"
-            data-bs-slide="next">
-            <i class="bi bi-caret-right-fill fs-3 ms-5"></i>
+        <button class="carousel-control-next" type="button" data-bs-target="#menuCarousel" data-bs-slide="next">
+            <i class="bi bi-caret-right-fill"></i>
         </button>
     </div>
 </div>
