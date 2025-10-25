@@ -21,6 +21,7 @@ $uri = $_SERVER['REQUEST_URI'];
   <link rel="stylesheet" href="<?= FILE_ROOT ?>/public/assets/css/flaticon/css/all/all.css">
   <link rel="stylesheet" href="<?= FILE_ROOT ?>/public/assets/css/fonts.css">
   <link rel="stylesheet" href="<?= FILE_ROOT ?>/public/assets/css/header.css">
+  <link rel="stylesheet" href="<?= FILE_ROOT ?>/public/assets/css/about-modern.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
