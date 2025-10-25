@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../config/dbhandler.php';
+require_once APP_ROOT . 'config/dbhandler.php';
 require_once __DIR__ . '/../../models/productModel.php';
 
 if (isset($_GET['category'])) {
