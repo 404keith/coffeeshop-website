@@ -1,6 +1,11 @@
 .about-section {
   padding: 80px 0;
   background-color: #fef0df;
+  background-image: url("../images/login-background.png");
+  background-size: auto;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .about-container {
