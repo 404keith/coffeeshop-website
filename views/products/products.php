@@ -57,7 +57,7 @@ switch ($currentURI) {
 
       <div class="d-flex justify-content-center align-items-center mb-3">
         <form action="" method="GET" class="search-form">
-          <input type="text" name="search" placeholder="Search products..." class="search-input">
+          <input type="text" name="search" id="search-input" data-category="<?php echo strtolower($title); ?>" placeholder="Search products..." class="search-input">
           <button type="submit" class="search-button">Search</button>
         </form>
       </div>
@@ -72,7 +72,7 @@ switch ($currentURI) {
 <div class="container mt-3">
   <div class="row justify-content-center">
     <div class="col-lg-11 col-xl-10">
-      <div class="row g-4 justify-content-center">
+      <div class="row g-4 justify-content-center" id="product-list">
         <?php foreach ($products as $product):
           $is_in_stock = $product['stock'] > 0;
           $stock_text = $is_in_stock ? 'Available' : 'Not Available';
@@ -137,5 +137,7 @@ switch ($currentURI) {
     </div>
   </div>
 </div>
+
+<script src="<?= FILE_ROOT ?>/public/assets/js/search.js"></script>
 
 <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
