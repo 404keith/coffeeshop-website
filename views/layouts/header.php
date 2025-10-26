@@ -123,14 +123,16 @@ $uri = $_SERVER['REQUEST_URI'];
           if ($uri === '/') {
             echo 'onclick="scrollToSection(\'section-menu\')"';
           } else {
-            echo 'href="/"';
+            echo 'href="/drinks"';
           }
           ?>><i class="bi bi-cup-hot icon"></i> Menu</a>
         </li>
 
 
-        <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas">About Us</a></li>
-        <li class="nav-item "><a class="nav-link" href="#" data-bs-dismiss="offcanvas">Contact Us</a></li>
+        <li class="nav-item "><a class="nav-link" href="/about">About Us</a></li>
+
+        <li class="nav-item "><a class="nav-link" href="/contact">Contact Us</a></li>
+
         <li class="nav-item "><a class="nav-link" href="/cart"><i class="bi bi-cart"></i>
             Cart</a></li>
         <li class="nav-item dropdown me-5 textRight">

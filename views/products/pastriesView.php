@@ -15,6 +15,13 @@ try {
         $products = category_show($pdo, $category_name);
     }
 
+    if (isset($_GET['ajax']) && $_GET['ajax'] == '1') {
+        // If it is, only return the product list HTML
+        require APP_ROOT . '/views/products/_product_list.php';
+    } else {
+        // Otherwise, load the entire page as usual
+        require APP_ROOT . '/views/products/products.php';
+    }
 
     // Load HTML layout
     require APP_ROOT . '/views/products/products.php';

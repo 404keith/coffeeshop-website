@@ -41,6 +41,9 @@ switch ($currentURI) {
   case '/pastries':
     $title = 'Pastries';
     break;
+  default:
+    $title = 'Products'; // A default title
+    break;
 }
 ?>
 <div class="container">
@@ -50,14 +53,14 @@ switch ($currentURI) {
         <?php echo htmlspecialchars($title); ?>
       </h1>
 
-      <!-- product categories icons -->
       <div class="d-flex justify-content-center align-items-center mb-3">
         <?php displayProductIcons(); ?>
       </div>
 
       <div class="d-flex justify-content-center align-items-center mb-3">
         <form action="" method="GET" class="search-form">
-          <input type="text" name="search" id="search-input" data-category="<?php echo strtolower($title); ?>" placeholder="Search products..." class="search-input">
+          <input type="text" name="search" id="search-input" data-category="<?php echo strtolower($title); ?>"
+            placeholder="Search products..." class="search-input">
           <button type="submit" class="search-button">Search</button>
         </form>
       </div>
@@ -65,79 +68,16 @@ switch ($currentURI) {
   </div>
 </div>
 
-<?php if (empty($products)) {
-  echo '<p style="color:red">Product is empty</p>';
-} ?>
-
 <div class="container mt-3">
   <div class="row justify-content-center">
     <div class="col-lg-11 col-xl-10">
       <div class="row g-4 justify-content-center" id="product-list">
-        <?php foreach ($products as $product):
-          $is_in_stock = $product['stock'] > 0;
-          $stock_text = $is_in_stock ? 'Available' : 'Not Available';
-          $stock_color = $is_in_stock ? 'text-success' : 'text-danger';
-          ?>
-          <div class="col-12 col-sm-6 col-md-4 d-flex">
-            <div class="card flex-fill shadow-sm">
-              <img src="<?= FILE_ROOT . htmlspecialchars($product['image']) ?>" class="card-img-top"
-                alt="<?= htmlspecialchars($product['name']) ?>">
-
-              <div class="card-body d-flex flex-column">
-                <div class="d-flex justify-content-between align-items-center card-text">
-                  <!--  title -->
-                  <h5 class="card-title mb-0 fw-bold"><?= htmlspecialchars($product['name']) ?></h5>
-                  <!--  price  -->
-                  <p class="fw-bold mb-0 price">P <?= number_format($product['price'], 2) ?></p>
-                </div>
-                <!--  description  -->
-                <p class="fs-6 flex-grow-1"><?= htmlspecialchars($product['description']) ?></p>
-
-                <!-- items inside cart: bottom part -->
-                <!-- stock status -->
-                <p class="stock mb-2 fw-semibold <?= $stock_color ?>">
-                  <?= $stock_text ?>
-                </p>
-
-                <form method="POST" action="<?= FILE_ROOT ?>/cart-actions">
-                  <input type="hidden" name="redirect" value="<?= htmlspecialchars($_SERVER['REQUEST_URI']) ?>">
-                  <input type="hidden" name="action" value="add">
-                  <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
-                  <div class="d-flex gap-2 star mb-1">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                  </div>
-                  <!-- product type -->
-                  <h5 class="card-title product_type">
-                    <?= strtoupper(htmlspecialchars($product['product_type'])) ?>
-                  </h5>
-                  <!-- add to cart btn -->
-                  <div class="d-flex gap-2">
-                    <button type="submit" class="btn btn-primary btn-rounded w-75" <?= $is_in_stock ? '' : 'disabled' ?>>
-                      <?= $is_in_stock ? 'Add to Cart' : 'Out of Stock' ?>
-                    </button>
-                    <?php
-                    require_once APP_ROOT . '/models/cartModel.php';
-                    $in_cart_qty = getCartQuantity($pdo, $_SESSION['user_id'] ?? 0, $product['id']);
-                    $remaining_stock = $product['stock'] - $in_cart_qty;
-                    ?>
-                    <input type="number" name="quantity" value="1" min="1"
-                      max="<?= $remaining_stock > 0 ? $remaining_stock : 1 ?>" class="form-control w-25" <?= $is_in_stock && $remaining_stock > 0 ? '' : 'disabled' ?>>
-                  </div>
-                </form>
-              </div>
-
-            </div>
-          </div>
-        <?php endforeach; ?>
+        <?php include '_product_list.php'; // Include the new partial ?>
       </div>
     </div>
   </div>
 </div>
 
 <script src="<?= FILE_ROOT ?>/public/assets/js/search.js"></script>
-
+<script src="<?= FILE_ROOT ?>/public/assets/js/category-loader.js"></script>
 <?php include APP_ROOT . '/views/layouts/footer.php'; ?>

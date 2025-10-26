@@ -35,17 +35,18 @@ $tries = $_SESSION['verification_tries'] ?? 0;
 
                     <!-- Verification Code Input -->
                     <div data-mdb-input-init class="form-outline mb-4">
-                        <input type="text" name="verification_code" id="verification_code" class="form-control" required />
+                        <input type="text" name="verification_code" id="verification_code" class="form-control"
+                            required />
                         <label class="form-label" for="verification_code">Verification Code</label>
                     </div>
 
-                    <?php if (isset($_SESSION['errors_verify']['invalid_code'])) : ?>
+                    <?php if (isset($_SESSION['errors_verify']['invalid_code'])): ?>
                         <div class="alert alert-danger" role="alert">
                             <?= $_SESSION['errors_verify']['invalid_code'] ?>
                         </div>
                     <?php endif; ?>
 
-                    <p>Tries left: <?= 4 - $tries ?></p>
+                    <!-- <p>Tries left: <?= 4 - $tries ?></p> -->
 
                     <!-- Submit button -->
                     <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4">Verify</button>
