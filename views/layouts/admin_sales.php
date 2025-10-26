@@ -106,9 +106,9 @@ $year          = $data['year'];
         <!-- Daily Sales Table -->
         <div class="mt-4">
           <h6><i class="bi bi-calendar-week me-2"></i>Daily Sales This Week</h6>
-          <table class="table table-striped table-bordered">
-            <thead class="table-dark">
-              <tr><th>Date</th><th>Revenue (₱)</th></tr>
+          <table class="table table-striped table-bordered"  >
+            <thead >
+              <tr ><th style="background-color: #281A11; color: white;">Date</th><th style="background-color: #281A11; color: white;">Revenue (₱)</th></tr>
             </thead>
             <tbody>
               <?php if (!empty($dailySales)): ?>
@@ -126,9 +126,9 @@ $year          = $data['year'];
         </div>
 
         <!-- Sales by Category -->
-        <div class="mt-5">
+        <div class="mt-6">
           <div class="card shadow-sm border-0">
-            <div class="card-header bg-dark text-white">
+            <div class="card-header text-white" style="background-color: #281A11;">
               <h6 class="mb-0"><i class="bi bi-pie-chart-fill me-2"></i>Sales by Category</h6>
             </div>
             <div class="card-body">
@@ -159,7 +159,7 @@ $year          = $data['year'];
         <!-- Monthly Sales Graph -->
         <div class="mt-5">
           <div class="card shadow-sm border-0">
-            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <div class="card-header text-white d-flex justify-content-between align-items-center" style="background-color: #281A11;">
               <h6 class="mb-0"><i class="bi bi-bar-chart-fill me-2"></i>Monthly Sales (<?= $year ?>)</h6>
               <form method="GET" class="d-inline">
                 <select name="year" onchange="this.form.submit()" class="form-select form-select-sm w-auto d-inline">
