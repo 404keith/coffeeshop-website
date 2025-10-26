@@ -51,8 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			}
 		}
 
-		require_once APP_ROOT . '/config/session.php';
-
+        require_once APP_ROOT . '/controllers/emailController.php';
 		if ($errors) {
 			$_SESSION['errors_signup'] = $errors;
 
@@ -69,20 +68,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			die();
 		}
 
-		create_user($pdo, $first_name, $last_name, $username, $password, $email);
-
-		// done:
-		$_SESSION['signup_success'] = true;
-
-		// Clear saved input data after successful registration
-		unset($_SESSION['signup_data']);
-
-		header('Location: ' . FILE_ROOT . '/login');
-
-		$pdo = null;
-		$statement = null;
-		die();
-
+		        require_once APP_ROOT . '/controllers/emailController.php';
+		
+		        // Generate and send verification code
+		        $code = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
+		        $_SESSION['verification_code'] = $code;
+		        $_SESSION['verification_tries'] = 0;
+		
+		        send_verification_email($email, $code);
+		
+		        // Save signup data and redirect to verification page
+		        $signupData = [
+		            'username' => $username,
+		            'password' => $password, // Note: Storing password in session is not recommended for production
+		            'email' => $email,
+		            'first_name' => $first_name,
+		            'last_name' => $last_name,
+		        ];
+		        $_SESSION['signup_data'] = $signupData;
+		
+		        header('Location: ' . FILE_ROOT . '/views/auth/verify.php');
+		        die();
 	} catch (PDOException $e) {
 		// Log the error for debugging, but show a generic message to the user
 		error_log('Query Failed: ' . $e->getMessage());

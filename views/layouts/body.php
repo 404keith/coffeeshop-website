@@ -12,7 +12,7 @@
         }
 
         .hero {
-            min-height: 100vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -28,7 +28,7 @@
         }
 
         .cont {
-            margin-top: -5vh;
+            margin-top: -20rem;
             padding: 0 15px;
         }
 

@@ -6,6 +6,10 @@ if (isset($_SESSION['order_success'])) {
     $success_message = $_SESSION['order_success'];
     unset($_SESSION['order_success']);
 }
+
+$orderTimestamp = strtotime($order['created_at']);
+$orderDate = date('F j, Y', $orderTimestamp); // date
+$orderTime = date('g:i A', $orderTimestamp); // time
 ?>
 
 
@@ -23,9 +27,10 @@ if (isset($_SESSION['order_success'])) {
             </div>
         <?php endif; ?>
 
-        <h2 class="text-center mb-4">Order Confirmation</h2>
-        <div class="card shadow-sm mx-auto" style="max-width: 800px;">
+        <div class="card shadow-sm mx-auto mb-5" style="max-width: 800px;">
             <div class="card-body">
+                <h2 class="text-center mb-4">Order Confirmation</h2>
+
                 <h5 class="card-title mb-3">Order #<?= htmlspecialchars($order['id']) ?></h5>
                 <p><strong>Order Type:</strong> <?= htmlspecialchars(ucfirst($order['order_type'])) ?></p>
 
@@ -39,12 +44,13 @@ if (isset($_SESSION['order_success'])) {
                         <p class="fw-bold mb-1">Your order is confirmed and will be ready soon!</p>
                         <p class="mb-0">Please show your order number at the counter to retrieve your items.</p>
                         <p class="mt-2 mb-0">
-                            <strong>Pickup Location:</strong> "Coffee by Monday Mornings" Unit 3, 853 M. Naval St, Navotas
+                            <strong>Pickup Location:</strong> Coffee by Monday Mornings" Unit 3, 853 M. Naval St, Navotas
                         </p>
                     </div>
                 <?php endif; ?>
 
-                <p><strong>Order Date:</strong> <?= htmlspecialchars($order['created_at']) ?></p>
+                <p><strong>Order Date:</strong> <?= htmlspecialchars($orderDate) ?> | <?= htmlspecialchars($orderTime) ?>
+                </p>
 
                 <hr>
 

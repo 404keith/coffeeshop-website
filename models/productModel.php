@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 function get_all_products(object $pdo): array
 {
-    // ✅ Only show active products
+    // Only show active products
     $query = "SELECT * FROM products WHERE is_archived = 0 ORDER BY created_at DESC";
     $statement = $pdo->prepare($query);
     $statement->execute();
@@ -22,7 +22,7 @@ function get_product_by_id(object $pdo, int $id): array|false
 
 function get_products_by_category(object $pdo, string $category_name): array
 {
-    // ✅ Filter by category and hide archived
+    // Filter by category and hide archived
     $query = "SELECT p.* FROM products p
               JOIN categories c ON p.category_id = c.id
               WHERE c.name = :category_name
@@ -64,7 +64,7 @@ function add_product(object $pdo, int $category_id, string $name, string $descri
     $statement->execute();
 }
 
-# ✅ ARCHIVE a product
+# ARCHIVE a product
 function archive_product(object $pdo, int $id): bool
 {
     $query = "UPDATE products SET is_archived = 1 WHERE id = :id";
@@ -73,7 +73,7 @@ function archive_product(object $pdo, int $id): bool
     return $statement->execute();
 }
 
-# ✅ RESTORE a product
+# RESTORE a product
 function restore_product(object $pdo, int $id): bool
 {
     $query = "UPDATE products SET is_archived = 0 WHERE id = :id";
@@ -82,11 +82,35 @@ function restore_product(object $pdo, int $id): bool
     return $statement->execute();
 }
 
-# ✅ Get all archived products (for your archived_products.php page)
+# Get all archived products (for your archived_products.php page)
 function get_archived_products(object $pdo): array
 {
     $query = "SELECT * FROM products WHERE is_archived = 1 ORDER BY updated_at DESC";
     $statement = $pdo->prepare($query);
+    $statement->execute();
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function search_products(object $pdo, string $search_term): array
+{
+    $query = "SELECT * FROM products WHERE name LIKE :search_term AND is_archived = 0 ORDER BY created_at DESC";
+    $statement = $pdo->prepare($query);
+    $statement->bindValue(':search_term', '%' . $search_term . '%', PDO::PARAM_STR);
+    $statement->execute();
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function search_products_by_category(object $pdo, string $search_term, string $category_name): array
+{
+    $query = "SELECT p.* FROM products p
+              JOIN categories c ON p.category_id = c.id
+              WHERE p.name LIKE :search_term
+              AND c.name = :category_name
+              AND p.is_archived = 0
+              ORDER BY p.created_at DESC";
+    $statement = $pdo->prepare($query);
+    $statement->bindValue(':search_term', '%' . $search_term . '%', PDO::PARAM_STR);
+    $statement->bindParam(':category_name', $category_name, PDO::PARAM_STR);
     $statement->execute();
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }

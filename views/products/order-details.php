@@ -3,9 +3,18 @@ if (!isset($order) || !isset($orderItems) || !isset($error_message)) {
     $error_message = $error_message ?? 'View variables not initialized.';
     $order = $order ?? null;
 }
+
+$orderTimestamp = strtotime($order['created_at']);
+$orderDate = date('F j, Y', $orderTimestamp); // date
+$orderTime = date('g:i A', $orderTimestamp); // time
+
 ?>
 
+
 <?php include APP_ROOT . '/views/layouts/header.php'; ?>
+
+
+<link rel="stylesheet" href="<?= FILE_ROOT ?>/public/assets/css/header.css">
 
 <body class="d-flex flex-column min-vh-100" style="height:80rem">
     <main class="flex-fill">
@@ -18,19 +27,27 @@ if (!isset($order) || !isset($orderItems) || !isset($error_message)) {
                     <a href="<?= FILE_ROOT ?>/my-orders" class="btn btn-secondary">Back to My Orders</a>
                 </div>
             <?php elseif ($order): ?>
-                <h2 class="text-center mb-4">Order Details</h2>
                 <div class="card shadow-lg mx-auto border-0" style="max-width: 800px;">
                     <div class="card-body p-4 p-md-5">
+
+                        <h2 class="text-center mb-4 fw-bold">Order Details</h2>
+
                         <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
                             <h5 class="card-title mb-0 fw-bold">Order #<?= htmlspecialchars($order['id']) ?></h5>
-                            <small class="text-muted">Status: <span
-                                    class="badge bg-primary fs-6"><?= htmlspecialchars(ucfirst($order['status'] ?? 'pending')) ?></span></small>
+                            <small class="text-muted">Status:
+                                <span
+                                    class="badge bg-primary fs-6"><?= htmlspecialchars(ucfirst($order['status'] ?? 'pending')) ?></span>
+                            </small>
                         </div>
 
-                        <p><strong>Order Date:</strong> <?= htmlspecialchars($order['created_at']) ?></p>
+
+
+                        <p><strong>Order Date:</strong> <?= htmlspecialchars($orderDate) ?> |
+                            <?= htmlspecialchars($orderTime) ?>
+                        </p>
                         <p><strong>Order Type:</strong> <?= htmlspecialchars(ucfirst($order['order_type'])) ?></p>
 
-                        <!-- Delivery/Pickup Info -->
+                        <!-- Delivery  -->
                         <?php if ($order['order_type'] === 'delivery'): ?>
                             <hr>
                             <h6>Delivery Information</h6>
@@ -38,10 +55,12 @@ if (!isset($order) || !isset($orderItems) || !isset($error_message)) {
                             <p class="mb-1"><strong>Address:</strong> <?= htmlspecialchars($order['address']) ?></p>
                             <p class="mb-1"><strong>Phone:</strong> <?= htmlspecialchars($order['phone']) ?></p>
                             <hr>
+
+                            <!-- Pickup  -->
                         <?php else: ?>
                             <p><strong>Name:</strong> <?= htmlspecialchars($fullName) ?></p>
                             <p class="mt-2 mb-0">
-                                <strong>Pickup Location:</strong> "Coffee by Monday Mornings" Unit 3, 853 M. Naval St, Navotas
+                                <strong>Pickup Address:</strong> Unit 3, 853 M. Naval St, Navotas
                             </p>
                             <hr>
                         <?php endif; ?>
@@ -75,7 +94,7 @@ if (!isset($order) || !isset($orderItems) || !isset($error_message)) {
                             </li>
                         </ul>
 
-                        <a href="<?= FILE_ROOT ?>/my-orders" class="btn btn-secondary w-100">Back to My Orders</a>
+                        <a href="<?= FILE_ROOT ?>/my-orders" class="btn btn-primary w-100">Back to My Orders</a>
                     </div>
                 </div>
             <?php endif; ?>

@@ -2,6 +2,45 @@
   font-family: "inter";
 }
 
+/* ------ NEW -----  */
+:root {
+  --bs-primary: #d68421;
+  --bs-primary-rgb: 214, 132, 33;
+}
+
+/* Custom styles for outline buttons */
+.btn-outline-primary {
+  color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active,
+.btn-outline-primary.active {
+  color: #fff;
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+}
+
+/* --- PAGINATION OVERRIDES --- */
+
+/* Style for the active page link ("hold state") - a.k.a the current page */
+.pagination .page-item.active .page-link {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: #fff;
+}
+
+/* Style for the disabled page links (e.g., "Previous" on page 1) */
+.pagination .page-item.disabled .page-link {
+  color: #6c757d;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+
+/* -----------  */
+
 .navbar-color {
   background-color: #281a11;
   /* background-color: #fff6eb; */
@@ -66,23 +105,21 @@ li {
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(212,132,35,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
-.navbar-toggler:focus,
-.navbar-toggler:active,
-.navbar-toggler-icon:focus {
-  outline: none;
-  box-shadow: none;
+
+.navbar-toggler:hover {
+  border: 1px solid #fba439;
 }
 
-/* Offcanvas (sidebar) look & feel */
+/* Offcanvas (sidebar) */
 .offcanvas-custom {
   --bs-offcanvas-width: 13rem;
   background: #fff6eb;
+  font-weight: bold;
 }
 .offcanvas-custom .nav-link {
   color: rgba(212, 132, 35, 1);
   font-size: 20px;
   padding: 0.6rem 0;
-  margin-top: 5px;
 }
 .offcanvas-custom .nav-link:hover {
   color: rgba(123, 61, 0, 1);
@@ -152,7 +189,7 @@ li {
   color: #fff;
 }
 
-/* Dropdown divider (optional) */
+/* Dropdown divider */
 .dropdown-menu .dropdown-divider {
   margin: 0.25rem 0;
 }
@@ -162,7 +199,13 @@ li {
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
+  text-align: center;
+  border-radius: 1rem;
+  background-color: #e9dccd;
+  height: 3rem;
   width: 90%;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 /* greeting) */
 .dropdown-menu .dropdown-item-text {

@@ -58,6 +58,11 @@ function is_email_registered(object $pdo, string $email)
 	}
 }
 
+function is_code_correct(string $code)
+{
+    return isset($_SESSION['verification_code']) && $code === $_SESSION['verification_code'];
+}
+
 function create_user(object $pdo, string $first_name, string $last_name, string $username, string $password, string $email)
 {
 	set_user($pdo, $first_name, $last_name, $username, $password, $email);

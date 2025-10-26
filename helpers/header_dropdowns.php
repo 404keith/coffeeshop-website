@@ -10,10 +10,10 @@ function renderAccountMenu($fileRoot)
             echo '<li><a class="btn btn-account mb-2" href="' . $fileRoot . '/my-orders">My Orders</a></li>';
 
         }
-        echo '<li><a class="dropdown-item btn btn-account " href="' . $fileRoot . '/logout">Logout</a></li>';
+        echo '<li><a class="btn btn-account " href="' . $fileRoot . '/logout">Logout</a></li>';
     } else {
-        echo '<li><a class="dropdown-item btn btn-account mb-2" href="' . $fileRoot . '/login">Login</a></li>';
-        echo '<li><a class="dropdown-item btn btn-account" href="' . $fileRoot . '/signup">Signup</a></li>';
+        echo '<li><a class="btn btn-account mb-2" href="' . $fileRoot . '/login">Login</a></li>';
+        echo '<li><a class="btn btn-account" href="' . $fileRoot . '/signup">Signup</a></li>';
     }
 }
 
