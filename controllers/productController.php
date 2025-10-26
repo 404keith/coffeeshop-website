@@ -10,3 +10,8 @@ function product_show(object $pdo, int $id): array|false
 {
     return get_product_by_id($pdo, $id);
 }
+
+function product_search_by_category(object $pdo, string $search_term, string $category_name): array
+{
+    return search_products_by_category($pdo, $search_term, $category_name);
+}

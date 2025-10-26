@@ -8,7 +8,12 @@ try {
     require APP_ROOT . '/controllers/categoryController.php';
 
     $category_name = 'drink';
-    $products = category_show($pdo, $category_name);
+
+    if (isset($_GET['search'])) {
+        $products = product_search_by_category($pdo, $_GET['search'], $category_name);
+    } else {
+        $products = category_show($pdo, $category_name);
+    }
 
     // Load HTML layout 
     require APP_ROOT . '/views/products/products.php';

@@ -90,3 +90,27 @@ function get_archived_products(object $pdo): array
     $statement->execute();
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function search_products(object $pdo, string $search_term): array
+{
+    $query = "SELECT * FROM products WHERE name LIKE :search_term AND is_archived = 0 ORDER BY created_at DESC";
+    $statement = $pdo->prepare($query);
+    $statement->bindValue(':search_term', '%' . $search_term . '%', PDO::PARAM_STR);
+    $statement->execute();
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function search_products_by_category(object $pdo, string $search_term, string $category_name): array
+{
+    $query = "SELECT p.* FROM products p
+              JOIN categories c ON p.category_id = c.id
+              WHERE p.name LIKE :search_term
+              AND c.name = :category_name
+              AND p.is_archived = 0
+              ORDER BY p.created_at DESC";
+    $statement = $pdo->prepare($query);
+    $statement->bindValue(':search_term', '%' . $search_term . '%', PDO::PARAM_STR);
+    $statement->bindParam(':category_name', $category_name, PDO::PARAM_STR);
+    $statement->execute();
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+}

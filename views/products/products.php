@@ -27,7 +27,7 @@ if (isset($_SESSION['add_to_cart_error'])) {
 </head>
 
 <?php
-$currentURI = $_SERVER['REQUEST_URI'];
+$currentURI = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 switch ($currentURI) {
   case '/drinks':
     $title = 'Drinks';
@@ -49,8 +49,17 @@ switch ($currentURI) {
       <h1 class="welcome-text mt-4 text-center">
         <?php echo htmlspecialchars($title); ?>
       </h1>
+
+      <!-- product categories icons -->
       <div class="d-flex justify-content-center align-items-center mb-3">
         <?php displayProductIcons(); ?>
+      </div>
+
+      <div class="d-flex justify-content-center align-items-center mb-3">
+        <form action="" method="GET" class="search-form">
+          <input type="text" name="search" placeholder="Search products..." class="search-input">
+          <button type="submit" class="search-button">Search</button>
+        </form>
       </div>
     </div>
   </div>
