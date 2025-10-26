@@ -27,7 +27,7 @@ $orderTime = date('g:i A', $orderTimestamp); // time
             </div>
         <?php endif; ?>
 
-        <div class="card shadow-sm mx-auto" style="max-width: 800px;">
+        <div class="card shadow-sm mx-auto mb-5" style="max-width: 800px;">
             <div class="card-body">
                 <h2 class="text-center mb-4">Order Confirmation</h2>
 

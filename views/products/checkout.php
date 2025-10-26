@@ -5,6 +5,10 @@ include APP_ROOT . '/views/layouts/header.php';
 
 <head>
     <style>
+        #checkoutForm {
+            margin-top: 1rem !important;
+        }
+
         .option-btn {
             border: 2px solid #D68421;
             border-radius: 1rem;
@@ -37,11 +41,6 @@ include APP_ROOT . '/views/layouts/header.php';
             color: white;
         }
 
-        .dimmed {
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
-
         /* Match the pickup color */
         .btn-pickup {
             background-color: #D68421 !important;
@@ -71,14 +70,24 @@ include APP_ROOT . '/views/layouts/header.php';
             color: #D68421;
             font-size: 3rem;
         }
+
+        @media (max-width: 767.98px) {
+            #checkoutForm {
+                margin-top: 1rem !important;
+            }
+
+            .p-5 {
+                padding: 2rem !important;
+            }
+        }
     </style>
 </head>
 
-<body class="d-flex flex-column min-vh-100" style="height:80rem">
+<body class="d-flex flex-column min-vh-100">
     <main class="flex-fill">
 
         <div class="container mt-5">
-            <h2 class="mt-2 text-center title">Checkout</h2>
+            <h2 class="mt-5 text-center title">Checkout</h2>
 
             <?php if (empty($cartItems)): ?>
                 <div class="alert-info text-center" role="alert">
@@ -88,26 +97,28 @@ include APP_ROOT . '/views/layouts/header.php';
                 </div>
             <?php else: ?>
                 <!-- Choose Option First -->
-                <div class="d-flex justify-content-center align-items-center mb-5" style="height:20rem; margin-top:-2rem">
-                    <div class="row text-center w-100" style="max-width: 1000px;">
-                        <div class="col-md-6" id="pickupBtn">
-                            <button class="btn btn-lg w-100 p-5 option-btn option-pickup">
-                                <i class="bi bi-shop fs-1"></i><br>
-                                Pickup
-                            </button>
-                        </div>
-                        <div class="col-md-6" id="deliveryBtn">
-                            <button class="btn btn-lg w-100 p-5 option-btn option-delivery">
-                                <i class="bi bi-truck fs-1"></i><br>
-                                Delivery
-                            </button>
+                <div class="d-flex flex-column flex-md-row justify-content-center align-items-center mb-5 mt-5">
+                    <div class="text-center w-100" style="max-width: 800px;">
+                        <div class="row">
+                            <div class="col-12 col-md-6 mb-3 mb-md-0" id="pickupBtn">
+                                <button class="btn btn-lg w-100 p-5 option-btn option-pickup">
+                                    <i class="bi bi-shop fs-1"></i><br>
+                                    Pickup
+                                </button>
+                            </div>
+                            <div class="col-12 col-md-6" id="deliveryBtn">
+                                <button class="btn btn-lg w-100 p-5 option-btn option-delivery">
+                                    <i class="bi bi-truck fs-1"></i><br>
+                                    Delivery
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
 
                 <!-- Hidden Checkout Form -->
-                <div id="checkoutForm" class="card shadow-sm mx-auto d-none" style="max-width:1000px; margin-top:-5rem">
+                <div id="checkoutForm" class="card shadow-sm mx-auto d-none mb-5" style="max-width:800px; margin-top:-5rem">
                     <div class="card-body p-5">
                         <h5 class="card-title">Order Summary</h5>
                         <ul class="list-group list-group-flush">
@@ -182,33 +193,21 @@ include APP_ROOT . '/views/layouts/header.php';
         const pickupForm = document.getElementById("pickupForm");
         const deliveryForm = document.getElementById("deliveryForm");
 
-        function resetColumns() {
-            pickupBtn.classList.remove("col-md-9", "col-md-3", "dimmed");
-            deliveryBtn.classList.remove("col-md-9", "col-md-3", "dimmed");
+        function resetButtons() {
 
-            pickupBtn.classList.add("col-md-6");
-            deliveryBtn.classList.add("col-md-6");
         }
 
         pickupBtn?.addEventListener("click", function () {
-            resetColumns();
+            resetButtons();
             checkoutForm.classList.remove("d-none");
-
-            pickupBtn.classList.replace("col-md-6", "col-md-9");
-            deliveryBtn.classList.replace("col-md-6", "col-md-3");
-            deliveryBtn.classList.add("dimmed");
 
             pickupForm.classList.remove("d-none");
             deliveryForm.classList.add("d-none");
         });
 
         deliveryBtn?.addEventListener("click", function () {
-            resetColumns();
+            resetButtons();
             checkoutForm.classList.remove("d-none");
-
-            deliveryBtn.classList.replace("col-md-6", "col-md-9");
-            pickupBtn.classList.replace("col-md-6", "col-md-3");
-            pickupBtn.classList.add("dimmed");
 
             deliveryForm.classList.remove("d-none");
             pickupForm.classList.add("d-none");
