@@ -104,18 +104,19 @@
                             <?php if (!empty($stocks)): ?>
                                 <?php foreach ($stocks as $item): ?>
                                     <tr>
-                                    <td>
+                                    <td class="col-md-1.5 content"><center>
                                         <?php if (!empty($item['image'])): ?>
                                             <img src="<?= FILE_ROOT . htmlspecialchars($item['image']) ?>" width="50" height="50" style="object-fit:cover;">
                                         <?php else: ?>
                                             <span class="text-muted">No image</span>
-                                        <?php endif; ?>
+                                        <?php endif; ?></center>
                                     </td>
-                                        <td><?= htmlspecialchars($item["name"]) ?></td>
+                                        <td class="col-md-5 content"><?= htmlspecialchars($item["name"]) ?></td>
                                         <td><?= htmlspecialchars($item["category_id"]) ?></td>
                                         <td><?= htmlspecialchars($item["stock"]) ?></td>
                                         <td><?= htmlspecialchars($item["price"]) ?></td>
-                                        <td>
+                                        
+                                        <td class="col-md-2 content">
                                             <a href="#" class="btn btn-sm btn-dark edit-btn" data-bs-toggle="modal"
                                                 data-bs-target="#editProductModal" data-id="<?= htmlspecialchars($item['id']) ?>"
                                                 data-name="<?= htmlspecialchars($item['name']) ?>"
