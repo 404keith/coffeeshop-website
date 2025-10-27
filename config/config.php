@@ -10,8 +10,8 @@ $dotenv->load();
 // Database credentials
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'mondaymornings');
-define('DB_USER', 'monday');
-define('DB_PASS', '7l0Qsd#T');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 
 define('LOCAL_URL', 'http://coffeeshop-website.local/');
 

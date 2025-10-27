@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     $redirect = $_POST['redirect'];
 
     if (!isset($_SESSION['user_id'])) {
-        $_SESSION['add_to_cart_error'] = 'You must be logged in to manage your cart. <a href="/login">click here to login</a>';
+        $_SESSION['add_to_cart_error'] = 'Please login first. <a href="/login">click here to login</a>';
         header('Location: ' . FILE_ROOT . $redirect);
         exit();
     }
