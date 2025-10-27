@@ -27,7 +27,7 @@ function displayProductIcons()
         }
 
         echo '
-        <a href="' . $href_uri . '" class="' . $anchor_class . '" data-category="' . $data_category . '">
+        <a href="#" class="' . $anchor_class . '" data-category="' . $data_category . '" data-uri="' . $href_uri . '">
             <i class="' . $icon_class . ' ' . $icon_size_class . ' ' . $def_class . '" 
                data-default-icon="' . $product['def_icon'] . '" 
                data-active-icon="' . $product['b_icon'] . '">
