@@ -67,7 +67,7 @@
     </head>
 
     <body>
-    <?php include APP_ROOT . '/views/layouts/adminNav.php'; ?>
+        <?php include APP_ROOT . '/views/layouts/adminNav.php'; ?>
         <div class="container-fluid">
             <div class="row">
 
@@ -128,7 +128,7 @@
                                                 data-image="<?= htmlspecialchars($item['image']) ?>">
                                                 ✎ Edit
                                             </a>
-                                            <form action="stocks" method="post" style="display:inline;">
+                                            <form action="stocks" method="post" style="display:inline;" onsubmit="return confirmArchive()">
                                                 <input type="hidden" name="archive_id" value="<?= $item['id'] ?>">
                                                 <button type="submit" name="archive_product" class="btn btn-sm btn-danger">
                                                     🗃 Archive
@@ -274,7 +274,10 @@
                     editModal.querySelector('#edit-current-image').value = image; 
                 });
             });
+
+                function confirmArchive() {
+                    return confirm('Are you sure you want to archive this product?');
+                    }
         </script>
     </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     </html>

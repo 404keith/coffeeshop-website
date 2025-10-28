@@ -78,7 +78,7 @@ $archived = $controller->getArchived();
                                     <td><?= htmlspecialchars($item["stock"]) ?></td>
                                     <td>₱<?= number_format((float)$item["price"], 2) ?></td>
                                     <td>
-                                        <form method="post" action="archived_products">
+                                        <form method="post" action="archived_products" onsubmit="return confirmRestore()">
                                             <input type="hidden" name="restore_id" value="<?= $item['id'] ?>">
                                             <button type="submit" name="restore_product" class="btn btn-success btn-sm">
                                                 Restore
@@ -95,6 +95,12 @@ $archived = $controller->getArchived();
             </div>
         </div>
     </div>
+
+    <script>
+        function confirmRestore() {
+            return confirm('Are you sure you want to restore this product?');
+        }
+    </script>
 </body>
 </html>
 
