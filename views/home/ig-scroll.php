@@ -335,13 +335,111 @@
             font-size: 3rem;
 
         }
+
+        /* ipad */
+        @media (max-width: 768px) {
+            .hello-text {
+                font-size: 2.5rem !important;
+                margin-top: -6rem !important;
+                margin-bottom: -0.5rem !important;
+            }
+        }
+
+        /* ipad air */
+        @media (min-width:820px) and (max-width: 821px) {
+            .hello-text {
+                font-size: 2.7rem !important;
+                margin-top: -7rem !important;
+                margin-bottom: 2rem !important;
+            }
+        }
+
+        /* ipad pro */
+        @media (min-width:1023px) and (max-width: 1024px) {
+            .hello-text {
+                font-size: 2.7rem !important;
+                margin-top: -10rem !important;
+                margin-bottom: 2rem !important;
+            }
+        }
+
+        /* surface pro */
+        @media (min-width:911px) and (max-width: 912px) {
+            .hello-text {
+                font-size: 2.7rem !important;
+                margin-top: -10rem !important;
+                margin-bottom: 2rem !important;
+            }
+        }
+
+        /* zenbook fold pro */
+        @media (min-width:852px) and (max-width: 854px) {
+            .hello-text {
+                font-size: 2.7rem !important;
+                margin-top: -10rem !important;
+                margin-bottom: 2rem !important;
+            }
+        }
+
+        /* s8+ */
+        @media (min-width:358px) and (max-width: 361px) {
+            .hello-text {
+                font-size: 2.5rem !important;
+                margin-top: 1.5rem !important;
+                margin-bottom: -5rem !important;
+            }
+        }
+
+        /* galaxy ffold 5 */
+        @media (min-width:340px) and (max-width: 345px) {
+            .hello-text {
+                font-size: 2.5rem !important;
+                margin-top: -10rem !important;
+                margin-bottom: 10rem !important;
+            }
+        }
+
+        /* normal phones */
+        @media (min-width:365px) and (max-width: 576px) {
+            .hello-text {
+                font-size: 2.5rem !important;
+                margin-top: 1rem !important;
+                margin-bottom: -2rem !important;
+            }
+        }
+
+        /* iphone se*/
+        @media (min-width:374px) and (max-width: 376px) {
+            .hello-text {
+                font-size: 2rem !important;
+                margin-top: 1.5rem !important;
+                margin-bottom: -7rem !important;
+            }
+        }
+
+        /* iphone 12 */
+        @media (min-width:390px) and (max-width: 391px) {
+            .hello-text {
+                margin-top: -2rem !imprtant;
+                margin-bottom: -4rem !important;
+            }
+        }
+
+        /* iphone 14 */
+        @media (min-width:430px) and (max-width: 431px) {
+            .hello-text {
+                font-size: 2.5rem !important;
+                margin-top: -1rem !important;
+                margin-bottom: -2rem !important;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <div class="d">
-        <p class="hello-text">Hello, Monday!</p>
+        <p class="hello-text fs-1">Hello, Monday!</p>
         <section class="insta-section">
             <aside class="insta-carousel">
                 <div class="insta-carousel-wrapper">
