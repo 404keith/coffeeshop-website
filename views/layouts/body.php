@@ -85,7 +85,7 @@
 
         @media (max-width: 450px) {
             .cont {
-                margin-top: -22rem;
+                margin-top: -20rem;
             }
 
             .cont h2 {
