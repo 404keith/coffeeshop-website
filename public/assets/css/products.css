@@ -133,3 +133,9 @@ body {
     padding: 0.3rem;
   }
 }
+
+.main-content-wrapper {
+  min-height: calc(100vh - 70px - 200px); /* Adjust these values as needed */
+  display: flex;
+  flex-direction: column;
+}

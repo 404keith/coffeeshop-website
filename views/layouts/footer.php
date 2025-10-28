@@ -78,12 +78,33 @@
       /* gap only for desktop */
     }
   }
+
+  /* New media query for extra small devices (e.g., iPhone portrait) */
+  @media (max-width: 575.98px) {
+    .footer .col-12 {
+      margin-bottom: 1.5rem !important;
+    }
+    .footer .text-center-xs {
+      text-align: center !important;
+    }
+    .footer .d-flex.flex-column.flex-sm-row {
+      flex-direction: column !important;
+      align-items: center;
+    }
+    .footer .d-flex.flex-column.flex-sm-row .form-control {
+      width: 80% !important;
+      margin-bottom: 10px;
+    }
+    .footer .d-flex.flex-column.flex-sm-row .btn {
+      width: 80% !important;
+    }
+  }
 </style>
 
-<footer class="footer">
+<footer id="main-footer" class="footer">
   <div class="container">
     <div class="row">
-      <div class="col-4 col-md-2 ms-md-5 mb-3 text-center text-md-start order-1 order-md-1">
+      <div class="col-12 col-md-2 ms-md-5 mb-3 text-center text-md-start order-1 order-md-1">
         <h6 class="small fw-semibold mb-2">ABOUT US</h6>
         <ul class="nav flex-column">
           <li class="nav-item mb-2"><a href="#" class="nav-link p-0 small">Our Story</a></li>
@@ -92,7 +113,7 @@
         </ul>
       </div>
 
-      <div class="col-4 col-md-1 mb-3 text-center text-md-start order-3 order-md-2">
+      <div class="col-12 col-md-1 mb-3 text-center text-md-start order-3 order-md-2">
         <h6 class="small fw-semibold mb-2">SERVICES</h6>
         <ul class="nav flex-column">
           <li class="nav-item mb-2"><a href="#" class="nav-link p-0 small">Menu</a></li>
@@ -104,7 +125,7 @@
       <div class="d-none d-md-block col-md-1 ms-2 order-md-3"></div>
 
 
-      <div class="col-4 col-md-3 mb-1 text-center order-2 order-md-4 footer-gap">
+      <div class="col-12 col-md-3 mb-1 text-center order-2 order-md-4 footer-gap">
         <h6 class="small mb-2">ORDER NOW</h6>
         <div class="d-flex justify-content-center gap-3">
           <a href="#" target="_blank" class="fs-5 transition text-decoration-none">

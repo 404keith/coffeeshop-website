@@ -46,33 +46,35 @@ switch ($currentURI) {
     break;
 }
 ?>
-<div class="container">
-  <div class="row align-items-center">
-    <div class="col">
-      <h1 class="welcome-text mt-4 text-center">
-        <?php echo htmlspecialchars($title); ?>
-      </h1>
+<div class="main-content-wrapper">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col">
+        <h1 class="welcome-text mt-4 text-center">
+          <?php echo htmlspecialchars($title); ?>
+        </h1>
 
-      <div class="d-flex justify-content-center align-items-center mb-3">
-        <?php displayProductIcons(); ?>
-      </div>
+        <div class="d-flex justify-content-center align-items-center mb-3">
+          <?php displayProductIcons(); ?>
+        </div>
 
-      <div class="d-flex justify-content-center align-items-center mb-3">
-        <form action="" method="GET" class="search-form">
-          <input type="text" name="search" id="search-input" data-category="<?php echo strtolower($title); ?>"
-            placeholder="Search products..." class="search-input">
-          <button type="submit" class="search-button">Search</button>
-        </form>
+        <div class="d-flex justify-content-center align-items-center mb-3">
+          <form action="" method="GET" class="search-form">
+            <input type="text" name="search" id="search-input" data-category="<?php echo strtolower($title); ?>"
+              placeholder="Search products..." class="search-input">
+            <button type="submit" class="search-button">Search</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container mt-3">
-  <div class="row justify-content-center">
-    <div class="col-lg-11 col-xl-10">
-      <div class="row g-4 justify-content-center" id="product-list">
-        <?php include '_product_list.php'; // Include the new partial ?>
+  <div class="container mt-3">
+    <div class="row justify-content-center">
+      <div class="col-lg-11 col-xl-10">
+        <div class="row g-4 justify-content-center" id="product-list">
+          <?php include '_product_list.php'; // Include the new partial ?>
+        </div>
       </div>
     </div>
   </div>
@@ -80,4 +82,17 @@ switch ($currentURI) {
 
 <script src="<?= FILE_ROOT ?>/public/assets/js/search.js"></script>
 <script src="<?= FILE_ROOT ?>/public/assets/js/category-loader.js"></script>
+<script>
+  function adjustMainContentHeight() {
+    const headerHeight = document.getElementById('main-navbar').offsetHeight;
+    const footerHeight = document.getElementById('main-footer').offsetHeight;
+    const mainContentWrapper = document.querySelector('.main-content-wrapper');
+    if (mainContentWrapper) {
+      mainContentWrapper.style.minHeight = `calc(100vh - ${headerHeight}px - ${footerHeight}px)`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', adjustMainContentHeight);
+  window.addEventListener('resize', adjustMainContentHeight);
+</script>
 <?php include APP_ROOT . '/views/layouts/footer.php'; ?>
