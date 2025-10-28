@@ -12,11 +12,11 @@ function printFailed(string $message, bool $raw = false): void
 
 function printSuccess(string $message, bool $raw = false): void
 {
+
     echo '<div class="alert alert-success text-center alert-dismissible fade show popup-alert w-75 mx-auto" role="alert">'
         . ($raw ? $message : htmlspecialchars($message))
         . '</div>';
 }
-
 
 function displayAlertTimeJs($seconds)
 {

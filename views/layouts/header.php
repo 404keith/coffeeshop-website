@@ -102,7 +102,8 @@ $uri = $_SERVER['REQUEST_URI'];
       //     aria-label="Toggle navigation"
       ?>
       <!-- Hamburger toggles OFFCANVAS on mobile -->
-      <button class="navbar-toggler btn me-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu" id="openMobileMenu"> <span class="navbar-toggler-icon"></span> </button>
+      <button class="navbar-toggler btn me-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
+        aria-controls="mobileMenu" id="openMobileMenu"> <span class="navbar-toggler-icon"></span> </button>
 
     </div>
   </nav>
@@ -149,7 +150,7 @@ $uri = $_SERVER['REQUEST_URI'];
     </div>
   </div>
 
-  <div class="cart-alerts sticky-alerts mt-3 w-50 mx-auto">
+  <div class="cart-alerts sticky-alerts text-center">
     <?php
 
     if ($uri == '/forgot') {
@@ -165,8 +166,6 @@ $uri = $_SERVER['REQUEST_URI'];
 
     ?>
   </div>
-
-
 
 
 </body>

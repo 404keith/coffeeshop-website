@@ -249,8 +249,9 @@ body {
 
 /* ALERTS */
 .cart-alerts.sticky-alerts {
+  text-align: center;
   position: fixed;
-  top: 70px;
+  top: 80px;
   left: 50%;
   transform: translateX(-50%);
   width: 50%;
@@ -274,5 +275,19 @@ body {
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .cart-alerts .sticky-alerts {
+    text-align: center !important;
+    position: fixed;
+    top: 55px important!;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 90% !important;
+    z-index: 1050;
+    background: transparent;
   }
 }
