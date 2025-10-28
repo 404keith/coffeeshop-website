@@ -13,29 +13,6 @@ body {
   flex-grow: 1;
 }
 
-/* .background-img{
-    position: fixed;    
-    top: 0;
-    left: 0;
-    width: 110%;
-    height: 100%;
-    background-image: url('../public/assets/images/login-background.jpg');
-    background-size: cover;
-    background-position: center;
-    filter: blur(3px);  
-    z-index: -1;           
-    transform: translate(-5%, 2%); 
-        
-}
-
-    .background-img::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: #00000067;
-    } */
-
 .form-width {
   max-width: 600px;
   width: 100%;
@@ -49,7 +26,9 @@ body {
   border-top: 0.125rem solid #d48423;
   border-bottom: 0.125rem solid #d48423;
   border-left: 0.125rem solid #d48423;
-  box-shadow: -1px 0px 0px 0px #d48423, 0px 1px 0px 0px #d48423,
+  box-shadow:
+    -1px 0px 0px 0px #d48423,
+    0px 1px 0px 0px #d48423,
     0px -1px 0px 0px #d48423;
 }
 .form-outline .form-control:focus ~ .form-notch .form-notch-middle {
@@ -69,7 +48,10 @@ body {
   border-bottom: 0.125rem solid #d48423;
   border-right: 0.125rem solid #d48423;
   border-top: 0.125rem solid #d48423;
-  box-shadow: 1px 0 0 0 #d48423, 0 -1px 0 0 #d48423, 0 1px 0 0 #d48423;
+  box-shadow:
+    1px 0 0 0 #d48423,
+    0 -1px 0 0 #d48423,
+    0 1px 0 0 #d48423;
 }
 
 .form-outline .form-control:focus ~ .form-label {
@@ -122,7 +104,7 @@ body {
   font-size: 6rem;
   font-family: campana;
   margin: -6rem 1.3rem 0 0;
-  padding-bottom: 1rem;
+  padding-bottom: 1.5rem;
 }
 
 .login-text {
@@ -131,6 +113,107 @@ body {
   font-family: inter;
   font-weight: bolder;
   text-align: center;
-  margin-top: -1.5rem;
+  margin-top: -1rem;
   margin-bottom: 1.5rem;
+}
+
+/* --- Responsive Adjustments --- */
+
+/* Mobile (xs - <576px) */
+main {
+  padding: 1.5rem;
+}
+
+@media (max-width: 575.98px) {
+  .form-padding {
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .welcome-text {
+    font-size: 5rem;
+    margin: -1rem 0 0 0;
+    margin-bottom: -2rem;
+  }
+  .login-text {
+    font-size: 14px;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .form-width {
+    height: auto;
+    margin: 1rem auto;
+    border-radius: 1.5rem;
+  }
+}
+
+/* Small devices (sm - >=576px and <768px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .form-padding {
+    padding-top: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .welcome-text {
+    font-size: 3.5rem;
+    margin: -1.5rem 0 0 0;
+  }
+  .login-text {
+    font-size: 15px;
+    margin-top: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+  .form-width {
+    height: auto;
+    margin: 2rem auto;
+    border-radius: 2rem;
+  }
+}
+
+/* Medium devices (md - >=768px and <1024px) - iPad View */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .form-padding {
+    padding-top: 4rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+  .welcome-text {
+    font-size: 4.5rem;
+    margin: -3rem 0 0 0;
+  }
+  .login-text {
+    font-size: 16px;
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .form-width {
+    max-width: 500px;
+    height: auto;
+    margin: 2.5rem auto;
+    border-radius: 2.5rem;
+  }
+}
+
+/* Large devices (lg - >=1025px) - Desktop View */
+@media (min-width: 1025px) {
+  .form-padding {
+    padding-top: 6rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+  .welcome-text {
+    font-size: 6rem;
+    margin: -6rem 1.3rem 0 0;
+  }
+  .login-text {
+    font-size: 15px;
+    margin-top: -2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .form-width {
+    max-width: 600px;
+    height: 80vh;
+    margin: 3rem auto 5rem;
+    border-radius: 3rem;
+  }
 }
