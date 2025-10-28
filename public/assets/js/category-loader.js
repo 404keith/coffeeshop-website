@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
 
     const clickedLink = event.currentTarget;
-    const url = clickedLink.getAttribute("href");
+    const url = clickedLink.dataset.uri;
     const category = clickedLink.dataset.category;
 
     // --- NEW ICON STYLING LOGIC ---

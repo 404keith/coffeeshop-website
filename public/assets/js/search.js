@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const category = searchInput.dataset.category;
 
         if (searchQuery === '') {
-            // If the search query is empty, restore the initial product list
             productList.innerHTML = initialProductListHTML;
             return;
         }
