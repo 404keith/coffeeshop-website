@@ -157,5 +157,13 @@ include APP_ROOT . '/views/layouts/header.php';
             </form>
         </div>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize MDBootstrap form components
+            document.querySelectorAll('.form-outline').forEach((formOutline) => {
+                new mdb.Input(formOutline).init();
+            });
+        });
+    </script>
 </body>
 <?php include APP_ROOT . '/views/layouts/footer.php'; ?>

@@ -102,7 +102,7 @@ $uri = $_SERVER['REQUEST_URI'];
       //     aria-label="Toggle navigation"
       ?>
       <!-- Hamburger toggles OFFCANVAS on mobile -->
-      <button class="navbar-toggler btn me-5" id="openMobileMenu"> <span class="navbar-toggler-icon"></span> </button>
+      <button class="navbar-toggler btn me-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu" id="openMobileMenu"> <span class="navbar-toggler-icon"></span> </button>
 
     </div>
   </nav>

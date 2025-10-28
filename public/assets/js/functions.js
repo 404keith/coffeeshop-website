@@ -9,17 +9,3 @@ window.addEventListener("load", function () {
     window.location.href = "";
   }
 });
-
-//for mobile side menu: fixed
-document.addEventListener("DOMContentLoaded", function () {
-  var myOffcanvas = document.getElementById("mobileMenu");
-  var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
-
-  document
-    .getElementById("openMobileMenu")
-    .addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      bsOffcanvas.toggle();
-    });
-});
