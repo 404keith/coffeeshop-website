@@ -112,22 +112,66 @@ li {
 
 /* Offcanvas (sidebar) */
 .offcanvas-custom {
-  --bs-offcanvas-width: 13rem;
-  background: #fff6eb;
+  --bs-offcanvas-width: 280px; /* Increased width */
+  background-color: #281a11; /* Darker background */
+  color: #fff6eb; /* Light text */
   font-weight: bold;
+  border-left: 2px solid #d48423; /* Accent border */
 }
-.offcanvas-custom .nav-link {
-  color: rgba(212, 132, 35, 1);
-  font-size: 20px;
-  padding: 0.6rem 0;
-}
-.offcanvas-custom .nav-link:hover {
-  color: rgba(123, 61, 0, 1);
-}
+
 .offcanvas-custom .offcanvas-header {
-  border-bottom: 4px solid rgba(0, 0, 0, 0.06);
-  padding-bottom: 1.8rem;
-  padding-top: 1.65rem;
+  border-bottom: 1px solid #d48423; /* Accent border */
+  padding: 1.5rem;
+}
+
+.offcanvas-custom .offcanvas-title {
+  font-family: "campana", cursive;
+  font-size: 3rem;
+  color: #d48423;
+  margin-left: 2rem;
+}
+
+.offcanvas-custom .btn-close {
+  margin-left: 5rem;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23d48423'><path d='M2.146 2.854a.5.5 0 0 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z'/></svg>");
+}
+
+.offcanvas-custom .nav-link {
+  color: #fff6eb;
+  font-size: 1.2rem; /* Increased font size */
+  padding: 1rem 1.5rem; /* Increased padding */
+  border-radius: 5px;
+  margin: 0.5rem 0;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.offcanvas-custom .nav-link:hover {
+  background-color: #d48423;
+  color: #281a11;
+}
+
+.offcanvas-custom .nav-link .icon {
+  margin-right: 1rem;
+  font-size: 1.5rem; /* Larger icons */
+}
+
+/* Style for the dropdown in offcanvas */
+.offcanvas-custom .dropdown-menu {
+  background-color: #281a11;
+  border: 1px solid #d48423;
+}
+
+.offcanvas-custom .dropdown-item {
+  color: #fff6eb;
+}
+
+.offcanvas-custom .dropdown-item:hover {
+  background-color: #d48423;
+  color: #281a11;
 }
 
 .btn-close {

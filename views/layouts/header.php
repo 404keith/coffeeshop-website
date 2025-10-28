@@ -47,8 +47,14 @@ $uri = $_SERVER['REQUEST_URI'];
           ?>><i class=" bi bi-cup-hot icon fs-7"></i></a>
         </li>
 
-
-        <li class="nav-item ms-5 nav-text"><a class="nav-link" onclick="scrollToSection('section-about')">ABOUT US</a>
+        <li class="nav-item ms-5 nav-text">
+          <a class="nav-link" <?php
+          if ($uri === '/') {
+            echo 'onclick="scrollToSection(\'section-about\')"';
+          } else {
+            echo 'href="/"';
+          }
+          ?>>ABOUT US</a>
         </li>
       </ul>
 
@@ -112,7 +118,7 @@ $uri = $_SERVER['REQUEST_URI'];
   <div class="offcanvas offcanvas-end offcanvas-custom" data-bs-scroll="true" tabindex="-1" id="mobileMenu"
     aria-labelledby="mobileMenuLabel">
     <div class="offcanvas-header">
-      <h6 class="offcanvas-title" id="mobileMenuLabel"></h6>
+      <h5 class="offcanvas-title" id="mobileMenuLabel">Menu</h5>
       <button type="button" class="btn-close me-5" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
@@ -137,13 +143,14 @@ $uri = $_SERVER['REQUEST_URI'];
           } else {
             echo 'href="/"';
           }
-          ?>></i> About Us</a>
+          ?>><i class="bi bi-person-vcard icon"></i> About Us</a>
         </li>
 
-        <li class="nav-item "><a class="nav-link" href="/contact">Contact Us</a></li>
+        <li class="nav-item "><a class="nav-link" href="/contact"><i class="bi bi-envelope-at-fill icon"></i>Contact
+            Us</a>
+        </li>
 
-        <li class="nav-item "><a class="nav-link" href="/cart"><i class="bi bi-cart"></i>
-            Cart</a></li>
+        <li class="nav-item "><a class="nav-link" href="/cart"><i class="bi bi-cart icon"></i> Cart</a></li>
         <li class="nav-item dropdown me-5 textRight">
           <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
