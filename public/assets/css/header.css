@@ -254,7 +254,7 @@ body {
   top: 80px;
   left: 50%;
   transform: translateX(-50%);
-  width: 50%;
+  width: 35%;
   z-index: 1050;
   background: transparent;
 }
@@ -279,14 +279,14 @@ body {
 }
 
 @media (max-width: 575.98px) {
-  .cart-alerts .sticky-alerts {
+  .cart-alerts.sticky-alerts {
     text-align: center !important;
     position: fixed;
-    top: 55px important!;
+    top: 75px !important;
     left: 50%;
     transform: translateX(-50%);
 
-    width: 90% !important;
+    width: 75% !important;
     z-index: 1050;
     background: transparent;
   }
