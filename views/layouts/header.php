@@ -27,11 +27,11 @@ $uri = $_SERVER['REQUEST_URI'];
 
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-color  py-3 navbar-color shadow">
+  <nav class="navbar navbar-expand-md navbar-color  py-3 navbar-color shadow">
     <div class="container-fluid">
 
       <!-- Left (desktop) -->
-      <ul class="navbar-nav navbar-left d-none d-lg-flex ms-5 text-color">
+      <ul class="navbar-nav navbar-left d-none d-md-flex ms-5 text-color">
         <li class="nav-item ms-5 textLeft">
           <a class="nav-link d-flex align-items-center" href="/">
             <i class="bi bi-house icon fs-7 house-icon ms-5"></i></a>
@@ -53,17 +53,17 @@ $uri = $_SERVER['REQUEST_URI'];
       </ul>
 
       <!-- Logo desktop (center) -->
-      <a class="navbar-brand fw-bold text-primary d-none d-lg-block" href="/">
+      <a class="navbar-brand fw-bold text-primary d-none d-md-block" href="/">
         <img src="<?= FILE_ROOT ?>/public/assets/images/logo.png" alt="logo" class="logo">
       </a>
 
       <!-- Logo mobile (right) -->
-      <a class="navbar-brand fw-bold text-primary d-lg-none ms-5" href="/">
+      <a class="navbar-brand fw-bold text-primary d-md-none ms-5" href="/">
         <img src="<?= FILE_ROOT ?>/public/assets/images/logo.png" alt="logo" class="logo">
       </a>
 
       <!-- Right (desktop) -->
-      <ul class="navbar-nav navbar-right d-none d-lg-flex align-items-center me-5 text-color">
+      <ul class="navbar-nav navbar-right d-none d-md-flex align-items-center me-5 text-color">
         <!-- Contact -->
         <li class="nav-item me-5 nav-text">
           <a class="nav-link d-flex align-items-center" href="contact">CONTACT US</a>
@@ -116,7 +116,7 @@ $uri = $_SERVER['REQUEST_URI'];
       <button type="button" class="btn-close me-5" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-      <ul class="navbar-nav d-lg-none ms-3 me-3">
+      <ul class="navbar-nav d-md-none ms-3 me-3">
         <li class="nav-item"><a class="nav-link" href="/"><i class="bi bi-house icon"></i> Home</a></li>
 
         <li class="nav-item">
@@ -130,7 +130,15 @@ $uri = $_SERVER['REQUEST_URI'];
         </li>
 
 
-        <li class="nav-item "><a class="nav-link" href="/about">About Us</a></li>
+        <li class="nav-item">
+          <a class="nav-link" <?php
+          if ($uri === '/') {
+            echo 'onclick="scrollToSection(\'section-about\')"';
+          } else {
+            echo 'href="/"';
+          }
+          ?>></i> About Us</a>
+        </li>
 
         <li class="nav-item "><a class="nav-link" href="/contact">Contact Us</a></li>
 
@@ -150,7 +158,7 @@ $uri = $_SERVER['REQUEST_URI'];
     </div>
   </div>
 
-  <div class="cart-alerts sticky-alerts text-center">
+  <div class="cart-alerts sticky-alerts">
     <?php
 
     if ($uri == '/forgot') {
