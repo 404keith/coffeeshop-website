@@ -28,7 +28,7 @@
         }
 
         .cont {
-            margin-top: -20rem;
+            margin-top: -10rem;
             padding: 0 15px;
         }
 
@@ -65,6 +65,10 @@
         }
 
         @media (max-width: 768px) {
+            .cont {
+                margin-top: -20rem;
+            }
+
             .cont h2 {
                 font-size: 2rem;
             }
@@ -79,22 +83,24 @@
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 450px) {
             .cont {
-                margin-top: 15vh;
+                margin-top: -22rem;
             }
 
             .cont h2 {
-                font-size: 1.6rem;
+                font-size: 2rem;
+
             }
 
             .cont p {
-                font-size: 0.9rem;
+                font-size: 1rem;
+
             }
 
             .orderBtn {
-                font-size: 0.9rem;
-                padding: 8px 25px;
+                font-size: 1rem;
+                padding: 10px 30px;
             }
         }
     </style>
