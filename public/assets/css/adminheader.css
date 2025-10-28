@@ -41,7 +41,7 @@ li {
   margin-left: 10px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .navbar .container-fluid {
     display: flex;
     justify-content: space-between; /* logo sa kaliwa, account sa kanan */
