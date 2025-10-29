@@ -94,6 +94,9 @@
 @media (max-width: 768px) {
   .conn2 {
     padding: 50px 20px;
+    padding-top: 7rem;
+    margin-bottom: 4rem !important;
+
     min-height: auto;
   }
 
