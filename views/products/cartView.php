@@ -6,7 +6,7 @@ require_once APP_ROOT . '/config/dbhandler.php';
 require_once APP_ROOT . '/models/cartModel.php';
 
 if (!isset($_SESSION['user_id'])) {
-    $_SESSION['add_to_cart_error'] = 'You must be logged in to access your cart.';
+    $_SESSION['add_to_cart_error'] = 'Please login first';
     header('Location: ' . FILE_ROOT . '/login');
     exit();
 }
