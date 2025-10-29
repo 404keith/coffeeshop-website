@@ -159,6 +159,10 @@ li {
   font-size: 1.5rem; /* Larger icons */
 }
 
+.mobile-acc-icon {
+  color: #fff6eb !important;
+}
+
 /* Style for the dropdown in offcanvas */
 .offcanvas-custom .dropdown-menu {
   background-color: #281a11;
