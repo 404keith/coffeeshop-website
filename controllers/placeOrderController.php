@@ -6,7 +6,7 @@ require_once APP_ROOT . '/models/cartModel.php';
 require_once APP_ROOT . '/models/orderModel.php';
 require_once APP_ROOT . '/models/productModel.php';
 require_once APP_ROOT . '/models/userModel.php';
-require_once APP_ROOT . '/controllers/EmailController.php';
+require_once APP_ROOT . '/controllers/emailController.php';
 
 
 // Initialize variables for the view
