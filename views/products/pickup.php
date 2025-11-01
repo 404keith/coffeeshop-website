@@ -57,8 +57,11 @@ $orderTime = date('g:i A', $orderTimestamp); // time
                 <h6>Items:</h6>
                 <ul class="list-group mb-3">
                     <?php foreach ($orderItems as $item): ?>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <div><?= htmlspecialchars($item['name']) ?> (x<?= $item['quantity'] ?>)</div>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <img src="<?= FILE_ROOT . htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['name']) ?>" style="width: 50px; height: 50px; object-fit: cover; margin-right: 15px; border-radius: 5px;">
+                                <div><?= htmlspecialchars($item['name']) ?> (x<?= $item['quantity'] ?>)</div>
+                            </div>
                             <span>P <?= number_format($item['price'] * $item['quantity'], 2) ?></span>
                         </li>
                     <?php endforeach; ?>
