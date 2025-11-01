@@ -1,8 +1,10 @@
 
+let initialProductListHTML = '';
+
 document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('search-input');
     const productList = document.getElementById('product-list');
-    const initialProductListHTML = productList.innerHTML;
+    initialProductListHTML = productList.innerHTML;
 
     searchInput.addEventListener('keyup', function () {
         const searchQuery = searchInput.value.trim();

@@ -9,59 +9,59 @@ require APP_ROOT . '/vendor/autoload.php';
  */
 function sendSubscriptionEmail(string $email): bool
 {
-    try {
-        $mail = new PHPMailer(true);
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = EMAIL_USERNAME;
-        $mail->Password = EMAIL_PASSWORD;
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
+  try {
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = EMAIL_USERNAME;
+    $mail->Password = EMAIL_PASSWORD;
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
 
-        $mail->setFrom('mondaymornings.test123@gmail.com', 'Coffee by Monday Mornings');
-        $mail->addAddress($email);
+    $mail->setFrom('mondaymornings.test123@gmail.com', 'Coffee by Monday Mornings');
+    $mail->addAddress($email);
 
-        $mail->isHTML(true);
-        $mail->Subject = 'Email Subscription';
-        $mail->Body = '
+    $mail->isHTML(true);
+    $mail->Subject = 'Email Subscription';
+    $mail->Body = '
             <h1>Thank you for subscribing!</h1>
             <p>You will now receive updates and promotions from Coffee by Monday Mornings.</p>';
 
-        return $mail->send();
-    } catch (Exception $e) {
-        error_log("Subscription Mail Error: {$e->getMessage()}");
-        return false;
-    }
+    return $mail->send();
+  } catch (Exception $e) {
+    error_log("Subscription Mail Error: {$e->getMessage()}");
+    return false;
+  }
 }
 
 function send_verification_email(string $email, string $code): bool
 {
-    try {
-        $mail = new PHPMailer(true);
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = EMAIL_USERNAME;
-        $mail->Password = EMAIL_PASSWORD;
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
+  try {
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = EMAIL_USERNAME;
+    $mail->Password = EMAIL_PASSWORD;
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
 
-        $mail->setFrom('mondaymornings.test123@gmail.com', 'Coffee by Monday Mornings');
-        $mail->addAddress($email);
+    $mail->setFrom('mondaymornings.test123@gmail.com', 'Coffee by Monday Mornings');
+    $mail->addAddress($email);
 
-        $mail->isHTML(true);
-        $mail->Subject = 'Your Verification Code';
-        $mail->Body = '
+    $mail->isHTML(true);
+    $mail->Subject = 'Your Verification Code';
+    $mail->Body = '
             <h1>Verification Code</h1>
             <p>Your verification code is: <strong>' . $code . '</strong></p>
             <p>Use this code to complete your registration.</p>';
 
-        return $mail->send();
-    } catch (Exception $e) {
-        error_log("Verification Mail Error: {$e->getMessage()}");
-        return false;
-    }
+    return $mail->send();
+  } catch (Exception $e) {
+    error_log("Verification Mail Error: {$e->getMessage()}");
+    return false;
+  }
 }
 
 /**
@@ -69,48 +69,52 @@ function send_verification_email(string $email, string $code): bool
  */
 function sendOrderEmail(string $email, array $order, array $orderItems): bool
 {
-    try {
-        $mail = new PHPMailer(true);
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = EMAIL_USERNAME;
-        $mail->Password = EMAIL_PASSWORD;
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
+  try {
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = EMAIL_USERNAME;
+    $mail->Password = EMAIL_PASSWORD;
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
 
-        $mail->setFrom('mondaymornings.test123@gmail.com', 'Coffee by Monday Mornings');
-        $mail->addAddress($email);
+    $mail->SMTPDebug = 2; // Enable verbose debug output
+    $mail->Debugoutput = 'error_log'; // Send output to PHP error log
 
-        $mail->isHTML(true);
-        $mail->Subject = "Order Confirmation - Order #{$order['id']}";
 
-        // Build order items list
-        $itemsHtml = '';
-        foreach ($orderItems as $item) {
-            $itemsHtml .= "<li>{$item['name']} (x{$item['quantity']}) - P "
-                . number_format($item['price'] * $item['quantity'], 2) . "</li>";
-        }
+    $mail->setFrom('mondaymornings.test123@gmail.com', 'Coffee by Monday Mornings');
+    $mail->addAddress($email);
 
-        $heartIcon = APP_ROOT . "/public/assets/images/heart.png";
-        $logoIcon = APP_ROOT . "/public/assets/images/logo.png";
-        $cartIcon = APP_ROOT . "/public/assets/images/cart.png";
+    $mail->isHTML(true);
+    $mail->Subject = "Order Confirmation - Order #{$order['id']}";
 
-        $facebookIcon = APP_ROOT . "/public/assets/images/facebook.png";
-        $instagramIcon = APP_ROOT . "/public/assets/images/instagram.png";
-        $tiktokIcon = APP_ROOT . "/public/assets/images/tiktok.png";
+    // Build order items list
+    $itemsHtml = '';
+    foreach ($orderItems as $item) {
+      $itemsHtml .= "<li>{$item['name']} (x{$item['quantity']}) - P "
+        . number_format($item['price'] * $item['quantity'], 2) . "</li>";
+    }
 
-        $mail->addEmbeddedImage($facebookIcon, 'facebookicon');
-        $mail->addEmbeddedImage($instagramIcon, 'igicon');
-        $mail->addEmbeddedImage($tiktokIcon, 'tiktokicon');
+    $heartIcon = APP_ROOT . "/public/assets/images/heart.png";
+    $logoIcon = APP_ROOT . "/public/assets/images/logo.png";
+    $cartIcon = APP_ROOT . "/public/assets/images/cart.png";
 
-        $mail->addEmbeddedImage($cartIcon, 'carticon');
-        $mail->addEmbeddedImage($heartIcon, 'hearticon');
-        $mail->addEmbeddedImage($logoIcon, 'logoicon');
+    $facebookIcon = APP_ROOT . "/public/assets/images/facebook.png";
+    $instagramIcon = APP_ROOT . "/public/assets/images/instagram.png";
+    $tiktokIcon = APP_ROOT . "/public/assets/images/tiktok.png";
 
-        $formattedDate = date('F j, Y g:i A', strtotime($order['created_at']));
+    $mail->addEmbeddedImage($facebookIcon, 'facebookicon');
+    $mail->addEmbeddedImage($instagramIcon, 'igicon');
+    $mail->addEmbeddedImage($tiktokIcon, 'tiktokicon');
 
-        $mail->Body = "
+    $mail->addEmbeddedImage($cartIcon, 'carticon');
+    $mail->addEmbeddedImage($heartIcon, 'hearticon');
+    $mail->addEmbeddedImage($logoIcon, 'logoicon');
+
+    $formattedDate = date('F j, Y g:i A', strtotime($order['created_at']));
+
+    $mail->Body = "
 <div style=\"width: 100%; padding: 10px 0;\">
   <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">
     <tr>
@@ -186,9 +190,9 @@ function sendOrderEmail(string $email, array $order, array $orderItems): bool
 </div>
 ";
 
-        return $mail->send();
-    } catch (Exception $e) {
-        error_log("Order Mail Error: {$e->getMessage()}");
-        return false;
-    }
+    return $mail->send();
+  } catch (Exception $e) {
+    error_log("Order Mail Error: {$e->getMessage()}");
+    return false;
+  }
 }

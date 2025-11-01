@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const url = clickedLink.dataset.uri;
     const category = clickedLink.dataset.category;
 
-    // --- NEW ICON STYLING LOGIC ---
     // 1. Reset all icons to their default state
     categoryLinks.forEach((link) => {
       const icon = link.querySelector("i");
@@ -46,8 +45,10 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .then((html) => {
         document.getElementById("product-list").innerHTML = html;
+        initialProductListHTML = html;
         const newTitle = category.charAt(0).toUpperCase() + category.slice(1);
         document.querySelector(".welcome-text").textContent = newTitle;
+        document.getElementById("search-input").dataset.category = category;
         document.title = newTitle;
         history.pushState({ path: url }, "", url);
       })

@@ -7,17 +7,24 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
-// Database credentials
+//LOCAL (vhost)
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'mondaymornings');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-
-define('LOCAL_URL', 'http://coffeeshop-website.local/');
-
-// for file path!
+define('LOCAL_URL', 'http://coffeeshop-website.local/'); //for file path
 define('URL_ROOT', 'http://localhost/projects/coffeeshop-website');    //for src and href (HTML)
 
+// //LIVE
+// define('DB_HOST', 'localhost');
+// define('DB_NAME', 'u896434489_mondaymornings');
+// define('DB_USER', 'u896434489_monday');
+// define('DB_PASS', 'vWhb:x5X$6');
+// define('LOCAL_URL', 'https://mondaymornings.bscs3a.com'); // for file path!
+// define('URL_ROOT', 'https://mondaymornings.bscs3a.com'); //for src and href (HTML)
+
+
+define('ASSETS_URL', URL_ROOT . '/public/assets');
 define('APP_ROOT', dirname(dirname(__FILE__))); // for define or require (PHP)
 
 

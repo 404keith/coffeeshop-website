@@ -2,24 +2,6 @@
 include APP_ROOT . '/views/layouts/header.php';
 require_once APP_ROOT . '/helpers/product_icons.php';
 require_once APP_ROOT . '/config/session.php';
-
-// ALERTS 
-if (isset($_SESSION['add_to_cart_success'])) {
-  echo '<div class="alert alert-success alert-dismissible fade show text-center" role="alert" style="position:fixed; top:70px; left:50%; transform:translateX(-50%); z-index:1000;">';
-  echo $_SESSION['add_to_cart_success'];
-  echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-  echo '</div>';
-  unset($_SESSION['add_to_cart_success']);
-}
-
-// Display error message if it exists 
-if (isset($_SESSION['add_to_cart_error'])) {
-  echo '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert" style="position:fixed; top:70px; left:50%; transform:translateX(-50%); z-index:1000;">';
-  echo $_SESSION['add_to_cart_error'];
-  echo '<button type="button" class="btn-close ms-5" data-bs-dismiss="alert" aria-label="Close" style="width:10px; height:17px;"></button>';
-  echo '</div>';
-  unset($_SESSION['add_to_cart_error']);
-}
 ?>
 
 <head>

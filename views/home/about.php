@@ -19,7 +19,7 @@
                 <img src="<?php echo FILE_ROOT; ?>/public/assets/images/abt1.jpg" alt="About Image 1">
                 <img src="<?php echo FILE_ROOT; ?>/public/assets/images/abt4.jpg" alt="About Image 2">
                 <img src="<?php echo FILE_ROOT; ?>/public/assets/images/abt2.jpg" alt="About Image 3">
-                <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_1.JPG" alt="About Image 4">
+                <img src="<?php echo FILE_ROOT; ?>/public/assets/images/img_1.jpg" alt="About Image 4">
             </div>
         </div>
         <div class="map-container">

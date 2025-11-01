@@ -477,3 +477,4 @@ displayAlertTimeJs($alertTimeSeconds);
 
 
 <!-- alerts -->
+</body>
