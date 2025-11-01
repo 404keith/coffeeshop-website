@@ -14,7 +14,7 @@
                 <div class="card-body d-flex flex-column">
                     <div class="d-flex justify-content-between align-items-center card-text">
                         <h5 class="card-title mb-0 fw-bold"><?= htmlspecialchars($product['name']) ?></h5>
-                        <p class="fw-bold mb-0 price">P <?= number_format($product['price'], 2) ?></p>
+                        <p class="fw-bold mb-0 price">₱ <?= number_format($product['price'], 2) ?></p>
                     </div>
                     <p class="fs-6 flex-grow-1"><?= htmlspecialchars($product['description']) ?></p>
 

@@ -51,21 +51,25 @@ include APP_ROOT . '/views/products/cartView.php';
                                 <li class="list-group-item">
                                     <div class="row align-items-center">
                                         <!-- col1: Product Info -->
-                                        <div class="col-md-5">
-                                            <h6 class="my-0"><?= htmlspecialchars($item['name']) ?></h6>
-                                            <small class="text-muted">P <?= number_format($item['price'], 2) ?>
-                                                each</small>
+                                        <div class="col-md-5 d-flex align-items-center">
+                                            <img src="<?= FILE_ROOT . htmlspecialchars($item['image']) ?>"
+                                                alt="<?= htmlspecialchars($item['name']) ?>"
+                                                style="width: 50px; height: 50px; object-fit: cover; margin-right: 15px; border-radius: 5px;">
+                                            <div>
+                                                <h6 class="my-0"><?= htmlspecialchars($item['name']) ?></h6>
+                                                <small class="text-muted">₱ <?= number_format($item['price'], 2) ?>
+                                                </small>
+                                            </div>
                                         </div>
 
-                                        <!-- col2: Price (centered column, text left aligned) -->
-                                        <div class="col-md-3 d-flex justify-content-center">
-                                            <span class="text-muted w-100 text-start">
-                                                P <?= number_format($itemTotal, 2) ?>
+                                        <!-- col2: Price (single column) -->
+                                        <div class="col-md-3 d-flex flex-column align-items-start">
+                                            <span class="text-muted">
+                                                ₱ <?= number_format($itemTotal, 2) ?>
                                             </span>
-
-                                            <span class="text-muted w-100 text-start">
+                                            <small class="text-muted">
                                                 x <?= number_format($item['quantity']) ?>
-                                            </span>
+                                            </small>
                                         </div>
 
                                         <!-- col3: Actions -->
