@@ -120,6 +120,7 @@ include APP_ROOT . '/views/layouts/header.php';
                 <!-- Hidden Checkout Form -->
                 <div id="checkoutForm" class="card shadow-sm mx-auto d-none mb-5" style="max-width:800px; margin-top:-5rem">
                     <div class="card-body p-5">
+                        <h4 id="order-type-display" class="text-center mb-4"></h4>
                         <h5 class="card-title">Order Summary</h5>
                         <ul class="list-group list-group-flush">
                             <?php $total = 0; ?>
@@ -189,6 +190,7 @@ include APP_ROOT . '/views/layouts/header.php';
         const pickupBtn = document.getElementById("pickupBtn");
         const deliveryBtn = document.getElementById("deliveryBtn");
         const checkoutForm = document.getElementById("checkoutForm");
+        const orderTypeDisplay = document.getElementById("order-type-display");
 
         const pickupForm = document.getElementById("pickupForm");
         const deliveryForm = document.getElementById("deliveryForm");
@@ -198,16 +200,22 @@ include APP_ROOT . '/views/layouts/header.php';
         }
 
         pickupBtn?.addEventListener("click", function () {
-            resetButtons();
             checkoutForm.classList.remove("d-none");
+
+            orderTypeDisplay.innerHTML = "Pickup";
+            orderTypeDisplay.style.color = "#D68421";
+            orderTypeDisplay.style.fontWeight = "bold";
 
             pickupForm.classList.remove("d-none");
             deliveryForm.classList.add("d-none");
         });
 
         deliveryBtn?.addEventListener("click", function () {
-            resetButtons();
             checkoutForm.classList.remove("d-none");
+
+            orderTypeDisplay.innerHTML = "Delivery";
+            orderTypeDisplay.style.color = "#155E63";
+            orderTypeDisplay.style.fontWeight = "bold";
 
             deliveryForm.classList.remove("d-none");
             pickupForm.classList.add("d-none");

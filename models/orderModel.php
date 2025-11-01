@@ -81,7 +81,7 @@ function getOrdersByUserId($pdo, int $userId)
  */
 function getOrderItems(object $pdo, int $orderId): array
 {
-    $sql = "SELECT oi.*, p.name 
+    $sql = "SELECT oi.*, p.name, p.image 
             FROM order_items oi
             JOIN products p ON oi.product_id = p.id
             WHERE oi.order_id = :order_id";

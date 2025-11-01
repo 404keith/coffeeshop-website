@@ -72,16 +72,19 @@ $orderTime = date('g:i A', $orderTimestamp); // time
                             <?php else: ?>
                                 <?php foreach ($orderItems as $item): ?>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <span class="fw-medium"><?= htmlspecialchars($item['name']) ?></span>
-                                            <span class="text-muted">(x<?= $item['quantity'] ?>)</span>
+                                        <div class="d-flex align-items-center">
+                                            <img src="<?= FILE_ROOT . htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['name']) ?>" style="width: 50px; height: 50px; object-fit: cover; margin-right: 15px; border-radius: 5px;">
+                                            <div>
+                                                <span class="fw-medium"><?= htmlspecialchars($item['name']) ?></span>
+                                                <span class="text-muted">(x<?= $item['quantity'] ?>)</span>
 
-                                            <?php
-                                            $options_display = !empty($item['options']) ? htmlspecialchars($item['options']) : '';
-                                            if ($options_display): ?>
-                                                <small class="text-secondary d-block ms-3 fst-italic">Options:
-                                                    <?= $options_display ?></small>
-                                            <?php endif; ?>
+                                                <?php
+                                                $options_display = !empty($item['options']) ? htmlspecialchars($item['options']) : '';
+                                                if ($options_display): ?>
+                                                    <small class="text-secondary d-block ms-3 fst-italic">Options:
+                                                        <?= $options_display ?></small>
+                                                <?php endif; ?>
+                                            </div>
                                         </div>
                                         <span class="fw-bold">P <?= number_format($item['price'] * $item['quantity'], 2) ?></span>
                                     </li>
