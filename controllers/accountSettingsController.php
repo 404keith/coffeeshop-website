@@ -20,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (updateUser($pdo, $userId, $firstName, $lastName, $phone, $address, $city, $zipCode)) {
         $_SESSION['success_message'] = 'Your account information has been updated successfully.';
+        unset($_SESSION['user_firstname']);
+        $_SESSION['user_firstname'] = $firstName;
     } else {
         $_SESSION['error_message'] = 'There was an error updating your account information.';
     }
