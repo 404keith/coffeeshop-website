@@ -128,9 +128,12 @@ include APP_ROOT . '/views/layouts/header.php';
                                 <?php $itemTotal = $item['price'] * $item['quantity']; ?>
                                 <?php $total += $itemTotal; ?>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <h6 class="my-0"><?= htmlspecialchars($item['name']) ?></h6>
-                                        <small class="text-muted">Quantity: <?= htmlspecialchars($item['quantity']) ?></small>
+                                    <div class="d-flex align-items-center">
+                                        <img src="<?= FILE_ROOT . htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['name']) ?>" style="width: 50px; height: 50px; object-fit: cover; margin-right: 15px; border-radius: 5px;">
+                                        <div>
+                                            <h6 class="my-0"><?= htmlspecialchars($item['name']) ?></h6>
+                                            <small class="text-muted">Quantity: <?= htmlspecialchars($item['quantity']) ?></small>
+                                        </div>
                                     </div>
                                     <span class="text-muted">P <?= number_format($itemTotal, 2) ?></span>
                                 </li>

@@ -92,8 +92,12 @@ function sendOrderEmail(string $email, array $order, array $orderItems): bool
     // Build order items list
     $itemsHtml = '';
     foreach ($orderItems as $item) {
-      $itemsHtml .= "<li>{$item['name']} (x{$item['quantity']}) - P "
-        . number_format($item['price'] * $item['quantity'], 2) . "</li>";
+      $imagePath = APP_ROOT . str_replace('/', DIRECTORY_SEPARATOR, $item['image']);
+      $cid = 'product_' . $item['product_id'];
+      $mail->addEmbeddedImage($imagePath, $cid);
+
+      $itemsHtml .= "<li style='margin-bottom: 10px; display: flex; align-items: center;'><img src='cid:{$cid}' style='width: 50px; height: 50px; object-fit: cover; margin-right: 15px; border-radius: 5px;'><span>{$item['name']} (x{$item['quantity']}) - P "
+        . number_format($item['price'] * $item['quantity'], 2) . "</span></li>";
     }
 
     $heartIcon = APP_ROOT . "/public/assets/images/heart.png";
