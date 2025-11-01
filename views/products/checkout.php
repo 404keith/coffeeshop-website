@@ -158,17 +158,17 @@ include APP_ROOT . '/views/layouts/header.php';
 
                             <div class="mb-3">
                                 <label for="fullName" class="form-label">Full Name</label>
-                                <input type="text" name="full_name" id="fullName" class="form-control" required>
+                                <input type="text" name="full_name" id="fullName" class="form-control" value="<?= htmlspecialchars(($user['first_name'] ?? '') . ' ' . ($user['last_name'] ?? '')) ?>" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="address" class="form-label">Shipping Address</label>
-                                <textarea name="address" id="address" class="form-control" required></textarea>
+                                <textarea name="address" id="address" class="form-control" required><?= htmlspecialchars($user['address'] ?? '') ?></textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" name="phone" id="phone" class="form-control" required>
+                                <input type="tel" name="phone" id="phone" class="form-control" value="<?= htmlspecialchars($user['phone'] ?? '') ?>" required>
                             </div>
 
                             <button type="submit" class="btn btn-lg w-100 mt-4 btn-delivery">Place Order (Delivery)</button>

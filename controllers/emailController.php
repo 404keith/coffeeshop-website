@@ -200,3 +200,32 @@ function sendOrderEmail(string $email, array $order, array $orderItems): bool
     return false;
   }
 }
+
+function sendPasswordChangeEmail(string $email, int $code): bool
+{
+  try {
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = EMAIL_USERNAME;
+    $mail->Password = EMAIL_PASSWORD;
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
+
+    $mail->setFrom('mondaymornings.test123@gmail.com', 'Coffee by Monday Mornings');
+    $mail->addAddress($email);
+
+    $mail->isHTML(true);
+    $mail->Subject = 'Your Password Change Verification Code';
+    $mail->Body = '
+            <h1>Password Change Verification Code</h1>
+            <p>Your verification code is: <strong>' . $code . '</strong></p>
+            <p>Use this code to complete your password change.</p>';
+
+    return $mail->send();
+  } catch (Exception $e) {
+    error_log("Password Change Mail Error: {$e->getMessage()}");
+    return false;
+  }
+}

@@ -31,7 +31,10 @@ $publicRoutes = [
     'test2' => 'test2.php',
     'test4' => 'test4.php',
     'test5' => 'test5.php',
-    'contact' => 'views/home/contact.php'
+    'contact' => 'views/home/contact.php',
+    'account-settings' => 'views/account/account_settings.php',
+    'change-password' => 'controllers/changePasswordController.php',
+    'verify-password-change' => 'views/auth/verify_password_change.php'
 ];
 
 $adminRoutes = [

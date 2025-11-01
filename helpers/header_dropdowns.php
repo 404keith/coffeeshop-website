@@ -8,6 +8,7 @@ function renderAccountMenu($fileRoot)
             echo '<li><a class="btn btn-account " href="' . $fileRoot . '/admin">Dashboard</a></li>';
         } else {
             echo '<li><a class="btn btn-account mb-2" href="' . $fileRoot . '/my-orders">My Orders</a></li>';
+            echo '<li><a class="btn btn-account mb-2" href="' . $fileRoot . '/account-settings">Account Settings</a></li>';
 
         }
         echo '<li><a class="btn btn-account " href="' . $fileRoot . '/logout">Logout</a></li>';

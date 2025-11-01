@@ -2,6 +2,7 @@
 require_once APP_ROOT . '/config/config.php';
 require_once APP_ROOT . '/config/session.php';
 require_once APP_ROOT . '/config/dbhandler.php';
+require_once APP_ROOT . '/models/accountSettingsModel.php';
 
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['checkout_error'] = 'You must be logged in to access the checkout page.';
@@ -16,6 +17,8 @@ try {
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['user_id' => $userId]);
     $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $user = getUserById($pdo, $userId);
 
 
 } catch (PDOException $e) {
