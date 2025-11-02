@@ -62,7 +62,11 @@ function handle_send_reset_link(object $pdo, string $email): void
         // Embed the image
         $mail->addEmbeddedImage($image_path, $cid, 'forgot_icon.png');
 
-        $mail->Body = '\r\n        <img src="cid:' . $cid . '" alt="Sad face" class="img-fluid mb-2 mx-auto d-block" style="max-width: 130px;">\r\n        <h1>Password Reset:</h1>\r\n        Click here to reset your password: <a href="' . $resetLink . '">' . $resetLink . '</a>\r\n    ';
+        $mail->Body = '
+        <img src="cid:' . $cid . '" alt="Sad face" class="img-fluid mb-2 mx-auto d-block" style="max-width: 130px;">
+        <h1>Password Reset:</h1>
+        Click here to reset your password: <a href="' . $resetLink . '">' . $resetLink . '</a>
+    ';
 
         $mail->send();
     } catch (Exception $e) {

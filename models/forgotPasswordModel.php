@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1); //enable type declaration
 
-function get_email(object $pdo, string $email)
+function get_user_by_email(object $pdo, string $email)
 {
 	$query = "SELECT * FROM users WHERE email = :email;";
 
