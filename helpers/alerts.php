@@ -202,6 +202,8 @@ function forgotPasswordAlert(): void
                 case 'reset_failed':
                     printFailed($message);
                     break 2;
+                default:
+                    printFailed($message);
             }
         }
         unset($_SESSION['errors_reset']);

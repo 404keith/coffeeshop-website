@@ -30,8 +30,7 @@ function handle_send_reset_link(object $pdo, string $email): void
         return;
 
     $token = bin2hex(random_bytes(32));
-    $expires = date("Y-m-d H:i:s", strtotime(datetime: "+7 hour"));
-    create_password_reset($pdo, $email, $token, $expires);
+    create_password_reset($pdo, $email, $token);
 
     $resetLink = FILE_ROOT . "coffeeshop-website.local/reset?token=" . urlencode($token);
 

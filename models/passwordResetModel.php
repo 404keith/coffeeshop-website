@@ -1,14 +1,13 @@
 <?php
 declare(strict_types=1);
 
-function create_password_reset(object $pdo, string $email, string $token, string $expires): bool
+function create_password_reset(object $pdo, string $email, string $token): bool
 {
-    $query = "INSERT INTO password_resets (email, token, expires_at) VALUES (:email, :token, :expires);";
+    $query = "INSERT INTO password_resets (email, token, expires_at) VALUES (:email, :token, DATE_ADD(NOW(), INTERVAL 1 HOUR));";
     $stmt = $pdo->prepare($query);
     return $stmt->execute([
         ':email' => $email,
-        ':token' => $token,
-        ':expires' => $expires
+        ':token' => $token
     ]);
 }
 
