@@ -27,5 +27,3 @@ function delete_password_reset(object $pdo, string $email): bool
     $stmt = $pdo->prepare($query);
     return $stmt->execute([':email' => $email]);
 }
-
-
