@@ -5,7 +5,7 @@ declare(strict_types=1); // Enable strict type declarations
 
 function printFailed(string $message, bool $raw = false): void
 {
-    echo '<div class="alert alert-danger text-center fade show popup-alert mx-auto" role="alert">'
+    echo '<div class="alert alert-danger text-center fade show popup-alert" role="alert">'
         . ($raw ? $message : htmlspecialchars($message))
         . '</div>';
 }
@@ -13,7 +13,7 @@ function printFailed(string $message, bool $raw = false): void
 function printSuccess(string $message, bool $raw = false): void
 {
 
-    echo '<div class="alert alert-success text-center fade show popup-alert mx-auto" role="alert">'
+    echo '<div class="alert alert-success text-center fade show popup-alert" role="alert">'
         . ($raw ? $message : htmlspecialchars($message))
         . '</div>';
 }

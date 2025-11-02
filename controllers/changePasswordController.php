@@ -41,10 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $verificationCode = rand(100000, 999999);
     $_SESSION['password_change_code'] = $verificationCode;
+    $_SESSION['password_change_tries'] = 0;
     $_SESSION['new_password'] = password_hash($newPassword, PASSWORD_DEFAULT);
 
     if (sendPasswordChangeEmail($user['email'], $verificationCode)) {
-        header('Location: ' . FILE_ROOT . '/verify-password-change');
+        header('Location: ' . FILE_ROOT . '/verify-password-change-form');
         exit();
     } else {
         $_SESSION['error_message'] = 'Failed to send verification code. Please try again.';

@@ -11,8 +11,10 @@ $publicRoutes = [
     'forgot' => 'views/auth/forgot_password.php',
     'forgot_pass' => 'views/auth/forgotView.php',
     'reset' => 'views/auth/reset_password.php',
-    'reset_pass' => 'views/auth/resetView.php',
+    'reset_pass' => 'controllers/resetPasswordController.php',
     'signupView' => 'views/auth/signupView.php',
+    'verify-signup' => 'views/auth/verify_signup.php',
+    'verify-signup-process' => 'views/auth/verifyView.php',
     'loginView' => 'views/auth/loginView.php',
     'drinks' => 'views/products/drinksView.php',
     'waffles' => 'views/products/wafflesView.php',
@@ -34,7 +36,8 @@ $publicRoutes = [
     'contact' => 'views/home/contact.php',
     'account-settings' => 'views/account/account_settings.php',
     'change-password' => 'controllers/changePasswordController.php',
-    'verify-password-change' => 'views/auth/verify_password_change.php'
+    'verify-password-change-form' => 'views/auth/verify_password_change.php',
+    'verify-password-change' => 'controllers/verifyPasswordChangeController.php'
 ];
 
 $adminRoutes = [

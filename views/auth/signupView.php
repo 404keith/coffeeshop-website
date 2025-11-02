@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		        ];
 		        $_SESSION['signup_data'] = $signupData;
 		
-		        header('Location: ' . FILE_ROOT . '/views/auth/verify.php');
+		        header('Location: ' . FILE_ROOT . '/verify-signup');
 		        die();
 	} catch (PDOException $e) {
 		// Log the error for debugging, but show a generic message to the user

@@ -25,7 +25,7 @@ $tries = $_SESSION['verification_tries'] ?? 0;
 <body class="d-flex flex-column min-vh-100">
     <main class="flex-fill">
         <div class="container-fluid d-flex justify-content-center">
-            <form class="p-5 form-width" action="<?= FILE_ROOT ?>/views/auth/verifyView.php" method="post">
+            <form class="p-5 form-width" action="<?= FILE_ROOT ?>/verify-signup-process" method="post">
                 <div class="form-padding">
                     <div>
                         <h1 class="welcome-text">Verify Your Email</h1>

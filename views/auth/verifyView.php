@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $_SESSION['verification_tries'] = $tries + 1;
         $_SESSION['errors_verify'] = ['invalid_code' => 'Invalid verification code.'];
-        header('Location: ' . FILE_ROOT . '/views/auth/verify.php');
+        header('Location: ' . FILE_ROOT . '/verify-signup');
         die();
     }
 } else {
