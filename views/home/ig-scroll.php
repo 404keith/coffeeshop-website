@@ -420,7 +420,7 @@
         /* iphone 12 */
         @media (min-width:390px) and (max-width: 391px) {
             .hello-text {
-                margin-top: -2rem !imprtant;
+                margin-top: -2rem !important;
                 margin-bottom: -4rem !important;
             }
         }
