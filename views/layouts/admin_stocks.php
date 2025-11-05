@@ -191,7 +191,8 @@ $stocks = $controller->getStocks();
                         </div>
                         <div class="mb-3">
                             <label for="image" class="form-label">Upload Image</label>
-                            <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                            <input type="file" class="form-control" id="image" name="image" accept="image/*" onchange="previewImage(event)">
+                            <img id="image-preview" src="#" alt="Image Preview" style="display:none; max-width: 100px; margin-top: 10px;">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -249,7 +250,8 @@ $stocks = $controller->getStocks();
                             <label for="edit-image-upload" class="form-label">Upload New Image (Leave blank to keep
                                 current)</label>
                             <input type="file" class="form-control" id="edit-image-upload" name="image"
-                                accept="image/*">
+                                accept="image/*" onchange="previewEditImage(event)">
+                            <img id="edit-image-preview" src="#" alt="Image Preview" style="max-width: 100px; margin-top: 10px;">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -264,6 +266,25 @@ $stocks = $controller->getStocks();
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById('image-preview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function previewEditImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById('edit-image-preview');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             const editModal = document.getElementById('editProductModal');
             editModal.addEventListener('show.bs.modal', function (event) {
@@ -286,6 +307,13 @@ $stocks = $controller->getStocks();
                 editModal.querySelector('#edit-price').value = price;
                 editModal.querySelector('#edit-stock').value = stock;
                 editModal.querySelector('#edit-current-image').value = image; 
+
+                const imagePreview = editModal.querySelector('#edit-image-preview');
+                if (image) {
+                    imagePreview.src = '<?= FILE_ROOT ?>' + image;
+                } else {
+                    imagePreview.src = '#';
+                }
             });
         });
 
