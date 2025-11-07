@@ -5,321 +5,451 @@ require_once APP_ROOT . '/controllers/stocksController.php';
 $controller = new StockController($pdo);
 $controller->handleRequest();
 $stocks = $controller->getStocks();
+
+$category_map = [
+    1 => 'Drinks',
+    2 => 'Pastries',
+    3 => 'Waffles',
+    4 => 'Merienda',
+];
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Management</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #fff6eb;
-            background:
-                url('<?php echo FILE_ROOT; ?>/public/assets/images/background-2.png');
-            background-repeat: no-repeat;
-            background-position: top center;
-            background-size: cover;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Management</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body {
+      background-color: #FFF6EB;
+      background:
+        url('<?php echo FILE_ROOT; ?>/public/assets/images/background-2.png');
+      background-repeat: no-repeat;
+      background-position: top center;
+      background-size: cover;
+      background-attachment: fixed; 
+    }
 
-        .sidebar {
-            background: #281A11;
-            min-height: 100vh;
-            padding-top: 20px;
-            color: #fff;
-        }
+    .sidebar {
+      background: #281A11;
+      min-height: 100vh;
+      padding-top: 20px;
+      color: #fff;
+    }
+    .sidebar a {
+      color: #D48423;
+      text-decoration: none;
+      display: flex; 
+      align-items: center;
+      padding: 12px 16px;
+      font-weight: 500;
+      border-radius: 8px;
+      margin: 4px 8px;
+    }
+    .sidebar a:hover,
+    .sidebar a.active {
+      background: rgba(145, 106, 83, 0.4);
+    }
+    .sidebar a .fas {
+      width: 20px;
+      margin-right: 10px;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
 
-        .sidebar a {
-            color: #D48423;
-            text-decoration: none;
-            display: block;
-            padding: 12px;
-        }
+    .content {
+      padding: 25px;
+    }
+    
+    .ui-card {
+        border: 0;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px);
+        overflow: hidden; 
+        margin-bottom: 20px;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    .ui-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    }
 
-        .sidebar a:hover,
-        .active {
-            background: rgba(145, 106, 83, 0.4);
-        }
+    .ui-card-header {
+        background-color: #281A11;
+        color: white;
+        border-bottom: 0;
+        padding: 1rem 1.5rem;
+    }
+    
+    .header-search {
+        width: 300px;
+    }
+    .header-search .input-group-text {
+        background-color: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-right: 0;
+        color: #D48423;
+    }
+    .header-search .form-control {
+        background-color: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-left: 0;
+        color: white; 
+    }
+    .header-search .form-control::placeholder {
+        color: rgba(255,255,255,0.6);
+    }
+    .header-search .form-control:focus {
+        background-color: rgba(255,255,255,0.2);
+        box-shadow: none;
+        border-color: rgba(255,255,255,0.2);
+        color: white;
+    }
 
-        .content {
-            padding: 20px;
-        }
+    .modal-header-theme {
+      background-color: #281A11;
+      color: #FFF6EB;
+    }
+    .modal-header-theme .btn-close {
+      filter: invert(1) grayscale(100) brightness(200%);
+    }
 
-        .table-light {
-            border: 2px solid #000;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            background: #fff;
-        }
-
-        tr {
-            border: 1px solid #000;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            background: #fff;
-        }
-    </style>
+    .table-custom {
+      vertical-align: middle;
+    }
+    
+    .table-custom thead th {
+        background-color: #281A11;
+        color: white;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .table-custom img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 25%; 
+      border: 2px solid #eee;
+    }
+  </style>
 </head>
 
 <body>
-    <?php include APP_ROOT . '/views/layouts/adminNav.php'; ?>
-    <div class="container-fluid">
-        <div class="row">
+  <?php include APP_ROOT . '/views/layouts/adminNav.php'; ?>
 
-            <div class="col-md-2 sidebar">
-                <a href="admin">Dashboard</a>
-                <a href="stocks" class="active">Stocks</a>
-                <a href="sales">Sales</a>
-                <a href="orders">Orders</a>
-                <a href="archived_products"> Archived Products</a>
+  <div class="container-fluid">
+    <div class="row">
 
+    <div class="col-md-2 sidebar">
+      <a href="admin"><i class="fas fa-house"></i>Dashboard</a>
+      <a href="stocks" class="active"><i class="fas fa-box"></i>Stocks</a>
+      <a href="sales"><i class="fas fa-chart-line"></i>Sales</a>
+      <a href="orders"><i class="fas fa-cart-shopping"></i>Orders</a>
+      <a href="archived_products"><i class="fas fa-archive"></i>Archived</a>
+    </div>
+
+      <div class="col-md-10 content">
+
+        <div class="ui-card">
+          <div class="ui-card-header d-flex justify-content-between align-items-center">
+            
+            <div class="d-flex align-items-center">
+                <h4 class="mb-0 me-3">Stock Management</h4>
+                <div class="input-group header-search">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    <input type="text" class="form-control" placeholder="Search by name or category..." id="productSearch">
+                </div>
             </div>
 
-            <div class="col-md-10 content">
-                <h3>Stock Management</h3>
-                <p>Manage your inventory and track stock levels</p>
-
-                <button type="button" class="btn btn-warning mb-3 float-end" data-bs-toggle="modal"
-                    data-bs-target="#addProductModal">
-                    Add Product
-                </button>
-
-                <table class="table table-bordered">
-                    <thead class="table-light">
-                        <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Stock</th>
-                            <th>Price</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if (!empty($stocks)): ?>
-                            <?php foreach ($stocks as $item): ?>
-                                <tr>
-                                <td class="col-md-1.5 content"><center>
-                                    <?php if (!empty($item['image'])): ?>
-                                        <img src="<?= FILE_ROOT . htmlspecialchars($item['image']) ?>" width="50" height="50" style="object-fit:cover;">
-                                    <?php else: ?>
-                                        <span class="text-muted">No image</span>
-                                    <?php endif; ?></center>
-                                </td>
-                                    <td class="col-md-5 content"><?= htmlspecialchars($item["name"]) ?></td>
-                                    <td><?= htmlspecialchars($item["category_id"]) ?></td>
-                                    <td><?= htmlspecialchars($item["stock"]) ?></td>
-                                    <td><?= htmlspecialchars($item["price"]) ?></td>
-                                    
-                                    <td class="col-md-2 content">
-                                        <a href="#" class="btn btn-sm btn-dark edit-btn" data-bs-toggle="modal"
-                                            data-bs-target="#editProductModal" data-id="<?= htmlspecialchars($item['id']) ?>"
-                                            data-name="<?= htmlspecialchars($item['name']) ?>"
-                                            data-category-id="<?= htmlspecialchars($item['category_id']) ?>"
-                                            data-product-type="<?= htmlspecialchars($item['product_type']) ?>"
-                                            data-description="<?= htmlspecialchars($item['description']) ?>"
-                                            data-price="<?= htmlspecialchars($item['price']) ?>"
-                                            data-stock="<?= htmlspecialchars($item['stock']) ?>"
-                                            data-image="<?= htmlspecialchars($item['image']) ?>">
-                                            ✎ Edit
-                                        </a>
-                                        <form action="stocks" method="post" style="display:inline;" onsubmit="return confirmArchive()">
-                                            <input type="hidden" name="archive_id" value="<?= $item['id'] ?>">
-                                            <button type="submit" name="archive_product" class="btn btn-sm btn-danger">
-                                                🗃 Archive
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addProductModal">
+              <i class="fas fa-plus"></i> Add Product
+            </button>
+          </div>
+          <div class="card-body p-0">
+            <table class="table table-hover table-custom mb-0">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Stock</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productTableBody"> <?php if (!empty($stocks)): ?>
+                  <?php foreach ($stocks as $item): ?>
+                    <tr>
+                      <td>
+                        <?php if (!empty($item['image'])): ?>
+                          <img src="<?= FILE_ROOT . htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item["name"]) ?>">
                         <?php else: ?>
-                            <tr>
-                                <td colspan="5" class="text-center">No stock items found.</td>
-                            </tr>
+                          <img src="https://via.placeholder.com/50" alt="No image">
                         <?php endif; ?>
-                    </tbody>
-                </table>
-            </div>
+                      </td>
+                      <td><?= htmlspecialchars($item["name"]) ?></td>
+                      <td>
+                        <?= htmlspecialchars($category_map[$item["category_id"]] ?? 'Unknown') ?>
+                      </td>
+                      <td>
+                        <?php
+                          $stock = (int)$item["stock"];
+                          $badge_class = 'bg-success'; // Default
+                          if ($stock <= 10) {
+                              $badge_class = 'bg-danger';
+                          } elseif ($stock <= 25) {
+                              $badge_class = 'bg-warning text-dark';
+                          }
+                        ?>
+                        <span class="badge <?= $badge_class ?>"><?= $stock ?></span>
+                      </td>
+                      <td>
+                        ₱<?= number_format($item["price"], 2) ?>
+                      </td>
+                      <td>
+                        <a href="#" class="btn btn-sm btn-dark edit-btn" data-bs-toggle="modal"
+                          data-bs-target="#editProductModal" data-id="<?= htmlspecialchars($item['id']) ?>"
+                          data-name="<?= htmlspecialchars($item['name']) ?>"
+                          data-category-id="<?= htmlspecialchars($item['category_id']) ?>"
+                          data-product-type="<?= htmlspecialchars($item['product_type']) ?>"
+                          data-description="<?= htmlspecialchars($item['description']) ?>"
+                          data-price="<?= htmlspecialchars($item['price']) ?>"
+                          data-stock="<?= htmlspecialchars($item['stock']) ?>"
+                          data-image="<?= htmlspecialchars($item['image']) ?>">
+                          <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <form action="stocks" method="post" style="display:inline;" onsubmit="return confirmArchive()">
+                          <input type="hidden" name="archive_id" value="<?= $item['id'] ?>">
+                          <button type="submit" name="archive_product" class="btn btn-sm btn-danger">
+                            <i class="fas fa-archive"></i> Archive
+                          </button>
+                        </form>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
+                <?php else: ?>
+                  <tr>
+                    <td colspan="6" class="text-center">No stock items found.</td>
+                  </tr>
+                <?php endif; ?>
+              </tbody>
+            </table>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="stocks" method="post" enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Product Name</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="category_id" class="form-label">Category</label>
-                            <select class="form-select" id="category_id" name="category_id" required>
-                                <option value="" selected disabled>Select a category</option>
-                                <option value="1">Drinks</option>
-                                <option value="2">Pastries</option>
-                                <option value="3">Waffles</option>
-                                <option value="4">Merienda</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="product_type" class="form-label">Product Type</label>
-                            <input type="text" class="form-control" id="product_type" name="product_type">
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <input type="text" class="form-control" id="description" name="description">
-                        </div>
-                        <div class="mb-3">
-                            <label for="price" class="form-label">Price</label>
-                            <input type="number" step="0.01" class="form-control" id="price" name="price" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="stock" class="form-label">Current Stock</label>
-                            <input type="number" class="form-control" id="stock" name="stock" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="image" class="form-label">Upload Image</label>
-                            <input type="file" class="form-control" id="image" name="image" accept="image/*" onchange="previewImage(event)">
-                            <img id="image-preview" src="#" alt="Image Preview" style="display:none; max-width: 100px; margin-top: 10px;">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="submit_product" class="btn btn-warning">Save Product</button>
-                    </div>
-                </form>
-            </div>
+  <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header modal-header-theme">
+          <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-    </div>
-
-    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="stocks" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="product_id" id="edit-product-id">
-                    <input type="hidden" name="current_image" id="edit-current-image">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="edit-name" class="form-label">Product Name</label>
-                            <input type="text" class="form-control" id="edit-name" name="name" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="edit-category-id" class="form-label">Category</label>
-                            <select class="form-select" id="edit-category-id" name="category_id" required>
-                                <option value="1">Drinks</option>
-                                <option value="2">Pastries</option>
-                                <option value="3">Waffles</option>
-                                <option value="4">Merienda</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="edit-product-type" class="form-label">Product Type</label>
-                            <input type="text" class="form-control" id="edit-product-type" name="product_type">
-                        </div>
-                        <div class="mb-3">
-                            <label for="edit-description" class="form-label">Description</label>
-                            <input type="text" class="form-control" id="edit-description" name="description">
-                        </div>
-                        <div class="mb-3">
-                            <label for="edit-price" class="form-label">Price</label>
-                            <input type="number" step="0.01" class="form-control" id="edit-price" name="price" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="edit-stock" class="form-label">Current Stock</label>
-                            <input type="number" class="form-control" id="edit-stock" name="stock" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="edit-image-upload" class="form-label">Upload New Image (Leave blank to keep
-                                current)</label>
-                            <input type="file" class="form-control" id="edit-image-upload" name="image"
-                                accept="image/*" onchange="previewEditImage(event)">
-                            <img id="edit-image-preview" src="#" alt="Image Preview" style="max-width: 100px; margin-top: 10px;">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="update_product" class="btn btn-dark">Update Product</button>
-                    </div>
-                </form>
+        <form action="stocks" method="post" enctype="multipart/form-data">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="name" class="form-label">Product Name</label>
+              <input type="text" class="form-control" id="name" name="name" required>
             </div>
-        </div>
+            <div class="mb-3">
+              <label for="category_id" class="form-label">Category</label>
+              <select class="form-select" id="category_id" name="category_id" required>
+                <option value="" selected disabled>Select a category</option>
+                <option value="1">Drinks</option>
+                <option value="2">Pastries</option>
+                <option value="3">Waffles</option>
+                <option value="4">Merienda</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="product_type" class="form-label">Product Type</label>
+              <input type="text" class="form-control" id="product_type" name="product_type">
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <input type="text" class="form-control" id="description" name="description">
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input type="number" step="0.01" class="form-control" id="price" name="price" required>
+            </div>
+            <div class="mb-3">
+              <label for="stock" class="form-label">Current Stock</label>
+              <input type="number" class="form-control" id="stock" name="stock" required>
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Upload Image</label>
+              <input type="file" class="form-control" id="image" name="image" accept="image/*" onchange="previewImage(event)">
+              <img id="image-preview" src="#" alt="Image Preview" style="display:none; max-width: 100px; margin-top: 10px;">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" name="submit_product" class="btn btn-warning">Save Product</button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function previewImage(event) {
-            var reader = new FileReader();
-            reader.onload = function(){
-                var output = document.getElementById('image-preview');
-                output.src = reader.result;
-                output.style.display = 'block';
-            }
-            reader.readAsDataURL(event.target.files[0]);
+  <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header modal-header-theme">
+          <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="stocks" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="product_id" id="edit-product-id">
+          <input type="hidden" name="current_image" id="edit-current-image">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="edit-name" class="form-label">Product Name</label>
+              <input type="text" class="form-control" id="edit-name" name="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="edit-category-id" class="form-label">Category</label>
+              <select class="form-select" id="edit-category-id" name="category_id" required>
+                <option value="1">Drinks</option>
+                <option value="2">Pastries</option>
+                <option value="3">Waffles</option>
+                <option value="4">Merienda</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="edit-product-type" class="form-label">Product Type</label>
+              <input type="text" class="form-control" id="edit-product-type" name="product_type">
+            </div>
+            <div class="mb-3">
+              <label for="edit-description" class="form-label">Description</label>
+              <input type="text" class="form-control" id="edit-description" name="description">
+            </div>
+            <div class="mb-3">
+              <label for="edit-price" class="form-label">Price</label>
+              <input type="number" step="0.01" class="form-control" id="edit-price" name="price" required>
+            </div>
+            <div class="mb-3">
+              <label for="edit-stock" class="form-label">Current Stock</label>
+              <input type="number" class="form-control" id="edit-stock" name="stock" required>
+            </div>
+            <div class="mb-3">
+              <label for="edit-image-upload" class="form-label">Upload New Image (Leave blank to keep
+                current)</label>
+              <input type="file" class="form-control" id="edit-image-upload" name="image"
+                accept="image/*" onchange="previewEditImage(event)">
+              <img id="edit-image-preview" src="#" alt="Image Preview" style="max-width: 100px; margin-top: 10px;">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" name="update_product" class="btn btn-dark">Update Product</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <script>
+    function previewImage(event) {
+      var reader = new FileReader();
+      reader.onload = function(){
+        var output = document.getElementById('image-preview');
+        output.src = reader.result;
+        output.style.display = 'block';
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+    function previewEditImage(event) {
+      var reader = new FileReader();
+      reader.onload = function(){
+        var output = document.getElementById('edit-image-preview');
+        output.src = reader.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const editModal = document.getElementById('editProductModal');
+      editModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const id = button.getAttribute('data-id');
+        const name = button.getAttribute('data-name');
+        const categoryId = button.getAttribute('data-category-id');
+        const productType = button.getAttribute('data-product-type');
+        const description = button.getAttribute('data-description');
+        const price = button.getAttribute('data-price');
+        const stock = button.getAttribute('data-stock');
+        const image = button.getAttribute('data-image'); 
+
+        editModal.querySelector('#edit-product-id').value = id;
+        editModal.querySelector('#edit-name').value = name;
+        editModal.querySelector('#edit-category-id').value = categoryId; 
+        editModal.querySelector('#edit-product-type').value = productType;
+        editModal.querySelector('#edit-description').value = description;
+        editModal.querySelector('#edit-price').value = price;
+        editModal.querySelector('#edit-stock').value = stock;
+        editModal.querySelector('#edit-current-image').value = image; 
+
+        const imagePreview = editModal.querySelector('#edit-image-preview');
+        if (image && image !== 'null' && image !== '') {
+            imagePreview.src = '<?= FILE_ROOT ?>' + image;
+        } else {
+            imagePreview.src = 'https://via.placeholder.com/100'; // Placeholder
         }
+        
+        // Clear the file input
+        document.getElementById('edit-image-upload').value = '';
+      });
+      
+      // ✨ NEW: Live Search Functionality
+      document.getElementById('productSearch').addEventListener('keyup', function() {
+          let filter = this.value.toLowerCase();
+          let rows = document.querySelectorAll('#productTableBody tr');
+          let noResultsFound = true;
 
-        function previewEditImage(event) {
-            var reader = new FileReader();
-            reader.onload = function(){
-                var output = document.getElementById('edit-image-preview');
-                output.src = reader.result;
-            }
-            reader.readAsDataURL(event.target.files[0]);
-        }
+          rows.forEach(row => {
+              // Check if it's the "No items found" row
+              let noItemsCell = row.querySelector('td[colspan="6"]');
+              if (noItemsCell) {
+                  // Hide the 'no items' row by default
+                  row.style.display = 'none';
+                  return; 
+              }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const editModal = document.getElementById('editProductModal');
-            editModal.addEventListener('show.bs.modal', function (event) {
-                const button = event.relatedTarget;
-                const id = button.getAttribute('data-id');
-                const name = button.getAttribute('data-name');
-                const categoryId = button.getAttribute('data-category-id');
-                const productType = button.getAttribute('data-product-type');
-                const description = button.getAttribute('data-description');
-                const price = button.getAttribute('data-price');
-                const stock = button.getAttribute('data-stock');
-                const image = button.getAttribute('data-image'); 
+              // Get text from product name (cell 1) and category (cell 2)
+              let productName = row.cells[1].textContent.toLowerCase();
+              let category = row.cells[2].textContent.toLowerCase();
+              
+              if (productName.includes(filter) || category.includes(filter)) {
+                  row.style.display = ''; // Show row
+                  noResultsFound = false;
+              } else {
+                  row.style.display = 'none'; // Hide row
+              }
+          });
+          
+          // You can add a "No results found" row dynamically if you want
+          // For now, it just hides non-matching items.
+      });
+    });
 
-                // This line now correctly selects the dropdown option
-                editModal.querySelector('#edit-product-id').value = id;
-                editModal.querySelector('#edit-name').value = name;
-                editModal.querySelector('#edit-category-id').value = categoryId; 
-                editModal.querySelector('#edit-product-type').value = productType;
-                editModal.querySelector('#edit-description').value = description;
-                editModal.querySelector('#edit-price').value = price;
-                editModal.querySelector('#edit-stock').value = stock;
-                editModal.querySelector('#edit-current-image').value = image; 
-
-                const imagePreview = editModal.querySelector('#edit-image-preview');
-                if (image) {
-                    imagePreview.src = '<?= FILE_ROOT ?>' + image;
-                } else {
-                    imagePreview.src = '#';
-                }
-            });
-        });
-
-            function confirmArchive() {
-                return confirm('Are you sure you want to archive this product?');
-                }
-    </script>
+    function confirmArchive() {
+      return confirm('Are you sure you want to archive this product?');
+    }
+  </script>
 </body>
 </html>
