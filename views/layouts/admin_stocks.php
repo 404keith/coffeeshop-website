@@ -235,6 +235,7 @@ $controller->handleRequest();
       <a href="sales"><i class="fas fa-chart-line"></i>Sales</a>
       <a href="orders"><i class="fas fa-cart-shopping"></i>Orders</a>
       <a href="archived_products"><i class="fas fa-archive"></i>Archived</a>
+      <a href="testing"><i class="fas fa-vial"></i>Testing</a>
     </div>
 
       <div class="col-md-10 content">
