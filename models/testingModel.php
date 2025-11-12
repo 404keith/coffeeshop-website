@@ -8,14 +8,17 @@ class TestingModel {
     }
 
     public function generateProducts(int $count) {
+        $start_time = microtime(true);
+
         $stmt = $this->pdo->query('SELECT id FROM categories');
         $category_ids = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
         if (empty($category_ids)) {
             // Handle case where there are no categories
-            return;
+            return 0;
         }
 
+        $this->pdo->beginTransaction();
         $stmt = $this->pdo->prepare(
             'INSERT INTO products (name, category_id, product_type, description, price, stock, image) 
              VALUES (:name, :category_id, :product_type, :description, :price, :stock, :image)'
@@ -40,6 +43,10 @@ class TestingModel {
                 ':image' => $image,
             ]);
         }
+        $this->pdo->commit();
+
+        $end_time = microtime(true);
+        return $end_time - $start_time;
     }
 
     public function deleteGeneratedProducts() {

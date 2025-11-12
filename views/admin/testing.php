@@ -100,10 +100,43 @@ $controller->handleRequest();
                         <form action="testing" method="post">
                             <div class="mb-3">
                                 <label for="num_products" class="form-label">Number of products to generate</label>
-                                <input type="number" class="form-control" id="num_products" name="num_products" value="100" min="1" max="1000">
+                                <input type="number" class="form-control" id="num_products" name="num_products" value="100" min="1">
                             </div>
                             <button type="submit" name="generate_products" class="btn btn-primary">Generate Products</button>
                         </form>
+                    </div>
+                </div>
+
+                <div class="ui-card mt-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Test Results</h5>
+                        <form action="testing" method="post">
+                            <button type="submit" name="clear_results" class="btn btn-sm btn-light">Clear Results</button>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Number of Products</th>
+                                    <th>Time Taken (seconds)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if (!empty($_SESSION['test_results'])): ?>
+                                    <?php foreach ($_SESSION['test_results'] as $result): ?>
+                                        <tr>
+                                            <td><?= htmlspecialchars($result['count']) ?></td>
+                                            <td><?= number_format($result['duration'], 4) ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="2" class="text-center">No test results yet.</td>
+                                    </tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
