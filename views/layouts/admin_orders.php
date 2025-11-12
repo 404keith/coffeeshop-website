@@ -291,11 +291,28 @@ $total_orders = array_sum($counts);
             </div>
 
             <div class="ui-card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0"><i class="fas fa-box-seam me-2"></i>All Orders</h5>
-                    <div class="input-group header-search" style="width: 350px;">
+                <div class="card-header d-flex justify-content-start align-items-center">
+                    <h5 class="mb-0 me-3"><i class="fas fa-box-seam me-2"></i>All Orders</h5>
+                    <div class="input-group header-search me-2" style="width: 300px;">
                         <span class="input-group-text"><i class="fas fa-search"></i></span>
                         <input type="text" class="form-control" placeholder="Search by Customer or Order ID..." id="orderSearch">
+                    </div>
+                    <div class="me-2">
+                        <select class="form-select" id="orderTypeFilter">
+                            <option value="all">All Order Types</option>
+                            <option value="deliver">Deliver</option>
+                            <option value="pickup">Pickup</option>
+                        </select>
+                    </div>
+                    <div class="me-2">
+                        <select class="form-select" id="sort">
+                            <option value="date_desc">Sort by Date (Newest)</option>
+                            <option value="date_asc">Sort by Date (Oldest)</option>
+                            <option value="name_asc">Sort by Name (A-Z)</option>
+                            <option value="name_desc">Sort by Name (Z-A)</option>
+                            <option value="total_desc">Sort by Total (Highest)</option>
+                            <option value="total_asc">Sort by Total (Lowest)</option>
+                        </select>
                     </div>
                 </div>
                 <div class="table-wrapper">
@@ -387,62 +404,92 @@ $total_orders = array_sum($counts);
 document.addEventListener('DOMContentLoaded', function() {
     const filterCards = document.querySelectorAll('.filter-card');
     const searchInput = document.getElementById('orderSearch');
+    const orderTypeFilter = document.getElementById('orderTypeFilter');
+    const sort = document.getElementById('sort');
     const tableBody = document.getElementById('orderTableBody');
-    const allTableRows = tableBody.querySelectorAll('tr');
-    
-    // Hanapin ang "No orders found" row
-    const noOrdersRow = Array.from(allTableRows).find(row => row.querySelector('td[colspan="7"]'));
+    const allTableRows = Array.from(tableBody.querySelectorAll('tr'));
+    const noOrdersRow = allTableRows.find(row => row.querySelector('td[colspan="7"]'));
 
-    function filterAndSearch() {
+    function filterAndSort() {
         let searchTerm = searchInput.value.toLowerCase();
         let activeStatusFilter = document.querySelector('.card-box.active-filter').getAttribute('data-status-filter');
-        let matchesFound = 0;
+        let orderType = orderTypeFilter.value;
+        let sortValue = sort.value;
 
-        allTableRows.forEach(row => {
-            // Huwag isama ang 'no orders' row
-            if (row === noOrdersRow) {
-                row.style.display = 'none';
-                return;
-            }
+        let filteredRows = allTableRows.filter(row => {
+            if (row === noOrdersRow) return false;
 
-            // 1. Check Status Filter
             const rowStatus = row.getAttribute('data-status');
-            let statusMatch = (activeStatusFilter === 'all' || rowStatus === activeStatusFilter);
-
-            // 2. Check Search Filter
+            const rowOrderType = row.cells[3].textContent.trim().toLowerCase();
             const orderId = row.cells[0].textContent.toLowerCase();
             const customerName = row.cells[1].textContent.toLowerCase();
+
+            let statusMatch = (activeStatusFilter === 'all' || rowStatus === activeStatusFilter);
+            let orderTypeMatch = (orderType === 'all' || rowOrderType.includes(orderType));
             let searchMatch = (orderId.includes(searchTerm) || customerName.includes(searchTerm));
 
-            // 3. Show/Hide Row
-            if (statusMatch && searchMatch) {
-                row.style.display = '';
-                matchesFound++;
-            } else {
-                row.style.display = 'none';
-            }
+            return statusMatch && orderTypeMatch && searchMatch;
         });
 
-        // Ipakita ang "No orders found" kung 0 ang matches
+        filteredRows.sort((a, b) => {
+            const [sortBy, sortDir] = sortValue.split('_');
+
+            let valA, valB;
+
+            switch (sortBy) {
+                case 'date':
+                    valA = new Date(a.cells[5].textContent);
+                    valB = new Date(b.cells[5].textContent);
+                    break;
+                case 'name':
+                    valA = a.cells[1].textContent;
+                    valB = b.cells[1].textContent;
+                    break;
+                case 'total':
+                    valA = parseFloat(a.cells[2].textContent.replace('₱', '').replace(',', ''));
+                    valB = parseFloat(b.cells[2].textContent.replace('₱', '').replace(',', ''));
+                    break;
+            }
+
+            if (sortDir === 'asc') {
+                if (valA < valB) return -1;
+                if (valA > valB) return 1;
+            } else {
+                if (valA > valB) return -1;
+                if (valA < valB) return 1;
+            }
+
+            return 0;
+        });
+
+        tableBody.innerHTML = '';
+        filteredRows.forEach(row => tableBody.appendChild(row));
+
         if (noOrdersRow) {
-            noOrdersRow.style.display = (matchesFound === 0) ? '' : 'none';
-            if(matchesFound === 0) {
+            if (filteredRows.length === 0) {
+                noOrdersRow.style.display = '';
                 noOrdersRow.querySelector('td').textContent = "No orders match your filter.";
+                tableBody.appendChild(noOrdersRow);
+            } else {
+                noOrdersRow.style.display = 'none';
             }
         }
     }
 
-    // Click listener para sa filter cards
     filterCards.forEach(card => {
         card.addEventListener('click', function() {
             filterCards.forEach(c => c.classList.remove('active-filter'));
             this.classList.add('active-filter');
-            filterAndSearch();
+            filterAndSort();
         });
     });
 
-    // Keyup listener para sa search
-    searchInput.addEventListener('keyup', filterAndSearch);
+    searchInput.addEventListener('keyup', filterAndSort);
+    orderTypeFilter.addEventListener('change', filterAndSort);
+    sort.addEventListener('change', filterAndSort);
+
+    // Initial sort
+    filterAndSort();
 });
 </script>
 

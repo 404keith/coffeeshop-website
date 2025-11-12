@@ -26,16 +26,24 @@ class StockController
 
     public function getStocks()
     {
+        require_once APP_ROOT . '/models/categoryModel.php';
+        $categories = get_all_categories($this->pdo);
+        $category_map = [];
+        foreach ($categories as $category) {
+            $category_map[$category['id']] = $category['name'];
+        }
+
         try {
             $sql = "SELECT id, category_id, product_type, name, description, price, stock, image 
                     FROM products 
                     WHERE is_archived = 0";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stocks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return [$stocks, $category_map];
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
-            return [];
+            return [[], []];
         }
     }
 

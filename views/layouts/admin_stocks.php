@@ -4,14 +4,7 @@ require_once APP_ROOT . '/controllers/stocksController.php';
 
 $controller = new StockController($pdo);
 $controller->handleRequest();
-$stocks = $controller->getStocks();
-
-$category_map = [
-    1 => 'Drinks',
-    2 => 'Pastries',
-    3 => 'Waffles',
-    4 => 'Merienda',
-];
+[$stocks, $category_map] = $controller->getStocks();
 
 ?>
 
@@ -140,6 +133,71 @@ $category_map = [
       border-radius: 25%; 
       border: 2px solid #eee;
     }
+
+    .creative-dropdown {
+        position: relative; /* Keep relative for positioning children */
+        /* Remove creative styles */
+        border-radius: 0; /* Reset border-radius */
+        background-color: transparent; /* Reset background */
+        transition: none; /* Remove transition */
+        box-shadow: none; /* Remove box-shadow */
+        border: none; /* Remove border */
+    }
+
+    .creative-dropdown:focus-within {
+        border-image: none; /* Remove border-image */
+    }
+
+    .creative-dropdown:hover {
+        box-shadow: none; /* Remove box-shadow */
+        transform: none; /* Remove transform */
+    }
+
+    .creative-dropdown .form-select-tailwind {
+        position: relative;
+        z-index: 1;
+        background-color: rgba(255,255,255,0.1); /* Match search input */
+        border: 1px solid rgba(255,255,255,0.2); /* Match search input */
+        border-left: 0; /* Match search input */
+        color: white; /* Match search input */
+        padding-left: 0.75rem; /* Adjust padding */
+        font-weight: normal; /* Reset font-weight */
+        -webkit-appearance: menulist-button; /* Restore default dropdown arrow */
+        -moz-appearance: menulist-button;
+        appearance: menulist-button;
+        background-image: none; /* Remove custom arrow image */
+        border-radius: 0 0.375rem 0.375rem 0; /* Match search input border-radius */
+    }
+
+    .creative-dropdown .form-select-tailwind:focus {
+        background-color: rgba(255,255,255,0.2); /* Match search input focus */
+        box-shadow: none; /* Remove custom box-shadow */
+        border-color: rgba(255,255,255,0.2); /* Match search input focus */
+    }
+
+    .creative-dropdown .input-group-text-tailwind {
+        /* Revert to input-group-text styles */
+        background-color: rgba(255,255,255,0.1); /* Match search input */
+        border: 1px solid rgba(255,255,255,0.2); /* Match search input */
+        border-right: 0; /* Match search input */
+        color: #D48423; /* Match search input */
+        border-radius: 0.375rem 0 0 0.375rem; /* Match search input border-radius */
+        padding: 0.5rem 1rem; /* Match search input padding */
+        position: static; /* Revert position */
+        z-index: auto; /* Revert z-index */
+        height: auto; /* Revert height */
+        display: inline-flex; /* Revert display */
+        align-items: center; /* Revert align-items */
+    }
+
+    /* Remove custom arrow styles */
+    .creative-dropdown::after {
+        content: none;
+    }
+
+    .creative-dropdown:focus-within::after {
+        transform: none;
+    }
   </style>
 </head>
 
@@ -167,6 +225,26 @@ $category_map = [
                 <div class="input-group header-search">
                     <span class="input-group-text"><i class="fas fa-search"></i></span>
                     <input type="text" class="form-control" placeholder="Search by name or category..." id="productSearch">
+                </div>
+                <div class="input-group ms-3">
+                    <label class="input-group-text input-group-text-tailwind" for="categoryFilter"><i class="fas fa-filter"></i></label>
+                    <select class="form-select form-select-tailwind" id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <?php foreach ($category_map as $id => $name): ?>
+                            <option value="<?= htmlspecialchars($name) ?>"><?= htmlspecialchars($name) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="input-group ms-3">
+                    <label class="input-group-text input-group-text-tailwind" for="sortOrder"><i class="fas fa-sort"></i></label>
+                    <select class="form-select form-select-tailwind" id="sortOrder">
+                        <option value="name_asc">Sort by Name (A-Z)</option>
+                        <option value="name_desc">Sort by Name (Z-A)</option>
+                        <option value="stock_asc">Sort by Stock (Low-High)</option>
+                        <option value="stock_desc">Sort by Stock (High-Low)</option>
+                        <option value="price_asc">Sort by Price (Low-High)</option>
+                        <option value="price_desc">Sort by Price (High-Low)</option>
+                    </select>
                 </div>
             </div>
 
@@ -266,10 +344,9 @@ $category_map = [
               <label for="category_id" class="form-label">Category</label>
               <select class="form-select" id="category_id" name="category_id" required>
                 <option value="" selected disabled>Select a category</option>
-                <option value="1">Drinks</option>
-                <option value="2">Pastries</option>
-                <option value="3">Waffles</option>
-                <option value="4">Merienda</option>
+                <?php foreach ($category_map as $id => $name): ?>
+                  <option value="<?= $id ?>"><?= htmlspecialchars($name) ?></option>
+                <?php endforeach; ?>
               </select>
             </div>
             <div class="mb-3">
@@ -321,10 +398,9 @@ $category_map = [
             <div class="mb-3">
               <label for="edit-category-id" class="form-label">Category</label>
               <select class="form-select" id="edit-category-id" name="category_id" required>
-                <option value="1">Drinks</option>
-                <option value="2">Pastries</option>
-                <option value="3">Waffles</option>
-                <option value="4">Merienda</option>
+                <?php foreach ($category_map as $id => $name): ?>
+                  <option value="<?= $id ?>"><?= htmlspecialchars($name) ?></option>
+                <?php endforeach; ?>
               </select>
             </div>
             <div class="mb-3">
@@ -383,6 +459,66 @@ $category_map = [
     }
 
     document.addEventListener('DOMContentLoaded', function () {
+      const searchInput = document.getElementById('productSearch');
+      const categoryFilter = document.getElementById('categoryFilter');
+      const sortOrder = document.getElementById('sortOrder');
+      const tableBody = document.getElementById('productTableBody');
+      const originalRows = Array.from(tableBody.querySelectorAll('tr'));
+
+      function filterAndSort() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const category = categoryFilter.value.toLowerCase();
+        const sortValue = sortOrder.value;
+
+        let filteredRows = originalRows.filter(row => {
+          const rowCategory = row.cells[2].textContent.trim().toLowerCase();
+          const rowName = row.cells[1].textContent.trim().toLowerCase();
+
+          const categoryMatch = category === '' || rowCategory === category;
+          const searchMatch = rowName.includes(searchTerm) || rowCategory.includes(searchTerm);
+
+          return categoryMatch && searchMatch;
+        });
+
+        filteredRows.sort((a, b) => {
+          const [key, order] = sortValue.split('_');
+          
+          let valA, valB;
+
+          switch (key) {
+            case 'name':
+              valA = a.cells[1].textContent.trim();
+              valB = b.cells[1].textContent.trim();
+              break;
+            case 'stock':
+              valA = parseInt(a.cells[3].querySelector('.badge').textContent.trim());
+              valB = parseInt(b.cells[3].querySelector('.badge').textContent.trim());
+              break;
+            case 'price':
+              valA = parseFloat(a.cells[4].textContent.replace(/[^0-9.-]+/g, ''));
+              valB = parseFloat(b.cells[4].textContent.replace(/[^0-9.-]+/g, ''));
+              break;
+          }
+
+          if (order === 'asc') {
+            return valA > valB ? 1 : -1;
+          } else {
+            return valA < valB ? 1 : -1;
+          }
+        });
+
+        tableBody.innerHTML = '';
+        if (filteredRows.length > 0) {
+          filteredRows.forEach(row => tableBody.appendChild(row));
+        } else {
+          tableBody.innerHTML = '<tr><td colspan="6" class="text-center">No products match your filters.</td></tr>';
+        }
+      }
+
+      searchInput.addEventListener('keyup', filterAndSort);
+      categoryFilter.addEventListener('change', filterAndSort);
+      sortOrder.addEventListener('change', filterAndSort);
+
       const editModal = document.getElementById('editProductModal');
       editModal.addEventListener('show.bs.modal', function (event) {
         const button = event.relatedTarget;
@@ -413,37 +549,6 @@ $category_map = [
         
         // Clear the file input
         document.getElementById('edit-image-upload').value = '';
-      });
-      
-      // ✨ NEW: Live Search Functionality
-      document.getElementById('productSearch').addEventListener('keyup', function() {
-          let filter = this.value.toLowerCase();
-          let rows = document.querySelectorAll('#productTableBody tr');
-          let noResultsFound = true;
-
-          rows.forEach(row => {
-              // Check if it's the "No items found" row
-              let noItemsCell = row.querySelector('td[colspan="6"]');
-              if (noItemsCell) {
-                  // Hide the 'no items' row by default
-                  row.style.display = 'none';
-                  return; 
-              }
-
-              // Get text from product name (cell 1) and category (cell 2)
-              let productName = row.cells[1].textContent.toLowerCase();
-              let category = row.cells[2].textContent.toLowerCase();
-              
-              if (productName.includes(filter) || category.includes(filter)) {
-                  row.style.display = ''; // Show row
-                  noResultsFound = false;
-              } else {
-                  row.style.display = 'none'; // Hide row
-              }
-          });
-          
-          // You can add a "No results found" row dynamically if you want
-          // For now, it just hides non-matching items.
       });
     });
 
