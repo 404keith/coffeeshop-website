@@ -47,6 +47,17 @@ class StockController
         }
     }
 
+    public function getCategoryMap()
+    {
+        require_once APP_ROOT . '/models/categoryModel.php';
+        $categories = get_all_categories($this->pdo);
+        $category_map = [];
+        foreach ($categories as $category) {
+            $category_map[$category['id']] = $category['name'];
+        }
+        return $category_map;
+    }
+
     private function addProduct()
     {
         try {

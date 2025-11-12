@@ -96,6 +96,50 @@ $archived = $controller->getArchived();
             justify-content: center;
             font-size: 1.5rem;
         }
+
+        .search-form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+
+        .search-input {
+            border-radius: 2rem 0 0 2rem;
+            border: 1px solid #ced4da;
+            padding: 0.5rem 1rem;
+            width: 300px;
+        }
+
+        .search-button {
+            border-radius: 0 2rem 2rem 0;
+            border: 1px solid #d48423;
+            background-color: #d48423;
+            color: white;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+
+        .form-select-tailwind {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255,255,255,0.1); /* Match search input */
+            border: 1px solid rgba(255,255,255,0.2); /* Match search input */
+            border-left: 0; /* Match search input */
+            color: white; /* Match search input */
+            padding-left: 0.75rem; /* Adjust padding */
+            font-weight: normal; /* Reset font-weight */
+            -webkit-appearance: menulist-button; /* Restore default dropdown arrow */
+            -moz-appearance: menulist-button;
+            appearance: menulist-button;
+            background-image: none; /* Remove custom arrow image */
+            border-radius: 0 0.375rem 0.375rem 0; /* Match search input border-radius */
+        }
+
+        .form-select-tailwind:focus {
+            background-color: rgba(255,255,255,0.2); /* Match search input focus */
+            box-shadow: none; /* Remove custom box-shadow */
+            border-color: rgba(255,255,255,0.2); /* Match search input focus */
+        }
     </style>
 </head>
 <body>
@@ -118,9 +162,34 @@ $archived = $controller->getArchived();
                 </div>
 
                 <div class="ui-card">
-                    <div class="card-header">
-                        <i class="bi bi-list-ul me-2"></i>
-                        Archived Item List
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <div class="me-2">
+                                <select class="form-select form-select-tailwind" id="categoryFilter">
+                                    <option value="">All Categories</option>
+                                    <?php
+                                    $category_map = $controller->getCategoryMap();
+                                    foreach ($category_map as $id => $name): ?>
+                                        <option value="<?= htmlspecialchars($name) ?>"><?= htmlspecialchars($name) ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="me-2">
+                                <select class="form-select form-select-tailwind" id="sortOrder">
+                                    <option value="name_asc">Sort by Name (A-Z)</option>
+                                    <option value="name_desc">Sort by Name (Z-A)</option>
+                                    <option value="stock_asc">Sort by Stock (Low-High)</option>
+                                    <option value="stock_desc">Sort by Stock (High-Low)</option>
+                                    <option value="price_asc">Sort by Price (Low-High)</option>
+                                    <option value="price_desc">Sort by Price (High-Low)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <form action="" method="GET" class="search-form">
+                            <input type="text" name="search" id="productSearch"
+                                placeholder="Search products..." class="search-input">
+                            <button type="submit" class="search-button">Search</button>
+                        </form>
                     </div>
                     <div class="card-body p-0"> 
                         <p class="text-muted p-4 mb-0">These products are currently archived and hidden from your menu. Click restore to bring them back.</p>
@@ -137,7 +206,7 @@ $archived = $controller->getArchived();
                                         <th style="width: 150px;">Restore</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="productTableBody">
                                     <?php if (!empty($archived)): ?>
                                         <?php foreach ($archived as $item): ?>
                                             <tr>
@@ -151,7 +220,7 @@ $archived = $controller->getArchived();
                                                 </td>
                                                 <td><strong><?= htmlspecialchars($item["name"]) ?></strong></td>
                                                 
-                                                <td><?= htmlspecialchars($item["category_id"]) ?></td>
+                                                <td><?= htmlspecialchars($category_map[$item["category_id"]] ?? 'Unknown') ?></td>
                                                 
                                                 <td><?= htmlspecialchars($item["stock"]) ?></td>
                                                 <td>₱<?= number_format((float)$item["price"], 2) ?></td>
@@ -181,6 +250,71 @@ $archived = $controller->getArchived();
         function confirmRestore() {
             return confirm('Are you sure you want to restore this product?');
         }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('productSearch');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const sortOrder = document.getElementById('sortOrder');
+            const tableBody = document.getElementById('productTableBody');
+            const originalRows = Array.from(tableBody.querySelectorAll('tr'));
+
+            function filterAndSort() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const category = categoryFilter.value.toLowerCase();
+                const sortValue = sortOrder.value;
+
+                let filteredRows = originalRows.filter(row => {
+                    const rowCategory = row.cells[2].textContent.trim().toLowerCase();
+                    const rowName = row.cells[1].textContent.trim().toLowerCase();
+
+                    const categoryMatch = category === '' || rowCategory === category;
+                    const searchMatch = rowName.includes(searchTerm);
+
+                    return categoryMatch && searchMatch;
+                });
+
+                filteredRows.sort((a, b) => {
+                    const [key, order] = sortValue.split('_');
+                    
+                    let valA, valB;
+
+                    switch (key) {
+                        case 'name':
+                            valA = a.cells[1].textContent.trim();
+                            valB = b.cells[1].textContent.trim();
+                            break;
+                        case 'stock':
+                            valA = parseInt(a.cells[3].textContent.trim());
+                            valB = parseInt(b.cells[3].textContent.trim());
+                            break;
+                        case 'price':
+                            valA = parseFloat(a.cells[4].textContent.replace(/[^0-9.-]+/g, ''));
+                            valB = parseFloat(b.cells[4].textContent.replace(/[^0-9.-]+/g, ''));
+                            break;
+                    }
+
+                    if (order === 'asc') {
+                        if (valA < valB) return -1;
+                        if (valA > valB) return 1;
+                    } else {
+                        if (valA > valB) return -1;
+                        if (valA < valB) return 1;
+                    }
+                    return 0;
+                });
+
+                tableBody.innerHTML = '';
+                if (filteredRows.length > 0) {
+                    filteredRows.forEach(row => tableBody.appendChild(row));
+                } else {
+                    tableBody.innerHTML = '<tr><td colspan="6" class="text-center">No products match your filters.</td></tr>';
+                }
+            }
+
+            searchInput.addEventListener('keyup', filterAndSort);
+            categoryFilter.addEventListener('change', filterAndSort);
+            sortOrder.addEventListener('change', filterAndSort);
+        });
     </script>
 </body>
 </html>

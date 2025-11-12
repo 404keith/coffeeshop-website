@@ -198,6 +198,28 @@ $controller->handleRequest();
     .creative-dropdown:focus-within::after {
         transform: none;
     }
+
+    .search-form {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5px;
+    }
+
+    .search-input {
+        border-radius: 2rem 0 0 2rem;
+        border: 1px solid #ced4da;
+        padding: 0.5rem 1rem;
+        width: 300px;
+    }
+
+    .search-button {
+        border-radius: 0 2rem 2rem 0;
+        border: 1px solid #d48423;
+        background-color: #d48423;
+        color: white;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+    }
   </style>
 </head>
 
@@ -219,14 +241,8 @@ $controller->handleRequest();
 
         <div class="ui-card">
           <div class="ui-card-header d-flex justify-content-between align-items-center">
-            
             <div class="d-flex align-items-center">
-                <h4 class="mb-0 me-3">Stock Management</h4>
-                <div class="input-group header-search">
-                    <span class="input-group-text"><i class="fas fa-search"></i></span>
-                    <input type="text" class="form-control" placeholder="Search by name or category..." id="productSearch">
-                </div>
-                <div class="input-group ms-3">
+                <div class="input-group">
                     <label class="input-group-text input-group-text-tailwind" for="categoryFilter"><i class="fas fa-filter"></i></label>
                     <select class="form-select form-select-tailwind" id="categoryFilter">
                         <option value="">All Categories</option>
@@ -247,10 +263,16 @@ $controller->handleRequest();
                     </select>
                 </div>
             </div>
-
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addProductModal">
-              <i class="fas fa-plus"></i> Add Product
-            </button>
+            <div class="d-flex align-items-center">
+                <form action="" method="GET" class="search-form me-3">
+                    <input type="text" name="search" id="productSearch"
+                        placeholder="Search products..." class="search-input">
+                    <button type="submit" class="search-button">Search</button>
+                </form>
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                  <i class="fas fa-plus"></i> Add Product
+                </button>
+            </div>
           </div>
           <div class="card-body p-0">
             <table class="table table-hover table-custom mb-0">

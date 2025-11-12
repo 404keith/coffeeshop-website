@@ -222,6 +222,50 @@ $total_orders = array_sum($counts);
         .action-form .form-select {
             margin-right: 8px;
         }
+
+        .search-form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 5px; /* Adjusted for better spacing in header */
+        }
+
+        .search-input {
+            border-radius: 2rem 0 0 2rem;
+            border: 1px solid #ced4da;
+            padding: 0.5rem 1rem;
+            width: 300px;
+        }
+
+        .search-button {
+            border-radius: 0 2rem 2rem 0;
+            border: 1px solid #d48423;
+            background-color: #d48423;
+            color: white;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+
+        .form-select-tailwind {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255,255,255,0.1); /* Match search input */
+            border: 1px solid rgba(255,255,255,0.2); /* Match search input */
+            border-left: 0; /* Match search input */
+            color: white; /* Match search input */
+            padding-left: 0.75rem; /* Adjust padding */
+            font-weight: normal; /* Reset font-weight */
+            -webkit-appearance: menulist-button; /* Restore default dropdown arrow */
+            -moz-appearance: menulist-button;
+            appearance: menulist-button;
+            background-image: none; /* Remove custom arrow image */
+            border-radius: 0 0.375rem 0.375rem 0; /* Match search input border-radius */
+        }
+
+        .form-select-tailwind:focus {
+            background-color: rgba(255,255,255,0.2); /* Match search input focus */
+            box-shadow: none; /* Remove custom box-shadow */
+            border-color: rgba(255,255,255,0.2); /* Match search input focus */
+        }
     </style>
 </head>
 <body>
@@ -291,29 +335,32 @@ $total_orders = array_sum($counts);
             </div>
 
             <div class="ui-card">
-                <div class="card-header d-flex justify-content-start align-items-center">
-                    <h5 class="mb-0 me-3"><i class="fas fa-box-seam me-2"></i>All Orders</h5>
-                    <div class="input-group header-search me-2" style="width: 300px;">
-                        <span class="input-group-text"><i class="fas fa-search"></i></span>
-                        <input type="text" class="form-control" placeholder="Search by Customer or Order ID..." id="orderSearch">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <h5 class="mb-0 me-3"><i class="fas fa-box-seam me-2"></i>All Orders</h5>
+                        <div class="me-2">
+                            <select class="form-select form-select-tailwind" id="orderTypeFilter">
+                                <option value="all">All Order Types</option>
+                                <option value="deliver">Deliver</option>
+                                <option value="pickup">Pickup</option>
+                            </select>
+                        </div>
+                        <div class="me-2">
+                            <select class="form-select form-select-tailwind" id="sort">
+                                <option value="date_desc">Sort by Date (Newest)</option>
+                                <option value="date_asc">Sort by Date (Oldest)</option>
+                                <option value="name_asc">Sort by Name (A-Z)</option>
+                                <option value="name_desc">Sort by Name (Z-A)</option>
+                                <option value="total_desc">Sort by Total (Highest)</option>
+                                <option value="total_asc">Sort by Total (Lowest)</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="me-2">
-                        <select class="form-select" id="orderTypeFilter">
-                            <option value="all">All Order Types</option>
-                            <option value="deliver">Deliver</option>
-                            <option value="pickup">Pickup</option>
-                        </select>
-                    </div>
-                    <div class="me-2">
-                        <select class="form-select" id="sort">
-                            <option value="date_desc">Sort by Date (Newest)</option>
-                            <option value="date_asc">Sort by Date (Oldest)</option>
-                            <option value="name_asc">Sort by Name (A-Z)</option>
-                            <option value="name_desc">Sort by Name (Z-A)</option>
-                            <option value="total_desc">Sort by Total (Highest)</option>
-                            <option value="total_asc">Sort by Total (Lowest)</option>
-                        </select>
-                    </div>
+                    <form action="" method="GET" class="search-form">
+                        <input type="text" name="search" id="orderSearch"
+                            placeholder="Search products..." class="search-input">
+                        <button type="submit" class="search-button">Search</button>
+                    </form>
                 </div>
                 <div class="table-wrapper">
                     <table class="table table-hover align-middle">

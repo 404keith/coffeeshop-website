@@ -211,9 +211,9 @@ $month = $data['month'];
               <div class="card-header d-flex justify-content-between align-items-center">
                 <h6 class="mb-0"><i class="fas fa-chart-bar me-2"></i><?= htmlspecialchars($chart_title) ?></h6>
                 
-                <form method="GET" class="d-flex align-items-center">
+                <form method="GET" class="d-flex align-items-center" id="salesFilterForm">
                   
-                  <select name="month" class="form-select form-select-sm form-select-themed me-2">
+                  <select name="month" class="form-select form-select-sm form-select-themed me-2" onchange="document.getElementById('salesFilterForm').submit();">
                     <option value="all" <?= ($month == 'all' || empty($month)) ? 'selected' : '' ?>>All Months</option>
                     <?php for ($m = 1; $m <= 12; $m++): ?>
                       <option value="<?= $m ?>" <?= ($month == $m) ? 'selected' : '' ?>>
@@ -222,13 +222,11 @@ $month = $data['month'];
                     <?php endfor; ?>
                   </select>
 
-                  <select name="year" class="form-select form-select-sm form-select-themed">
+                  <select name="year" class="form-select form-select-sm form-select-themed" onchange="document.getElementById('salesFilterForm').submit();">
                     <?php for ($y = date('Y'); $y >= date('Y') - 5; $y--): ?>
                       <option value="<?= $y ?>" <?= $year == $y ? 'selected' : '' ?>><?= $y ?></option>
                     <?php endfor; ?>
                   </select>
-
-                  <button type="submit" class="btn btn-sm btn-dark ms-2" style="background-color: #D48423; border: none;">Go</button>
                 </form>
               </div>
               <div class="card-body">
